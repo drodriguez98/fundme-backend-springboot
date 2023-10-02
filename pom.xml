@@ -25,6 +25,7 @@
 		<maven-antrun-plugin.version>3.0.0</maven-antrun-plugin.version>
 		<hsqldatabase.path>src/main/resources/db</hsqldatabase.path>
 		<exec-maven-plugin.version>1.2.1</exec-maven-plugin.version>
+		<mapstruct.version>1.5.3.Final</mapstruct.version>
 
 	</properties>
 
@@ -66,6 +67,14 @@
 
 		</dependency>
 
+		<dependency>
+
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>${mapstruct.version}</version>
+
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -76,6 +85,33 @@
 
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+
+			</plugin>
+
+			<plugin>
+
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+
+				<configuration>
+
+					<source>11</source>
+					<target>11</target>
+
+					<annotationProcessorPaths>
+
+						<path>
+
+							<groupId>org.mapstruct</groupId>
+							<artifactId>mapstruct-processor</artifactId>
+							<version>${mapstruct.version}</version>
+
+						</path>
+
+					</annotationProcessorPaths>
+
+				</configuration>
 
 			</plugin>
 
