@@ -1,8 +1,25 @@
-server:
-  port: 30030
 spring:
+  jpa:
+    hibernate:
+    properties:
+      hibernate:
+        format_sql: false
+        dialect: org.hibernate.dialect.HSQLDialect
+      ddl-auto: none
+      naming:
+        physical-naming: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
   datasource:
     driver-class-name: org.hsqldb.jdbcDriver
     url: jdbc:hsqldb:hsql://localhost:9001/templateDB
     username: SA
     password:
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug
+      type:
+        descriptor:
+          sql: trace
+server:
+  port: 30030
