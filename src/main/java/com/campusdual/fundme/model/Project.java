@@ -1,4 +1,4 @@
-package com.example.fundme.model;
+package com.campusdual.fundme.model;
 
 import javax.persistence.*;
 import java.util.Date;
