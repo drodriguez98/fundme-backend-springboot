@@ -1,4 +1,4 @@
-package com.example.fundme;
+package com.campusdual.fundme;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
