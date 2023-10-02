@@ -28,7 +28,7 @@ SET FILES NIO TRUE
 SET FILES NIO SIZE 256
 SET FILES LOG TRUE
 SET FILES LOG SIZE 50
-SET FILES CHECK 4449
+SET FILES CHECK 4601
 SET DATABASE COLLATION "SQL_TEXT" PAD SPACE
 CREATE USER SA PASSWORD DIGEST 'd41d8cd98f00b204e9800998ecf8427e'
 ALTER USER SA SET LOCAL TRUE
@@ -180,12 +180,12 @@ INSERT INTO USERS VALUES(1,'User2','abc123.','2023-10-02',3,54321,'user2@email.c
 INSERT INTO USERS VALUES(2,'User3','abc123.','2023-10-03',4,67890,'user3@email.com','111-222-3333','1','0')
 INSERT INTO USERS VALUES(3,'User4','abc123.','2023-10-04',5,98765,'user4@email.com','444-555-6666','1','0')
 INSERT INTO USERS VALUES(4,'User5','abc123.','2023-10-05',6,23456,'user5@email.com','777-888-9999','1','0')
-INSERT INTO PROJECTS VALUES(0,4,'Proyecto de Educacion Tecnologica para Ninos','2023-10-15',1,'Ayudanos a proporcionar a ninos de comunidades desfavorecidas acceso a la educacion tecnologica y habilidades digitales a traves de talleres y recursos educativos.',250)
-INSERT INTO PROJECTS VALUES(1,1,'Construccion de un Refugio para Personas sin Hogar','2023-10-22',10,'Unete a nosotros en la construccion de un refugio seguro y calido para personas sin hogar, donde puedan recibir apoyo, comida y refugio durante los meses frios de invierno.',100)
-INSERT INTO PROJECTS VALUES(2,0,'Proyecto de Agricultura Sostenible en Africa','2023-10-23',8,'Contribuye a mejorar la seguridad alimentaria en Africa apoyando a agricultores locales en la implementacion de practicas agricolas sostenibles y la conservacion de recursos naturales.',150)
-INSERT INTO PROJECTS VALUES(3,3,'Campana de Vacunacion para Comunidades Rurales','2023-10-14',4,'Ayuda a proporcionar vacunas esenciales a comunidades rurales que carecen de acceso a servicios de salud adecuados, protegiendo a ninos y adultos de enfermedades mortales.',200)
-INSERT INTO PROJECTS VALUES(4,1,'Proyecto de Arte Urbano en Vecindarios Marginados','2023-10-25',0,'Financia murales y proyectos de arte en areas urbanas marginadas para embellecer comunidades y fomentar la expresion artistica.',75)
-INSERT INTO PROJECTS VALUES(5,4,'Reforestacion de Bosques Amenazados','2023-10-17',5,'Unete a nuestra mision de plantar arboles y restaurar bosques en peligro, contribuyendo a la lucha contra el cambio climatico y la conservacion de la biodiversidad.',125)
+INSERT INTO PROJECTS VALUES(0,4,'Technological Education Project for Children','2023-10-15',1,'Help us provide children from disadvantaged communities with access to technology education and digital skills through workshops and educational resources.',250)
+INSERT INTO PROJECTS VALUES(1,1,'Construction of a Shelter for Homeless People','2023-10-22',10,'Join us in building a safe and warm shelter for homeless people, where they can receive support, food and shelter during the cold winter months.',100)
+INSERT INTO PROJECTS VALUES(2,0,'Sustainable Agriculture Project in Africa','2023-10-23',8,'Contributes to improving food security in Africa by supporting local farmers in the implementation of sustainable agricultural practices and the conservation of natural resources.',150)
+INSERT INTO PROJECTS VALUES(3,3,'Vaccination Campaign for Rural Communities','2023-10-14',4,'Helps provide essential vaccines to rural communities that lack access to adequate health services, protecting children and adults from deadly diseases.',200)
+INSERT INTO PROJECTS VALUES(4,1,'Urban Art Project in Marginalized Neighborhoods','2023-10-25',0,'Funds murals and art projects in underserved urban areas to beautify communities and encourage artistic expression.',75)
+INSERT INTO PROJECTS VALUES(5,4,'Reforestation of Endangered Forests','2023-10-17',5,'Join our mission to plant trees and restore endangered forests, contributing to the fight against climate change and the conservation of biodiversity.',125)
 INSERT INTO AREAS VALUES(0,'Art and culture')
 INSERT INTO AREAS VALUES(1,'Education')
 INSERT INTO AREAS VALUES(2,'Community development')
