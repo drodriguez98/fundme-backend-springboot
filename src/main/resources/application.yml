@@ -18,6 +18,11 @@ spring:
     url: jdbc:hsqldb:hsql://localhost:9001/templateDB
     username: SA
     password:
+  # Tipo de almacenamiento de las sesiones de usuario. En este caso, en una base de datos JDBC.
+  session:
+    store-type: jdbc
+    jdbc:
+      initialize-schema: always
 # Nivel de registro para diversas partes de la aplicación (Hibernate, consultas SQL...).
 logging:
   level:
@@ -32,3 +37,4 @@ logging:
 # Puerto en el que se ejecutará el servidor de la aplicación.
 server:
   port: 30030
+
