@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!-- DECLARACIÓN DEL PROYECTO  -->
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
+	<!-- Versión del modelo de POM -->
+
 	<modelVersion>4.0.0</modelVersion>
+
+	<!-- PROYECTO PADRE (Herencia) -->
 
 	<parent>
 
@@ -13,23 +19,48 @@
 
 	</parent>
 
+	<!-- Identificador del grupo del proyecto -->
+
 	<groupId>com.example</groupId>
+
+	<!-- Identificador del artefacto -->
+
 	<artifactId>fundme</artifactId>
+
+	<!-- Versión del proyecto -->
+
 	<version>0.0.1-SNAPSHOT</version>
+
+	<!-- Nombre del proyecto -->
+
 	<name>fundme</name>
+
+	<!-- Descripción del proyecto -->
+
 	<description>Finance your project!</description>
+
+	<!-- PROPIEDADES -->
 
 	<properties>
 
+		<!-- Versión de Java requerida -->
 		<java.version>11</java.version>
+		<!-- Versión del plugin Maven Antrun -->
 		<maven-antrun-plugin.version>3.0.0</maven-antrun-plugin.version>
+		<!-- Ruta a la base de datos HSQLDB -->
 		<hsqldatabase.path>src/main/resources/db</hsqldatabase.path>
+		<!-- Versión del plugin Maven Exec -->
 		<exec-maven-plugin.version>1.2.1</exec-maven-plugin.version>
+		<!-- Versión de MapStruct -->
 		<mapstruct.version>1.5.3.Final</mapstruct.version>
 
 	</properties>
 
+	<!-- DEPENDENCIAS -->
+
 	<dependencies>
+
+		<!-- Spring Boot Starter Data JPA -->
 
 		<dependency>
 
@@ -38,6 +69,8 @@
 
 		</dependency>
 
+		<!-- Spring Boot Starter Web -->
+
 		<dependency>
 
 			<groupId>org.springframework.boot</groupId>
@@ -45,12 +78,7 @@
 
 		</dependency>
 
-		<dependency>
-
-			<groupId>org.springframework.session</groupId>
-			<artifactId>spring-session-core</artifactId>
-
-		</dependency>
+		<!-- HSQL -->
 
 		<dependency>
 
@@ -60,6 +88,8 @@
 
 		</dependency>
 
+		<!-- Spring Boot Starter Test (pruebas) -->
+
 		<dependency>
 
 			<groupId>org.springframework.boot</groupId>
@@ -67,6 +97,8 @@
 			<scope>test</scope>
 
 		</dependency>
+
+		<!-- MapStruct -->
 
 		<dependency>
 
@@ -76,19 +108,37 @@
 
 		</dependency>
 
+		<!-- Spring Session JDBC -->
+
+		<dependency>
+
+			<groupId>org.springframework.session</groupId>
+			<artifactId>spring-session-jdbc</artifactId>
+
+		</dependency>
+
+		<!-- Spring Session Core
+
 		<dependency>
 
 			<groupId>org.springframework.session</groupId>
 			<artifactId>spring-session-core</artifactId>
-			<version>2.5.0</version>
 
-		</dependency>
+		</dependency> -->
+
+		<!-- HSQLDB (runtime) -->
 
 	</dependencies>
 
+	<!-- CONSTRUCCIÓN (Plugins) -->
+
 	<build>
 
+		<!-- Plugins de Maven -->
+
 		<plugins>
+
+			<!-- Plugin Spring Boot Maven para empaquetar y ejecutar la aplicación -->
 
 			<plugin>
 
@@ -97,16 +147,22 @@
 
 			</plugin>
 
+			<!-- Plugin Maven Compiler para configuración del compilador -->
+
 			<plugin>
 
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.1</version>
 
+				<!-- Configuración del compilador Java -->
+
 				<configuration>
 
 					<source>11</source>
 					<target>11</target>
+
+					<!-- Rutas para procesadores de anotaciones (MapStruct) -->
 
 					<annotationProcessorPaths>
 
@@ -128,15 +184,23 @@
 
 	</build>
 
+	<!-- PERFILES -->
+
 	<profiles>
+
+		<!-- Perfil "run_database" para configuración de base de datos -->
 
 		<profile>
 
 			<id>run_database</id>
 
+			<!-- Configuración de construcción específica para el perfil -->
+
 			<build>
 
 				<plugins>
+
+					<!-- Plugin Maven Antrun para ejecutar tareas de Ant -->
 
 					<plugin>
 
@@ -144,18 +208,33 @@
 						<artifactId>maven-antrun-plugin</artifactId>
 						<version>${maven-antrun-plugin.version}</version>
 
+						<!-- Ejecuciones del plugin -->
+
 						<executions>
+
+							<!-- Ejecución para configurar la base de datos -->
 
 							<execution>
 
 								<id>configure_database</id>
+
+								<!-- Fase en la que se ejecuta -->
+
 								<phase>validate</phase>
 
+								<!-- Objetivos del plugin -->
+
 								<goals>
+
 									<goal>run</goal>
+
 								</goals>
 
+								<!-- Configuración de la tarea -->
+
 								<configuration>
+
+									<!-- Tarea Ant. Verifica y copia archivos para crear la base de datos -->
 
 									<target>
 
@@ -173,15 +252,21 @@
 
 					</plugin>
 
+					<!-- Plugin Maven Exec para ejecutar aplicaciones Java -->
+
 					<plugin>
 
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>exec-maven-plugin</artifactId>
 						<version>${exec-maven-plugin.version}</version>
 
+						<!-- Configuración del plugin Maven Exec -->
+
 						<configuration>
 
 							<mainClass>org.hsqldb.Server</mainClass>
+
+							<!-- Argumentos para hacer la conexión con la base de datos -->
 
 							<arguments>
 
