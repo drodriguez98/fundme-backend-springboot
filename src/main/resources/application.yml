@@ -37,4 +37,3 @@ logging:
 # Puerto en el que se ejecutará el servidor de la aplicación.
 server:
   port: 30030
-
