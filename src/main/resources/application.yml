@@ -1,25 +1,34 @@
 spring:
   jpa:
+    # Configuración de Hibernate.
     hibernate:
     properties:
+      # Formato de las consultas SQL y el dialecto de la base de datos.
       hibernate:
         format_sql: false
         dialect: org.hibernate.dialect.HSQLDialect
+        # Modo de generación de esquema de base de datos (none para que Hibernate no genere ni modifique automáticamente el esquema de la base de datos).
       ddl-auto: none
+      # Estrategia de nomenclatura. Determina cómo Hibernate asigna los nombres de las clases de entidad y las propiedades de las entidades a los nombres de tablas y columnas en la base de datos.
       naming:
         physical-naming: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    # Conexión con la base de datos (controlador, URL, usuario y password).
   datasource:
     driver-class-name: org.hsqldb.jdbcDriver
     url: jdbc:hsqldb:hsql://localhost:9001/templateDB
     username: SA
     password:
+# Nivel de registro para diversas partes de la aplicación (Hibernate, consultas SQL...).
 logging:
   level:
     org:
+      # Nivel de registro (debug) para las consultas SQL de Hibernate.
       hibernate:
         SQL: debug
       type:
+        # Registro detallado (trace) para los tipos y descriptores SQL.
         descriptor:
           sql: trace
+# Puerto en el que se ejecutará el servidor de la aplicación.
 server:
   port: 30030
