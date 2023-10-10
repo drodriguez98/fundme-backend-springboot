@@ -13,7 +13,7 @@ public class DonationController {
     @Autowired
     private IDonationService donationService;
 
-    @PostMapping(value = "/donation/...")
+    @PostMapping(value = "/donation/{donation_id}")
     public DonationDTO queryDonation (@RequestBody DonationDTO donation) { return this.donationService.queryDonation(donation); }
 
     @GetMapping(value = "/all")

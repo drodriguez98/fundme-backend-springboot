@@ -16,7 +16,7 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
-    @PostMapping(value = "/user/...")
+    @PostMapping(value = "/user/{user_id}")
     public UserDTO queryUser (@RequestBody UserDTO user) { return this.userService.queryUser(user); }
 
     @GetMapping(value = "/all")

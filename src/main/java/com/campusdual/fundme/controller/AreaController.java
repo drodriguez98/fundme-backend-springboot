@@ -13,7 +13,7 @@ public class AreaController {
     @Autowired
     private IAreaService areaService;
 
-    @PostMapping(value = "/area/...")
+    @PostMapping(value = "/area/{area_id}")
     public AreaDTO queryArea (@RequestBody AreaDTO area) { return this.areaService.queryArea(area); }
 
     @GetMapping(value = "/all")
