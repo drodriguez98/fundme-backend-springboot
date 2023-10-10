@@ -18,9 +18,21 @@ spring:
     url: jdbc:hsqldb:hsql://localhost:9001/templateDB
     username: SA
     password:
-  # Tipo de almacenamiento de las sesiones de usuario. En este caso, en una base de datos JDBC.
+  # Configuración de Spring Security
+  security:
+    enabled: true
+    # Endpoints
+    login:
+      processing-url: /api/auth/login
+      default-target-url: /api/auth/success
+      failure-url: /api/auth/failure
+    logout:
+      url: /api/auth/logout
+      logoutSuccessUrl: /login
+  # Configuración de Spring Session JDBC (almacenamiento de las sesiones en base de datos HSQL).
   session:
     store-type: jdbc
+    session-authentication-strategy-enabled: true
     jdbc:
       initialize-schema: always
 # Nivel de registro para diversas partes de la aplicación (Hibernate, consultas SQL...).
