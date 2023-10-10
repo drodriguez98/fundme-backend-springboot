@@ -7,16 +7,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/comments")
+@RequestMapping("/api/comments")
 public class CommentController {
 
     @Autowired
     private ICommentService commentService;
 
-    @PostMapping(value = "/get")
+    @PostMapping(value = "/comment/...")
     public CommentDTO queryComment (@RequestBody CommentDTO comment) { return this.commentService.queryComment(comment); }
 
-    @GetMapping(value = "/getAll")
+    @GetMapping(value = "/all")
     public List<CommentDTO> queryAllComments() { return this.commentService.queryAllComments(); }
 
     @PostMapping(value = "/add")

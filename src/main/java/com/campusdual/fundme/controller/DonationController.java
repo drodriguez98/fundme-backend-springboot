@@ -7,16 +7,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/donations")
+@RequestMapping("/api/donations")
 public class DonationController {
 
     @Autowired
     private IDonationService donationService;
 
-    @PostMapping(value = "/get")
+    @PostMapping(value = "/donation/...")
     public DonationDTO queryDonation (@RequestBody DonationDTO donation) { return this.donationService.queryDonation(donation); }
 
-    @GetMapping(value = "/getAll")
+    @GetMapping(value = "/all")
     public List<DonationDTO> queryAllDonations() { return this.donationService.queryAllDonations(); }
 
     @PostMapping(value = "/add")

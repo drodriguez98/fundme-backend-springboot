@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/users")
 public class UserController {
 
     @Autowired
     private IUserService userService;
 
-    @PostMapping(value = "/get")
+    @PostMapping(value = "/user/...")
     public UserDTO queryUser (@RequestBody UserDTO user) { return this.userService.queryUser(user); }
 
-    @GetMapping(value = "/getAll")
+    @GetMapping(value = "/all")
     public List<UserDTO> queryAllUsers() { return this.userService.queryAllUsers(); }
 
     @PostMapping(value = "/add")

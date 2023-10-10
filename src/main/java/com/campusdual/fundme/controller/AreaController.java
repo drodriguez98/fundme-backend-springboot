@@ -7,16 +7,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/areas")
+@RequestMapping("/api/areas")
 public class AreaController {
 
     @Autowired
     private IAreaService areaService;
 
-    @PostMapping(value = "/get")
+    @PostMapping(value = "/area/...")
     public AreaDTO queryArea (@RequestBody AreaDTO area) { return this.areaService.queryArea(area); }
 
-    @GetMapping(value = "/getAll")
+    @GetMapping(value = "/all")
     public List<AreaDTO> queryAllAreas() { return this.areaService.queryAllAreas(); }
 
     @PostMapping(value = "/add")

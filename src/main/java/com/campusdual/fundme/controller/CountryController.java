@@ -7,16 +7,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/countries")
+@RequestMapping("/api/countries")
 public class CountryController {
 
     @Autowired
     private ICountryService countryService;
 
-    @PostMapping(value = "/get")
+    @PostMapping(value = "/country/...")
     public CountryDTO queryCountry (@RequestBody CountryDTO country) { return this.countryService.queryCountry(country); }
 
-    @GetMapping(value = "/getAll")
+    @GetMapping(value = "/all")
     public List<CountryDTO> queryAllCountries() { return this.countryService.queryAllCountries(); }
 
     @PostMapping(value = "/add")

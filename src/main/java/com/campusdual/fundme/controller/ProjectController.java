@@ -7,16 +7,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/projects")
+@RequestMapping("/api/projects")
 public class ProjectController {
 
     @Autowired
     private IProjectService projectService;
 
-    @PostMapping(value = "/get")
+    @PostMapping(value = "/project/...")
     public ProjectDTO queryProject (@RequestBody ProjectDTO project) { return this.projectService.queryProject(project); }
 
-    @GetMapping(value = "/getAll")
+    @GetMapping(value = "/all")
     public List<ProjectDTO> queryAllProjects() { return this.projectService.queryAllProjects(); }
 
     @PostMapping(value = "/add")
