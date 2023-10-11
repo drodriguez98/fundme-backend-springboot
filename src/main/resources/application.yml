@@ -23,12 +23,12 @@ spring:
     enabled: true
     # Endpoints
     login:
-      processing-url: /api/auth/login
-      default-target-url: /api/auth/success
-      failure-url: /api/auth/failure
+      processing-url: /api/public/login
+      default-target-url: /api/public/login/success
+      failure-url: /api/public/login/failure
     logout:
-      url: /api/auth/logout
-      logoutSuccessUrl: /login
+      url: /api/public/logout
+      logoutSuccessUrl: /api/public/login
   # Configuración de Spring Session JDBC (almacenamiento de las sesiones en base de datos HSQL).
   session:
     store-type: jdbc
