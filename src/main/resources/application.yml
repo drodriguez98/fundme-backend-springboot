@@ -29,12 +29,6 @@ spring:
     logout:
       url: /api/public/logout
       logoutSuccessUrl: /api/public/login
-  # Configuración de Spring Session JDBC (almacenamiento de las sesiones en base de datos HSQL).
-  session:
-    store-type: jdbc
-    session-authentication-strategy-enabled: true
-    jdbc:
-      initialize-schema: always
 # Nivel de registro para diversas partes de la aplicación (Hibernate, consultas SQL...).
 logging:
   level:
