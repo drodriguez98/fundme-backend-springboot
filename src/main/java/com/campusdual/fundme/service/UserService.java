@@ -5,6 +5,7 @@ import com.campusdual.fundme.model.dao.UserDAO;
 import com.campusdual.fundme.model.dto.UserDTO;
 import com.campusdual.fundme.model.User;
 import com.campusdual.fundme.model.dto.dtopmapper.UserMapper;
+import com.campusdual.fundme.util.PasswordEncoderUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,11 @@ public class UserService implements IUserService {
     @Autowired
     private UserDAO userDAO;
 
+    // Inyecta el utilitario de codificación de contraseñas
+
+    @Autowired
+    private PasswordEncoderUtil passwordEncoderUtil;
+
     @Override
     public UserDTO queryUser (UserDTO userDTO) {
 
@@ -26,27 +32,25 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public List<UserDTO> queryAllUsers() {
-
-        return UserMapper.INSTANCE.toDTOList(userDAO.findAll());
-
-    }
+    public List<UserDTO> queryAllUsers() { return UserMapper.INSTANCE.toDTOList(userDAO.findAll()); }
 
     @Override
     public int insertUser (UserDTO userDTO) {
 
         User user = UserMapper.INSTANCE.toEntity(userDTO);
+
+        // Genera un hash BCrypt para la contraseña antes de almacenarla
+
+        String hashedPassword = passwordEncoderUtil.encodePassword(user.getPassword());
+        user.setPassword(hashedPassword);
+
         this.userDAO.saveAndFlush(user);
         return user.getUser_id();
 
     }
 
     @Override
-    public int updateUser (UserDTO userDTO) {
-
-        return this.insertUser(userDTO);
-
-    }
+    public int updateUser (UserDTO userDTO) { return this.insertUser(userDTO); }
 
     @Override
     public int deleteUser (UserDTO userDTO) {

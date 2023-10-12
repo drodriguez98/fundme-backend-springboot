@@ -27,11 +27,7 @@ public class CommentService implements ICommentService {
     }
 
     @Override
-    public List<CommentDTO> queryAllComments() {
-
-        return CommentMapper.INSTANCE.toDTOList(commentDAO.findAll());
-
-    }
+    public List<CommentDTO> queryAllComments() { return CommentMapper.INSTANCE.toDTOList(commentDAO.findAll()); }
 
     @Override
     public int insertComment (CommentDTO commentDTO) {
@@ -42,11 +38,7 @@ public class CommentService implements ICommentService {
 
     }
     @Override
-    public int updateComment (CommentDTO commentDTO) {
-
-        return this.insertComment(commentDTO);
-
-    }
+    public int updateComment (CommentDTO commentDTO) { return this.insertComment(commentDTO); }
 
     @Override
     public int deleteComment (CommentDTO commentDTO) {

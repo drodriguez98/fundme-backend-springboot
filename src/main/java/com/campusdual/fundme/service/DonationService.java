@@ -26,11 +26,7 @@ public class DonationService implements IDonationService {
     }
 
     @Override
-    public List<DonationDTO> queryAllDonations() {
-
-        return DonationMapper.INSTANCE.toDTOList(donationDAO.findAll());
-
-    }
+    public List<DonationDTO> queryAllDonations() { return DonationMapper.INSTANCE.toDTOList(donationDAO.findAll()); }
 
     @Override
     public int insertDonation (DonationDTO donationDTO) {
@@ -42,11 +38,7 @@ public class DonationService implements IDonationService {
 
     }
     @Override
-    public int updateDonation (DonationDTO donationDTO) {
-
-        return this.insertDonation(donationDTO);
-
-    }
+    public int updateDonation (DonationDTO donationDTO) { return this.insertDonation(donationDTO); }
 
     @Override
     public int deleteDonation (DonationDTO donationDTO) {

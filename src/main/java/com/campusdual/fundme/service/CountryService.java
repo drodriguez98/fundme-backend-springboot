@@ -27,11 +27,7 @@ public class CountryService implements ICountryService {
     }
 
     @Override
-    public List<CountryDTO> queryAllCountries() {
-
-        return CountryMapper.INSTANCE.toDTOList(countryDAO.findAll());
-
-    }
+    public List<CountryDTO> queryAllCountries() { return CountryMapper.INSTANCE.toDTOList(countryDAO.findAll()); }
 
     @Override
     public int insertCountry (CountryDTO countryDTO) {
@@ -42,11 +38,7 @@ public class CountryService implements ICountryService {
 
     }
     @Override
-    public int updateCountry (CountryDTO countryDTO) {
-
-        return this.insertCountry(countryDTO);
-
-    }
+    public int updateCountry (CountryDTO countryDTO) { return this.insertCountry(countryDTO); }
 
     @Override
     public int deleteCountry (CountryDTO countryDTO) {

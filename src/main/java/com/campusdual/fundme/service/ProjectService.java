@@ -26,11 +26,7 @@ public class ProjectService implements IProjectService {
     }
 
     @Override
-    public List<ProjectDTO> queryAllProjects() {
-
-        return ProjectMapper.INSTANCE.toDTOList(projectDAO.findAll());
-
-    }
+    public List<ProjectDTO> queryAllProjects() { return ProjectMapper.INSTANCE.toDTOList(projectDAO.findAll()); }
 
     @Override
     public int insertProject (ProjectDTO projectDTO) {
@@ -42,11 +38,7 @@ public class ProjectService implements IProjectService {
     }
 
     @Override
-    public int updateProject (ProjectDTO projectDTO) {
-
-        return this.insertProject(projectDTO);
-
-    }
+    public int updateProject (ProjectDTO projectDTO) { return this.insertProject(projectDTO); }
 
     @Override
     public int deleteProject (ProjectDTO projectDTO) {

@@ -27,11 +27,7 @@ public class AreaService implements IAreaService {
     }
 
     @Override
-    public List<AreaDTO> queryAllAreas() {
-
-        return AreaMapper.INSTANCE.toDTOList(areaDAO.findAll());
-
-    }
+    public List<AreaDTO> queryAllAreas() { return AreaMapper.INSTANCE.toDTOList(areaDAO.findAll()); }
 
     @Override
     public int insertArea (AreaDTO areaDTO) {
@@ -43,11 +39,7 @@ public class AreaService implements IAreaService {
     }
 
     @Override
-    public int updateArea (AreaDTO areaDTO) {
-
-        return this.insertArea(areaDTO);
-
-    }
+    public int updateArea (AreaDTO areaDTO) { return this.insertArea(areaDTO); }
 
     @Override
     public int deleteArea (AreaDTO areaDTO) {
