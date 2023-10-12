@@ -29,6 +29,8 @@ public class User {
     private boolean active;
     @Column
     private boolean admin;
+    @Column
+    private String username;
 
     public int getUser_id() { return user_id; }
     public void setUser_id(int user_id) { this.user_id = user_id; }
@@ -50,5 +52,7 @@ public class User {
     public void setActive(boolean active) { this.active = active; }
     public boolean isAdmin() { return admin; }
     public void setAdmin(boolean admin) { this.admin = admin; }
+    public String getUsername() { return username; }
+    public void setUsername(String username) { this.username = username; }
 
 }
