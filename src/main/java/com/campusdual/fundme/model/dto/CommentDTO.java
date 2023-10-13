@@ -1,7 +1,6 @@
 package com.campusdual.fundme.model.dto;
 
 // Este archivo define una versión simplificada de la entidad Comment, utilizada para transferir datos entre la capa de servicios y los controladores.
-
 // No tiene lógica de negocio y se utiliza para separar las preocupaciones entre las capas.
 
 import com.campusdual.fundme.model.Project;
