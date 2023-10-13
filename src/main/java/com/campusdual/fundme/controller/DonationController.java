@@ -1,7 +1,6 @@
 package com.campusdual.fundme.controller;
 
 // Este controlador define rutas y métodos que gestionan las solicitudes relacionadas con las donaciones.
-
 // Utiliza el servicio IDonationService para llevar a cabo operaciones como consultar, insertar, actualizar y eliminar donaciones.
 
 import com.campusdual.fundme.api.IDonationService;

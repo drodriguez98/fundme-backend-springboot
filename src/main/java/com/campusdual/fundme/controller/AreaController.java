@@ -1,7 +1,6 @@
 package com.campusdual.fundme.controller;
 
 // Este controlador define rutas y métodos que gestionan las solicitudes relacionadas con las áreas.
-
 // Utiliza el servicio IAreaService para llevar a cabo operaciones como consultar, insertar, actualizar y eliminar áreas.
 
 import com.campusdual.fundme.api.IAreaService;

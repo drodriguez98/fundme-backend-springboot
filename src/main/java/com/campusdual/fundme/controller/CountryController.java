@@ -1,7 +1,6 @@
 package com.campusdual.fundme.controller;
 
 // Este controlador define rutas y métodos que gestionan las solicitudes relacionadas con los países.
-
 // Utiliza el servicio ICountryService para llevar a cabo operaciones como consultar, insertar, actualizar y eliminar países.
 
 import com.campusdual.fundme.api.ICountryService;

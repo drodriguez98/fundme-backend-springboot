@@ -1,7 +1,6 @@
 package com.campusdual.fundme.controller;
 
 // Este controlador define rutas y métodos que gestionan las solicitudes relacionadas con los proyectos.
-
 // Utiliza el servicio IProjectService para llevar a cabo operaciones como consultar, insertar, actualizar y eliminar proyectos.
 
 import com.campusdual.fundme.api.IProjectService;
