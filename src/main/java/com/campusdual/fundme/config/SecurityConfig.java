@@ -1,5 +1,11 @@
 package com.campusdual.fundme.config;
 
+// Esta clase configura la seguridad de la aplicación.
+
+// Define las reglas de acceso, permitiendo el acceso público a algunas rutas y requiriendo autenticación para otras.
+
+// También configura el uso de un codificador de contraseñas.
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
