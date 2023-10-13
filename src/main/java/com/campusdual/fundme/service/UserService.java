@@ -1,5 +1,11 @@
 package com.campusdual.fundme.service;
 
+// Esta clase implementa la interfaz IUserService y proporciona la lógica de negocio para manejar operaciones relacionadas con usuarios.
+
+// Se encarga de transformar objetos UserDTO en objetos User y viceversa.
+
+// Utiliza un servicio para codificar contraseñas antes de almacenarlas en la base de datos.
+
 import com.campusdual.fundme.api.IUserService;
 import com.campusdual.fundme.model.dao.UserDAO;
 import com.campusdual.fundme.model.dto.UserDTO;
