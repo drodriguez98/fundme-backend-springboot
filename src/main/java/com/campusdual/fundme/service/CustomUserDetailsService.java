@@ -1,5 +1,9 @@
 package com.campusdual.fundme.service;
 
+// Esta clase implementa la interfaz UserDetailsService de Spring Security.
+
+// Su función es cargar los detalles del usuario desde la base de datos, como el nombre de usuario y la contraseña encriptada, y devolverlos como un objeto UserDetails.
+
 import com.campusdual.fundme.model.User;
 import com.campusdual.fundme.model.dao.UserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
