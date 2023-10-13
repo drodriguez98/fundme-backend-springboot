@@ -1,5 +1,9 @@
 package com.campusdual.fundme.api;
 
+// Esta interfaz define métodos que deben ser implementados por un servicio que maneja operaciones relacionadas con áreas.
+
+// Incluye operaciones para consultar, insertar, actualizar y eliminar áreas.
+
 import com.campusdual.fundme.model.dto.AreaDTO;
 import java.util.List;
 
