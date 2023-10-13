@@ -1,7 +1,6 @@
 package com.campusdual.fundme.util;
 
 // Esta clase se encarga de proporcionar funcionalidad para codificar contraseñas.
-
 // Utiliza la biblioteca Spring Security para codificar contraseñas utilizando el algoritmo BCrypt.
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
