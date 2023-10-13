@@ -1,7 +1,6 @@
 package com.campusdual.fundme.service;
 
 // Esta clase implementa la interfaz IDonationService y proporciona la lógica de negocio para manejar operaciones relacionadas con donaciones.
-
 // Se encarga de transformar objetos DonationDTO en objetos Donation y viceversa.
 
 import com.campusdual.fundme.api.IDonationService;

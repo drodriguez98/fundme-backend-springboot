@@ -1,7 +1,6 @@
 package com.campusdual.fundme.service;
 
 // Esta clase implementa la interfaz IAreaService y proporciona la lógica de negocio para manejar operaciones relacionadas con áreas.
-
 // Se encarga de transformar objetos AreaDTO en objetos Area y viceversa.
 
 import com.campusdual.fundme.api.IAreaService;

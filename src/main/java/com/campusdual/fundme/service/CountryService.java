@@ -1,6 +1,7 @@
 package com.campusdual.fundme.service;
 
-
+// Esta clase implementa la interfaz ICountryService y proporciona la lógica de negocio para manejar operaciones relacionadas con países.
+// Se encarga de transformar objetos CountryDTO en objetos Country y viceversa.
 
 import com.campusdual.fundme.api.ICountryService;
 import com.campusdual.fundme.model.Country;

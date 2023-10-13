@@ -1,7 +1,6 @@
 package com.campusdual.fundme.service;
 
 // Esta clase implementa la interfaz IProjectService y proporciona la lógica de negocio para manejar operaciones relacionadas con proyectos.
-
 // Se encarga de transformar objetos ProjectDTO en objetos Project y viceversa.
 
 import com.campusdual.fundme.api.IProjectService;
