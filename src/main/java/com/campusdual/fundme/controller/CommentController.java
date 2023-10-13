@@ -1,5 +1,9 @@
 package com.campusdual.fundme.controller;
 
+// Este controlador define rutas y métodos que gestionan las solicitudes relacionadas con los comentarios.
+
+// Utiliza el servicio ICommentService para llevar a cabo operaciones como consultar, insertar, actualizar y eliminar comentarios.
+
 import com.campusdual.fundme.api.ICommentService;
 import com.campusdual.fundme.model.dto.CommentDTO;
 import org.springframework.beans.factory.annotation.Autowired;
