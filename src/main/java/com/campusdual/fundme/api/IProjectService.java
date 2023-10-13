@@ -2,7 +2,7 @@ package com.campusdual.fundme.api;
 
 // Esta interfaz define métodos que deben ser implementados por un servicio que maneja operaciones relacionadas con proyectos.
 
-// Incluye operaciones para consultar, insertar, actualizar y eliminar proyectos.
+// Incluye operaciones para consultar, insertar, actualizar y eliminar proyectos
 
 import com.campusdual.fundme.model.dto.ProjectDTO;
 import java.util.List;
