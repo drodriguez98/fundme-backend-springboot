@@ -13,7 +13,7 @@ public class CountryController {
     @Autowired
     private ICountryService countryService;
 
-    @PostMapping(value = "/country/{country_id}")
+    @PostMapping(value = "/get")
     public CountryDTO queryCountry (@RequestBody CountryDTO country) { return this.countryService.queryCountry(country); }
 
     @GetMapping(value = "/all")

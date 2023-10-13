@@ -1,8 +1,6 @@
 package com.campusdual.fundme.controller;
 
-import com.campusdual.fundme.api.IProjectService;
 import com.campusdual.fundme.api.IUserService;
-import com.campusdual.fundme.model.dto.ProjectDTO;
 import com.campusdual.fundme.model.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +14,7 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
-    @PostMapping(value = "/user/{user_id}")
+    @PostMapping(value = "/get")
     public UserDTO queryUser (@RequestBody UserDTO user) { return this.userService.queryUser(user); }
 
     @GetMapping(value = "/all")

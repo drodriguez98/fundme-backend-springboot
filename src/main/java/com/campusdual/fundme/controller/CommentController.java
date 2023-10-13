@@ -13,7 +13,7 @@ public class CommentController {
     @Autowired
     private ICommentService commentService;
 
-    @PostMapping(value = "/comment/{project_id}")
+    @PostMapping(value = "/get")
     public CommentDTO queryComment (@RequestBody CommentDTO comment) { return this.commentService.queryComment(comment); }
 
     @GetMapping(value = "/all")

@@ -13,7 +13,7 @@ public class ProjectController {
     @Autowired
     private IProjectService projectService;
 
-    @PostMapping(value = "/project/{project_id}")
+    @PostMapping(value = "/get")
     public ProjectDTO queryProject (@RequestBody ProjectDTO project) { return this.projectService.queryProject(project); }
 
     @GetMapping(value = "/all")
