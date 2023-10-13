@@ -1,4 +1,8 @@
-package com.campusdual.fundme.model;
+package com.campusdual.fundmepls.model;
+
+// Este archivo define la entidad Area que se mapea a una tabla en la base de datos.
+
+// La clase contiene propiedades que representan los atributos de un área y las anotaciones de JPA para definir cómo se mapea la entidad en la base de datos.
 
 import javax.persistence.*;
 
