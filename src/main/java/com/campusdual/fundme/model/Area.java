@@ -1,4 +1,4 @@
-package com.campusdual.fundmepls.model;
+package com.campusdual.fundme.model;
 
 // Este archivo define la entidad Area que se mapea a una tabla en la base de datos.
 
