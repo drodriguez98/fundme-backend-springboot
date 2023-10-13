@@ -1,7 +1,10 @@
 package com.campusdual.fundme.model.dto;
 
-import com.campusdual.fundme.model.Country;
+// Este archivo define una versión simplificada de la entidad User, utilizada para transferir datos entre la capa de servicios y los controladores.
 
+// No tiene lógica de negocio y se utiliza para separar las preocupaciones entre las capas.
+
+import com.campusdual.fundme.model.Country;
 import java.util.Date;
 
 public class UserDTO {
