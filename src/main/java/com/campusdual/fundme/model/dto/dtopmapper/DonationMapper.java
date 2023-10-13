@@ -1,5 +1,9 @@
 package com.campusdual.fundme.model.dto.dtopmapper;
 
+// Esta interfaz se utiliza para mapear entre objetos Donation y objetos DonationDTO.
+
+// Utiliza la biblioteca MapStruct para generar implementaciones de mapeo automático entre las dos clases.
+
 import com.campusdual.fundme.model.Donation;
 import com.campusdual.fundme.model.dto.DonationDTO;
 import org.mapstruct.Mapper;

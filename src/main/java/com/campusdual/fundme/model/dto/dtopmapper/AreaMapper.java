@@ -1,5 +1,9 @@
 package com.campusdual.fundme.model.dto.dtopmapper;
 
+// Esta interfaz se utiliza para mapear entre objetos Area y objetos AreaDTO.
+
+// Utiliza la biblioteca MapStruct para generar implementaciones de mapeo automático entre las dos clases.
+
 import com.campusdual.fundme.model.Area;
 import com.campusdual.fundme.model.dto.AreaDTO;
 import org.mapstruct.Mapper;

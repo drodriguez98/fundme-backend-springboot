@@ -1,5 +1,8 @@
 package com.campusdual.fundme.model.dto.dtopmapper;
 
+// Esta interfaz se utiliza para mapear entre objetos Country y objetos CountryDTO.
+
+// Utiliza la biblioteca MapStruct para generar implementaciones de mapeo automático entre las dos clases.
 import com.campusdual.fundme.model.Country;
 import com.campusdual.fundme.model.dto.CountryDTO;
 import org.mapstruct.Mapper;
