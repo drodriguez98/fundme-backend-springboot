@@ -1,9 +1,5 @@
 package com.campusdual.fundme.config;
 
-// Esta clase configura la seguridad de la aplicación.
-// Define las reglas de acceso, permitiendo el acceso público a algunas rutas y requiriendo autenticación para otras.
-// También configura el uso de un codificador de contraseñas.
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -20,23 +16,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http
-
-            .csrf().disable()
-            .authorizeRequests()
-            .antMatchers("/api/public/**").permitAll()
-            .anyRequest().authenticated()
-            .and()
-            .httpBasic();
-
+                .csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/api/private/**").authenticated()
+                .antMatchers("/api/public/showLoginForm", "/api/public/authentication").permitAll() // Rutas públicas
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/api/public/showLoginForm")
+                .loginProcessingUrl("/api/public/authentication")
+                .defaultSuccessUrl("/api/private/users/dashboard", true)
+                .and()
+                .logout()
+                .permitAll();
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
-
-        return new BCryptPasswordEncoder();
-
-        // return NoOpPasswordEncoder.getInstance(); para comprobar las passwords en texto claro
-
-    }
+    public PasswordEncoder passwordEncoder() { return new BCryptPasswordEncoder(); }
 
 }
