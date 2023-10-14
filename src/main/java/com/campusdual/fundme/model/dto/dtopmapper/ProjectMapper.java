@@ -1,7 +1,6 @@
 package com.campusdual.fundme.model.dto.dtopmapper;
 
 // Esta interfaz se utiliza para mapear entre objetos Project y objetos ProjectDTO.
-
 // Utiliza la biblioteca MapStruct para generar implementaciones de mapeo automático entre las dos clases.
 
 import com.campusdual.fundme.model.Project;
