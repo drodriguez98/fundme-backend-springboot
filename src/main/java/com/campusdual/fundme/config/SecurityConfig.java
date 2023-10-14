@@ -18,14 +18,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/private/**").authenticated()
-                .antMatchers("/api/public/showLoginForm", "/api/public/authentication").permitAll() // Rutas públicas
+                .antMatchers("/fundme/controller/rest**").authenticated()
+                .antMatchers("/fundme/controller/web/login", "/fundme/controller/rest/authentication").permitAll() // Rutas públicas
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/api/public/showLoginForm")
-                .loginProcessingUrl("/api/public/authentication")
-                .defaultSuccessUrl("/api/private/users/dashboard", true)
+                .loginPage("/fundme/controller/web/login")
+                .loginProcessingUrl("/fundme/controller/rest/authentication")
+                .defaultSuccessUrl("/fundme/controller/web/dashboard", true)
                 .and()
                 .logout()
                 .permitAll();
