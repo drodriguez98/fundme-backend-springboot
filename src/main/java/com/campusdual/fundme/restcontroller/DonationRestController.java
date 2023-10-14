@@ -1,4 +1,4 @@
-package com.campusdual.fundme.controller;
+package com.campusdual.fundme.restcontroller;
 
 // Este controlador define rutas y métodos que gestionan las solicitudes relacionadas con las donaciones.
 // Utiliza el servicio IDonationService para llevar a cabo operaciones como consultar, insertar, actualizar y eliminar donaciones.
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/private/donations")
-public class DonationController {
+@RequestMapping("/fundme/controller/rest/donations")
+public class DonationRestController {
 
     @Autowired
     private IDonationService donationService;

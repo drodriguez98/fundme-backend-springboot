@@ -1,4 +1,4 @@
-package com.campusdual.fundme.controller;
+package com.campusdual.fundme.restcontroller;
 
 // Este controlador define rutas y métodos que gestionan las solicitudes relacionadas con las áreas.
 // Utiliza el servicio IAreaService para llevar a cabo operaciones como consultar, insertar, actualizar y eliminar áreas.
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/private/areas")
-public class AreaController {
+@RequestMapping("/fundme/controller/rest/areas")
+public class AreaRestController {
 
     @Autowired
     private IAreaService areaService;

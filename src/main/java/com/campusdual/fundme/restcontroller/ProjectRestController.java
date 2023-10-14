@@ -1,4 +1,4 @@
-package com.campusdual.fundme.controller;
+package com.campusdual.fundme.restcontroller;
 
 // Este controlador define rutas y métodos que gestionan las solicitudes relacionadas con los proyectos.
 // Utiliza el servicio IProjectService para llevar a cabo operaciones como consultar, insertar, actualizar y eliminar proyectos.
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/private/projects")
-public class ProjectController {
+@RequestMapping("/fundme/controller/rest/projects")
+public class ProjectRestController {
 
     @Autowired
     private IProjectService projectService;

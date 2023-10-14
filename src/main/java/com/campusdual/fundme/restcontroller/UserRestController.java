@@ -1,4 +1,4 @@
-package com.campusdual.fundme.controller;
+package com.campusdual.fundme.restcontroller;
 
 // Este controlador define rutas y métodos que gestionan las solicitudes relacionadas con los usuarios.
 // Utiliza el servicio IUserService para llevar a cabo operaciones como consultar, insertar, actualizar y eliminar usuarios.
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/private/users")
-public class UserController {
+@RequestMapping("/fundme/controller/rest/users")
+public class UserRestController {
 
     @Autowired
     private IUserService userService;
@@ -23,7 +23,7 @@ public class UserController {
     @GetMapping(value = "/all")
     public List<UserDTO> queryAllUsers() { return this.userService.queryAllUsers(); }
 
-    @PostMapping(value = "/add")
+    @PostMapping(value = "add")
     public int insertUser (@RequestBody UserDTO user) { return this.userService.insertUser(user); }
 
     @PutMapping(value = "/update")
@@ -32,7 +32,5 @@ public class UserController {
     @PostMapping(value = "/delete")
     public int deleteUser (@RequestBody UserDTO user) { return this.userService.deleteUser(user); }
 
-    @GetMapping(value = "/dashboard")
-    public String welcomeToDashboard() { return "Welcome to dashboard"; }
 
 }

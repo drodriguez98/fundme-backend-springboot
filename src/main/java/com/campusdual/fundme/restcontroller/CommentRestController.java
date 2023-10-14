@@ -1,4 +1,4 @@
-package com.campusdual.fundme.controller;
+package com.campusdual.fundme.restcontroller;
 
 // Este controlador define rutas y métodos que gestionan las solicitudes relacionadas con los comentarios.
 // Utiliza el servicio ICommentService para llevar a cabo operaciones como consultar, insertar, actualizar y eliminar comentarios.
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/private/comments")
-public class CommentController {
+@RequestMapping("/fundme/controller/rest/comments")
+public class CommentRestController {
 
     @Autowired
     private ICommentService commentService;
