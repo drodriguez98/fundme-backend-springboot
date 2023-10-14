@@ -6,13 +6,19 @@
 
         <title>Login</title>
 
+        <style>
+
+            body { font-family: Arial, sans-serif; text-align: center; }
+
+        </style>
+
     </head>
 
     <body>
 
         <h2>Login</h2>
 
-        <form th:action="@{/api/public/authentication}" method="post">
+        <form th:action="@{/fundme/controller/rest/authentication}" method="post">
 
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required><br><br>
