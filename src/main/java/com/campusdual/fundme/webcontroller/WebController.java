@@ -1,10 +1,13 @@
 package com.campusdual.fundme.webcontroller;
 
+import com.campusdual.fundme.api.IProjectService;
 import com.campusdual.fundme.api.IUserService;
+import com.campusdual.fundme.model.dto.ProjectDTO;
 import com.campusdual.fundme.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.ui.Model;
 
 import java.util.List;
 
@@ -18,13 +21,22 @@ public class WebController {
     @Autowired
     private LoginService loginService; // Inyecta una instancia de LoginService
 
+    @Autowired
+    private IProjectService projectService;
+
     // Redirige a la página de inicio de sesión (login.html)
 
     @GetMapping("/login")
     public String loginPage() { return "login"; }
 
     @GetMapping(value = "/dashboard")
-    public String dashboard() { return "dashboard"; }
+    public String dashboard(Model model) {
+
+        List<ProjectDTO> projectList = projectService.queryAllProjects(); // Obtén la lista de proyectos desde tu servicio
+        model.addAttribute("projectList", projectList); // Agrega projectList al modelo
+
+        return "dashboard";
+    }
 
     @GetMapping(value = "/createProject")
     public String creatProject() { return "create-project"; }
@@ -38,14 +50,27 @@ public class WebController {
     @GetMapping(value = "/userProfile")
     public String userProfile() { return "user-profile"; }
 
-    @GetMapping(value = "/viewProject")
-    public String viewProject() { return "view-project"; }
+    @GetMapping(value = "/viewProject/{project_id}")
+    public String viewProject(@PathVariable int project_id, Model model) {
+
+        ProjectDTO projectDetails = projectService.queryProjectById(project_id);
+        model.addAttribute("projectDetails", projectDetails);
+
+        return "view-project";
+
+    }
 
     @GetMapping(value = "/myProjects")
     public String myProjects() { return "my-projects"; }
 
     @GetMapping(value = "/allProjects")
-    public String allProjects() { return "all-projects"; }
+    public String allProjects(Model model) {
+
+        List<ProjectDTO> projectList = projectService.queryAllProjects(); // Obtén la lista de proyectos desde tu servicio
+        model.addAttribute("projectList", projectList); // Agrega projectList al modelo
+
+        return "all-projects";
+    }
 
     @GetMapping(value = "/settings")
     public String settings() { return "settings"; }
