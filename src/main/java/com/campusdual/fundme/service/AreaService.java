@@ -5,7 +5,7 @@ package com.campusdual.fundme.service;
 
 import com.campusdual.fundme.api.IAreaService;
 import com.campusdual.fundme.model.Area;
-import com.campusdual.fundme.model.dao.AreaDAO;
+import com.campusdual.fundme.model.dao.AreaRepository;
 import com.campusdual.fundme.model.dto.AreaDTO;
 import com.campusdual.fundme.model.dto.dtopmapper.AreaMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import java.util.List;
 public class AreaService implements IAreaService {
 
     @Autowired
-    private AreaDAO areaDAO;
+    private AreaRepository areaDAO;
 
     @Override
     public AreaDTO queryArea (AreaDTO areaDTO) {

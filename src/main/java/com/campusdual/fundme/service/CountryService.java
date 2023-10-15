@@ -5,7 +5,7 @@ package com.campusdual.fundme.service;
 
 import com.campusdual.fundme.api.ICountryService;
 import com.campusdual.fundme.model.Country;
-import com.campusdual.fundme.model.dao.CountryDAO;
+import com.campusdual.fundme.model.dao.CountryRepository;
 import com.campusdual.fundme.model.dto.CountryDTO;
 import com.campusdual.fundme.model.dto.dtopmapper.CountryMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import java.util.List;
 public class CountryService implements ICountryService {
 
     @Autowired
-    private CountryDAO countryDAO;
+    private CountryRepository countryDAO;
 
     @Override
     public CountryDTO queryCountry (CountryDTO countryDTO) {

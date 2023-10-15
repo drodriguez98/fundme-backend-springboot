@@ -2,7 +2,7 @@ package com.campusdual.fundme.service;
 
 import com.campusdual.fundme.api.ILoginService;
 import com.campusdual.fundme.model.User;
-import com.campusdual.fundme.model.dao.UserDAO;
+import com.campusdual.fundme.model.dao.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,7 +15,7 @@ public class LoginService implements ILoginService {
     private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @Autowired
-    private UserDAO userDAO;
+    private UserRepository userDAO;
 
     @Override
     @Transactional

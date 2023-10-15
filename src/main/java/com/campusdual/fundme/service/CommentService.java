@@ -5,7 +5,7 @@ package com.campusdual.fundme.service;
 
 import com.campusdual.fundme.api.ICommentService;
 import com.campusdual.fundme.model.Comment;
-import com.campusdual.fundme.model.dao.CommentDAO;
+import com.campusdual.fundme.model.dao.CommentRepository;
 import com.campusdual.fundme.model.dto.CommentDTO;
 import com.campusdual.fundme.model.dto.dtopmapper.CommentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import java.util.List;
 public class CommentService implements ICommentService {
 
     @Autowired
-    private CommentDAO commentDAO;
+    private CommentRepository commentDAO;
 
     @Override
     public CommentDTO queryComment (CommentDTO commentDTO) {

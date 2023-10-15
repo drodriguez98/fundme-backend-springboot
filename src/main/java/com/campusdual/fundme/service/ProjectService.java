@@ -5,7 +5,7 @@ package com.campusdual.fundme.service;
 
 import com.campusdual.fundme.api.IProjectService;
 import com.campusdual.fundme.model.Project;
-import com.campusdual.fundme.model.dao.ProjectDAO;
+import com.campusdual.fundme.model.dao.ProjectRepository;
 import com.campusdual.fundme.model.dto.ProjectDTO;
 import com.campusdual.fundme.model.dto.dtopmapper.ProjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import java.util.List;
 public class ProjectService implements IProjectService {
 
     @Autowired
-    private ProjectDAO projectDAO;
+    private ProjectRepository projectDAO;
 
     @Override
     public ProjectDTO queryProject (ProjectDTO projectDTO) {

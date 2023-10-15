@@ -5,7 +5,7 @@ package com.campusdual.fundme.service;
 
 import com.campusdual.fundme.api.IDonationService;
 import com.campusdual.fundme.model.Donation;
-import com.campusdual.fundme.model.dao.DonationDAO;
+import com.campusdual.fundme.model.dao.DonationRepository;
 import com.campusdual.fundme.model.dto.DonationDTO;
 import com.campusdual.fundme.model.dto.dtopmapper.DonationMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import java.util.List;
 public class DonationService implements IDonationService {
 
     @Autowired
-    private DonationDAO donationDAO;
+    private DonationRepository donationDAO;
 
     @Override
     public DonationDTO queryDonation (DonationDTO donationDTO) {
