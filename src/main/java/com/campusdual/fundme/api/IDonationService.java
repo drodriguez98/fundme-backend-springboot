@@ -9,6 +9,9 @@ import java.util.List;
 public interface IDonationService {
 
     DonationDTO queryDonation (DonationDTO donationDTO);
+
+    DonationDTO queryDonationById(int donation_id);
+
     List<DonationDTO> queryAllDonations();
     int insertDonation (DonationDTO donationDTO);
     int updateDonation (DonationDTO donationDTO);

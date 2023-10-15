@@ -8,6 +8,7 @@ import com.campusdual.fundme.model.Donation;
 import com.campusdual.fundme.model.dao.DonationRepository;
 import com.campusdual.fundme.model.dto.DonationDTO;
 import com.campusdual.fundme.model.dto.dtopmapper.DonationMapper;
+import com.campusdual.fundme.model.dto.dtopmapper.ProjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,14 @@ public class DonationService implements IDonationService {
 
         Donation donation = DonationMapper.INSTANCE.toEntity(donationDTO);
         return DonationMapper.INSTANCE.toDTO(this.donationDAO.getReferenceById(donation.getDonation_id()));
+
+    }
+
+    @Override
+    public DonationDTO queryDonationById(int donation_id) {
+
+        Donation donation = donationDAO.getReferenceById(donation_id);
+        return DonationMapper.INSTANCE.toDTO(donation);
 
     }
 
