@@ -202,7 +202,7 @@
                         <div class="project">
 
                             <h3 th:text="${project.area_id.name}">Area</h3>
-                            <p th:text="${project.description}">Description</p>
+                            <p th:text="${project.title}">Title</p>
                             <a class="details-link" th:href="@{'/fundme/controller/web/view-project/' + ${project.project_id}}">View details</a>
 
                         </div>
