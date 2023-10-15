@@ -9,6 +9,9 @@ import java.util.List;
 public interface IProjectService {
 
     ProjectDTO queryProject (ProjectDTO projectDTO);
+
+    ProjectDTO queryProjectById(int project_d);
+
     List<ProjectDTO> queryAllProjects();
     int insertProject (ProjectDTO projectDTO);
     int updateProject (ProjectDTO projectDTO);

@@ -29,6 +29,15 @@ public class ProjectService implements IProjectService {
     }
 
     @Override
+    public ProjectDTO queryProjectById(int project_d) {
+
+        Project project = projectDAO.getReferenceById(project_d);
+        return ProjectMapper.INSTANCE.toDTO(project);
+
+    }
+
+
+    @Override
     public List<ProjectDTO> queryAllProjects() { return ProjectMapper.INSTANCE.toDTOList(projectDAO.findAll()); }
 
     @Override
