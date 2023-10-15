@@ -6,100 +6,127 @@
 
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="styles.css">
 
-        <title>Dashboard de Donaciones</title>
+        <title>Fundmepls / Dashboard</title>
 
         <style>
 
-            body {
+            body, html {
+                display: flex;
+                flex-direction: column;
                 margin: 0;
                 padding: 0;
+                height: 100vh;
                 font-family: 'Arial', sans-serif;
                 background-color: #f2f2f2;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                min-height: 100vh;
+                overflow-y: auto;
             }
+
             .container {
                 display: flex;
+                flex: 1;
+                width: 100%;
                 background-color: #fff;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
                 border-radius: 10px;
-                overflow: hidden;
-                width: 100%; /* Agrega un ancho del 100% para que ocupe todo el ancho disponible */
             }
+
             .sidebar {
-                width: 250px;
-                background-color: black;
-                color: #fff;
-                padding: 20px;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                width: 250px;
+                padding: 20px;
+                background-color: dimgrey;
+                color: black;
             }
+
             .sidebar h1 {
                 font-size: 24px;
                 margin-bottom: 20px;
+                text-align: center;
             }
+
             .sidebar ul {
-                list-style: none;
                 padding: 0;
+                list-style: none;
+                text-align: center;
             }
+
             .sidebar ul li { margin: 10px 0; }
+
             .sidebar ul li a {
                 text-decoration: none;
-                color: #fff;
+                color: black;
                 font-size: 18px;
                 transition: all 0.3s;
             }
+
             .sidebar ul li a:hover { color: #f0f0f0; }
+
             .content {
                 flex: 1;
                 padding: 20px;
+                background-color: grey;
             }
+
             header {
                 text-align: center;
                 margin-bottom: 20px;
             }
+
             header h2 {
                 font-size: 28px;
                 color: #333;
             }
-            main {
+
+            .section {
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: space-around;
+                margin-bottom: 30px;
             }
+
+            .section h3 {
+                font-size: 24px;
+                color: black;
+                text-align: center;
+                width: 100%;
+            }
+
             .project {
-                background-color: #fff;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 1);
                 padding: 20px;
                 margin: 10px;
-                width: 300px;
+                width: 450px;
+                height: 150px;
                 text-align: center;
+                background-color: silver;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 1);
             }
+
             .project h3 {
-                font-size: 20px;
-                color: #333;
+                font-size: 18px;
+                color: dimgrey;
             }
+
             .project p {
-                font-size: 16px;
                 margin: 10px 0;
-                color: black;
+                font-size: 15px;
+                color: dimgrey;
             }
+
             .project-nav {
                 display: flex;
                 flex-direction: row;
                 justify-content: space-around;
                 align-items: center;
-                margin-top: 20px;
+                margin-top: 40px;
             }
-            .donate-button, .details-link {
-                background-color: #fff;
-                color: black;
+
+            .donate-button, .details-link  {
                 padding: 10px 20px;
+                background-color: silver;
+                color: dimgrey;
                 border: none;
                 cursor: pointer;
                 font-size: 16px;
@@ -107,8 +134,30 @@
                 text-decoration: none;
                 transition: background-color 0.3s, color 0.3s;
             }
+
+            #view-all-projects a  {
+                padding: 10px 20px;
+                background-color: grey;
+                color: black;
+                border: none;
+                cursor: pointer;
+                font-size: 16px;
+                border-radius: 5px;
+                text-decoration: none;
+                transition: background-color 0.3s, color 0.3s;
+            }
+
             .details-link { margin-right: 10px; }
-            .donate-button:hover, .details-link:hover { background-color: grey; }
+
+            .donate-button:hover, .details-link:hover {
+                background-color: #fff;
+                color: black;
+            }
+
+            #view-all-projects a:hover {
+                background-color: #fff;
+                color: black;
+            }
 
         </style>
 
@@ -119,203 +168,153 @@
         <div class="container">
 
             <div class="sidebar">
-                <h1>Panel de Control</h1>
+
+                <h1>FUNDMEPLS</h1>
+
                 <ul>
-                    <li><a href="dashboard.html">Proyectos Destacados</a></li>
-                    <li><a href="user-profile.html">Perfil de Usuario</a></li>
-                    <li><a href="create-project.html">Crear Proyecto</a></li>
-                    <li><a href="last-donations.html">Donaciones</a></li>
-                    <li><a href="settings.html">Configuración</a></li>
+
+                    <li><a href="dashboard.html">Projects</a></li>
+                    <li><a href="create-project.html">Create project</a></li>
+                    <li><a href="last-donations.html">Donations</a></li>
+                    <li><a href="user-profile.html">User profile</a></li>
+                    <li><a href="settings.html">Settings</a></li>
+                    <li><a href="settings.html">Logout</a></li>
+
                 </ul>
+
             </div>
 
-
             <div class="content">
-                <header> <h2>Proyectos destacados</h2> </header>
 
-                <main>
+                <!-- <header> <h2>Projects</h2> </header> -->
+
+                <!-- Top projects section -->
+
+                <div class="section" id="top-projects">
+
+                    <h3>Top Projects</h3>
 
                     <div class="project">
-                        <h3>Proyecto</h3>
-                        <p>Descripción del proyecto</p>
+                        <h3>Project ...</h3>
+                        <p>Description ...</p>
                         <div class="project-nav">
-                            <a class="details-link" href="view-project.html">Ver detalles</a>
-                            <button class="donate-button">Donar</button>
+                            <a class="details-link" href="view-project.html">View details</a>
+                            <button class="donate-button">Donate</button>
                         </div>
                     </div>
 
                     <div class="project">
-                        <h3>Proyecto</h3>
-                        <p>Descripción del proyecto</p>
+                        <h3>Project ...</h3>
+                        <p>Description ...</p>
                         <div class="project-nav">
-                            <a class="details-link" href="view-project.html">Ver detalles</a>
-                            <button class="donate-button">Donar</button>
+                            <a class="details-link" href="view-project.html">View details</a>
+                            <button class="donate-button">Donate</button>
                         </div>
                     </div>
 
                     <div class="project">
-                        <h3>Proyecto</h3>
-                        <p>Descripción del proyecto</p>
+                        <h3>Project ...</h3>
+                        <p>Description ...</p>
                         <div class="project-nav">
-                            <a class="details-link" href="view-project.html">Ver detalles</a>
-                            <button class="donate-button">Donar</button>
+                            <a class="details-link" href="view-project.html">View details</a>
+                            <button class="donate-button">Donate</button>
                         </div>
                     </div>
 
                     <div class="project">
-                        <h3>Proyecto</h3>
-                        <p>Descripción del proyecto</p>
+                        <h3>Project ...</h3>
+                        <p>Description ...</p>
                         <div class="project-nav">
-                            <a class="details-link" href="view-project.html">Ver detalles</a>
-                            <button class="donate-button">Donar</button>
+                            <a class="details-link" href="view-project.html">View details</a>
+                            <button class="donate-button">Donate</button>
                         </div>
                     </div>
 
                     <div class="project">
-                        <h3>Proyecto</h3>
-                        <p>Descripción del proyecto</p>
+                        <h3>Project ...</h3>
+                        <p>Description ...</p>
                         <div class="project-nav">
-                            <a class="details-link" href="view-project.html">Ver detalles</a>
-                            <button class="donate-button">Donar</button>
+                            <a class="details-link" href="view-project.html">View details</a>
+                            <button class="donate-button">Donate</button>
                         </div>
                     </div>
 
                     <div class="project">
-                        <h3>Proyecto</h3>
-                        <p>Descripción del proyecto</p>
+                        <h3>Project ...</h3>
+                        <p>Description ...</p>
                         <div class="project-nav">
-                            <a class="details-link" href="view-project.html">Ver detalles</a>
-                            <button class="donate-button">Donar</button>
+                            <a class="details-link" href="view-project.html">View details</a>
+                            <button class="donate-button">Donate</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Last projects section -->
+
+                <div class="section" id="last-projects">
+
+                    <h3>Last Projects</h3>
+
+                    <div class="project">
+                        <h3>Project ...</h3>
+                        <p>Description ...</p>
+                        <div class="project-nav">
+                            <a class="details-link" href="view-project.html">View details</a>
+                            <button class="donate-button">Donate</button>
                         </div>
                     </div>
 
                     <div class="project">
-                        <h3>Proyecto</h3>
-                        <p>Descripción del proyecto</p>
+                        <h3>Project ...</h3>
+                        <p>Description ...</p>
                         <div class="project-nav">
-                            <a class="details-link" href="view-project.html">Ver detalles</a>
-                            <button class="donate-button">Donar</button>
+                            <a class="details-link" href="view-project.html">View details</a>
+                            <button class="donate-button">Donate</button>
                         </div>
                     </div>
 
                     <div class="project">
-                        <h3>Proyecto</h3>
-                        <p>Descripción del proyecto</p>
+                        <h3>Project ...</h3>
+                        <p>Description ...</p>
                         <div class="project-nav">
-                            <a class="details-link" href="view-project.html">Ver detalles</a>
-                            <button class="donate-button">Donar</button>
+                            <a class="details-link" href="view-project.html">View details</a>
+                            <button class="donate-button">Donate</button>
                         </div>
                     </div>
 
                     <div class="project">
-                        <h3>Proyecto</h3>
-                        <p>Descripción del proyecto</p>
+                        <h3>Project ...</h3>
+                        <p>Description ...</p>
                         <div class="project-nav">
-                            <a class="details-link" href="view-project.html">Ver detalles</a>
-                            <button class="donate-button">Donar</button>
+                            <a class="details-link" href="view-project.html">View details</a>
+                            <button class="donate-button">Donate</button>
                         </div>
                     </div>
 
                     <div class="project">
-                        <h3>Proyecto</h3>
-                        <p>Descripción del proyecto</p>
+                        <h3>Project ...</h3>
+                        <p>Description ...</p>
                         <div class="project-nav">
-                            <a class="details-link" href="view-project.html">Ver detalles</a>
-                            <button class="donate-button">Donar</button>
+                            <a class="details-link" href="view-project.html">View details</a>
+                            <button class="donate-button">Donate</button>
                         </div>
                     </div>
 
                     <div class="project">
-                        <h3>Proyecto</h3>
-                        <p>Descripción del proyecto</p>
+                        <h3>Project ...</h3>
+                        <p>Description ...</p>
                         <div class="project-nav">
-                            <a class="details-link" href="view-project.html">Ver detalles</a>
-                            <button class="donate-button">Donar</button>
+                            <a class="details-link" href="view-project.html">View details</a>
+                            <button class="donate-button">Donate</button>
                         </div>
                     </div>
 
-                    <div class="project">
-                        <h3>Proyecto</h3>
-                        <p>Descripción del proyecto</p>
-                        <div class="project-nav">
-                            <a class="details-link" href="view-project.html">Ver detalles</a>
-                            <button class="donate-button">Donar</button>
-                        </div>
-                    </div>
+                </div>
 
-                    <div class="project">
-                        <h3>Proyecto</h3>
-                        <p>Descripción del proyecto</p>
-                        <div class="project-nav">
-                            <a class="details-link" href="view-project.html">Ver detalles</a>
-                            <button class="donate-button">Donar</button>
-                        </div>
-                    </div>
+                <!-- View all projects link section -->
 
-                    <div class="project">
-                        <h3>Proyecto</h3>
-                        <p>Descripción del proyecto</p>
-                        <div class="project-nav">
-                            <a class="details-link" href="view-project.html">Ver detalles</a>
-                            <button class="donate-button">Donar</button>
-                        </div>
-                    </div>
-
-                    <div class="project">
-                        <h3>Proyecto</h3>
-                        <p>Descripción del proyecto</p>
-                        <div class="project-nav">
-                            <a class="details-link" href="view-project.html">Ver detalles</a>
-                            <button class="donate-button">Donar</button>
-                        </div>
-                    </div>
-
-                    <div class="project">
-                        <h3>Proyecto</h3>
-                        <p>Descripción del proyecto</p>
-                        <div class="project-nav">
-                            <a class="details-link" href="view-project.html">Ver detalles</a>
-                            <button class="donate-button">Donar</button>
-                        </div>
-                    </div>
-
-                    <div class="project">
-                        <h3>Proyecto</h3>
-                        <p>Descripción del proyecto</p>
-                        <div class="project-nav">
-                            <a class="details-link" href="view-project.html">Ver detalles</a>
-                            <button class="donate-button">Donar</button>
-                        </div>
-                    </div>
-
-                    <div class="project">
-                        <h3>Proyecto</h3>
-                        <p>Descripción del proyecto</p>
-                        <div class="project-nav">
-                            <a class="details-link" href="view-project.html">Ver detalles</a>
-                            <button class="donate-button">Donar</button>
-                        </div>
-                    </div>
-
-                    <div class="project">
-                        <h3>Proyecto</h3>
-                        <p>Descripción del proyecto</p>
-                        <div class="project-nav">
-                            <a class="details-link" href="view-project.html">Ver detalles</a>
-                            <button class="donate-button">Donar</button>
-                        </div>
-                    </div>
-
-                    <div class="project">
-                        <h3>Proyecto</h3>
-                        <p>Descripción del proyecto</p>
-                        <div class="project-nav">
-                            <a class="details-link" href="view-project.html">Ver detalles</a>
-                            <button class="donate-button">Donar</button>
-                        </div>
-                    </div>
-
-                </main>
+                <div class="section" id="view-all-projects"> <a href="all-projects.html">View all projects</a> </div>
 
             </div>
 
