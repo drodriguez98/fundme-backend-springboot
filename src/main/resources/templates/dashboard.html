@@ -139,17 +139,6 @@
                 color: #333;
             }
 
-            #view-all-projects a {
-                text-decoration: none;
-                color: black;
-                font-size: 18px;
-                transition: color 0.3s;
-            }
-
-            #view-all-projects a:hover {
-                color: black;
-            }
-
         </style>
 
     </head>
@@ -163,12 +152,15 @@
                 <h1>FUNDMEPLS</h1>
 
                 <ul>
-                    <li><a th:href="@{/fundme/controller/web/dashboard}">Projects</a></li>
+
+                    <li><a th:href="@{/fundme/controller/web/dashboard}">Dashboard</a></li>
+                    <li><a th:href="@{/fundme/controller/web/allProjects}">All projects</a></li>
                     <li><a th:href="@{/fundme/controller/web/createProject}">Create project</a></li>
                     <li><a th:href="@{/fundme/controller/web/donations}">Donations</a></li>
                     <li><a th:href="@{/fundme/controller/web/userProfile}">User profile</a></li>
                     <li><a th:href="@{/fundme/controller/web/settings}">Settings</a></li>
                     <li><a th:href="@{/fundme/controller/web/logout}">Logout</a></li>
+
                 </ul>
 
             </div>
@@ -177,94 +169,47 @@
 
                 <!-- Top projects section -->
 
+                <!-- Se listarán los 6 con más donaciones -->
+
                 <div class="section" id="top-projects">
 
                     <h3>Top Projects</h3>
 
-                    <div class="project">
-                        <h3>Area</h3>
-                        <p>Description</p>
-                        <a class="details-link" href="view-project.html">View details</a>
-                    </div>
+                    <div th:each="project : ${projectList}">
 
-                    <div class="project">
-                        <h3>Area</h3>
-                        <p>Description</p>
-                        <a class="details-link" href="view-project.html">View details</a>
-                    </div>
+                        <div class="project">
 
-                    <div class="project">
-                        <h3>Area</h3>
-                        <p>Description</p>
-                        <a class="details-link" href="view-project.html">View details</a>
-                    </div>
+                            <h3 th:text="${project.area_id.name}">Area</h3>
+                            <p th:text="${project.description}">Description</p>
+                            <a class="details-link" th:href="@{'/fundme/controller/web/viewProject/' + ${project.project_id}}">View details</a>
 
-                    <div class="project">
-                        <h3>Area</h3>
-                        <p>Description</p>
-                        <a class="details-link" href="view-project.html">View details</a>
-                    </div>
+                        </div>
 
-                    <div class="project">
-                        <h3>Area</h3>
-                        <p>Description</p>
-                        <a class="details-link" href="view-project.html">View details</a>
-                    </div>
-
-                    <div class="project">
-                        <h3>Area</h3>
-                        <p>Description</p>
-                        <a class="details-link" href="view-project.html">View details</a>
                     </div>
 
                 </div>
 
                 <!-- Last projects section -->
 
+                <!-- Se listarán los 6 más recientas -->
+
                 <div class="section" id="last-projects">
 
                     <h3>Last Projects</h3>
 
-                    <div class="project">
-                        <h3>Area</h3>
-                        <p>Description</p>
-                        <a class="details-link" href="view-project.html">View details</a>
-                    </div>
+                    <div th:each="project : ${projectList}">
 
-                    <div class="project">
-                        <h3>Area</h3>
-                        <p>Description</p>
-                        <a class="details-link" href="view-project.html">View details</a>
-                    </div>
+                        <div class="project">
 
-                    <div class="project">
-                        <h3>Area</h3>
-                        <p>Description</p>
-                        <a class="details-link" href="view-project.html">View details</a>
-                    </div>
-                    <div class="project">
-                        <h3>Area</h3>
-                        <p>Description</p>
-                        <a class="details-link" href="view-project.html">View details</a>
-                    </div>
+                            <h3 th:text="${project.area_id.name}">Area</h3>
+                            <p th:text="${project.description}">Description</p>
+                            <a class="details-link" th:href="@{'/fundme/controller/web/view-project/' + ${project.project_id}}">View details</a>
 
-                    <div class="project">
-                        <h3>Area</h3>
-                        <p>Description</p>
-                        <a class="details-link" href="view-project.html">View details</a>
-                    </div>
+                        </div>
 
-                    <div class="project">
-                        <h3>Area</h3>
-                        <p>Description</p>
-                        <a class="details-link" href="view-project.html">View details</a>
                     </div>
 
                 </div>
-
-                <!-- View all projects link section -->
-
-                <div class="section" id="view-all-projects"> <a th:href="@{/fundme/controller/web/allProjects}">View all projects</a> </div>
 
             </div>
 

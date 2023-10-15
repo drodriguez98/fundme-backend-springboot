@@ -1,10 +1,196 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>All projects</title>
-</head>
-<body>
 
-</body>
+<html xmlns:th="http://www.w3.org/1999/xhtml" lang="es">
+
+    <head>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Fundmepls / All projects</title>
+
+        <style>
+
+            body, html {
+                display: flex;
+                flex-direction: column;
+                margin: 0;
+                padding: 0;
+                height: 100vh;
+                font-family: 'Arial', sans-serif;
+                background-color: #f2f2f2;
+                overflow-y: auto;
+            }
+
+            .container {
+                display: flex;
+                flex-direction: column;
+                flex: 1;
+                width: 100%;
+                background-color: #f2f2f2;
+            }
+
+            .sidebar {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                padding: 20px;
+                background-color: #fff;
+                color: black;
+            }
+
+            .sidebar h1 {
+                font-size: 24px;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+
+            .sidebar ul {
+                list-style: none;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .sidebar ul li {
+                margin: 0 15px;
+            }
+
+            .sidebar ul li a {
+                text-decoration: none;
+                color: black;
+                font-size: 18px;
+                transition: color 0.3s;
+            }
+
+            .sidebar ul li a:hover {
+                color: black;
+            }
+
+            .content {
+                flex: 1;
+                padding: 20px;
+                background-color: #f2f2f2;
+            }
+
+            header {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            header h2 {
+                font-size: 28px;
+                color: #333;
+            }
+
+            .section {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                margin-bottom: 30px;
+            }
+
+            .section h3 {
+                font-size: 24px;
+                color: black;
+                text-align: center;
+                width: 100%;
+            }
+
+             .project {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center; /* Centra verticalmente */
+                padding: 20px;
+                margin: 10px;
+                width: 450px;
+                height: 150px;
+                text-align: center;
+                background-color: #fff;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            .project h3 {
+                font-size: 16px;
+                color: black;
+            }
+
+            .project p {
+                margin: 10px 0;
+                font-size: 15px;
+                color: black;
+            }
+
+            .details-link {
+                padding: 10px 20px;
+                background: none; /* Elimina el fondo */
+                color: black; /* Color de texto */
+                border: none;
+                cursor: pointer;
+                font-size: 15px;
+                text-decoration: none;
+                transition: color 0.3s;
+                margin-top: 30px;
+            }
+
+            .details-link:hover {
+                color: #333;
+            }
+
+        </style>
+
+    </head>
+
+    <body>
+
+        <div class="container">
+
+            <div class="sidebar">
+
+                <h1>FUNDMEPLS</h1>
+
+                <ul>
+
+                    <li><a th:href="@{/fundme/controller/web/dashboard}">Dashboard</a></li>
+                    <li><a th:href="@{/fundme/controller/web/allProjects}">All projects</a></li>
+                    <li><a th:href="@{/fundme/controller/web/createProject}">Create project</a></li>
+                    <li><a th:href="@{/fundme/controller/web/donations}">Donations</a></li>
+                    <li><a th:href="@{/fundme/controller/web/userProfile}">User profile</a></li>
+                    <li><a th:href="@{/fundme/controller/web/settings}">Settings</a></li>
+                    <li><a th:href="@{/fundme/controller/web/logout}">Logout</a></li>
+
+                </ul>
+
+            </div>
+
+            <div class="content">
+
+                <!-- All projects section -->
+
+                <div class="section" id="all-projects">
+
+                    <h3>All Projects</h3>
+
+                    <div th:each="project : ${projectList}">
+
+                        <div class="project">
+
+                            <h3 th:text="${project.area_id.name}">Area</h3>
+                            <p th:text="${project.description}">Description</p>
+                            <a class="details-link" th:href="@{'/fundme/controller/web/viewProject/' + ${project.project_id}}">View details</a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </body>
+
 </html>

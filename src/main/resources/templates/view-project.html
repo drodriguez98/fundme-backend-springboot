@@ -1,10 +1,179 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Project ID ...</title>
-</head>
-<body>
 
-</body>
+<html xmlns:th="http://www.w3.org/1999/xhtml" lang="es">
+
+    <head>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Fundmepls / View project</title>
+
+        <style>
+
+            body, html {
+                display: flex;
+                flex-direction: column;
+                margin: 0;
+                padding: 0;
+                height: 100vh;
+                font-family: 'Arial', sans-serif;
+                background-color: #f2f2f2;
+                overflow-y: auto;
+            }
+            .container {
+                display: flex;
+                flex-direction: column;
+                flex: 1;
+                width: 100%;
+                background-color: #f2f2f2;
+            }
+            .sidebar {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                padding: 20px;
+                background-color: #fff;
+                color: black;
+            }
+            .sidebar h1 {
+                font-size: 24px;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+            .sidebar ul {
+                list-style: none;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            .sidebar ul li {
+                margin: 0 15px;
+            }
+            .sidebar ul li a {
+                text-decoration: none;
+                color: black;
+                font-size: 18px;
+                transition: color 0.3s;
+            }
+            .sidebar ul li a:hover {
+                color: black;
+            }
+            .content {
+                flex: 1;
+                padding: 20px;
+                background-color: #f2f2f2;
+            }
+            header {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            header h2 {
+                font-size: 28px;
+                color: #333;
+            }
+            .section {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                margin-bottom: 30px;
+            }
+            .section h3 {
+                font-size: 24px;
+                color: black;
+                text-align: center;
+                width: 100%;
+            }
+             .project {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 20px;
+                margin: 10px;
+                width: 450px;
+                text-align: center;
+                background-color: #fff;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+            .project h3 {
+                font-size: 24px;
+                color: black;
+                margin: 10px 0;
+            }
+            .project p {
+                font-size: 18px;
+                color: black;
+                margin: 10px 0;
+            }
+            .donate-link {
+                padding: 10px 20px;
+                background: none;
+                color: black;
+                border: none;
+                cursor: pointer;
+                font-size: 18px;
+                text-decoration: none;
+                transition: color 0.3s;
+                margin-top: 30px;
+            }
+            .donate-link:hover {
+                color: #333;
+            }
+
+        </style>
+
+    </head>
+
+    <body>
+
+    <div class="container">
+
+        <div class="sidebar">
+
+            <h1>FUNDMEPLS</h1>
+
+            <ul>
+
+                <li><a th:href="@{/fundme/controller/web/dashboard}">Dashboard</a></li>
+                <li><a th:href="@{/fundme/controller/web/allProjects}">All projects</a></li>
+                <li><a th:href="@{/fundme/controller/web/createProject}">Create project</a></li>
+                <li><a th:href="@{/fundme/controller/web/donations}">Donations</a></li>
+                <li><a th:href="@{/fundme/controller/web/userProfile}">User profile</a></li>
+                <li><a th:href="@{/fundme/controller/web/settings}">Settings</a></li>
+                <li><a th:href="@{/fundme/controller/web/logout}">Logout</a></li>
+
+            </ul>
+
+        </div>
+
+        <div class="content">
+
+            <div class="section" id="view-project">
+
+                <div th:each="project : ${projectDetails}">
+
+                    <div class="project">
+
+                        <h3 th:text="${project.title}">Project Title</h3>
+                        <p><strong>Area</strong></p><p th:text="${project.area_id.name}"></p>
+                        <p><strong>User</strong><p th:text="${project.user_id.username}">User</p>
+                        <p><strong>Date</strong><p th:text="${project.date_added}">Date Added</p>
+                        <p><strong>Description</strong><p th:text="${project.description}">Description</p>
+                        <p><strong>Amount</strong><p th:text="${project.total_amount}">Total Amount</p>
+                        <a class="donate-link" th:href="@{'/fundme/controller/web/donate/' + ${project.project_id}}">Donate</a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    </body>
+
 </html>
