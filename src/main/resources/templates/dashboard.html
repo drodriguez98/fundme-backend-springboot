@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html xmlns:th="http://www.w3.org/1999/xhtml" lang="es">
 
     <head>
 
@@ -163,12 +163,12 @@
                 <h1>FUNDMEPLS</h1>
 
                 <ul>
-                    <li><a href="dashboard.html">Projects</a></li>
-                    <li><a href="create-project.html">Create project</a></li>
-                    <li><a href="last-donations.html">Donations</a></li>
-                    <li><a href="user-profile.html">User profile</a></li>
-                    <li><a href="settings.html">Settings</a></li>
-                    <li><a href="settings.html">Logout</a></li>
+                    <li><a th:href="@{/fundme/controller/web/dashboard}">Projects</a></li>
+                    <li><a th:href="@{/fundme/controller/web/createProject}">Create project</a></li>
+                    <li><a th:href="@{/fundme/controller/web/donations}">Donations</a></li>
+                    <li><a th:href="@{/fundme/controller/web/userProfile}">User profile</a></li>
+                    <li><a th:href="@{/fundme/controller/web/settings}">Settings</a></li>
+                    <li><a th:href="@{/fundme/controller/web/logout}">Logout</a></li>
                 </ul>
 
             </div>
@@ -264,7 +264,7 @@
 
                 <!-- View all projects link section -->
 
-                <div class="section" id="view-all-projects"> <a href="all-projects.html">View all projects</a> </div>
+                <div class="section" id="view-all-projects"> <a th:href="@{/fundme/controller/web/allProjects}">View all projects</a> </div>
 
             </div>
 
