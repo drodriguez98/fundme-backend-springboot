@@ -1,7 +1,9 @@
 package com.campusdual.fundme.webcontroller;
 
+import com.campusdual.fundme.api.IDonationService;
 import com.campusdual.fundme.api.IProjectService;
 import com.campusdual.fundme.api.IUserService;
+import com.campusdual.fundme.model.dto.DonationDTO;
 import com.campusdual.fundme.model.dto.ProjectDTO;
 import com.campusdual.fundme.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,8 @@ public class WebController {
     @Autowired
     private IProjectService projectService;
 
+    @Autowired
+    private IDonationService donationService;
     // Redirige a la página de inicio de sesión (login.html)
 
     @GetMapping("/login")
@@ -42,7 +46,15 @@ public class WebController {
     public String creatProject() { return "create-project"; }
 
     @GetMapping(value = "/donations")
-    public String donations() { return "donations"; }
+    public String donations(Model model) {
+
+        List<DonationDTO> donationList = donationService.queryAllDonations(); // Obtén la lista de proyectos desde tu servicio
+        model.addAttribute("donationList", donationList); // Agrega projectList al modelo
+
+
+        return "donations";
+
+    }
 
     @GetMapping(value = "/myDonations")
     public String myDonations() { return "my-donations"; }
