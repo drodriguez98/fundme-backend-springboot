@@ -23,11 +23,11 @@ public class LoginRestController {
 
         if (isAuthenticated) {
 
-            return "redirect:/api/dashboard";
+            return "redirect:/fundme/controller/web/dashboard";
 
         } else {
 
-            return "redirect:/api/public/error";
+            return "redirect:/fundme/controller/web/login";
 
             // return "redirect:/api/public/showLoginForm?error=true";
 
