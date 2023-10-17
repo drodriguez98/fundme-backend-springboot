@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface IAreaService {
 
-    AreaDTO queryArea (AreaDTO areaDTO);
+    AreaDTO getArea(AreaDTO areaDTO);
 
-    List <AreaDTO> queryAllAreas();
+    List <AreaDTO> getAllAreas();
 
     int insertArea (AreaDTO areaDTO);
 

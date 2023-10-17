@@ -8,11 +8,11 @@ import java.util.List;
 
 public interface IDonationService {
 
-    DonationDTO queryDonation (DonationDTO donationDTO);
+    DonationDTO getDonation(DonationDTO donationDTO);
 
-    DonationDTO queryDonationById(int donation_id);
+    DonationDTO getDonationById(int donation_id);
 
-    List<DonationDTO> queryAllDonations();
+    List<DonationDTO> getAllDonations();
     int insertDonation (DonationDTO donationDTO);
     int updateDonation (DonationDTO donationDTO);
     int deleteDonation (DonationDTO donationDTO);

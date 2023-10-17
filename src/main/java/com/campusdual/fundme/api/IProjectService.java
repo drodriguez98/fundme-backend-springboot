@@ -8,11 +8,11 @@ import java.util.List;
 
 public interface IProjectService {
 
-    ProjectDTO queryProject (ProjectDTO projectDTO);
+    ProjectDTO getProject(ProjectDTO projectDTO);
 
-    ProjectDTO queryProjectById(int project_d);
+    ProjectDTO getProjectById(int project_d);
 
-    List<ProjectDTO> queryAllProjects();
+    List<ProjectDTO> getAllProjects();
     int insertProject (ProjectDTO projectDTO);
     int updateProject (ProjectDTO projectDTO);
     int deleteProject (ProjectDTO projectDTO);

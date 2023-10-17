@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface ICommentService {
 
-    CommentDTO queryComment (CommentDTO commentDTO);
+    CommentDTO getComment(CommentDTO commentDTO);
 
-    List<CommentDTO> queryAllComments();
+    List<CommentDTO> getAllComments();
 
     int insertComment (CommentDTO commentDTO);
 

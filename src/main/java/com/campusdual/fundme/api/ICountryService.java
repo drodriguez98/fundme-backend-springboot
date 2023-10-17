@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface ICountryService {
 
-    CountryDTO queryCountry (CountryDTO countryDTO);
+    CountryDTO getCountry(CountryDTO countryDTO);
 
-    List<CountryDTO> queryAllCountries();
+    List<CountryDTO> getAllCountries();
 
     int insertCountry (CountryDTO countryDTO);
 
