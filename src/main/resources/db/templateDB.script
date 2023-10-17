@@ -28,7 +28,7 @@ SET FILES NIO TRUE
 SET FILES NIO SIZE 256
 SET FILES LOG TRUE
 SET FILES LOG SIZE 50
-SET FILES CHECK 11174
+SET FILES CHECK 11493
 SET DATABASE COLLATION "SQL_TEXT" PAD SPACE
 CREATE USER SA PASSWORD DIGEST 'd41d8cd98f00b204e9800998ecf8427e'
 ALTER USER SA SET LOCAL TRUE
@@ -68,12 +68,12 @@ INSERT INTO COUNTRIES VALUES(128,'Russia')
 INSERT INTO COUNTRIES VALUES(129,'United States')
 INSERT INTO COUNTRIES VALUES(131,'Morocco')
 INSERT INTO COUNTRIES VALUES(133,'Portugal')
-INSERT INTO USERS VALUES(26,'admin','$2a$10$A.rozz.A4f1LpfBZpJtxHuVouiGHOkKcGJqN9haAJdCIGuLHX027W','2023-10-01',122,12345,'admin@gmail.com','123-456-789','1','1','admin')
-INSERT INTO USERS VALUES(27,'user1','$2a$10$pvpt0A6z3wqkOuxjcUI8ReqT4MAuhoAbJJXFdU1/0btHWTHu0STUa','2023-10-01',122,12345,'user1@gmail.com','123-456-789','1','0','user1')
-INSERT INTO USERS VALUES(28,'user2','$2a$10$ntUoEBQA6GowaNXqJ3iA2ucQltS5ZhzyyMYphAilSvguQSsrIfReu','2023-10-01',122,12345,'user2@gmail.com','123-456-789','1','0','user2')
-INSERT INTO USERS VALUES(29,'user3','$2a$10$wAO09NolBAlgtfQ96/ZPUO3T4KJGUpONFSEPyYMn0Y8zmTTzXEhui','2023-10-01',122,12345,'user3@gmail.com','123-456-789','1','0','user3')
-INSERT INTO USERS VALUES(30,'user4','$2a$10$4RDqodE26BbBBivxKPRMe.JaxpojjamNtjyxKEFOndSc4fXySXxGe','2023-10-01',122,12345,'user4@gmail.com','123-456-789','1','0','user4')
-INSERT INTO USERS VALUES(31,'user5','$2a$10$0Y951yXqqawzlIgIaQ1QX.evGQZSmimsjvv8jxKlaf9Hx7mRE/08e','2023-10-01',122,12345,'user5@gmail.com','123-456-789','1','0','user5')
+INSERT INTO USERS VALUES(26,'Admin','$2a$10$A.rozz.A4f1LpfBZpJtxHuVouiGHOkKcGJqN9haAJdCIGuLHX027W','2023-10-01',122,12345,'admin@gmail.com','123456789','1','1','admin')
+INSERT INTO USERS VALUES(27,'User1','$2a$10$pvpt0A6z3wqkOuxjcUI8ReqT4MAuhoAbJJXFdU1/0btHWTHu0STUa','2023-10-01',122,12345,'user1@gmail.com','123456789','1','0','user1')
+INSERT INTO USERS VALUES(28,'User2','$2a$10$ntUoEBQA6GowaNXqJ3iA2ucQltS5ZhzyyMYphAilSvguQSsrIfReu','2023-10-01',122,12345,'user2@gmail.com','123456789','1','0','user2')
+INSERT INTO USERS VALUES(29,'User3','$2a$10$wAO09NolBAlgtfQ96/ZPUO3T4KJGUpONFSEPyYMn0Y8zmTTzXEhui','2023-10-01',122,12345,'user3@gmail.com','123456789','1','0','user3')
+INSERT INTO USERS VALUES(30,'User4','$2a$10$4RDqodE26BbBBivxKPRMe.JaxpojjamNtjyxKEFOndSc4fXySXxGe','2023-10-01',122,12345,'user4@gmail.com','123456789','1','0','user4')
+INSERT INTO USERS VALUES(31,'User5','$2a$10$4RDqodE26BbBBivxKPRMe.JaxpojjamNtjyxKEFOndSc4fXySXxGe','2023-10-01',122,12345,'user5@gmail.com','123456789','1','0','user5')
 INSERT INTO PROJECTS VALUES(19,27,'Empowering Creativity: A Cultural Showcase','2023-10-01',16,'Support our arts and culture project, showcasing creativity and enriching communities',12)
 INSERT INTO PROJECTS VALUES(20,28,'Ignite Minds: Bridging Educational Gaps','2023-10-01',17,'Support our project to provide quality education and equal opportunities to underserved communities',7)
 INSERT INTO PROJECTS VALUES(21,29,'Empower for Equality','2023-10-01',19,'Join us in the fight for human rights and equality worldwide. Every contribution makes a difference',25)
