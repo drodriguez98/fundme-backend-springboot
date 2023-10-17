@@ -17,10 +17,10 @@ public class CountryRestController {
     private ICountryService countryService;
 
     @PostMapping(value = "/get")
-    public CountryDTO queryCountry (@RequestBody CountryDTO country) { return this.countryService.queryCountry(country); }
+    public CountryDTO queryCountry (@RequestBody CountryDTO country) { return this.countryService.getCountry(country); }
 
     @GetMapping(value = "/all")
-    public List<CountryDTO> queryAllCountries() { return this.countryService.queryAllCountries(); }
+    public List<CountryDTO> queryAllCountries() { return this.countryService.getAllCountries(); }
 
     @PostMapping(value = "/add")
     public int insertCountry (@RequestBody CountryDTO country) { return this.countryService.insertCountry(country); }

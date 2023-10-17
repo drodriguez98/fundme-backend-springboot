@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 public class LoginRestController {
 
     @Autowired
-    private LoginService loginService; // Inyecta una instancia de LoginService
+    private LoginService loginService;
 
     // Si el inicio de sesión es exitoso, redirigimos al usuario al panel de control. Si no redirigimos de nuevo a la página de inicio de sesión con un mensaje de error.
 

@@ -17,10 +17,10 @@ public class DonationRestController {
     private IDonationService donationService;
 
     @PostMapping(value = "/get")
-    public DonationDTO queryDonation (@RequestBody DonationDTO donation) { return this.donationService.queryDonation(donation); }
+    public DonationDTO queryDonation (@RequestBody DonationDTO donation) { return this.donationService.getDonation(donation); }
 
     @GetMapping(value = "/all")
-    public List<DonationDTO> queryAllDonations() { return this.donationService.queryAllDonations(); }
+    public List<DonationDTO> queryAllDonations() { return this.donationService.getAllDonations(); }
 
     @PostMapping(value = "/add")
     public int insertDonation (@RequestBody DonationDTO donation) { return this.donationService.insertDonation(donation); }

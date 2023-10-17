@@ -17,10 +17,10 @@ public class CommentRestController {
     private ICommentService commentService;
 
     @PostMapping(value = "/get")
-    public CommentDTO queryComment (@RequestBody CommentDTO comment) { return this.commentService.queryComment(comment); }
+    public CommentDTO queryComment (@RequestBody CommentDTO comment) { return this.commentService.getComment(comment); }
 
     @GetMapping(value = "/all")
-    public List<CommentDTO> queryAllComments() { return this.commentService.queryAllComments(); }
+    public List<CommentDTO> queryAllComments() { return this.commentService.getAllComments(); }
 
     @PostMapping(value = "/add")
     public int insertComment (@RequestBody CommentDTO comment) { return this.commentService.insertComment(comment); }

@@ -18,10 +18,10 @@ public class UserRestController {
     private IUserService userService;
 
     @PostMapping(value = "/get")
-    public UserDTO queryUser (@RequestBody UserDTO user) { return this.userService.queryUser(user); }
+    public UserDTO queryUser (@RequestBody UserDTO user) { return this.userService.getUser(user); }
 
     @GetMapping(value = "/all")
-    public List<UserDTO> queryAllUsers() { return this.userService.queryAllUsers(); }
+    public List<UserDTO> queryAllUsers() { return this.userService.getAllUsers(); }
 
     @PostMapping(value = "add")
     public int insertUser (@RequestBody UserDTO user) { return this.userService.insertUser(user); }

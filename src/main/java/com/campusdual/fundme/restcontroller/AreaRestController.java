@@ -17,10 +17,10 @@ public class AreaRestController {
     private IAreaService areaService;
 
     @PostMapping(value = "get")
-    public AreaDTO queryArea (@RequestBody AreaDTO area) { return this.areaService.queryArea(area); }
+    public AreaDTO queryArea (@RequestBody AreaDTO area) { return this.areaService.getArea(area); }
 
     @GetMapping(value = "/all")
-    public List<AreaDTO> queryAllAreas() { return this.areaService.queryAllAreas(); }
+    public List<AreaDTO> queryAllAreas() { return this.areaService.getAllAreas(); }
 
     @PostMapping(value = "/add")
     public int insertArea (@RequestBody AreaDTO area) { return this.areaService.insertArea(area); }

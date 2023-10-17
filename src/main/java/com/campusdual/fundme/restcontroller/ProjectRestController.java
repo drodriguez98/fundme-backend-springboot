@@ -17,10 +17,10 @@ public class ProjectRestController {
     private IProjectService projectService;
 
     @PostMapping(value = "/get")
-    public ProjectDTO queryProject (@RequestBody ProjectDTO project) { return this.projectService.queryProject(project); }
+    public ProjectDTO queryProject (@RequestBody ProjectDTO project) { return this.projectService.getProject(project); }
 
     @GetMapping(value = "/all")
-    public List<ProjectDTO> queryAllProjects() { return this.projectService.queryAllProjects(); }
+    public List<ProjectDTO> queryAllProjects() { return this.projectService.getAllProjects(); }
 
     @PostMapping(value = "/add")
     public int insertProject (@RequestBody ProjectDTO project) { return this.projectService.insertProject(project); }
