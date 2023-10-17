@@ -12,6 +12,7 @@ import com.campusdual.fundme.model.dto.dtopmapper.UserMapper;
 import com.campusdual.fundme.util.PasswordEncoderUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -28,12 +29,17 @@ public class UserService implements IUserService {
     private PasswordEncoderUtil passwordEncoderUtil;
 
     @Override
-    public UserDTO queryUser (UserDTO userDTO) {
+    public UserDTO queryUser(UserDTO userDTO) {
+        // Obtiene el nombre de usuario del usuario autenticado desde el contexto de seguridad
+        String authenticatedUsername = SecurityContextHolder.getContext().getAuthentication().getName();
 
-        User user = UserMapper.INSTANCE.toEntity(userDTO);
-        return UserMapper.INSTANCE.toDTO(this.userDAO.getReferenceById(user.getUser_id()));
+        // Utiliza el nombre de usuario para buscar al usuario autenticado en el repositorio
+        User user = userDAO.findByUsername(authenticatedUsername);
 
+        // Convierte el usuario en UserDTO y lo devuelve
+        return UserMapper.INSTANCE.toDTO(user);
     }
+
 
     @Override
     public List<UserDTO> queryAllUsers() { return UserMapper.INSTANCE.toDTOList(userDAO.findAll()); }

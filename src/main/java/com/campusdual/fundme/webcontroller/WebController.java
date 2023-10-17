@@ -5,6 +5,7 @@ import com.campusdual.fundme.api.IProjectService;
 import com.campusdual.fundme.api.IUserService;
 import com.campusdual.fundme.model.dto.DonationDTO;
 import com.campusdual.fundme.model.dto.ProjectDTO;
+import com.campusdual.fundme.model.dto.UserDTO;
 import com.campusdual.fundme.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -60,7 +61,12 @@ public class WebController {
     public String myDonations() { return "my-donations"; }
 
     @GetMapping(value = "/userProfile")
-    public String userProfile() { return "user-profile"; }
+    public String userProfile(Model model) {
+        UserDTO authenticatedUser = userService.queryUser(new UserDTO());
+        model.addAttribute("authenticatedUser", authenticatedUser);
+        return "user-profile";
+    }
+
 
     @GetMapping(value = "/viewProject/{project_id}")
     public String viewProject(@PathVariable int project_id, Model model) {
