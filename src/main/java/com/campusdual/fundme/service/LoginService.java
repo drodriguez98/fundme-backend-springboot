@@ -15,21 +15,20 @@ public class LoginService implements ILoginService {
     private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @Autowired
-    private UserRepository userDAO;
+    private UserRepository userRepository;
+
+    // Realiza la lógica de autenticación con Hibernate
+    // Verifica la contraseña utilizando el PasswordEncoder configurado en SecurityConfig
 
     @Override
     @Transactional
     public boolean authenticate(String username, String password) {
 
-        // Realiza la lógica de autenticación con Hibernate
-
-        User user = userDAO.findByUsername(username);
-
-        // Verifica la contraseña utilizando el PasswordEncoder configurado en SecurityConfig
+        User user = userRepository.findByUsername(username);
 
         if (user != null) { return passwordEncoder.matches(password, user.getPassword()); }
 
-        return false;  // Usuario no encontrado o contraseña incorrecta
+        return false;
 
     }
 
