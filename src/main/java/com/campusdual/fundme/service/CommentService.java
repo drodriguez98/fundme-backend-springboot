@@ -22,7 +22,7 @@ public class CommentService implements ICommentService {
     private CommentRepository commentDAO;
 
     @Override
-    public CommentDTO queryComment (CommentDTO commentDTO) {
+    public CommentDTO getComment(CommentDTO commentDTO) {
 
         Comment comment = CommentMapper.INSTANCE.toEntity(commentDTO);
         return CommentMapper.INSTANCE.toDTO(this.commentDAO.getReferenceById(comment.getComment_id()));
@@ -30,7 +30,7 @@ public class CommentService implements ICommentService {
     }
 
     @Override
-    public List<CommentDTO> queryAllComments() { return CommentMapper.INSTANCE.toDTOList(commentDAO.findAll()); }
+    public List<CommentDTO> getAllComments() { return CommentMapper.INSTANCE.toDTOList(commentDAO.findAll()); }
 
     @Override
     public int insertComment (CommentDTO commentDTO) {

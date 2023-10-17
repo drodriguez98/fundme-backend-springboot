@@ -22,7 +22,7 @@ public class AreaService implements IAreaService {
     private AreaRepository areaDAO;
 
     @Override
-    public AreaDTO queryArea (AreaDTO areaDTO) {
+    public AreaDTO getArea(AreaDTO areaDTO) {
 
         Area area = AreaMapper.INSTANCE.toEntity(areaDTO);
         return AreaMapper.INSTANCE.toDTO(this.areaDAO.getReferenceById(area.getArea_id()));
@@ -30,7 +30,7 @@ public class AreaService implements IAreaService {
     }
 
     @Override
-    public List<AreaDTO> queryAllAreas() { return AreaMapper.INSTANCE.toDTOList(areaDAO.findAll()); }
+    public List<AreaDTO> getAllAreas() { return AreaMapper.INSTANCE.toDTOList(areaDAO.findAll()); }
 
     @Override
     public int insertArea (AreaDTO areaDTO) {

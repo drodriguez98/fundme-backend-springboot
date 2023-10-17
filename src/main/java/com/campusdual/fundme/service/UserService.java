@@ -23,38 +23,44 @@ public class UserService implements IUserService {
     @Autowired
     private UserRepository userDAO;
 
-    // Inyecta el utilitario de codificación de contraseñas
-
     @Autowired
     private PasswordEncoderUtil passwordEncoderUtil;
 
+    // Obtiene el nombre de usuario del usuario autenticado desde el contexto de seguridad
+    // Utiliza el nombre de usuario para buscar al usuario autenticado en el repositorio
+    // Convierte el usuario en UserDTO y lo devuelve
+
     @Override
-    public UserDTO queryUser(UserDTO userDTO) {
-        // Obtiene el nombre de usuario del usuario autenticado desde el contexto de seguridad
+    public UserDTO getUser(UserDTO userDTO) {
+
         String authenticatedUsername = SecurityContextHolder.getContext().getAuthentication().getName();
 
-        // Utiliza el nombre de usuario para buscar al usuario autenticado en el repositorio
         User user = userDAO.findByUsername(authenticatedUsername);
 
-        // Convierte el usuario en UserDTO y lo devuelve
         return UserMapper.INSTANCE.toDTO(user);
     }
 
 
     @Override
-    public List<UserDTO> queryAllUsers() { return UserMapper.INSTANCE.toDTOList(userDAO.findAll()); }
+    public List<UserDTO> getAllUsers() { return UserMapper.INSTANCE.toDTOList(userDAO.findAll()); }
+
+    // Genera un hash BCrypt para la contraseña antes de almacenarla.
+    // Establece la hora y fecha actual.
+    // Establece los campos active a 1 y admin a 0 por defecto
 
     @Override
     public int insertUser (UserDTO userDTO) {
 
         User user = UserMapper.INSTANCE.toEntity(userDTO);
 
-        // Genera un hash BCrypt para la contraseña antes de almacenarla
+        user.setActive(true);
+        user.setAdmin(false);
 
         String hashedPassword = passwordEncoderUtil.encodePassword(user.getPassword());
         user.setPassword(hashedPassword);
 
         this.userDAO.saveAndFlush(user);
+
         return user.getUser_id();
 
     }

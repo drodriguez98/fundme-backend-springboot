@@ -22,7 +22,7 @@ public class DonationService implements IDonationService {
     private DonationRepository donationDAO;
 
     @Override
-    public DonationDTO queryDonation (DonationDTO donationDTO) {
+    public DonationDTO getDonation(DonationDTO donationDTO) {
 
         Donation donation = DonationMapper.INSTANCE.toEntity(donationDTO);
         return DonationMapper.INSTANCE.toDTO(this.donationDAO.getReferenceById(donation.getDonation_id()));
@@ -30,7 +30,7 @@ public class DonationService implements IDonationService {
     }
 
     @Override
-    public DonationDTO queryDonationById(int donation_id) {
+    public DonationDTO getDonationById(int donation_id) {
 
         Donation donation = donationDAO.getReferenceById(donation_id);
         return DonationMapper.INSTANCE.toDTO(donation);
@@ -38,7 +38,7 @@ public class DonationService implements IDonationService {
     }
 
     @Override
-    public List<DonationDTO> queryAllDonations() { return DonationMapper.INSTANCE.toDTOList(donationDAO.findAll()); }
+    public List<DonationDTO> getAllDonations() { return DonationMapper.INSTANCE.toDTOList(donationDAO.findAll()); }
 
     @Override
     public int insertDonation (DonationDTO donationDTO) {

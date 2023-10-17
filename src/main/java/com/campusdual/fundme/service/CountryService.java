@@ -22,7 +22,7 @@ public class CountryService implements ICountryService {
     private CountryRepository countryDAO;
 
     @Override
-    public CountryDTO queryCountry (CountryDTO countryDTO) {
+    public CountryDTO getCountry(CountryDTO countryDTO) {
 
         Country country = CountryMapper.INSTANCE.toEntity(countryDTO);
         return CountryMapper.INSTANCE.toDTO(this.countryDAO.getReferenceById(country.getCountry_id()));
@@ -30,7 +30,7 @@ public class CountryService implements ICountryService {
     }
 
     @Override
-    public List<CountryDTO> queryAllCountries() { return CountryMapper.INSTANCE.toDTOList(countryDAO.findAll()); }
+    public List<CountryDTO> getAllCountries() { return CountryMapper.INSTANCE.toDTOList(countryDAO.findAll()); }
 
     @Override
     public int insertCountry (CountryDTO countryDTO) {
