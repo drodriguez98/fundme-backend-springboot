@@ -1,8 +1,11 @@
 package com.campusdual.fundme.webcontroller;
 
+import com.campusdual.fundme.api.ICountryService;
 import com.campusdual.fundme.api.IDonationService;
 import com.campusdual.fundme.api.IProjectService;
 import com.campusdual.fundme.api.IUserService;
+import com.campusdual.fundme.model.Country;
+import com.campusdual.fundme.model.dto.CountryDTO;
 import com.campusdual.fundme.model.dto.DonationDTO;
 import com.campusdual.fundme.model.dto.ProjectDTO;
 import com.campusdual.fundme.model.dto.UserDTO;
@@ -18,27 +21,33 @@ import java.util.List;
 @RequestMapping("/fundme/controller/web")
 public class WebController {
 
+    // Inyección de instancias
+
     @Autowired
     private IUserService userService;
 
     @Autowired
-    private LoginService loginService; // Inyecta una instancia de LoginService
+    private LoginService loginService;
+
 
     @Autowired
     private IProjectService projectService;
 
     @Autowired
     private IDonationService donationService;
-    // Redirige a la página de inicio de sesión (login.html)
 
     @GetMapping("/login")
-    public String loginPage() { return "login"; }
+    public String showLoginForm() { return "login";  }
+
+
+
+    // Obtiene la lista de proyectos desde el servicio y agrega projectList al modelo
 
     @GetMapping(value = "/dashboard")
     public String dashboard(Model model) {
 
-        List<ProjectDTO> projectList = projectService.queryAllProjects(); // Obtén la lista de proyectos desde tu servicio
-        model.addAttribute("projectList", projectList); // Agrega projectList al modelo
+        List<ProjectDTO> projectList = projectService.getAllProjects();
+        model.addAttribute("projectList", projectList);
 
         return "dashboard";
     }
@@ -46,12 +55,13 @@ public class WebController {
     @GetMapping(value = "/createProject")
     public String creatProject() { return "create-project"; }
 
+    // Obtiene la lista de donaciones desde el servicio y agrega donationList al modelo
+
     @GetMapping(value = "/donations")
     public String donations(Model model) {
 
-        List<DonationDTO> donationList = donationService.queryAllDonations(); // Obtén la lista de proyectos desde tu servicio
-        model.addAttribute("donationList", donationList); // Agrega projectList al modelo
-
+        List<DonationDTO> donationList = donationService.getAllDonations();
+        model.addAttribute("donationList", donationList);
 
         return "donations";
 
@@ -62,16 +72,19 @@ public class WebController {
 
     @GetMapping(value = "/userProfile")
     public String userProfile(Model model) {
-        UserDTO authenticatedUser = userService.queryUser(new UserDTO());
+
+        UserDTO authenticatedUser = userService.getUser(new UserDTO());
         model.addAttribute("authenticatedUser", authenticatedUser);
+
         return "user-profile";
+
     }
 
 
     @GetMapping(value = "/viewProject/{project_id}")
     public String viewProject(@PathVariable int project_id, Model model) {
 
-        ProjectDTO projectDetails = projectService.queryProjectById(project_id);
+        ProjectDTO projectDetails = projectService.getProjectById(project_id);
         model.addAttribute("projectDetails", projectDetails);
 
         return "view-project";
@@ -84,7 +97,7 @@ public class WebController {
     @GetMapping(value = "/allProjects")
     public String allProjects(Model model) {
 
-        List<ProjectDTO> projectList = projectService.queryAllProjects(); // Obtén la lista de proyectos desde tu servicio
+        List<ProjectDTO> projectList = projectService.getAllProjects(); // Obtén la lista de proyectos desde tu servicio
         model.addAttribute("projectList", projectList); // Agrega projectList al modelo
 
         return "all-projects";
