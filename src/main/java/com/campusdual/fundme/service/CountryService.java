@@ -19,24 +19,24 @@ import java.util.List;
 public class CountryService implements ICountryService {
 
     @Autowired
-    private CountryRepository countryDAO;
+    private CountryRepository countryRepository;
 
     @Override
     public CountryDTO getCountry(CountryDTO countryDTO) {
 
         Country country = CountryMapper.INSTANCE.toEntity(countryDTO);
-        return CountryMapper.INSTANCE.toDTO(this.countryDAO.getReferenceById(country.getCountry_id()));
+        return CountryMapper.INSTANCE.toDTO(this.countryRepository.getReferenceById(country.getCountry_id()));
 
     }
 
     @Override
-    public List<CountryDTO> getAllCountries() { return CountryMapper.INSTANCE.toDTOList(countryDAO.findAll()); }
+    public List<CountryDTO> getAllCountries() { return CountryMapper.INSTANCE.toDTOList(countryRepository.findAll()); }
 
     @Override
     public int insertCountry (CountryDTO countryDTO) {
 
         Country country = CountryMapper.INSTANCE.toEntity(countryDTO);
-        this.countryDAO.saveAndFlush(country);
+        this.countryRepository.saveAndFlush(country);
         return country.getCountry_id();
 
     }
@@ -48,7 +48,7 @@ public class CountryService implements ICountryService {
 
         int id = countryDTO.getCountry_id();
         Country country = CountryMapper.INSTANCE.toEntity(countryDTO);
-        this.countryDAO.delete(country);
+        this.countryRepository.delete(country);
         return id;
 
     }

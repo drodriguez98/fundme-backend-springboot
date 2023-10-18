@@ -19,24 +19,24 @@ import java.util.List;
 public class AreaService implements IAreaService {
 
     @Autowired
-    private AreaRepository areaDAO;
+    private AreaRepository areaRepository;
 
     @Override
     public AreaDTO getArea(AreaDTO areaDTO) {
 
         Area area = AreaMapper.INSTANCE.toEntity(areaDTO);
-        return AreaMapper.INSTANCE.toDTO(this.areaDAO.getReferenceById(area.getArea_id()));
+        return AreaMapper.INSTANCE.toDTO(this.areaRepository.getReferenceById(area.getArea_id()));
 
     }
 
     @Override
-    public List<AreaDTO> getAllAreas() { return AreaMapper.INSTANCE.toDTOList(areaDAO.findAll()); }
+    public List<AreaDTO> getAllAreas() { return AreaMapper.INSTANCE.toDTOList(areaRepository.findAll()); }
 
     @Override
     public int insertArea (AreaDTO areaDTO) {
 
         Area area = AreaMapper.INSTANCE.toEntity(areaDTO);
-        this.areaDAO.saveAndFlush(area);
+        this.areaRepository.saveAndFlush(area);
         return area.getArea_id();
 
     }
@@ -49,7 +49,7 @@ public class AreaService implements IAreaService {
 
         int id = areaDTO.getArea_id();
         Area area = AreaMapper.INSTANCE.toEntity(areaDTO);
-        this.areaDAO.delete(area);
+        this.areaRepository.delete(area);
         return id;
 
     }

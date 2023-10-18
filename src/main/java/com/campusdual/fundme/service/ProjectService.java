@@ -18,32 +18,32 @@ import java.util.List;
 public class ProjectService implements IProjectService {
 
     @Autowired
-    private ProjectRepository projectDAO;
+    private ProjectRepository projectRepository;
 
     @Override
     public ProjectDTO getProject(ProjectDTO projectDTO) {
 
         Project project = ProjectMapper.INSTANCE.toEntity(projectDTO);
-        return ProjectMapper.INSTANCE.toDTO(this.projectDAO.getReferenceById(project.getProject_id()));
+        return ProjectMapper.INSTANCE.toDTO(this.projectRepository.getReferenceById(project.getProject_id()));
 
     }
 
     @Override
     public ProjectDTO getProjectById(int project_d) {
 
-        Project project = projectDAO.getReferenceById(project_d);
+        Project project = projectRepository.getReferenceById(project_d);
         return ProjectMapper.INSTANCE.toDTO(project);
 
     }
 
     @Override
-    public List<ProjectDTO> getAllProjects() { return ProjectMapper.INSTANCE.toDTOList(projectDAO.findAll()); }
+    public List<ProjectDTO> getAllProjects() { return ProjectMapper.INSTANCE.toDTOList(projectRepository.findAll()); }
 
     @Override
     public int insertProject (ProjectDTO projectDTO) {
 
         Project project = ProjectMapper.INSTANCE.toEntity(projectDTO);
-        this.projectDAO.saveAndFlush(project);
+        this.projectRepository.saveAndFlush(project);
         return project.getProject_id();
 
     }
@@ -56,7 +56,7 @@ public class ProjectService implements IProjectService {
 
         int id = projectDTO.getProject_id();
         Project project = ProjectMapper.INSTANCE.toEntity(projectDTO);
-        this.projectDAO.delete(project);
+        this.projectRepository.delete(project);
         return id;
 
     }

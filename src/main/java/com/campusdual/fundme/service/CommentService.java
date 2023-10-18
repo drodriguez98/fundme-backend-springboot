@@ -19,24 +19,24 @@ import java.util.List;
 public class CommentService implements ICommentService {
 
     @Autowired
-    private CommentRepository commentDAO;
+    private CommentRepository commentRepository;
 
     @Override
     public CommentDTO getComment(CommentDTO commentDTO) {
 
         Comment comment = CommentMapper.INSTANCE.toEntity(commentDTO);
-        return CommentMapper.INSTANCE.toDTO(this.commentDAO.getReferenceById(comment.getComment_id()));
+        return CommentMapper.INSTANCE.toDTO(this.commentRepository.getReferenceById(comment.getComment_id()));
 
     }
 
     @Override
-    public List<CommentDTO> getAllComments() { return CommentMapper.INSTANCE.toDTOList(commentDAO.findAll()); }
+    public List<CommentDTO> getAllComments() { return CommentMapper.INSTANCE.toDTOList(commentRepository.findAll()); }
 
     @Override
     public int insertComment (CommentDTO commentDTO) {
 
         Comment comment = CommentMapper.INSTANCE.toEntity(commentDTO);
-        this.commentDAO.saveAndFlush(comment);
+        this.commentRepository.saveAndFlush(comment);
         return comment.getComment_id();
 
     }
@@ -48,7 +48,7 @@ public class CommentService implements ICommentService {
 
         int id = commentDTO.getComment_id();
         Comment comment = CommentMapper.INSTANCE.toEntity(commentDTO);
-        this.commentDAO.delete(comment);
+        this.commentRepository.delete(comment);
         return id;
 
     }

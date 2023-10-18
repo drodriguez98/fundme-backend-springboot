@@ -8,7 +8,6 @@ import com.campusdual.fundme.model.Donation;
 import com.campusdual.fundme.model.dao.DonationRepository;
 import com.campusdual.fundme.model.dto.DonationDTO;
 import com.campusdual.fundme.model.dto.dtopmapper.DonationMapper;
-import com.campusdual.fundme.model.dto.dtopmapper.ProjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -19,32 +18,32 @@ import java.util.List;
 public class DonationService implements IDonationService {
 
     @Autowired
-    private DonationRepository donationDAO;
+    private DonationRepository donationRepository;
 
     @Override
     public DonationDTO getDonation(DonationDTO donationDTO) {
 
         Donation donation = DonationMapper.INSTANCE.toEntity(donationDTO);
-        return DonationMapper.INSTANCE.toDTO(this.donationDAO.getReferenceById(donation.getDonation_id()));
+        return DonationMapper.INSTANCE.toDTO(this.donationRepository.getReferenceById(donation.getDonation_id()));
 
     }
 
     @Override
     public DonationDTO getDonationById(int donation_id) {
 
-        Donation donation = donationDAO.getReferenceById(donation_id);
+        Donation donation = donationRepository.getReferenceById(donation_id);
         return DonationMapper.INSTANCE.toDTO(donation);
 
     }
 
     @Override
-    public List<DonationDTO> getAllDonations() { return DonationMapper.INSTANCE.toDTOList(donationDAO.findAll()); }
+    public List<DonationDTO> getAllDonations() { return DonationMapper.INSTANCE.toDTOList(donationRepository.findAll()); }
 
     @Override
     public int insertDonation (DonationDTO donationDTO) {
 
         Donation donation = DonationMapper.INSTANCE.toEntity(donationDTO);
-        this.donationDAO.saveAndFlush(donation);
+        this.donationRepository.saveAndFlush(donation);
         return donation.getDonation_id();
 
 
@@ -57,7 +56,7 @@ public class DonationService implements IDonationService {
 
         int id = donationDTO.getDonation_id();
         Donation donation = DonationMapper.INSTANCE.toEntity(donationDTO);
-        this.donationDAO.delete(donation);
+        this.donationRepository.delete(donation);
         return id;
 
     }

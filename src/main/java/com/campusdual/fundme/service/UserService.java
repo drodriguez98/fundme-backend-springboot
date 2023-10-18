@@ -23,7 +23,7 @@ import java.util.List;
 public class UserService implements IUserService {
 
     @Autowired
-    private UserRepository userDAO;
+    private UserRepository userRepository;
 
     @Autowired
     private PasswordEncoderUtil passwordEncoderUtil;
@@ -37,14 +37,14 @@ public class UserService implements IUserService {
 
         String authenticatedUsername = SecurityContextHolder.getContext().getAuthentication().getName();
 
-        User user = userDAO.findByUsername(authenticatedUsername);
+        User user = userRepository.findByUsername(authenticatedUsername);
 
         return UserMapper.INSTANCE.toDTO(user);
     }
 
 
     @Override
-    public List<UserDTO> getAllUsers() { return UserMapper.INSTANCE.toDTOList(userDAO.findAll()); }
+    public List<UserDTO> getAllUsers() { return UserMapper.INSTANCE.toDTOList(userRepository.findAll()); }
 
     // Genera un hash BCrypt para la contraseña antes de almacenarla.
     // Establece la hora y fecha actual.
@@ -63,7 +63,7 @@ public class UserService implements IUserService {
         String hashedPassword = passwordEncoderUtil.encodePassword(user.getPassword());
         user.setPassword(hashedPassword);
 
-        this.userDAO.saveAndFlush(user);
+        this.userRepository.saveAndFlush(user);
 
         return user.getUser_id();
 
@@ -77,7 +77,7 @@ public class UserService implements IUserService {
 
         int id = userDTO.getUser_id();
         User user = UserMapper.INSTANCE.toEntity(userDTO);
-        this.userDAO.delete(user);
+        this.userRepository.delete(user);
         return id;
 
     }
