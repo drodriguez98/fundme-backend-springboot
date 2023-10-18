@@ -27,6 +27,7 @@
                 overflow: hidden;
                 width: 500px;
                 text-align: center;
+                padding-bottom: 30px;
             }
 
             .login-header {
@@ -41,13 +42,13 @@
             }
 
             .login-form {
-                padding: 20px;
+                padding: 30px;
             }
 
             .form-label {
                 display: block;
                 font-size: 18px;
-                margin: 15px 0;
+                margin: 10px 0;
             }
 
             .form-input {
@@ -69,11 +70,17 @@
                 cursor: pointer;
                 font-size: 18px;
                 border-radius: 10px;
+                margin-top: 10px;
                 width: 85%;
             }
 
             .login-button:hover {
                 background-color: #0056b3;
+            }
+
+            a {
+                text-decoration: none;
+                color: grey;
             }
 
         </style>
@@ -95,6 +102,8 @@
             <input class="login-button" type="submit" value="Login">
 
         </form>
+
+        <a th:href="@{/fundme/controller/web/register}">No tengo una cuenta</a>
 
     </div>
 

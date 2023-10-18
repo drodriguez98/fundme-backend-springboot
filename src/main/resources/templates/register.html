@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.w3.org/1999/xhtml" lang="es">
+
+    <head>
+
+        <meta charset="UTF-8">
+
+        <title>Register</title>
+
+        <style>
+
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f2f2f2;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+                padding: 0;
+            }
+
+            .login-container {
+                border: 1px solid grey;
+                background-color: #fff;
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+                border-radius: 10px;
+                overflow: hidden;
+                width: 350px;
+                text-align: center;
+                padding: 20px;
+            }
+
+            .login-header {
+                background-color: grey;
+                color: #fff;
+                padding: 15px; /* Reduce el espacio en la parte superior e inferior del encabezado */
+            }
+
+            .login-header h2 {
+                font-size: 24px; /* Reduce el tamaño del título */
+            }
+
+            .form-label {
+                display: block;
+                font-size: 16px; /* Reduce el tamaño de las etiquetas */
+                margin: 15px 0;
+            }
+
+            .form-input {
+                width: 80%; /* Ajusta el ancho al 100% */
+                padding: 10px; /* Reduce el espacio alrededor de los campos de entrada */
+                margin: 5px 0; /* Reduce el espacio entre los campos */
+                border: 1px solid grey;
+                border-radius: 5px; /* Reduce el radio del borde */
+                font-size: 14px; /* Reduce el tamaño de la fuente */
+            }
+
+            select {
+                width: 100%;
+                padding: 10px;
+                margin: 5px 0;
+                border: 1px solid grey;
+                border-radius: 5px;
+                font-size: 14px;
+                text-align: center;
+            }
+
+            button {
+                background-color: grey;
+                color: #fff;
+                padding: 10px 15px; /* Reduce el espacio alrededor del botón */
+                border: none;
+                cursor: pointer;
+                font-size: 16px; /* Reduce el tamaño de la fuente del botón */
+                border-radius: 5px;
+                margin-top: 25px;
+                margin-bottom: 25px;
+                width: 100%;
+            }
+
+            button:hover {
+                background-color: #0056b3;
+            }
+
+            a {
+                text-decoration: none;
+                color: grey;
+            }
+
+        </style>
+
+    </head>
+
+    <body>
+
+        <div class="login-container">
+
+            <div class="login-header"> <h2>Register</h2> </div>
+
+            <form th:action="@{/fundme/controller/web/register}" th:object="${user}" method="post" class="login-form">
+
+                <label class="form-label" for="name">Name</label>
+                <input class="form-input" type="text" id="name" th:field="*{name}" required>
+
+                <label class="form-label" for="password">Password</label>
+                <input class="form-input" type="password" id="password" th:field="*{password}" required>
+
+                <label class="form-label" for="country">Country</label>
+                <select id="country" name="country" th:field="*{country_id}" required="required">
+
+                    <option th:each="country : ${countries}" th:value="${country.country_id}" th:text="${country.name}"></option>
+                </select>
+                <label class="form-label" for="postal_code">Postal Code</label>
+                <input class="form-input" type="text" id="postal_code" th:field="*{postal_code}" required>
+
+                <label class="form-label" for="email">Email</label>
+                <input class="form-input" type="text" id="email" th:field="*{email}" required>
+
+                <label class="form-label" for="phone">Phone</label>
+                <input class="form-input" type="text" id="phone" th:field="*{phone}" required>
+
+                <label class="form-label" for="username">Username</label>
+                <input class="form-input" type="text" id="username" th:field="*{username}" required>
+
+                <button type="submit">Registrarse</button>
+
+            </form>
+
+            <a th:href="@{/fundme/controller/web/register}">I already have an account</a>
+
+        </div>
+
+    </body>
+
+</html>
