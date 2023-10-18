@@ -1,14 +1,13 @@
 package com.campusdual.fundme.webcontroller;
 
-import com.campusdual.fundme.api.ICountryService;
 import com.campusdual.fundme.api.IDonationService;
 import com.campusdual.fundme.api.IProjectService;
 import com.campusdual.fundme.api.IUserService;
-import com.campusdual.fundme.model.Country;
 import com.campusdual.fundme.model.dto.CountryDTO;
 import com.campusdual.fundme.model.dto.DonationDTO;
 import com.campusdual.fundme.model.dto.ProjectDTO;
 import com.campusdual.fundme.model.dto.UserDTO;
+import com.campusdual.fundme.service.CountryService;
 import com.campusdual.fundme.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +28,8 @@ public class WebController {
     @Autowired
     private LoginService loginService;
 
+    @Autowired
+    private CountryService countryService;
 
     @Autowired
     private IProjectService projectService;
@@ -39,7 +40,25 @@ public class WebController {
     @GetMapping("/login")
     public String showLoginForm() { return "login";  }
 
+    @GetMapping("/register")
+    public String showRegisterForm (Model model) {
 
+        List<CountryDTO> countries = countryService.getAllCountries();
+        model.addAttribute("countries", countries);
+        model.addAttribute("user", new UserDTO());
+
+        return "register";
+
+    }
+
+    @PostMapping("/register")
+    public String processRegistration(@ModelAttribute("user") UserDTO userDTO) {
+
+        userService.insertUser(userDTO);
+
+        return "redirect:/fundme/controller/web/login";
+
+    }
 
     // Obtiene la lista de proyectos desde el servicio y agrega projectList al modelo
 

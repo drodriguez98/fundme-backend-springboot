@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
 import java.util.List;
 
 @Service("UserService")
@@ -52,6 +54,8 @@ public class UserService implements IUserService {
     public int insertUser (UserDTO userDTO) {
 
         User user = UserMapper.INSTANCE.toEntity(userDTO);
+
+        user.setDate_added(new Date());
 
         user.setActive(true);
         user.setAdmin(false);
