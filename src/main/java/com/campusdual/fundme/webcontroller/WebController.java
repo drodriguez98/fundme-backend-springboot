@@ -20,8 +20,6 @@ import java.util.List;
 @RequestMapping("/fundme/controller/web")
 public class WebController {
 
-    // Inyección de instancias
-
     @Autowired
     private IUserService userService;
 
@@ -39,6 +37,24 @@ public class WebController {
 
     @GetMapping("/login")
     public String showLoginForm() { return "login";  }
+
+    @PostMapping("/authentication")
+    public String authenticate(@RequestParam String username, @RequestParam String password) {
+
+        boolean isAuthenticated = loginService.authenticate(username, password);
+
+        if (isAuthenticated) {
+
+            return "redirect:/fundme/controller/web/dashboard";
+
+        } else {
+
+            // return "redirect:/api/public/showLoginForm?error=true";
+            return "redirect:/fundme/controller/web/login";
+
+        }
+
+    }
 
     @GetMapping("/register")
     public String showRegisterForm (Model model) {
@@ -60,8 +76,6 @@ public class WebController {
 
     }
 
-    // Obtiene la lista de proyectos desde el servicio y agrega projectList al modelo
-
     @GetMapping(value = "/dashboard")
     public String dashboard(Model model) {
 
@@ -71,34 +85,14 @@ public class WebController {
         return "dashboard";
     }
 
-    @GetMapping(value = "/createProject")
-    public String creatProject() { return "create-project"; }
+    @GetMapping(value = "/allProjects")
+    public String allProjects(Model model) {
 
-    // Obtiene la lista de donaciones desde el servicio y agrega donationList al modelo
+        List<ProjectDTO> projectList = projectService.getAllProjects(); // Obtén la lista de proyectos desde tu servicio
+        model.addAttribute("projectList", projectList); // Agrega projectList al modelo
 
-    @GetMapping(value = "/donations")
-    public String donations(Model model) {
-
-        List<DonationDTO> donationList = donationService.getAllDonations();
-        model.addAttribute("donationList", donationList);
-
-        return "donations";
-
+        return "all-projects";
     }
-
-    @GetMapping(value = "/myDonations")
-    public String myDonations() { return "my-donations"; }
-
-    @GetMapping(value = "/userProfile")
-    public String userProfile(Model model) {
-
-        UserDTO authenticatedUser = userService.getUser(new UserDTO());
-        model.addAttribute("authenticatedUser", authenticatedUser);
-
-        return "user-profile";
-
-    }
-
 
     @GetMapping(value = "/viewProject/{project_id}")
     public String viewProject(@PathVariable int project_id, Model model) {
@@ -110,22 +104,41 @@ public class WebController {
 
     }
 
+    @GetMapping(value = "/donations")
+    public String donations(Model model) {
+
+        List<DonationDTO> donationList = donationService.getAllDonations();
+        model.addAttribute("donationList", donationList);
+
+        return "donations";
+
+    }
+
+    @GetMapping(value = "/userProfile")
+    public String userProfile(Model model) {
+
+        UserDTO authenticatedUser = userService.getUser(new UserDTO());
+        model.addAttribute("authenticatedUser", authenticatedUser);
+
+        return "user-profile";
+
+    }
+
     @GetMapping(value = "/myProjects")
     public String myProjects() { return "my-projects"; }
 
-    @GetMapping(value = "/allProjects")
-    public String allProjects(Model model) {
-
-        List<ProjectDTO> projectList = projectService.getAllProjects(); // Obtén la lista de proyectos desde tu servicio
-        model.addAttribute("projectList", projectList); // Agrega projectList al modelo
-
-        return "all-projects";
-    }
+    @GetMapping(value = "/myDonations")
+    public String myDonations() { return "my-donations"; }
 
     @GetMapping(value = "/settings")
     public String settings() { return "settings"; }
 
     @GetMapping(value = "/logout")
     public String logout() { return "logout"; }
+
+    @GetMapping(value = "/createProject")
+    public String creatProject() { return "create-project"; }
+
+    // donate
 
 }

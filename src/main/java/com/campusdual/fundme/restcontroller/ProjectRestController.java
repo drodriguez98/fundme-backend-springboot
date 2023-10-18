@@ -1,8 +1,5 @@
 package com.campusdual.fundme.restcontroller;
 
-// Este controlador define rutas y métodos que gestionan las solicitudes relacionadas con los proyectos.
-// Utiliza el servicio IProjectService para llevar a cabo operaciones como consultar, insertar, actualizar y eliminar proyectos.
-
 import com.campusdual.fundme.api.IProjectService;
 import com.campusdual.fundme.model.dto.ProjectDTO;
 import org.springframework.beans.factory.annotation.Autowired;

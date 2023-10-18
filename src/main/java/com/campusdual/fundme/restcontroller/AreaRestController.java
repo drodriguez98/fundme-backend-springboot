@@ -1,8 +1,5 @@
 package com.campusdual.fundme.restcontroller;
 
-// Este controlador define rutas y métodos que gestionan las solicitudes relacionadas con las áreas.
-// Utiliza el servicio IAreaService para llevar a cabo operaciones como consultar, insertar, actualizar y eliminar áreas.
-
 import com.campusdual.fundme.api.IAreaService;
 import com.campusdual.fundme.model.dto.AreaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
