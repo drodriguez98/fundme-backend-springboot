@@ -19,7 +19,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/fundme/controller/rest**").authenticated()
-                .antMatchers("/fundme/controller/web/login", "/fundme/controller/rest/authentication").permitAll() // Rutas públicas
+                .antMatchers("/fundme/controller/web/login", "/fundme/controller/rest/authentication", "/fundme/controller/web/register").permitAll() // Rutas públicas
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -29,6 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .permitAll();
+
     }
 
     @Bean
