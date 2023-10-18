@@ -88,8 +88,8 @@ public class WebController {
     @GetMapping(value = "/allProjects")
     public String allProjects(Model model) {
 
-        List<ProjectDTO> projectList = projectService.getAllProjects(); // Obtén la lista de proyectos desde tu servicio
-        model.addAttribute("projectList", projectList); // Agrega projectList al modelo
+        List<ProjectDTO> projectList = projectService.getAllProjects();
+        model.addAttribute("projectList", projectList);
 
         return "all-projects";
     }
