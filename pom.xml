@@ -78,7 +78,7 @@
 
 		</dependency>
 
-		<!-- HSQL -->
+		<!-- HSQLDB -->
 
 		<dependency>
 
@@ -107,6 +107,8 @@
 			<version>${mapstruct.version}</version>
 
 		</dependency>
+
+		<!-- Spring Security -->
 
 		<dependency>
 
