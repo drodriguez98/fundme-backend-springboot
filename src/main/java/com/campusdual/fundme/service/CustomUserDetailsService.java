@@ -16,14 +16,14 @@ import static java.util.Collections.emptyList;
 public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
-    private UserRepository userDAO;
+    private UserRepository userRepository;
 
     // Devuelve un objeto UserDetails con los detalles del usuario (nombre de usuario y contraseña encriptada)
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        User user = userDAO.findByUsername(username);
+        User user = userRepository.findByUsername(username);
 
         if (user == null) { throw new UsernameNotFoundException("Usuario no encontrado"); }
 
