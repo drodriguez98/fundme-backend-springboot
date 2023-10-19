@@ -3,23 +3,33 @@ package com.campusdual.fundme.webcontroller;
 import com.campusdual.fundme.api.IDonationService;
 import com.campusdual.fundme.api.IProjectService;
 import com.campusdual.fundme.api.IUserService;
+import com.campusdual.fundme.model.Donation;
+import com.campusdual.fundme.model.Project;
+import com.campusdual.fundme.model.User;
 import com.campusdual.fundme.model.dto.CountryDTO;
 import com.campusdual.fundme.model.dto.DonationDTO;
 import com.campusdual.fundme.model.dto.ProjectDTO;
 import com.campusdual.fundme.model.dto.UserDTO;
+import com.campusdual.fundme.model.dto.dtopmapper.DonationMapper;
+import com.campusdual.fundme.model.dto.dtopmapper.ProjectMapper;
+import com.campusdual.fundme.model.dto.dtopmapper.UserMapper;
 import com.campusdual.fundme.service.CountryService;
+import com.campusdual.fundme.service.CustomUserDetailsService;
 import com.campusdual.fundme.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
+import java.util.Date;
 import java.util.List;
 
 @Controller
 @RequestMapping("/fundme/controller/web")
 public class WebController {
 
+    @Autowired
+    private CustomUserDetailsService customUserDetailsService;
     @Autowired
     private IUserService userService;
 
@@ -124,6 +134,42 @@ public class WebController {
 
     }
 
+    @GetMapping("/donate/{project_id}")
+    public String donateToProject (@PathVariable("project_id") int project_id, Model model) {
+
+        ProjectDTO project = projectService.getProjectById(project_id);
+        model.addAttribute("project", project);
+
+        return "donate-project";
+
+    }
+
+    @PostMapping("/donate/{project_id}")
+    public String donateToProject(@PathVariable("project_id") int project_id, @RequestParam("amount") int amount) {
+
+        ProjectDTO projectDTO = projectService.getProjectById(project_id);
+        UserDTO authenticatedUser = userService.getUser(new UserDTO());
+
+        Project project = ProjectMapper.INSTANCE.toEntity(projectDTO);
+        User user = UserMapper.INSTANCE.toEntity(authenticatedUser);
+
+        Donation donation = new Donation();
+
+        donation.setUser_id(user);
+        donation.setProject_id(project);
+        donation.setAmount(amount);
+        donation.setDate_added(new Date());
+
+        donationService.insertDonation(DonationMapper.INSTANCE.toDTO(donation));
+
+        project.setTotal_amount(project.getTotal_amount() + amount);
+        projectService.updateProject(ProjectMapper.INSTANCE.toDTO(project));
+
+        return "redirect:/fundme/controller/web/donations";
+
+    }
+
+
     @GetMapping(value = "/myProjects")
     public String myProjects() { return "my-projects"; }
 
@@ -139,6 +185,6 @@ public class WebController {
     @GetMapping(value = "/createProject")
     public String creatProject() { return "create-project"; }
 
-    // donate
+
 
 }
