@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 import java.util.Date;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/fundme/controller/web")
@@ -187,10 +188,16 @@ public class WebController {
     @GetMapping(value = "/settings")
     public String settings() { return "settings"; }
 
-    @GetMapping(value = "/logout")
-    public String logout() { return "logout"; }
-
     @GetMapping(value = "/createProject")
     public String creatProject() { return "create-project"; }
+
+    @GetMapping(value = "/logout")
+    public String logout (HttpServletRequest request) {
+
+        request.getSession().invalidate();
+
+        return "redirect:/fundme/controller/web/login";
+
+    }
 
 }
