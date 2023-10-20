@@ -200,4 +200,11 @@ public class WebController {
 
     }
 
+    @GetMapping("/admin")
+    @ResponseBody
+    public String dashboardAdmin() {
+        return "Welcome to the administration area!";
+    }
+
+
 }
