@@ -55,6 +55,7 @@
                 border: 1px solid grey;
                 border-radius: 5px; /* Reduce el radio del borde */
                 font-size: 14px; /* Reduce el tamaño de la fuente */
+                text-align: center;
             }
 
             select {
@@ -102,27 +103,27 @@
             <form th:action="@{/fundme/controller/web/register}" th:object="${user}" method="post" class="login-form">
 
                 <label class="form-label" for="name">Name</label>
-                <input class="form-input" type="text" id="name" th:field="*{name}" required>
+                <input class="form-input" type="text" id="name" th:field="*{name}" placeholder="Name" required>
+
+                <label class="form-label" for="username">Username</label>
+                <input class="form-input" type="text" id="username" th:field="*{username}" placeholder="Username" required>
 
                 <label class="form-label" for="password">Password</label>
-                <input class="form-input" type="password" id="password" th:field="*{password}" required>
+                <input class="form-input" type="password" id="password" th:field="*{password}" placeholder="Password" required>
 
                 <label class="form-label" for="country">Country</label>
                 <select id="country" name="country" th:field="*{country_id}" required="required">
-
                     <option th:each="country : ${countries}" th:value="${country.country_id}" th:text="${country.name}"></option>
                 </select>
+
                 <label class="form-label" for="postal_code">Postal Code</label>
-                <input class="form-input" type="text" id="postal_code" th:field="*{postal_code}" required>
+                <input class="form-input" type="text" id="postal_code" th:field="*{postal_code}" placeholder="Postal code" required>
 
                 <label class="form-label" for="email">Email</label>
-                <input class="form-input" type="text" id="email" th:field="*{email}" required>
+                <input class="form-input" type="text" id="email" th:field="*{email}" placeholder="Email" required>
 
                 <label class="form-label" for="phone">Phone</label>
-                <input class="form-input" type="text" id="phone" th:field="*{phone}" required>
-
-                <label class="form-label" for="username">Username</label>
-                <input class="form-input" type="text" id="username" th:field="*{username}" required>
+                <input class="form-input" type="text" id="phone" th:field="*{phone}" placeholder="Phone" required>
 
                 <button type="submit">Register</button>
 
