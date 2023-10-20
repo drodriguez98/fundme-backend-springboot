@@ -158,10 +158,10 @@
 
                         <h3 th:text="${project.title}">Project Title</h3>
                         <p><strong>Area</strong></p><p th:text="${project.area_id.name}"></p>
-                        <p><strong>User</strong><p th:text="${project.user_id.username}">User</p>
-                        <p><strong>Date</strong><p th:text="${project.date_added}">Date Added</p>
+                        <p><strong>User</strong><p th:text="${project.user_id.name}">User</p>
+                        <p><strong>Date</strong><p th:text="${project.dateAdded}">Date Added</p>
                         <p><strong>Description</strong><p th:text="${project.description}">Description</p>
-                        <p><strong>Amount</strong><p th:text="${project.total_amount}">Total Amount</p>
+                        <p><strong>Amount</strong><p th:text="${project.totalAmount}">Total Amount</p>
                         <a class="donate-link" th:href="@{'/fundme/controller/web/donate/' + ${project.project_id}}">Donate</a>
 
                     </div>
