@@ -18,9 +18,6 @@ public class LoginService implements ILoginService {
     @Autowired
     private UserRepository userRepository;
 
-    // Realiza la lógica de autenticación con Hibernate
-    // Verifica la contraseña utilizando el PasswordEncoder configurado en SecurityConfig
-
     @Override
     @Transactional
     public boolean authenticate(String username, String password) {
