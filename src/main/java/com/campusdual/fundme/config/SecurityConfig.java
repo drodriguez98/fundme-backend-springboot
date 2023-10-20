@@ -1,10 +1,17 @@
 package com.campusdual.fundme.config;
 
+import com.campusdual.fundme.service.CustomUserDetailsService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -18,8 +25,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/fundme/controller/rest**").authenticated()
-                .antMatchers("/fundme/controller/web/login", "/fundme/controller/web/authentication", "/fundme/controller/web/register").permitAll() // Rutas públicas
+                .antMatchers("/fundme/controller/web/login", "/fundme/controller/web/register").permitAll()
+                .antMatchers("/fundme/controller/rest/**").hasRole("ADMIN")
+                .antMatchers("/fundme/controller/web/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -36,5 +44,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public PasswordEncoder passwordEncoder() { return new BCryptPasswordEncoder(); }
+
+    public void configureGlobal(AuthenticationManagerBuilder auth, CustomUserDetailsService customUserDetailsService) throws Exception {
+
+        auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
+
+    }
+
+
 
 }
