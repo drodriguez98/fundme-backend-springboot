@@ -179,18 +179,6 @@ public class WebController {
 
     }
 
-    @GetMapping(value = "/myProjects")
-    public String myProjects() { return "my-projects"; }
-
-    @GetMapping(value = "/myDonations")
-    public String myDonations() { return "my-donations"; }
-
-    @GetMapping(value = "/settings")
-    public String settings() { return "settings"; }
-
-    @GetMapping(value = "/createProject")
-    public String creatProject() { return "create-project"; }
-
     @GetMapping(value = "/logout")
     public String logout (HttpServletRequest request) {
 
@@ -203,8 +191,31 @@ public class WebController {
     @GetMapping("/admin")
     @ResponseBody
     public String dashboardAdmin() {
-        return "Welcome to the administration area!";
+        return "Welcome to the administration area";
     }
+
+    @GetMapping(value = "/myProjects")
+    @ResponseBody
+    public String myProjects() { return "Wellcome to my projects"; }
+
+    @GetMapping(value = "/myDonations")
+    @ResponseBody
+    public String myDonations() { return "Wellcome to my donations"; }
+
+    @GetMapping(value = "/settings")
+    @ResponseBody
+    public String settings() { return "Wellcome to settings"; }
+
+    @GetMapping(value = "/createProject")
+    @ResponseBody
+    public String creatProject() { return "Create project"; }
+
+    @GetMapping(value = "/editProfile")
+    @ResponseBody
+    public String editProfile() { return "Edit profile"; }
+
+
+
 
 
 }
