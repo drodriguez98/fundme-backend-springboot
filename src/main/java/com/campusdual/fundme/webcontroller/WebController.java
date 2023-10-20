@@ -95,12 +95,8 @@ public class WebController {
         List<Project> lastProjectsList = projectService.getLastProjects();
         model.addAttribute("lastProjectsList", lastProjectsList);
 
-        /*
-        List<ProjectDTO> projectList = projectService.getAllProjects();
-        model.addAttribute("projectList", projectList);
-        */
-
         return "dashboard";
+
     }
 
     @GetMapping(value = "/allProjects")
@@ -125,8 +121,11 @@ public class WebController {
     @GetMapping(value = "/donations")
     public String donations(Model model) {
 
-        List<DonationDTO> donationList = donationService.getAllDonations();
-        model.addAttribute("donationList", donationList);
+        List<Donation> topDonationsList = donationService.getTopDonations();
+        model.addAttribute("topDonationsList", topDonationsList);
+
+        List<Donation> lastDonationsList = donationService.getLastDonations();
+        model.addAttribute("lastDonationsList", lastDonationsList);
 
         return "donations";
 
@@ -166,7 +165,7 @@ public class WebController {
         donation.setUser_id(user);
         donation.setProject_id(project);
         donation.setAmount(amount);
-        donation.setDate_added(new Date());
+        donation.setDateAdded(new Date());
 
         donationService.insertDonation(DonationMapper.INSTANCE.toDTO(donation));
 
