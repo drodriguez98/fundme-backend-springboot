@@ -61,4 +61,16 @@ public class ProjectService implements IProjectService {
 
     }
 
+    public List<Project> getTopProjects() {
+
+        return projectRepository.findTop3ByOrderByTotalAmountDesc();
+
+    }
+
+    public List<Project> getLastProjects() {
+
+        return projectRepository.findTop3ByOrderByDateAddedDesc();
+
+    }
+
 }
