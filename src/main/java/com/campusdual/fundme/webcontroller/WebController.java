@@ -1,21 +1,25 @@
 package com.campusdual.fundme.webcontroller;
 
-import com.campusdual.fundme.api.IDonationService;
-import com.campusdual.fundme.api.IProjectService;
-import com.campusdual.fundme.api.IUserService;
 import com.campusdual.fundme.model.Donation;
 import com.campusdual.fundme.model.Project;
 import com.campusdual.fundme.model.User;
+
 import com.campusdual.fundme.model.dto.CountryDTO;
-import com.campusdual.fundme.model.dto.DonationDTO;
 import com.campusdual.fundme.model.dto.ProjectDTO;
 import com.campusdual.fundme.model.dto.UserDTO;
+
 import com.campusdual.fundme.model.dto.dtopmapper.DonationMapper;
 import com.campusdual.fundme.model.dto.dtopmapper.ProjectMapper;
 import com.campusdual.fundme.model.dto.dtopmapper.UserMapper;
+
+import com.campusdual.fundme.api.IDonationService;
+import com.campusdual.fundme.api.IProjectService;
+import com.campusdual.fundme.api.IUserService;
+
 import com.campusdual.fundme.service.CountryService;
 import com.campusdual.fundme.service.CustomUserDetailsService;
 import com.campusdual.fundme.service.LoginService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -59,8 +63,7 @@ public class WebController {
 
         } else {
 
-            // return "redirect:/api/public/showLoginForm?error=true";
-            return "redirect:/fundme/controller/web/login";
+            return "redirect:/fundme/controller/web/login"; // return "redirect:/api/public/showLoginForm?error=true";
 
         }
 
@@ -176,7 +179,6 @@ public class WebController {
 
     }
 
-
     @GetMapping(value = "/myProjects")
     public String myProjects() { return "my-projects"; }
 
@@ -191,7 +193,5 @@ public class WebController {
 
     @GetMapping(value = "/createProject")
     public String creatProject() { return "create-project"; }
-
-
 
 }
