@@ -89,8 +89,16 @@ public class WebController {
     @GetMapping(value = "/dashboard")
     public String dashboard(Model model) {
 
+        List<Project> topProjectsList = projectService.getTopProjects();
+        model.addAttribute("topProjectsList", topProjectsList);
+
+        List<Project> lastProjectsList = projectService.getLastProjects();
+        model.addAttribute("lastProjectsList", lastProjectsList);
+
+        /*
         List<ProjectDTO> projectList = projectService.getAllProjects();
         model.addAttribute("projectList", projectList);
+        */
 
         return "dashboard";
     }
@@ -162,7 +170,7 @@ public class WebController {
 
         donationService.insertDonation(DonationMapper.INSTANCE.toDTO(donation));
 
-        project.setTotal_amount(project.getTotal_amount() + amount);
+        project.setTotalAmount(project.getTotalAmount() + amount);
         projectService.updateProject(ProjectMapper.INSTANCE.toDTO(project));
 
         return "redirect:/fundme/controller/web/donations";
