@@ -2,166 +2,172 @@
 
 <html xmlns:th="http://www.w3.org/1999/xhtml" lang="es">
 
-<head>
+    <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Fundmepls / User profile</title>
+        <title>Fundmepls / User profile</title>
 
-    <style>
+        <style>
 
-        body, html {
-            display: flex;
-            flex-direction: column;
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            font-family: 'Arial', sans-serif;
-            background-color: #f2f2f2;
-            overflow-y: auto;
-        }
-        .container {
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-            width: 100%;
-            background-color: #f2f2f2;
-        }
-        .sidebar {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            padding: 20px;
-            background-color: #fff;
-            color: black;
-        }
-        .sidebar h1 {
-            font-size: 24px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .sidebar ul {
-            list-style: none;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-        }
-        .sidebar ul li {
-            margin: 0 15px;
-        }
-        .sidebar ul li a {
-            text-decoration: none;
-            color: black;
-            font-size: 18px;
-            transition: color 0.3s;
-        }
-        .sidebar ul li a:hover {
-            color: black;
-        }
-        .content {
-            flex: 1;
-            padding: 20px;
-            background-color: #f2f2f2;
-        }
-        header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        header h2 {
-            font-size: 28px;
-            color: #333;
-        }
-        .section {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            margin-bottom: 30px;
-        }
-        .section h3 {
-            font-size: 24px;
-            color: black;
-            text-align: center;
-            width: 100%;
-        }
-         .user {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            margin: 10px;
-            width: 550px;
-            text-align: center;
-            background-color: #fff;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .user h3 {
-            font-size: 24px;
-            color: black;
-            margin: 10px 0;
-        }
-        .user p {
-            font-size: 18px;
-            color: black;
-            margin: 10px 0;
-        }
-        .edit-link {
-            padding: 10px 20px;
-            background: none;
-            color: black;
-            border: none;
-            cursor: pointer;
-            font-size: 18px;
-            text-decoration: none;
-            transition: color 0.3s;
-            margin-top: 30px;
-        }
-        .edit-link:hover {
-            color: #333;
-        }
+            body, html {
+                display: flex;
+                flex-direction: column;
+                margin: 0;
+                padding: 0;
+                height: 100vh;
+                font-family: 'Arial', sans-serif;
+                background-color: #f2f2f2;
+                overflow-y: auto;
+            }
+            .container {
+                display: flex;
+                flex-direction: column;
+                flex: 1;
+                width: 100%;
+                background-color: #f2f2f2;
+            }
+            .sidebar {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                padding: 20px;
+                background-color: #fff;
+                color: black;
+            }
+            .sidebar h1 {
+                font-size: 24px;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+            .sidebar ul {
+                list-style: none;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            .sidebar ul li {
+                margin: 0 15px;
+            }
+            .sidebar ul li a {
+                text-decoration: none;
+                color: black;
+                font-size: 18px;
+                transition: color 0.3s;
+            }
+            .sidebar ul li a:hover {
+                color: black;
+            }
+            .content {
+                flex: 1;
+                padding: 20px;
+                background-color: #f2f2f2;
+            }
+            header {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            header h2 {
+                font-size: 28px;
+                color: #333;
+            }
+            .section {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                margin-bottom: 30px;
+            }
+            .section h3 {
+                font-size: 24px;
+                color: black;
+                text-align: center;
+                width: 100%;
+            }
+             .user {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 20px;
+                margin: 10px;
+                width: 550px;
+                text-align: center;
+                background-color: #fff;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+            .user h3 {
+                font-size: 24px;
+                color: black;
+                margin: 10px 0;
+            }
+            .user p {
+                font-size: 18px;
+                color: black;
+                margin: 10px 0;
+            }
+            .edit-link {
+                padding: 10px 20px;
+                background: none;
+                color: black;
+                border: none;
+                cursor: pointer;
+                font-size: 18px;
+                text-decoration: none;
+                transition: color 0.3s;
+                margin-top: 30px;
+            }
+            .edit-link:hover {
+                color: #333;
+            }
 
-    </style>
+        </style>
 
-</head>
+    </head>
 
-<body>
+    <body>
 
-<div class="container">
+        <div class="container">
 
-    <div class="sidebar">
+            <div class="sidebar">
 
-        <h1>FUNDMEPLS</h1>
+                <h1>FUNDMEPLS</h1>
 
-        <ul>
+                <ul>
 
-            <li><a th:href="@{/fundme/controller/web/dashboard}">Dashboard</a></li>
-            <li><a th:href="@{/fundme/controller/web/allProjects}">All projects</a></li>
-            <li><a th:href="@{/fundme/controller/web/createProject}">Create project</a></li>
-            <li><a th:href="@{/fundme/controller/web/donations}">Donations</a></li>
-            <li><a th:href="@{/fundme/controller/web/userProfile}">User profile</a></li>
-            <li><a th:href="@{/fundme/controller/web/settings}">Settings</a></li>
-            <li><a th:href="@{/fundme/controller/web/logout}">Logout</a></li>
+                    <li><a th:href="@{/fundme/controller/web/dashboard}">Dashboard</a></li>
+                    <li><a th:href="@{/fundme/controller/web/allProjects}">All projects</a></li>
+                    <li><a th:href="@{/fundme/controller/web/createProject}">Create project</a></li>
+                    <li><a th:href="@{/fundme/controller/web/donations}">Donations</a></li>
+                    <li><a th:href="@{/fundme/controller/web/userProfile}">User profile</a></li>
+                    <li><a th:href="@{/fundme/controller/web/settings}">Settings</a></li>
+                    <li><a th:href="@{/fundme/controller/web/logout}">Logout</a></li>
 
-        </ul>
+                </ul>
 
-    </div>
+            </div>
 
-    <div class="content">
+            <div class="content">
 
-        <div class="section" id="user-profile">
+                <div class="section" id="user-profile">
 
-            <div th:if="${authenticatedUser != null}">
+                    <div th:if="${authenticatedUser != null}">
 
-                <div class="user">
+                        <div class="user">
 
-                    <p><strong>Name</strong></p><p th:text="${authenticatedUser.name}"></p>
-                    <p><strong>Country</strong><p th:text="${authenticatedUser.country_id.name}"></p>
-                    <p><strong>Email</strong><p th:text="${authenticatedUser.email}"></p>
-                    <p><strong>Phone</strong><p th:text="${authenticatedUser.phone}">Description</p>
+                            <p><strong>Name</strong></p><p th:text="${authenticatedUser.name}"></p>
+                            <p><strong>Country</strong><p th:text="${authenticatedUser.country_id.name}"></p>
+                            <p><strong>Email</strong><p th:text="${authenticatedUser.email}"></p>
+                            <p><strong>Phone</strong><p th:text="${authenticatedUser.phone}">Description</p>
 
-                    <a class="edit-link" th:href="@{'/fundme/controller/web/editProfile/' + ${authenticatedUser.user_id}}">Edit profile</a>
+                            <a class="edit-link" th:href="@{'/fundme/controller/web/editProfile/'}">Edit profile</a>
+
+                            <!-- <a class="edit-link" th:href="@{'/fundme/controller/web/editProfile/' + ${authenticatedUser.user_id}}">Edit profile</a> -->
+
+                        </div>
+
+                    </div>
 
                 </div>
 
@@ -169,10 +175,6 @@
 
         </div>
 
-    </div>
-
-</div>
-
-</body>
+    </body>
 
 </html>
