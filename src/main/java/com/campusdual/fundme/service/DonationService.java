@@ -5,16 +5,11 @@ package com.campusdual.fundme.service;
 
 import com.campusdual.fundme.api.IDonationService;
 import com.campusdual.fundme.model.Donation;
-import com.campusdual.fundme.model.Project;
-import com.campusdual.fundme.model.User;
 import com.campusdual.fundme.model.dao.DonationRepository;
-import com.campusdual.fundme.model.dao.ProjectRepository;
 import com.campusdual.fundme.model.dto.DonationDTO;
 import com.campusdual.fundme.model.dto.dtopmapper.DonationMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -65,5 +60,9 @@ public class DonationService implements IDonationService {
         return id;
 
     }
+
+    public List<Donation> getTopDonations() { return donationRepository.findTop5ByOrderByAmountDesc(); }
+
+    public List<Donation> getLastDonations() { return donationRepository.findTop5ByOrderByDateAddedDesc(); }
 
 }
