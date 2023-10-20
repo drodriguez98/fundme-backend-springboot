@@ -28,6 +28,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/fundme/controller/web/dashboard", true)
                 .and()
                 .logout()
+                .logoutUrl("/fundme/controller/web/logout")
+                .logoutSuccessUrl("/fundme/controller/web/login")
                 .permitAll();
 
     }
