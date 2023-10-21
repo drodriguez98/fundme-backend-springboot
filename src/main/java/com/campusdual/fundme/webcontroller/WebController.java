@@ -179,6 +179,9 @@ public class WebController {
 
     }
 
+    @GetMapping("/accessDenied")
+    public String customErrorPage() { return "error"; }
+
     @GetMapping(value = "/logout")
     public String logout (HttpServletRequest request) {
 
