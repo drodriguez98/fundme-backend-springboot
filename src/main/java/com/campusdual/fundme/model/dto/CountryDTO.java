@@ -1,8 +1,5 @@
 package com.campusdual.fundme.model.dto;
 
-// Este archivo define una versión simplificada de la entidad Contry, utilizada para transferir datos entre la capa de servicios y los controladores.
-// No tiene lógica de negocio y se utiliza para separar las preocupaciones entre las capas.
-
 public class CountryDTO {
 
     private int country_id;
