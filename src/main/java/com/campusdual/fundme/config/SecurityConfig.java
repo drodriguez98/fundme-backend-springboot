@@ -23,22 +23,36 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http
-                .csrf().disable()
-                .authorizeRequests()
+            .csrf().disable()
+
+            .authorizeRequests()
+
                 .antMatchers("/fundme/controller/web/login", "/fundme/controller/web/register").permitAll()
                 .antMatchers("/fundme/controller/rest/**").hasRole("ADMIN")
                 .antMatchers("/fundme/controller/web/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
+
                 .and()
-                .formLogin()
+
+            .formLogin()
+
                 .loginPage("/fundme/controller/web/login")
                 .loginProcessingUrl("/fundme/controller/web/authentication")
                 .defaultSuccessUrl("/fundme/controller/web/dashboard", true)
+
                 .and()
-                .logout()
+
+            .logout()
+
                 .logoutUrl("/fundme/controller/web/logout")
                 .logoutSuccessUrl("/fundme/controller/web/login")
-                .permitAll();
+                .permitAll()
+
+                .and()
+
+            .exceptionHandling()
+
+                .accessDeniedPage("/error");
 
     }
 
