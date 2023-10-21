@@ -1,34 +1,52 @@
 <!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Access Denied</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            align-items: center; /* Centra verticalmente */
+            justify-content: center;
+            height: 75vh; /* Deja un espacio del 25% en la parte superior */
+            margin: 0;
+        }
 
-<html lang="en">
+        .container {
+            max-width: 400px;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
 
-    <head>
+        h1 {
+            color: #d9534f; /* Rojo */
+        }
 
-        <meta charset="UTF-8">
-        <title>Error de inicio de sesión</title>
+        .error-message {
+            font-size: 18px;
+        }
 
-        <style>
+        .go-back-link {
+            text-decoration: none;
+            color: #337ab7; /* Azul */
+        }
 
-            body {
-                font-family: Arial, sans-serif;
-                text-align: center;
-            }
-
-            .error-message {
-                color: red;
-                font-size: 18px;
-            }
-
-        </style>
-
-    </head>
-
-    <body>
-
-        <h1>Error de inicio de sesión</h1>
-        <p class="error-message">Lo sentimos, ha ocurrido un error en el inicio de sesión.</p>
-        <p>Por favor, inténtalo de nuevo o contacta al soporte si el problema persiste.</p>
-
-    </body>
-
+        .go-back-link:hover {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Access Denied</h1>
+    <p class="error-message">You do not have permissions to access.</p>
+    <a class="go-back-link" th:href="@{/fundme/controller/web/dashboard}">Go back</a>
+</div>
+</body>
 </html>
