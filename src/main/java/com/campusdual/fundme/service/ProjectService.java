@@ -1,13 +1,11 @@
 package com.campusdual.fundme.service;
 
-// Esta clase implementa la interfaz IProjectService y proporciona la lógica de negocio para manejar operaciones relacionadas con proyectos.
-// Se encarga de transformar objetos ProjectDTO en objetos Project y viceversa.
-
 import com.campusdual.fundme.api.IProjectService;
 import com.campusdual.fundme.model.Project;
 import com.campusdual.fundme.model.repository.ProjectRepository;
 import com.campusdual.fundme.model.dto.ProjectDTO;
 import com.campusdual.fundme.model.dto.dtopmapper.ProjectMapper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;

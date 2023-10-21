@@ -1,20 +1,16 @@
 package com.campusdual.fundme.service;
 
-// Esta clase implementa la interfaz IUserService y proporciona la lógica de negocio para manejar operaciones relacionadas con usuarios.
-// Se encarga de transformar objetos UserDTO en objetos User y viceversa.
-// Utiliza un servicio para codificar contraseñas antes de almacenarlas en la base de datos.
-
 import com.campusdual.fundme.api.IUserService;
 import com.campusdual.fundme.model.repository.UserRepository;
 import com.campusdual.fundme.model.dto.UserDTO;
 import com.campusdual.fundme.model.User;
 import com.campusdual.fundme.model.dto.dtopmapper.UserMapper;
+
 import com.campusdual.fundme.util.PasswordEncoderUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-
 import java.util.Date;
 import java.util.List;
 
@@ -28,10 +24,6 @@ public class UserService implements IUserService {
     @Autowired
     private PasswordEncoderUtil passwordEncoderUtil;
 
-    // Obtiene el nombre de usuario del usuario autenticado desde el contexto de seguridad
-    // Utiliza el nombre de usuario para buscar al usuario autenticado en el repositorio
-    // Convierte el usuario en UserDTO y lo devuelve
-
     @Override
     public UserDTO getUser(UserDTO userDTO) {
 
@@ -41,7 +33,6 @@ public class UserService implements IUserService {
 
         return UserMapper.INSTANCE.toDTO(user);
     }
-
 
     @Override
     public List<UserDTO> getAllUsers() { return UserMapper.INSTANCE.toDTOList(userRepository.findAll()); }

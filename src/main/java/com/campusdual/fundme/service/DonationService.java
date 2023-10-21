@@ -1,13 +1,11 @@
 package com.campusdual.fundme.service;
 
-// Esta clase implementa la interfaz IDonationService y proporciona la lógica de negocio para manejar operaciones relacionadas con donaciones.
-// Se encarga de transformar objetos DonationDTO en objetos Donation y viceversa.
-
 import com.campusdual.fundme.api.IDonationService;
 import com.campusdual.fundme.model.Donation;
 import com.campusdual.fundme.model.repository.DonationRepository;
 import com.campusdual.fundme.model.dto.DonationDTO;
 import com.campusdual.fundme.model.dto.dtopmapper.DonationMapper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;

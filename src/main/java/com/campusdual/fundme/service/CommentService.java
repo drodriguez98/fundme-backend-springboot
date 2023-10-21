@@ -1,13 +1,11 @@
 package com.campusdual.fundme.service;
 
-// Esta clase implementa la interfaz ICommentService y proporciona la lógica de negocio para manejar operaciones relacionadas con comentarios.
-// Se encarga de transformar objetos CommentDTO en objetos Comment y viceversa.
-
 import com.campusdual.fundme.api.ICommentService;
 import com.campusdual.fundme.model.Comment;
 import com.campusdual.fundme.model.repository.CommentRepository;
 import com.campusdual.fundme.model.dto.CommentDTO;
 import com.campusdual.fundme.model.dto.dtopmapper.CommentMapper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
