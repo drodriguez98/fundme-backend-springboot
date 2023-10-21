@@ -4,7 +4,7 @@ package com.campusdual.fundme.service;
 // Su función es cargar los detalles del usuario desde la base de datos, como el nombre de usuario y la contraseña encriptada, y devolverlos como un objeto UserDetails.
 
 import com.campusdual.fundme.model.User;
-import com.campusdual.fundme.model.dao.UserRepository;
+import com.campusdual.fundme.model.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -15,8 +15,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static java.util.Collections.emptyList;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {

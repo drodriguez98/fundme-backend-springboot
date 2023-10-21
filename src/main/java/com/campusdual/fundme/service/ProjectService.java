@@ -5,7 +5,7 @@ package com.campusdual.fundme.service;
 
 import com.campusdual.fundme.api.IProjectService;
 import com.campusdual.fundme.model.Project;
-import com.campusdual.fundme.model.dao.ProjectRepository;
+import com.campusdual.fundme.model.repository.ProjectRepository;
 import com.campusdual.fundme.model.dto.ProjectDTO;
 import com.campusdual.fundme.model.dto.dtopmapper.ProjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -2,7 +2,7 @@ package com.campusdual.fundme.service;
 
 import com.campusdual.fundme.api.ILoginService;
 import com.campusdual.fundme.model.User;
-import com.campusdual.fundme.model.dao.UserRepository;
+import com.campusdual.fundme.model.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

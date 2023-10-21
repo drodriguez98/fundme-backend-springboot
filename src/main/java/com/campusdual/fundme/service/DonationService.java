@@ -5,7 +5,7 @@ package com.campusdual.fundme.service;
 
 import com.campusdual.fundme.api.IDonationService;
 import com.campusdual.fundme.model.Donation;
-import com.campusdual.fundme.model.dao.DonationRepository;
+import com.campusdual.fundme.model.repository.DonationRepository;
 import com.campusdual.fundme.model.dto.DonationDTO;
 import com.campusdual.fundme.model.dto.dtopmapper.DonationMapper;
 import org.springframework.beans.factory.annotation.Autowired;

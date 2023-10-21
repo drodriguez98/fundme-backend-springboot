@@ -5,7 +5,7 @@ package com.campusdual.fundme.service;
 // Utiliza un servicio para codificar contraseñas antes de almacenarlas en la base de datos.
 
 import com.campusdual.fundme.api.IUserService;
-import com.campusdual.fundme.model.dao.UserRepository;
+import com.campusdual.fundme.model.repository.UserRepository;
 import com.campusdual.fundme.model.dto.UserDTO;
 import com.campusdual.fundme.model.User;
 import com.campusdual.fundme.model.dto.dtopmapper.UserMapper;
