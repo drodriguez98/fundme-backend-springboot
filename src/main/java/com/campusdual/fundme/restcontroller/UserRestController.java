@@ -29,5 +29,4 @@ public class UserRestController {
     @PostMapping(value = "/delete")
     public int deleteUser (@RequestBody UserDTO user) { return this.userService.deleteUser(user); }
 
-
 }
