@@ -2,7 +2,6 @@ package com.campusdual.fundme.config;
 
 import com.campusdual.fundme.service.CustomUserDetailsService;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
