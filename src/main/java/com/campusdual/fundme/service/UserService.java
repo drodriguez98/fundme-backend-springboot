@@ -37,10 +37,6 @@ public class UserService implements IUserService {
     @Override
     public List<UserDTO> getAllUsers() { return UserMapper.INSTANCE.toDTOList(userRepository.findAll()); }
 
-    // Genera un hash BCrypt para la contraseña antes de almacenarla.
-    // Establece la hora y fecha actual.
-    // Establece los campos active a 1 y admin a 0 por defecto
-
     @Override
     public int insertUser (UserDTO userDTO) {
 
