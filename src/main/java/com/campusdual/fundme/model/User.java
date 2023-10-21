@@ -1,8 +1,5 @@
 package com.campusdual.fundme.model;
 
-// Este archivo define la entidad User que se mapea a una tabla en la base de datos.
-// La clase contiene propiedades que representan los atributos de un usuario y las anotaciones de JPA para definir cómo se mapea la entidad en la base de datos.
-
 import javax.persistence.*;
 import java.util.Date;
 
