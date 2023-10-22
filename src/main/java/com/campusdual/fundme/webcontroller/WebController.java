@@ -4,6 +4,7 @@ import com.campusdual.fundme.model.Donation;
 import com.campusdual.fundme.model.Project;
 import com.campusdual.fundme.model.User;
 
+import com.campusdual.fundme.model.dto.AreaDTO;
 import com.campusdual.fundme.model.dto.CountryDTO;
 import com.campusdual.fundme.model.dto.ProjectDTO;
 import com.campusdual.fundme.model.dto.UserDTO;
@@ -16,6 +17,7 @@ import com.campusdual.fundme.api.IDonationService;
 import com.campusdual.fundme.api.IProjectService;
 import com.campusdual.fundme.api.IUserService;
 
+import com.campusdual.fundme.service.AreaService;
 import com.campusdual.fundme.service.CountryService;
 import com.campusdual.fundme.service.CustomUserDetailsService;
 import com.campusdual.fundme.service.LoginService;
@@ -34,6 +36,9 @@ public class WebController {
 
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
+
+    @Autowired
+    private AreaService areaService;
     @Autowired
     private IUserService userService;
 
@@ -179,6 +184,36 @@ public class WebController {
 
     }
 
+    @GetMapping(value = "/createProject")
+    public String createProject (Model model) {
+
+        List<AreaDTO> areas = areaService.getAllAreas();
+        model.addAttribute("areas", areas);
+        model.addAttribute("project", new ProjectDTO());
+
+        return "create-project";
+
+    }
+
+    @PostMapping("/createProject")
+    public String processRegistration(@ModelAttribute("project") ProjectDTO projectDTO) {
+
+        Project project = ProjectMapper.INSTANCE.toEntity(projectDTO);
+
+        UserDTO authenticatedUser = userService.getUser(new UserDTO());
+        User user = UserMapper.INSTANCE.toEntity(authenticatedUser);
+
+        project.setUser_id(user);
+        project.setDateAdded(new Date());
+        int totalAmount = 0;
+        project.setTotalAmount(totalAmount);
+
+        projectService.insertProject(ProjectMapper.INSTANCE.toDTO(project));
+
+        return "redirect:/fundme/controller/web/allProjects";
+
+    }
+
     @GetMapping("/accessDenied")
     public String customErrorPage() { return "error"; }
 
@@ -208,10 +243,6 @@ public class WebController {
     @GetMapping(value = "/settings")
     @ResponseBody
     public String settings() { return "Wellcome to settings"; }
-
-    @GetMapping(value = "/createProject")
-    @ResponseBody
-    public String creatProject() { return "Create project"; }
 
     @GetMapping(value = "/editProfile")
     @ResponseBody
