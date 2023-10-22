@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface DonationRepository extends JpaRepository<Donation, Integer> {
 
-    List<Donation> findTop5ByOrderByAmountDesc();
-    List<Donation> findTop5ByOrderByDateAddedDesc();
+    List<Donation> findTop10ByOrderByAmountDesc();
+    List<Donation> findTop10ByOrderByDateAddedDesc();
 
 }
