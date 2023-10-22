@@ -256,9 +256,8 @@ public class WebController {
     }
 
     @GetMapping("/notifications")
-    @ResponseBody
     public String notifications() {
-        return "Welcome to notifications area";
+        return "notifications";
     }
 
     @GetMapping("/admin")
