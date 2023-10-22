@@ -8,6 +8,7 @@ import com.campusdual.fundme.model.dto.dtopmapper.DonationMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -59,8 +60,17 @@ public class DonationService implements IDonationService {
 
     }
 
-    public List<Donation> getTopDonations() { return donationRepository.findTop5ByOrderByAmountDesc(); }
 
-    public List<Donation> getLastDonations() { return donationRepository.findTop5ByOrderByDateAddedDesc(); }
+    public List<Donation> getAllDonationsOrderByDateAddedDesc() {
+
+        Sort sort = Sort.by(Sort.Direction.DESC, "dateAdded");
+
+        return donationRepository.findAll(sort);
+
+    }
+
+    public List<Donation> getTopDonations() { return donationRepository.findTop10ByOrderByAmountDesc(); }
+
+    public List<Donation> getLastDonations() { return donationRepository.findTop10ByOrderByDateAddedDesc(); }
 
 }

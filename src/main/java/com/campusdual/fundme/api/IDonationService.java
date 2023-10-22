@@ -17,5 +17,5 @@ public interface IDonationService {
 
     List<Donation> getTopDonations();
     List<Donation> getLastDonations();
-
+    List<Donation> getAllDonationsOrderByDateAddedDesc();
 }

@@ -99,8 +99,8 @@ public class WebController {
         List<Project> topProjectsList = projectService.getTopProjects();
         model.addAttribute("topProjectsList", topProjectsList);
 
-        List<Project> lastProjectsList = projectService.getLastProjects();
-        model.addAttribute("lastProjectsList", lastProjectsList);
+        List<Donation> topDonationsList = donationService.getTopDonations();
+        model.addAttribute("topDonationsList", topDonationsList);
 
         return "dashboard";
 
@@ -226,11 +226,8 @@ public class WebController {
     @GetMapping(value = "/donations")
     public String donations(Model model) {
 
-        List<Donation> topDonationsList = donationService.getTopDonations();
-        model.addAttribute("topDonationsList", topDonationsList);
-
-        List<Donation> lastDonationsList = donationService.getLastDonations();
-        model.addAttribute("lastDonationsList", lastDonationsList);
+        List<Donation> donationList = donationService.getAllDonationsOrderByDateAddedDesc();
+        model.addAttribute("donationList", donationList);
 
         return "donations";
 
@@ -256,6 +253,12 @@ public class WebController {
 
         return "redirect:/fundme/controller/web/login";
 
+    }
+
+    @GetMapping("/notifications")
+    @ResponseBody
+    public String notifications() {
+        return "Welcome to notifications area";
     }
 
     @GetMapping("/admin")
