@@ -11,114 +11,209 @@
 
         <style>
 
-            body, html {
-                display: flex;
-                flex-direction: column;
-                margin: 0;
-                padding: 0;
-                height: 100vh;
-                font-family: 'Arial', sans-serif;
-                background-color: #f2f2f2;
-                overflow-y: auto;
-            }
-            .container {
-                display: flex;
-                flex-direction: column;
-                flex: 1;
-                width: 100%;
-                background-color: #f2f2f2;
-            }
-            .sidebar {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                width: 100%;
-                padding: 20px;
+           /* Estilos generales */
+           body {
+               font-family: Arial, sans-serif;
+               background-color: #f0f0f0;
+               margin: 0;
+               padding: 0;
+           }
+
+           .container {
+               display: flex;
+           }
+
+           .sidebar {
+               background-color: #333;
+               color: #fff;
+               width: 250px;
+               padding: 20px;
+               min-height: 100vh; /* Asegura que la barra lateral ocupe toda la altura de la ventana */
+           }
+
+           .sidebar h1 {
+               font-size: 24px;
+               margin-bottom: 20px;
+           }
+
+           .sidebar ul {
+               list-style: none;
+               padding: 0;
+           }
+
+           .sidebar li {
+               margin-bottom: 10px;
+           }
+
+           .sidebar a {
+               text-decoration: none;
+               color: #fff;
+               display: block;
+           }
+
+           .content {
+               flex: 1;
+               padding: 20px;
+           }
+
+           /* Estilos específicos para Dashboard */
+           #top-donations, #top-projects {
+               background-color: #fff;
+               padding: 20px;
+               margin-bottom: 20px;
+               border-radius: 5px;
+           }
+
+           #top-donations h3, #top-projects h3 {
+               font-size: 20px;
+               margin-bottom: 10px;
+           }
+
+           table {
+               width: 100%;
+               border-collapse: collapse;
+           }
+
+           table th, table td {
+               padding: 8px;
+               text-align: left;
+           }
+
+           /* Estilos específicos para Projects */
+           .project {
+               background-color: #fff;
+               padding: 20px;
+               margin-bottom: 20px;
+               border-radius: 5px;
+           }
+
+           .project h3 {
+               font-size: 18px;
+               margin-bottom: 10px;
+           }
+
+           .details-link {
+               display: inline-block;
+               background-color: #333;
+               color: #fff;
+               padding: 5px 10px;
+               text-decoration: none;
+               border-radius: 5px;
+               margin-top: 10px;
+           }
+
+           /* Estilos específicos para Donations */
+           #top-donations {
+               background-color: #fff;
+               padding: 20px;
+               margin-bottom: 20px;
+               border-radius: 5px;
+           }
+
+           /* Estilos específicos para View project */
+           #view-project {
+               background-color: #fff;
+               padding: 20px;
+               border-radius: 5px;
+           }
+
+           #view-project .project {
+               margin-bottom: 20px;
+           }
+
+           #view-project h3 {
+               font-size: 24px;
+               margin-bottom: 10px;
+           }
+
+           .donate-link, .comment-link {
+               display: inline-block;
+               background-color: #333;
+               color: #fff;
+               padding: 5px 10px;
+               text-decoration: none;
+               border-radius: 5px;
+               margin-top: 10px;
+           }
+
+           /* Estilos específicos para User profile */
+           #user-profile {
+               background-color: #fff;
+               padding: 20px;
+               border-radius: 5px;
+           }
+
+           .user p {
+               font-size: 18px;
+               margin-bottom: 10px;
+           }
+
+           .edit-link {
+               display: inline-block;
+               background-color: #333;
+               color: #fff;
+               padding: 5px 10px;
+               text-decoration: none;
+               border-radius: 5px;
+               margin-top: 10px;
+           }
+
+           /* Estilos para el formulario */
+
+            .form-container {
                 background-color: #fff;
-                color: black;
-            }
-            .sidebar h1 {
-                font-size: 24px;
-                margin-bottom: 20px;
-                text-align: center;
-            }
-            .sidebar ul {
-                list-style: none;
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-            }
-            .sidebar ul li {
-                margin: 0 15px;
-            }
-            .sidebar ul li a {
-                text-decoration: none;
-                color: black;
-                font-size: 18px;
-                transition: color 0.3s;
-            }
-            .sidebar ul li a:hover {
-                color: black;
-            }
-            .content {
-                flex: 1;
                 padding: 20px;
-                background-color: #f2f2f2;
+                border-radius: 5px;
             }
-            header {
-                text-align: center;
-                margin-bottom: 20px;
-            }
-            header h2 {
-                font-size: 28px;
-                color: #333;
-            }
-            .donation-container {
-                margin: 0 auto;
-                border: 1px solid grey;
-                background-color: #fff;
-                box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-                border-radius: 10px;
-                overflow: hidden;
-                width: 350px;
-                text-align: center;
-                padding: 20px;
-            }
+
             .donation-header {
-                background-color: grey;
+                text-align: center;
+                background-color: #333;
                 color: #fff;
-                padding: 15px;
+                padding: 10px;
+                border-radius: 5px 5px 0 0;
             }
+
             .donation-header h2 {
                 font-size: 24px;
+                margin: 0;
             }
+
+            .donation-form {
+                display: flex;
+                flex-direction: column;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
             .form-label {
-                display: block;
-                font-size: 16px;
-                margin: 15px 0;
+                font-weight: bold;
+                margin-top: 10px;
             }
+
             .form-input {
-                width: 80%;
                 padding: 10px;
                 margin: 5px 0;
-                border: 1px solid grey;
+                border: 1px solid #ccc;
                 border-radius: 5px;
-                font-size: 14px;
             }
-            button {
-                background-color: grey;
+
+            textarea.form-input {
+                resize: vertical;
+            }
+
+            button[type="submit"] {
+                background-color: #333;
                 color: #fff;
-                padding: 10px 15px;
+                padding: 10px 20px;
                 border: none;
-                cursor: pointer;
-                font-size: 16px;
                 border-radius: 5px;
-                margin-top: 25px;
-                margin-bottom: 25px;
-                width: 100%;
+                cursor: pointer;
+                margin-top: 10px;
             }
-            button:hover {
-                background-color: #0056b3;
+
+            button[type="submit"]:hover {
+                background-color: #555;
             }
 
         </style>
