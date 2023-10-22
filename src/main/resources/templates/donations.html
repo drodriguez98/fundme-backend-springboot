@@ -138,13 +138,15 @@
 
             <ul>
 
-                <li><a th:href="@{/fundme/controller/web/dashboard}">Dashboard</a></li>
-                <li><a th:href="@{/fundme/controller/web/allProjects}">All projects</a></li>
-                <li><a th:href="@{/fundme/controller/web/createProject}">Create project</a></li>
+                <li><a th:href="@{/fundme/controller/web/dashboard}">#</a></li>
+                <li><a th:href="@{/fundme/controller/web/allProjects}">Projects</a></li>
                 <li><a th:href="@{/fundme/controller/web/donations}">Donations</a></li>
                 <li><a th:href="@{/fundme/controller/web/userProfile}">User profile</a></li>
-                <li><a th:href="@{/fundme/controller/web/settings}">Settings</a></li>
+                <li><a th:href="@{/fundme/controller/web/notifications}">Notifications</a></li>
                 <li><a th:href="@{/fundme/controller/web/logout}">Logout</a></li>
+
+                <!-- <li><a th:href="@{/fundme/controller/web/createProject}">Create project</a></li> -->
+                <!-- <li><a th:href="@{/fundme/controller/web/settings}">Settings</a></li> -->
 
             </ul>
 
@@ -154,7 +156,7 @@
 
             <div class="section" id="top-donations">
 
-                <h3>Top Donations</h3>
+                <h3>All donations</h3>
 
                 <table>
 
@@ -171,48 +173,12 @@
 
                     <tbody>
 
-                    <tr th:each="donation : ${topDonationsList}">
+                    <tr th:each="donation : ${donationList}">
                         <td th:text="${donation.user_id.name}"></td>
                         <td th:text="${#dates.format(donation.dateAdded, 'yyyy/MM/dd')}"></td>
                         <td th:text="${donation.project_id.title}"></td>
                         <td th:text="${donation.amount}"></td>
                     </tr>
-
-                    </tbody>
-
-                </table>
-
-            </div>
-
-            <div class="section" id="last-donations">
-
-                <h3>Last Donations</h3>
-
-                <table>
-
-                    <thead>
-
-                    <tr>
-
-                        <th>User</th>
-                        <th>Date</th>
-                        <th>Project</th>
-                        <th>Amount</th>
-
-                    </tr>
-
-                    </thead>
-
-                    <tbody>
-
-                        <tr th:each="donation : ${lastDonationsList}">
-
-                            <td th:text="${donation.user_id.name}"></td>
-                            <td th:text="${#dates.format(donation.dateAdded, 'yyyy/MM/dd')}"></td>
-                            <td th:text="${donation.project_id.title}"></td>
-                            <td th:text="${donation.amount}"></td>
-
-                        </tr>
 
                     </tbody>
 
