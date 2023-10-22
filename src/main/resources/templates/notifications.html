@@ -1,9 +1,14 @@
 <!DOCTYPE html>
+
 <html xmlns:th="http://www.w3.org/1999/xhtml" lang="es">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects</title>
+
+    <title>Notifications</title>
+
     <style>
 
         /* Estilos generales */
@@ -154,7 +159,9 @@
         }
 
     </style>
+
 </head>
+
 <body>
 <div class="container">
     <div class="sidebar">
@@ -169,15 +176,8 @@
         </ul>
     </div>
     <div class="content">
-        <div class="section" id="top-projects">
-            <h3>All projects</h3>
-            <div th:each="project : ${projectList}">
-                <div class="project">
-                    <h3 th:text="${project.title}">Title</h3>
-                    <p th:text="${project.description}">Description</p>
-                    <a class="details-link" th:href="@{'/fundme/controller/web/viewProject/' + ${project.project_id}}">View details</a>
-                </div>
-            </div>
+        <div class="section" id="notifications">
+            <h3>Notifications</h3>
         </div>
     </div>
 </div>

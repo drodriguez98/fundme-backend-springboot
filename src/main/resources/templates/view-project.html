@@ -7,119 +7,155 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>Fundmepls / View project</title>
+        <title>View project</title>
 
         <style>
 
-            body, html {
-                display: flex;
-                flex-direction: column;
+            /* Estilos generales */
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f0f0f0;
                 margin: 0;
                 padding: 0;
-                height: 100vh;
-                font-family: 'Arial', sans-serif;
-                background-color: #f2f2f2;
-                overflow-y: auto;
             }
+
             .container {
                 display: flex;
-                flex-direction: column;
-                flex: 1;
-                width: 100%;
-                background-color: #f2f2f2;
             }
+
             .sidebar {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                width: 100%;
+                background-color: #333;
+                color: #fff;
+                width: 250px;
                 padding: 20px;
-                background-color: #fff;
-                color: black;
+                min-height: 100vh; /* Asegura que la barra lateral ocupe toda la altura de la ventana */
             }
+
             .sidebar h1 {
                 font-size: 24px;
                 margin-bottom: 20px;
-                text-align: center;
             }
+
             .sidebar ul {
                 list-style: none;
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
+                padding: 0;
             }
-            .sidebar ul li {
-                margin: 0 15px;
+
+            .sidebar li {
+                margin-bottom: 10px;
             }
-            .sidebar ul li a {
+
+            .sidebar a {
                 text-decoration: none;
-                color: black;
-                font-size: 18px;
-                transition: color 0.3s;
+                color: #fff;
+                display: block;
             }
-            .sidebar ul li a:hover {
-                color: black;
-            }
+
             .content {
                 flex: 1;
                 padding: 20px;
-                background-color: #f2f2f2;
             }
-            header {
-                text-align: center;
+
+            /* Estilos específicos para Dashboard */
+            #top-donations, #top-projects {
+                background-color: #fff;
+                padding: 20px;
+                margin-bottom: 20px;
+                border-radius: 5px;
+            }
+
+            #top-donations h3, #top-projects h3 {
+                font-size: 20px;
+                margin-bottom: 10px;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            table th, table td {
+                padding: 8px;
+                text-align: left;
+            }
+
+            /* Estilos específicos para Projects */
+            .project {
+                background-color: #fff;
+                padding: 20px;
+                margin-bottom: 20px;
+                border-radius: 5px;
+            }
+
+            .project h3 {
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
+
+            .details-link {
+                display: inline-block;
+                background-color: #333;
+                color: #fff;
+                padding: 5px 10px;
+                text-decoration: none;
+                border-radius: 5px;
+                margin-top: 10px;
+            }
+
+            /* Estilos específicos para Donations */
+            #top-donations {
+                background-color: #fff;
+                padding: 20px;
+                margin-bottom: 20px;
+                border-radius: 5px;
+            }
+
+            /* Estilos específicos para View project */
+            #view-project {
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 5px;
+            }
+
+            #view-project .project {
                 margin-bottom: 20px;
             }
-            header h2 {
-                font-size: 28px;
-                color: #333;
-            }
-            .section {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-around;
-                margin-bottom: 30px;
-            }
-            .section h3 {
+
+            #view-project h3 {
                 font-size: 24px;
-                color: black;
-                text-align: center;
-                width: 100%;
+                margin-bottom: 10px;
             }
-             .project {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                padding: 20px;
-                margin: 10px;
-                width: 550px;
-                text-align: center;
-                background-color: #fff;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            }
-            .project h3 {
-                font-size: 24px;
-                color: black;
-                margin: 10px 0;
-            }
-            .project p {
-                font-size: 18px;
-                color: black;
-                margin: 10px 0;
-            }
+
             .donate-link, .comment-link {
-                padding: 10px 20px;
-                background: none;
-                color: black;
-                border: none;
-                cursor: pointer;
-                font-size: 18px;
+                display: inline-block;
+                background-color: #333;
+                color: #fff;
+                padding: 5px 10px;
                 text-decoration: none;
-                transition: color 0.3s;
-                margin-top: 30px;
+                border-radius: 5px;
+                margin-top: 10px;
             }
-            .donate-link:hover {
-                color: #333;
+
+            /* Estilos específicos para User profile */
+            #user-profile {
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 5px;
+            }
+
+            .user p {
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
+
+            .edit-link {
+                display: inline-block;
+                background-color: #333;
+                color: #fff;
+                padding: 5px 10px;
+                text-decoration: none;
+                border-radius: 5px;
+                margin-top: 10px;
             }
 
         </style>

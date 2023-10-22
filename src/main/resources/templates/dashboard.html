@@ -3,89 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fundmepls / Dashboard</title>
+    <title>Fundme</title>
     <style>
+
+        /* Estilos generales */
         body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
             margin: 0;
             padding: 0;
-            font-family: 'Arial', sans-serif;
-            background-color: #f2f2f2;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            justify-content: center;
         }
 
         .container {
             display: flex;
-            flex-direction: row;
-            flex-grow: 1; /* Ocupa el espacio restante verticalmente */
         }
 
         .sidebar {
+            background-color: #333;
+            color: #fff;
             width: 250px;
-            background-color: #4CAF50;
-            color: white;
             padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            min-height: 100vh; /* Asegura que la barra lateral ocupe toda la altura de la ventana */
         }
 
         .sidebar h1 {
             font-size: 24px;
-            margin-top: 10%;
-            margin-bottom: 10px;
-            text-align: center;
+            margin-bottom: 20px;
         }
 
         .sidebar ul {
             list-style: none;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             padding: 0;
         }
 
-        .sidebar ul li {
-            margin: 15px 0;
+        .sidebar li {
+            margin-bottom: 10px;
         }
 
-        .sidebar ul li a {
+        .sidebar a {
             text-decoration: none;
-            color: white;
-            font-size: 18px;
-            transition: color 0.3s;
-        }
-
-        .sidebar ul li a:hover {
-            color: #333;
+            color: #fff;
+            display: block;
         }
 
         .content {
-            flex-grow: 1; /* Ocupa el espacio restante verticalmente */
+            flex: 1;
             padding: 20px;
+        }
+
+        /* Estilos específicos para Dashboard */
+        #top-donations, #top-projects {
             background-color: #fff;
-            display: flex;
-            flex-direction: column; /* Añadido para centrar contenido verticalmente */
-            align-items: center; /* Añadido para centrar contenido verticalmente */
-        }
-
-        header {
-            text-align: center;
+            padding: 20px;
             margin-bottom: 20px;
+            border-radius: 5px;
         }
 
-        header h2 {
-            font-size: 28px;
-            color: #333;
-        }
-
-        .section {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            margin-bottom: 30px;
+        #top-donations h3, #top-projects h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
         }
 
         table {
@@ -93,70 +69,90 @@
             border-collapse: collapse;
         }
 
-        th, td {
-            border: 1px solid #ddd;
+        table th, table td {
             padding: 8px;
-            text-align: center;
+            text-align: left;
         }
 
-        th {
-            background-color: #f2f2f2;
-        }
-
-        .section h3 {
-            font-size: 24px;
-            color: #333;
-            text-align: center;
-            width: 100%;
-        }
-
+        /* Estilos específicos para Projects */
         .project {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            margin: 10px;
-            width: 450px;
-            height: 150px;
-            text-align: center;
             background-color: #fff;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
         }
 
         .project h3 {
-            font-size: 16px;
-            color: #333;
-        }
-
-        .project p {
-            margin: 10px 0;
-            font-size: 15px;
-            color: #333;
+            font-size: 18px;
+            margin-bottom: 10px;
         }
 
         .details-link {
-            padding: 10px 20px;
-            background: none;
-            color: #4CAF50;
-            border: none;
-            cursor: pointer;
-            font-size: 15px;
+            display: inline-block;
+            background-color: #333;
+            color: #fff;
+            padding: 5px 10px;
             text-decoration: none;
-            transition: color 0.3s;
-            margin-top: 30px;
-            display: block;
-            text-align: center;
+            border-radius: 5px;
+            margin-top: 10px;
         }
 
-        .details-link:hover {
-            color: #333;
+        /* Estilos específicos para Donations */
+        #top-donations {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
         }
 
-        /* Agregamos un margen superior al .section con el ID "top-projects" */
-        #top-projects {
-            margin-top: 5%; /* 15% de margen superior */
+        /* Estilos específicos para View project */
+        #view-project {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
         }
+
+        #view-project .project {
+            margin-bottom: 20px;
+        }
+
+        #view-project h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .donate-link, .comment-link {
+            display: inline-block;
+            background-color: #333;
+            color: #fff;
+            padding: 5px 10px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        /* Estilos específicos para User profile */
+        #user-profile {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .user p {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .edit-link {
+            display: inline-block;
+            background-color: #333;
+            color: #fff;
+            padding: 5px 10px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
     </style>
 </head>
 <body>
@@ -173,17 +169,7 @@
         </ul>
     </div>
     <div class="content">
-        <div class="section" id="top-projects">
-            <h3>Top Projects</h3>
-            <div th:each="project : ${topProjectsList}">
-                <div class="project">
-                    <h3 th:text="${project.title}">Title</h3>
-                    <p th:text="${project.description}">Description</p>
-                    <a class="details-link" th:href="@{'/fundme/controller/web/viewProject/' + ${project.project_id}}">View details</a>
-                </div>
-            </div>
-        </div>
-        <div class="section" id="last-projects">
+        <div class="section" id="top-donations">
             <h3>Top donations</h3>
             <table>
                 <thead>
@@ -203,6 +189,16 @@
                 </tr>
                 </tbody>
             </table>
+        </div>
+        <div class="section" id="top-projects">
+            <h3>Top Projects</h3>
+            <div th:each="project : ${topProjectsList}">
+                <div class="project">
+                    <h3 th:text="${project.title}">Title</h3>
+                    <p th:text="${project.description}">Description</p>
+                    <a class="details-link" th:href="@{'/fundme/controller/web/viewProject/' + ${project.project_id}}">View details</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
