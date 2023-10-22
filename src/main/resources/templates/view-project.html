@@ -107,7 +107,7 @@
                 color: black;
                 margin: 10px 0;
             }
-            .donate-link {
+            .donate-link, .comment-link {
                 padding: 10px 20px;
                 background: none;
                 color: black;
@@ -163,6 +163,7 @@
                         <p><strong>Description</strong><p th:text="${project.description}">Description</p>
                         <p><strong>Amount</strong><p th:text="${project.totalAmount}">Total Amount</p>
                         <a class="donate-link" th:href="@{'/fundme/controller/web/donate/' + ${project.project_id}}">Donate</a>
+                        <a class="comment-link" th:href="@{'/fundme/controller/web/comment/' + ${project.project_id}}">Comment</a>
 
                     </div>
 
