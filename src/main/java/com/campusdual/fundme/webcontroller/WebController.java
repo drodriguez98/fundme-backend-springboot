@@ -1,14 +1,13 @@
 package com.campusdual.fundme.webcontroller;
 
+import com.campusdual.fundme.model.Comment;
 import com.campusdual.fundme.model.Donation;
 import com.campusdual.fundme.model.Project;
 import com.campusdual.fundme.model.User;
 
-import com.campusdual.fundme.model.dto.AreaDTO;
-import com.campusdual.fundme.model.dto.CountryDTO;
-import com.campusdual.fundme.model.dto.ProjectDTO;
-import com.campusdual.fundme.model.dto.UserDTO;
+import com.campusdual.fundme.model.dto.*;
 
+import com.campusdual.fundme.model.dto.dtopmapper.CommentMapper;
 import com.campusdual.fundme.model.dto.dtopmapper.DonationMapper;
 import com.campusdual.fundme.model.dto.dtopmapper.ProjectMapper;
 import com.campusdual.fundme.model.dto.dtopmapper.UserMapper;
@@ -17,10 +16,7 @@ import com.campusdual.fundme.api.IDonationService;
 import com.campusdual.fundme.api.IProjectService;
 import com.campusdual.fundme.api.IUserService;
 
-import com.campusdual.fundme.service.AreaService;
-import com.campusdual.fundme.service.CountryService;
-import com.campusdual.fundme.service.CustomUserDetailsService;
-import com.campusdual.fundme.service.LoginService;
+import com.campusdual.fundme.service.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,6 +40,9 @@ public class WebController {
 
     @Autowired
     private LoginService loginService;
+
+    @Autowired
+    private CommentService commentService;
 
     @Autowired
     private CountryService countryService;
@@ -107,13 +106,34 @@ public class WebController {
 
     }
 
-    @GetMapping(value = "/allProjects")
-    public String allProjects(Model model) {
+    @GetMapping(value = "/createProject")
+    public String createProject (Model model) {
 
-        List<ProjectDTO> projectList = projectService.getAllProjects();
-        model.addAttribute("projectList", projectList);
+        List<AreaDTO> areas = areaService.getAllAreas();
+        model.addAttribute("areas", areas);
+        model.addAttribute("project", new ProjectDTO());
 
-        return "all-projects";
+        return "create-project";
+
+    }
+
+    @PostMapping("/createProject")
+    public String processRegistration(@ModelAttribute("project") ProjectDTO projectDTO) {
+
+        Project project = ProjectMapper.INSTANCE.toEntity(projectDTO);
+
+        UserDTO authenticatedUser = userService.getUser(new UserDTO());
+        User user = UserMapper.INSTANCE.toEntity(authenticatedUser);
+
+        project.setUser_id(user);
+        project.setDateAdded(new Date());
+        int totalAmount = 0;
+        project.setTotalAmount(totalAmount);
+
+        projectService.insertProject(ProjectMapper.INSTANCE.toDTO(project));
+
+        return "redirect:/fundme/controller/web/allProjects";
+
     }
 
     @GetMapping(value = "/viewProject/{project_id}")
@@ -126,34 +146,11 @@ public class WebController {
 
     }
 
-    @GetMapping(value = "/donations")
-    public String donations(Model model) {
-
-        List<Donation> topDonationsList = donationService.getTopDonations();
-        model.addAttribute("topDonationsList", topDonationsList);
-
-        List<Donation> lastDonationsList = donationService.getLastDonations();
-        model.addAttribute("lastDonationsList", lastDonationsList);
-
-        return "donations";
-
-    }
-
-    @GetMapping(value = "/userProfile")
-    public String userProfile(Model model) {
-
-        UserDTO authenticatedUser = userService.getUser(new UserDTO());
-        model.addAttribute("authenticatedUser", authenticatedUser);
-
-        return "user-profile";
-
-    }
-
     @GetMapping("/donate/{project_id}")
     public String donateToProject (@PathVariable("project_id") int project_id, Model model) {
 
-        ProjectDTO project = projectService.getProjectById(project_id);
-        model.addAttribute("project", project);
+        ProjectDTO projectDTO = projectService.getProjectById(project_id);
+        model.addAttribute("project", projectDTO);
 
         return "donate-project";
 
@@ -184,33 +181,68 @@ public class WebController {
 
     }
 
-    @GetMapping(value = "/createProject")
-    public String createProject (Model model) {
+    @GetMapping(value = "/comment/{project_id}")
+    public String commentProject (@PathVariable("project_id") int project_id, Model model) {
 
-        List<AreaDTO> areas = areaService.getAllAreas();
-        model.addAttribute("areas", areas);
-        model.addAttribute("project", new ProjectDTO());
+        ProjectDTO projectDTO = projectService.getProjectById(project_id);
+        model.addAttribute("project", projectDTO);
 
-        return "create-project";
+        model.addAttribute("comment", new CommentDTO());
+
+        return "comment-project";
 
     }
 
-    @PostMapping("/createProject")
-    public String processRegistration(@ModelAttribute("project") ProjectDTO projectDTO) {
+    @PostMapping("/comment/{project_id}")
+    public String commentProject(@PathVariable("project_id") int project_id, @ModelAttribute("comment") CommentDTO commentDTO) {
 
+        Comment comment = CommentMapper.INSTANCE.toEntity(commentDTO);
+
+        ProjectDTO projectDTO = projectService.getProjectById(project_id);
         Project project = ProjectMapper.INSTANCE.toEntity(projectDTO);
 
         UserDTO authenticatedUser = userService.getUser(new UserDTO());
         User user = UserMapper.INSTANCE.toEntity(authenticatedUser);
 
-        project.setUser_id(user);
-        project.setDateAdded(new Date());
-        int totalAmount = 0;
-        project.setTotalAmount(totalAmount);
+        comment.setUser_id(user);
+        comment.setProject_id(project);
+        comment.setDate_added(new Date());
 
-        projectService.insertProject(ProjectMapper.INSTANCE.toDTO(project));
+        commentService.insertComment(CommentMapper.INSTANCE.toDTO(comment));
 
         return "redirect:/fundme/controller/web/allProjects";
+
+    }
+
+    @GetMapping(value = "/allProjects")
+    public String allProjects(Model model) {
+
+        List<ProjectDTO> projectList = projectService.getAllProjects();
+        model.addAttribute("projectList", projectList);
+
+        return "all-projects";
+    }
+
+    @GetMapping(value = "/donations")
+    public String donations(Model model) {
+
+        List<Donation> topDonationsList = donationService.getTopDonations();
+        model.addAttribute("topDonationsList", topDonationsList);
+
+        List<Donation> lastDonationsList = donationService.getLastDonations();
+        model.addAttribute("lastDonationsList", lastDonationsList);
+
+        return "donations";
+
+    }
+
+    @GetMapping(value = "/userProfile")
+    public String userProfile(Model model) {
+
+        UserDTO authenticatedUser = userService.getUser(new UserDTO());
+        model.addAttribute("authenticatedUser", authenticatedUser);
+
+        return "user-profile";
 
     }
 
