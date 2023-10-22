@@ -52,16 +52,15 @@
         }
 
         /* Estilos específicos para Dashboard */
-        #top-donations, #top-projects {
+        #top-projects {
             background-color: #fff;
-            padding: 20px;
-            margin-bottom: 20px;
+            padding: 15px;
+            margin-bottom: 15px;
             border-radius: 5px;
         }
 
-        #top-donations h3, #top-projects h3 {
+        #top-projects h3 {
             font-size: 20px;
-            margin-bottom: 10px;
         }
 
         table {
@@ -77,14 +76,17 @@
         /* Estilos específicos para Projects */
         .project {
             background-color: #fff;
-            padding: 20px;
+            padding: 10px;
             margin-bottom: 20px;
             border-radius: 5px;
         }
 
         .project h3 {
             font-size: 18px;
-            margin-bottom: 10px;
+        }
+
+        .project-container {
+            margin-top: 1%;
         }
 
         .details-link {
@@ -143,7 +145,7 @@
             margin-bottom: 10px;
         }
 
-        .edit-link {
+        .edit-link, .create-project {
             display: inline-block;
             background-color: #333;
             color: #fff;
@@ -151,6 +153,10 @@
             text-decoration: none;
             border-radius: 5px;
             margin-top: 10px;
+        }
+
+        .create-project {
+            margin-bottom: 3%;
         }
 
     </style>
@@ -169,9 +175,10 @@
         </ul>
     </div>
     <div class="content">
+        <a class="create-project" th:href="@{/fundme/controller/web/createProject}">Create project</a>
         <div class="section" id="top-projects">
             <h3>All projects</h3>
-            <div th:each="project : ${projectList}">
+            <div class="project-container" th:each="project : ${projectList}">
                 <div class="project">
                     <h3 th:text="${project.title}">Title</h3>
                     <p th:text="${project.description}">Description</p>
