@@ -32,9 +32,9 @@ public class ProjectService implements IProjectService {
     }
 
     @Override
-    public ProjectDTO getProjectById(int project_d) {
+    public ProjectDTO getProjectById(int project_id) {
 
-        Project project = projectRepository.getReferenceById(project_d);
+        Project project = projectRepository.getReferenceById(project_id);
 
         return ProjectMapper.INSTANCE.toDTO(project);
 
