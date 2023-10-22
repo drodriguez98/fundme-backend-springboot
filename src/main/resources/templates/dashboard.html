@@ -1,249 +1,210 @@
 <!DOCTYPE html>
-
 <html xmlns:th="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundmepls / Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            justify-content: center;
+        }
 
-    <head>
+        .container {
+            display: flex;
+            flex-direction: row;
+            flex-grow: 1; /* Ocupa el espacio restante verticalmente */
+        }
 
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        .sidebar {
+            width: 250px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-        <title>Fundmepls / Dashboard</title>
+        .sidebar h1 {
+            font-size: 24px;
+            margin-top: 10%;
+            margin-bottom: 10px;
+            text-align: center;
+        }
 
-        <style>
+        .sidebar ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0;
+        }
 
-            body, html {
-                display: flex;
-                flex-direction: column;
-                margin: 0;
-                padding: 0;
-                height: 100vh;
-                font-family: 'Arial', sans-serif;
-                background-color: #f2f2f2;
-                overflow-y: auto;
-            }
+        .sidebar ul li {
+            margin: 15px 0;
+        }
 
-            .container {
-                display: flex;
-                flex-direction: column;
-                flex: 1;
-                width: 100%;
-                background-color: #f2f2f2;
-            }
+        .sidebar ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
 
-            .sidebar {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                width: 100%;
-                padding: 20px;
-                background-color: #fff;
-                color: black;
-            }
+        .sidebar ul li a:hover {
+            color: #333;
+        }
 
-            .sidebar h1 {
-                font-size: 24px;
-                margin-bottom: 20px;
-                text-align: center;
-            }
+        .content {
+            flex-grow: 1; /* Ocupa el espacio restante verticalmente */
+            padding: 20px;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column; /* Añadido para centrar contenido verticalmente */
+            align-items: center; /* Añadido para centrar contenido verticalmente */
+        }
 
-            .sidebar ul {
-                list-style: none;
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-            }
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-            .sidebar ul li {
-                margin: 0 15px;
-            }
+        header h2 {
+            font-size: 28px;
+            color: #333;
+        }
 
-            .sidebar ul li a {
-                text-decoration: none;
-                color: black;
-                font-size: 18px;
-                transition: color 0.3s;
-            }
+        .section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-bottom: 30px;
+        }
 
-            .sidebar ul li a:hover {
-                color: black;
-            }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
 
-            .content {
-                flex: 1;
-                padding: 20px;
-                background-color: #f2f2f2;
-            }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
 
-            header {
-                text-align: center;
-                margin-bottom: 20px;
-            }
+        th {
+            background-color: #f2f2f2;
+        }
 
-            header h2 {
-                font-size: 28px;
-                color: #333;
-            }
+        .section h3 {
+            font-size: 24px;
+            color: #333;
+            text-align: center;
+            width: 100%;
+        }
 
-            .section {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-around;
-                margin-bottom: 30px;
-            }
+        .project {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            margin: 10px;
+            width: 450px;
+            height: 150px;
+            text-align: center;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
 
-            table {
-                width: 100%;
-                border-collapse: collapse;
-            }
-            th, td {
-                border: 1px solid #ddd;
-                padding: 8px;
-                text-align: center;
-            }
-            th {
-                background-color: #f2f2f2;
-            }
+        .project h3 {
+            font-size: 16px;
+            color: #333;
+        }
 
-            .section h3 {
-                font-size: 24px;
-                color: black;
-                text-align: center;
-                width: 100%;
-            }
+        .project p {
+            margin: 10px 0;
+            font-size: 15px;
+            color: #333;
+        }
 
-             .project {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center; /* Centra verticalmente */
-                padding: 20px;
-                margin: 10px;
-                width: 450px;
-                height: 150px;
-                text-align: center;
-                background-color: #fff;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            }
+        .details-link {
+            padding: 10px 20px;
+            background: none;
+            color: #4CAF50;
+            border: none;
+            cursor: pointer;
+            font-size: 15px;
+            text-decoration: none;
+            transition: color 0.3s;
+            margin-top: 30px;
+            display: block;
+            text-align: center;
+        }
 
-            .project h3 {
-                font-size: 16px;
-                color: black;
-            }
+        .details-link:hover {
+            color: #333;
+        }
 
-            .project p {
-                margin: 10px 0;
-                font-size: 15px;
-                color: black;
-            }
-
-            .details-link {
-                padding: 10px 20px;
-                background: none; /* Elimina el fondo */
-                color: black; /* Color de texto */
-                border: none;
-                cursor: pointer;
-                font-size: 15px;
-                text-decoration: none;
-                transition: color 0.3s;
-                margin-top: 30px;
-            }
-
-            .details-link:hover {
-                color: #333;
-            }
-
-        </style>
-
-    </head>
-
-    <body>
-
-        <div class="container">
-
-            <div class="sidebar">
-
-                <h1>FUNDMEPLS</h1>
-
-                <ul>
-
-                    <li><a th:href="@{/fundme/controller/web/dashboard}">#</a></li>
-                    <li><a th:href="@{/fundme/controller/web/allProjects}">Projects</a></li>
-                    <li><a th:href="@{/fundme/controller/web/donations}">Donations</a></li>
-                    <li><a th:href="@{/fundme/controller/web/userProfile}">User profile</a></li>
-                    <li><a th:href="@{/fundme/controller/web/notifications}">Notifications</a></li>
-                    <li><a th:href="@{/fundme/controller/web/logout}">Logout</a></li>
-
-                    <!-- <li><a th:href="@{/fundme/controller/web/createProject}">Create project</a></li> -->
-                    <!-- <li><a th:href="@{/fundme/controller/web/settings}">Settings</a></li> -->
-
-                </ul>
-
-            </div>
-
-            <div class="content">
-
-                <!-- Top projects section -->
-
-                <div class="section" id="top-projects">
-
-                    <h3>Top Projects</h3>
-
-                    <div th:each="project : ${topProjectsList}">
-
-                        <div class="project">
-
-                            <h3 th:text="${project.title}">Title</h3>
-                            <p th:text="${project.description}">Description</p>
-                            <a class="details-link" th:href="@{'/fundme/controller/web/viewProject/' + ${project.project_id}}">View details</a>
-
-                        </div>
-
-                    </div>
-
+        /* Agregamos un margen superior al .section con el ID "top-projects" */
+        #top-projects {
+            margin-top: 5%; /* 15% de margen superior */
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="sidebar">
+        <h1>FUNDMEPLS</h1>
+        <ul>
+            <li><a th:href="@{/fundme/controller/web/dashboard}">#</a></li>
+            <li><a th:href="@{/fundme/controller/web/allProjects}">Projects</a></li>
+            <li><a th:href="@{/fundme/controller/web/donations}">Donations</a></li>
+            <li><a th:href="@{/fundme/controller/web/userProfile}">User profile</a></li>
+            <li><a th:href="@{/fundme/controller/web/notifications}">Notifications</a></li>
+            <li><a th:href="@{/fundme/controller/web/logout}">Logout</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="section" id="top-projects">
+            <h3>Top Projects</h3>
+            <div th:each="project : ${topProjectsList}">
+                <div class="project">
+                    <h3 th:text="${project.title}">Title</h3>
+                    <p th:text="${project.description}">Description</p>
+                    <a class="details-link" th:href="@{'/fundme/controller/web/viewProject/' + ${project.project_id}}">View details</a>
                 </div>
-
-                <!-- Top donations section -->
-
-                <div class="section" id="last-projects">
-
-                    <h3>Top donations</h3>
-
-                    <table>
-
-                        <thead>
-
-                        <tr>
-
-                            <th>User</th>
-                            <th>Date</th>
-                            <th>Project</th>
-                            <th>Amount</th>
-
-                        </tr>
-
-                        </thead>
-
-                        <tbody>
-
-                        <tr th:each="donation : ${topDonationsList}">
-
-                            <td th:text="${donation.user_id.name}"></td>
-                            <td th:text="${#dates.format(donation.dateAdded, 'yyyy/MM/dd')}"></td>
-                            <td th:text="${donation.project_id.title}"></td>
-                            <td th:text="${donation.amount}"></td>
-
-                        </tr>
-
-                        </tbody>
-
-                    </table>
-
-                </div>
-
             </div>
-
         </div>
-
-    </body>
-
+        <div class="section" id="last-projects">
+            <h3>Top donations</h3>
+            <table>
+                <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Date</th>
+                    <th>Project</th>
+                    <th>Amount</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="donation : ${topDonationsList}">
+                    <td th:text="${donation.user_id.name}"></td>
+                    <td th:text="${#dates.format(donation.dateAdded, 'yyyy/MM/dd')}"></td>
+                    <td th:text="${donation.project_id.title}"></td>
+                    <td th:text="${donation.amount}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
 </html>
