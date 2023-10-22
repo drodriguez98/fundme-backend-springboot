@@ -1,9 +1,11 @@
 package com.campusdual.fundme.service;
 
 import com.campusdual.fundme.api.IProjectService;
+import com.campusdual.fundme.api.IUserService;
 import com.campusdual.fundme.model.Project;
 import com.campusdual.fundme.model.repository.ProjectRepository;
 import com.campusdual.fundme.model.dto.ProjectDTO;
+
 import com.campusdual.fundme.model.dto.dtopmapper.ProjectMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,8 @@ import java.util.List;
 @Lazy
 public class ProjectService implements IProjectService {
 
+    private IUserService userService;
+
     @Autowired
     private ProjectRepository projectRepository;
 
@@ -22,6 +26,7 @@ public class ProjectService implements IProjectService {
     public ProjectDTO getProject(ProjectDTO projectDTO) {
 
         Project project = ProjectMapper.INSTANCE.toEntity(projectDTO);
+
         return ProjectMapper.INSTANCE.toDTO(this.projectRepository.getReferenceById(project.getProject_id()));
 
     }
@@ -30,6 +35,7 @@ public class ProjectService implements IProjectService {
     public ProjectDTO getProjectById(int project_d) {
 
         Project project = projectRepository.getReferenceById(project_d);
+
         return ProjectMapper.INSTANCE.toDTO(project);
 
     }
@@ -42,6 +48,7 @@ public class ProjectService implements IProjectService {
 
         Project project = ProjectMapper.INSTANCE.toEntity(projectDTO);
         this.projectRepository.saveAndFlush(project);
+
         return project.getProject_id();
 
     }
@@ -55,6 +62,7 @@ public class ProjectService implements IProjectService {
         int id = projectDTO.getProject_id();
         Project project = ProjectMapper.INSTANCE.toEntity(projectDTO);
         this.projectRepository.delete(project);
+
         return id;
 
     }
