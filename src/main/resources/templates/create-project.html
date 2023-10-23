@@ -11,7 +11,6 @@
 
     <style>
 
-        /* Estilos generales */
            body {
                font-family: Arial, sans-serif;
                background-color: #f0f0f0;
@@ -19,16 +18,14 @@
                padding: 0;
            }
 
-           .container {
-               display: flex;
-           }
+           .container { display: flex; }
 
            .sidebar {
                background-color: #333;
                color: #fff;
                width: 250px;
                padding: 20px;
-               min-height: 100vh; /* Asegura que la barra lateral ocupe toda la altura de la ventana */
+               min-height: 100vh;
            }
 
            .sidebar h1 {
@@ -41,9 +38,7 @@
                padding: 0;
            }
 
-           .sidebar li {
-               margin-bottom: 10px;
-           }
+           .sidebar li { margin-bottom: 10%; }
 
            .sidebar a {
                text-decoration: none;
@@ -56,116 +51,13 @@
                padding: 20px;
            }
 
-           /* Estilos específicos para Dashboard */
-           #top-donations, #top-projects {
-               background-color: #fff;
-               padding: 20px;
-               margin-bottom: 20px;
-               border-radius: 5px;
-           }
-
-           #top-donations h3, #top-projects h3 {
-               font-size: 20px;
-               margin-bottom: 10px;
-           }
-
-           table {
-               width: 100%;
-               border-collapse: collapse;
-           }
-
-           table th, table td {
-               padding: 8px;
-               text-align: left;
-           }
-
-           /* Estilos específicos para Projects */
-           .project {
-               background-color: #fff;
-               padding: 20px;
-               margin-bottom: 20px;
-               border-radius: 5px;
-           }
-
-           .project h3 {
-               font-size: 18px;
-               margin-bottom: 10px;
-           }
-
-           .details-link {
-               display: inline-block;
-               background-color: #333;
-               color: #fff;
-               padding: 5px 10px;
-               text-decoration: none;
-               border-radius: 5px;
-               margin-top: 10px;
-           }
-
-           /* Estilos específicos para Donations */
-           #top-donations {
-               background-color: #fff;
-               padding: 20px;
-               margin-bottom: 20px;
-               border-radius: 5px;
-           }
-
-           /* Estilos específicos para View project */
-           #view-project {
-               background-color: #fff;
-               padding: 20px;
-               border-radius: 5px;
-           }
-
-           #view-project .project {
-               margin-bottom: 20px;
-           }
-
-           #view-project h3 {
-               font-size: 24px;
-               margin-bottom: 10px;
-           }
-
-           .donate-link, .comment-link {
-               display: inline-block;
-               background-color: #333;
-               color: #fff;
-               padding: 5px 10px;
-               text-decoration: none;
-               border-radius: 5px;
-               margin-top: 10px;
-           }
-
-           /* Estilos específicos para User profile */
-           #user-profile {
-               background-color: #fff;
-               padding: 20px;
-               border-radius: 5px;
-           }
-
-           .user p {
-               font-size: 18px;
-               margin-bottom: 10px;
-           }
-
-           .edit-link {
-               display: inline-block;
-               background-color: #333;
-               color: #fff;
-               padding: 5px 10px;
-               text-decoration: none;
-               border-radius: 5px;
-               margin-top: 10px;
-           }
-
-            /* Estilos para el formulario */
             .form-container {
                  padding: 20px;
                  border-radius: 5px;
                  background-color: #f0f0f0;
             }
 
-            .donation-header {
+            .form-header {
                 text-align: center;
                 background-color: #333;
                 color: #fff;
@@ -173,50 +65,47 @@
                 border-radius: 5px 5px 0 0;
                 max-width: 400px;
                 margin: 0 auto;
-                margin-top: 12%;
+                margin-top: 8%;
             }
 
-            .donation-header h2 {
+            .form-header h2 {
                 font-size: 24px;
                 margin: 0;
             }
 
-            .donation-form {
+            .create-project-form {
                 display: flex;
                 flex-direction: column;
                 max-width: 400px;
                 margin: 0 auto;
-                margin-top: 2%;
+                margin-top: 1.5%;
             }
 
             .form-label {
                 font-weight: bold;
-                margin-top: 10px;
+                margin: 3% 0;
                 text-align: center;
             }
 
             .form-input {
                 padding: 10px;
-                margin: 5px 0;
+                margin: 3% 0;
                 border: 1px solid #ccc;
                 border-radius: 5px;
                 text-align: center;
-                margin-top: 2%;
             }
 
             select  {
                 width: 100%;
                 padding: 10px;
-                margin: 5px 0;
+                margin: 3% 0;
                 border: 1px solid #ccc;
                 border-radius: 5px;
                 font-size: 14px;
                 text-align: center;
             }
 
-            textarea.form-input {
-                resize: vertical;
-            }
+            textarea.form-input { resize: vertical; }
 
             button[type="submit"] {
                 background-color: #333;
@@ -225,13 +114,11 @@
                 border: none;
                 border-radius: 5px;
                 cursor: pointer;
-                margin-top: 10px;
+                margin-top: 6%;
+                font-size: 16px;
             }
 
-            button[type="submit"]:hover {
-                background-color: #555;
-            }
-
+            button[type="submit"]:hover { background-color: #555; }
 
     </style>
 
@@ -265,9 +152,9 @@
 
         <div class="form-container">
 
-            <div class="donation-header"> <h2>New project</h2> </div>
+            <div class="form-header"> <h2>New project</h2> </div>
 
-            <form th:action="@{/fundme/controller/web/createProject}" th:object="${project}" method="post" class="donation-form">
+            <form th:action="@{/fundme/controller/web/createProject}" th:object="${project}" method="post" class="create-project-form">
 
                 <label class="form-label" for="title">Title</label>
                 <input class="form-input" type="text" id="title" name="title" required>
