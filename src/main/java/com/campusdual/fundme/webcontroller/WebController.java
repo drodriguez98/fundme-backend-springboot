@@ -267,12 +267,10 @@ public class WebController {
     }
 
     @GetMapping(value = "/myProjects")
-    @ResponseBody
-    public String myProjects() { return "Wellcome to my projects"; }
+    public String myProjects() { return "my-projects"; }
 
     @GetMapping(value = "/myDonations")
-    @ResponseBody
-    public String myDonations() { return "Wellcome to my donations"; }
+    public String myDonations() { return "my-donations"; }
 
     @GetMapping(value = "/settings")
     @ResponseBody
