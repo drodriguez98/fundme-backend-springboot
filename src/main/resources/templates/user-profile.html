@@ -82,14 +82,28 @@
                 padding-bottom: 3%;
             }
 
-            #user-profile .edit-link {
+            .nav-link {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+            }
+
+            .nav-link .edit-link, .nav-link .delete-link {
                 display: inline-block;
-                background-color: #333;
                 color: #fff;
                 padding: 12px 50px;
                 text-decoration: none;
                 border-radius: 5px;
                 margin-bottom: 8%;
+            }
+
+            .nav-link .edit-link {
+                background-color: #333;
+                margin-right: 2.5%;
+            }
+            .nav-link .delete-link {
+                background-color: red;
+                margin-left: 2.5%;
             }
 
         </style>
@@ -136,7 +150,14 @@
 
                     </div>
 
-                    <a class="edit-link" th:href="@{'/fundme/controller/web/editProfile/'}">Edit profile</a>
+                    <div class="nav-link">
+
+                        <a class="edit-link" th:href="@{'/fundme/controller/web/editProfile/'}">Edit profile</a>
+                        <a class="delete-link" th:href="@{'/fundme/controller/web/deleteAccount/'}">Delete account</a>
+
+                    </div>
+
+
 
                 </div>
 
