@@ -6,7 +6,6 @@
     <title>Donations</title>
     <style>
 
-        /* Estilos generales */
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
@@ -23,7 +22,7 @@
             color: #fff;
             width: 250px;
             padding: 20px;
-            min-height: 100vh; /* Asegura que la barra lateral ocupe toda la altura de la ventana */
+            min-height: 100vh;
         }
 
         .sidebar h1 {
@@ -49,18 +48,16 @@
         .content {
             flex: 1;
             padding: 20px;
-            margin-top: 4.5%;
         }
 
-        /* Estilos específicos para Dashboard */
-        #top-donations, #top-projects {
+        #all-donations {
             background-color: #fff;
             padding: 20px;
             margin-bottom: 20px;
             border-radius: 5px;
         }
 
-        #top-donations h3, #top-projects h3 {
+        .content h3 {
             font-size: 20px;
             margin-bottom: 10px;
         }
@@ -68,7 +65,7 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 3%;
+            margin-top: 2%;
         }
 
         table th, table td {
@@ -76,19 +73,7 @@
             text-align: left;
         }
 
-        /* Estilos específicos para Projects */
-        .project {
-            background-color: #fff;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-        }
-
-        .project h3 {
-            font-size: 18px;
-        }
-
-        .details-link {
+        .my-donations {
             display: inline-block;
             background-color: #333;
             color: #fff;
@@ -96,62 +81,11 @@
             text-decoration: none;
             border-radius: 5px;
             margin-top: 10px;
+
         }
 
-        /* Estilos específicos para Donations */
-        #top-donations {
-            background-color: #fff;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-        }
-
-        /* Estilos específicos para View project */
-        #view-project {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-        }
-
-        #view-project .project {
-            margin-bottom: 20px;
-        }
-
-        #view-project h3 {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        .donate-link, .comment-link {
-            display: inline-block;
-            background-color: #333;
-            color: #fff;
-            padding: 5px 10px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-
-        /* Estilos específicos para User profile */
-        #user-profile {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-        }
-
-        .user p {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-
-        .edit-link {
-            display: inline-block;
-            background-color: #333;
-            color: #fff;
-            padding: 5px 10px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 10px;
+        .my-donations {
+            margin-bottom: 3%;
         }
 
     </style>
@@ -170,7 +104,8 @@
         </ul>
     </div>
     <div class="content">
-        <div class="section" id="top-donations">
+        <a class="my-donations" th:href="@{/fundme/controller/web/myDonations}">My donations</a>
+        <div class="section" id="all-donations">
             <h3>All donations</h3>
             <table>
                 <thead>

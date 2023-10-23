@@ -6,7 +6,6 @@
     <title>Fundme</title>
     <style>
 
-        /* Estilos generales */
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
@@ -23,7 +22,7 @@
             color: #fff;
             width: 250px;
             padding: 20px;
-            min-height: 100vh; /* Asegura que la barra lateral ocupe toda la altura de la ventana */
+            min-height: 100vh;
         }
 
         .sidebar h1 {
@@ -51,17 +50,16 @@
             padding: 20px;
         }
 
-        /* Estilos específicos para Dashboard */
         #top-donations, #top-projects {
             background-color: #fff;
-            padding: 20px;
+            padding: 10px;
             margin-bottom: 20px;
             border-radius: 5px;
         }
 
         #top-donations h3, #top-projects h3 {
             font-size: 20px;
-            margin-bottom: 10px;
+            margin-bottom: 1.5%;
         }
 
         table {
@@ -74,11 +72,10 @@
             text-align: left;
         }
 
-        /* Estilos específicos para Projects */
         .project {
             background-color: #fff;
             padding: 20px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             border-radius: 5px;
         }
 
@@ -97,60 +94,11 @@
             margin-top: 10px;
         }
 
-        /* Estilos específicos para Donations */
         #top-donations {
             background-color: #fff;
             padding: 20px;
             margin-bottom: 20px;
             border-radius: 5px;
-        }
-
-        /* Estilos específicos para View project */
-        #view-project {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-        }
-
-        #view-project .project {
-            margin-bottom: 20px;
-        }
-
-        #view-project h3 {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        .donate-link, .comment-link {
-            display: inline-block;
-            background-color: #333;
-            color: #fff;
-            padding: 5px 10px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-
-        /* Estilos específicos para User profile */
-        #user-profile {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-        }
-
-        .user p {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-
-        .edit-link {
-            display: inline-block;
-            background-color: #333;
-            color: #fff;
-            padding: 5px 10px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 10px;
         }
 
     </style>
@@ -191,7 +139,7 @@
             </table>
         </div>
         <div class="section" id="top-projects">
-            <h3>Top Projects</h3>
+            <h3>Top projects</h3>
             <div th:each="project : ${topProjectsList}">
                 <div class="project">
                     <h3 th:text="${project.title}">Title</h3>

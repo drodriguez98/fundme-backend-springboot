@@ -6,7 +6,6 @@
     <title>Projects</title>
     <style>
 
-        /* Estilos generales */
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
@@ -51,7 +50,6 @@
             padding: 20px;
         }
 
-        /* Estilos específicos para Dashboard */
         #top-projects {
             background-color: #fff;
             padding: 15px;
@@ -63,17 +61,6 @@
             font-size: 20px;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        table th, table td {
-            padding: 8px;
-            text-align: left;
-        }
-
-        /* Estilos específicos para Projects */
         .project {
             background-color: #fff;
             padding: 10px;
@@ -83,10 +70,6 @@
 
         .project h3 {
             font-size: 18px;
-        }
-
-        .project-container {
-            margin-top: 1%;
         }
 
         .details-link {
@@ -99,31 +82,7 @@
             margin-top: 10px;
         }
 
-        /* Estilos específicos para Donations */
-        #top-donations {
-            background-color: #fff;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-        }
-
-        /* Estilos específicos para View project */
-        #view-project {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-        }
-
-        #view-project .project {
-            margin-bottom: 20px;
-        }
-
-        #view-project h3 {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        .donate-link, .comment-link {
+        .create-project, .my-projects {
             display: inline-block;
             background-color: #333;
             color: #fff;
@@ -133,30 +92,9 @@
             margin-top: 10px;
         }
 
-        /* Estilos específicos para User profile */
-        #user-profile {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-        }
-
-        .user p {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-
-        .edit-link, .create-project {
-            display: inline-block;
-            background-color: #333;
-            color: #fff;
-            padding: 5px 10px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-
-        .create-project {
+        .create-project, .my-projects {
             margin-bottom: 3%;
+            margin-right: 2%;
         }
 
     </style>
@@ -176,6 +114,7 @@
     </div>
     <div class="content">
         <a class="create-project" th:href="@{/fundme/controller/web/createProject}">Create project</a>
+        <a class="my-projects" th:href="@{/fundme/controller/web/myProjects}">My projects</a>
         <div class="section" id="top-projects">
             <h3>All projects</h3>
             <div class="project-container" th:each="project : ${projectList}">
