@@ -220,7 +220,7 @@ public class WebController {
         List<ProjectDTO> projectList = projectService.getAllProjects();
         model.addAttribute("projectList", projectList);
 
-        return "all-projects";
+        return "projects";
     }
 
     @GetMapping(value = "/donations")
