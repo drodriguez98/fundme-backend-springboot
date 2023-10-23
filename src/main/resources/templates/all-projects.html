@@ -1,131 +1,161 @@
 <!DOCTYPE html>
+
 <html xmlns:th="http://www.w3.org/1999/xhtml" lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects</title>
-    <style>
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 0;
-        }
+    <head>
 
-        .container {
-            display: flex;
-        }
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        .sidebar {
-            background-color: #333;
-            color: #fff;
-            width: 250px;
-            padding: 20px;
-            min-height: 100vh; /* Asegura que la barra lateral ocupe toda la altura de la ventana */
-        }
+        <title>Projects</title>
 
-        .sidebar h1 {
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
+        <style>
 
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-        }
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f0f0f0;
+                margin: 0;
+                padding: 0;
+            }
 
-        .sidebar li {
-            margin-bottom: 10px;
-        }
+            .container {
+                display: flex;
+            }
 
-        .sidebar a {
-            text-decoration: none;
-            color: #fff;
-            display: block;
-        }
+            .sidebar {
+                background-color: #333;
+                color: #fff;
+                width: 250px;
+                padding: 20px;
+                min-height: 100vh; /* Asegura que la barra lateral ocupe toda la altura de la ventana */
+            }
 
-        .content {
-            flex: 1;
-            padding: 20px;
-        }
+            .sidebar h1 {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
 
-        #top-projects {
-            background-color: #fff;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 5px;
-        }
+            .sidebar ul {
+                list-style: none;
+                padding: 0;
+            }
 
-        #top-projects h3 {
-            font-size: 20px;
-        }
+            .sidebar li {
+                margin-bottom: 10px;
+            }
 
-        .project {
-            background-color: #fff;
-            padding: 10px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-        }
+            .sidebar a {
+                text-decoration: none;
+                color: #fff;
+                display: block;
+            }
 
-        .project h3 {
-            font-size: 18px;
-        }
+            .content {
+                flex: 1;
+                padding: 20px;
+            }
 
-        .details-link {
-            display: inline-block;
-            background-color: #333;
-            color: #fff;
-            padding: 5px 10px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
+            #projects {
+                background-color: #fff;
+                padding: 15px;
+                margin-bottom: 15px;
+                border-radius: 5px;
+                text-align: center;
+            }
 
-        .create-project, .my-projects {
-            display: inline-block;
-            background-color: #333;
-            color: #fff;
-            padding: 5px 10px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
+            #projects h3 {
+                font-size: 20px;
+                margin-bottom: 3%;
+            }
 
-        .create-project, .my-projects {
-            margin-bottom: 3%;
-            margin-right: 2%;
-        }
+            .project {
+                background-color: #fff;
+                padding: 10px;
+                margin-bottom: 20px;
+                border-radius: 5px;
+            }
 
-    </style>
-</head>
-<body>
-<div class="container">
-    <div class="sidebar">
-        <h1>FUNDMEPLS</h1>
-        <ul>
-            <li><a th:href="@{/fundme/controller/web/dashboard}">#</a></li>
-            <li><a th:href="@{/fundme/controller/web/allProjects}">Projects</a></li>
-            <li><a th:href="@{/fundme/controller/web/donations}">Donations</a></li>
-            <li><a th:href="@{/fundme/controller/web/userProfile}">User profile</a></li>
-            <li><a th:href="@{/fundme/controller/web/notifications}">Notifications</a></li>
-            <li><a th:href="@{/fundme/controller/web/logout}">Logout</a></li>
-        </ul>
-    </div>
-    <div class="content">
-        <a class="create-project" th:href="@{/fundme/controller/web/createProject}">Create project</a>
-        <a class="my-projects" th:href="@{/fundme/controller/web/myProjects}">My projects</a>
-        <div class="section" id="top-projects">
-            <h3>All projects</h3>
-            <div class="project-container" th:each="project : ${projectList}">
-                <div class="project">
-                    <h3 th:text="${project.title}">Title</h3>
-                    <p th:text="${project.description}">Description</p>
-                    <a class="details-link" th:href="@{'/fundme/controller/web/viewProject/' + ${project.project_id}}">View details</a>
-                </div>
+            .project h3 {
+                font-size: 18px;
+            }
+
+            .create-project-link, .my-projects-link {
+                display: inline-block;
+                background-color: #333;
+                color: #fff;
+                padding: 5px 10px;
+                text-decoration: none;
+                border-radius: 5px;
+                margin-top: 10px;
+            }
+
+            .create-project-link, .my-projects-link {
+                margin-bottom: 3%;
+                margin-right: 2%;
+            }
+
+            .details-link {
+                display: inline-block;
+                background-color: #333;
+                color: #fff;
+                padding: 5px 10px;
+                text-decoration: none;
+                border-radius: 5px;
+                margin-top: 10px;
+            }
+
+        </style>
+
+    </head>
+
+    <body>
+
+        <div class="container">
+
+            <div class="sidebar">
+
+                <h1>FUNDMEPLS</h1>
+
+                <ul>
+
+                    <li><a th:href="@{/fundme/controller/web/dashboard}">#</a></li>
+                    <li><a th:href="@{/fundme/controller/web/allProjects}">Projects</a></li>
+                    <li><a th:href="@{/fundme/controller/web/donations}">Donations</a></li>
+                    <li><a th:href="@{/fundme/controller/web/userProfile}">User profile</a></li>
+                    <li><a th:href="@{/fundme/controller/web/notifications}">Notifications</a></li>
+                    <li><a th:href="@{/fundme/controller/web/logout}">Logout</a></li>
+
+                </ul>
+
             </div>
+
+            <div class="content">
+
+                <a class="create-project-link" th:href="@{/fundme/controller/web/createProject}">Create project</a>
+                <a class="my-projects-link" th:href="@{/fundme/controller/web/myProjects}">My projects</a>
+
+                <div class="section" id="projects">
+
+                    <h3>All projects</h3>
+
+                    <div class="project-container" th:each="project : ${projectList}">
+
+                        <div class="project">
+
+                            <h3 th:text="${project.title}">Title</h3>
+                            <p th:text="${project.description}">Description</p>
+                            <a class="details-link" th:href="@{'/fundme/controller/web/viewProject/' + ${project.project_id}}">View details</a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
-    </div>
-</div>
-</body>
+
+    </body>
+
 </html>
