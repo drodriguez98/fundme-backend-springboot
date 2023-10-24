@@ -69,8 +69,8 @@ public class DonationService implements IDonationService {
 
     }
 
-    public List<Donation> getTopDonations() { return donationRepository.findTop10ByOrderByAmountDesc(); }
+    public List<Donation> getTopDonations() { return donationRepository.findTop5ByOrderByAmountDesc(); }
 
-    public List<Donation> getLastDonations() { return donationRepository.findTop10ByOrderByDateAddedDesc(); }
+    public List<Donation> getLastDonations() { return donationRepository.findTop5ByOrderByDateAddedDesc(); }
 
 }
