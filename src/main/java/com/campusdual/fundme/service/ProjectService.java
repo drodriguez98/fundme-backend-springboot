@@ -3,14 +3,19 @@ package com.campusdual.fundme.service;
 import com.campusdual.fundme.api.IProjectService;
 import com.campusdual.fundme.api.IUserService;
 import com.campusdual.fundme.model.Project;
+import com.campusdual.fundme.model.User;
 import com.campusdual.fundme.model.repository.ProjectRepository;
 import com.campusdual.fundme.model.dto.ProjectDTO;
+import com.campusdual.fundme.model.repository.UserRepository;
 
 import com.campusdual.fundme.model.dto.dtopmapper.ProjectMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service("ProjectService")
@@ -21,6 +26,9 @@ public class ProjectService implements IProjectService {
 
     @Autowired
     private ProjectRepository projectRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public ProjectDTO getProject(ProjectDTO projectDTO) {
@@ -68,6 +76,23 @@ public class ProjectService implements IProjectService {
     }
 
     public List<Project> getTopProjects() { return projectRepository.findTop3ByOrderByTotalAmountDesc(); }
+
+    @Override
+    public List<Project> getProjectsByAuthenticatedUser() {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication == null) { throw new RuntimeException("Ningún usuario autenticado."); }
+
+        String username = authentication.getName();
+
+        User authenticatedUser = userRepository.findByUsername(username);
+
+        if (authenticatedUser == null) { throw new RuntimeException("Usuario autenticado no encontrado."); }
+
+        return projectRepository.findByUserId(authenticatedUser);
+
+    }
 
     public List<Project> getLastProjects() { return projectRepository.findTop3ByOrderByDateAddedDesc(); }
 
