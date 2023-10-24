@@ -2,184 +2,199 @@
 
 <html xmlns:th="http://www.w3.org/1999/xhtml" lang="es">
 
-<head>
+    <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Notifications</title>
+        <title>Notifications</title>
 
-    <style>
+        <style>
 
-        /* Estilos generales */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 0;
-        }
+            /* Estilos generales */
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f0f0f0;
+                margin: 0;
+                padding: 0;
+            }
 
-        .container {
-            display: flex;
-        }
+            .container {
+                display: flex;
+            }
 
-        .sidebar {
-            background-color: #333;
-            color: #fff;
-            width: 250px;
-            padding: 20px;
-            min-height: 100vh; /* Asegura que la barra lateral ocupe toda la altura de la ventana */
-        }
+            .sidebar {
+                background-color: #333;
+                color: #fff;
+                width: 250px;
+                padding: 20px;
+                min-height: 100vh; /* Asegura que la barra lateral ocupe toda la altura de la ventana */
+            }
 
-        .sidebar h1 {
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
+            .sidebar h1 {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
 
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-        }
+            .sidebar ul {
+                list-style: none;
+                padding: 0;
+            }
 
-        .sidebar li {
-            margin-bottom: 10px;
-        }
+            .sidebar li {
+                margin-bottom: 10%;
+            }
 
-        .sidebar a {
-            text-decoration: none;
-            color: #fff;
-            display: block;
-        }
+            .sidebar a {
+                text-decoration: none;
+                color: #fff;
+                display: block;
+            }
 
-        .content {
-            flex: 1;
-            padding: 20px;
-        }
+            .content {
+                flex: 1;
+                padding: 20px;
+            }
 
-        /* Estilos específicos para Dashboard */
-        #top-donations, #top-projects {
-            background-color: #fff;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-        }
+            /* Estilos específicos para Dashboard */
+            #top-donations, #top-projects {
+                background-color: #fff;
+                padding: 20px;
+                margin-bottom: 20px;
+                border-radius: 5px;
+            }
 
-        #top-donations h3, #top-projects h3 {
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
+            #top-donations h3, #top-projects h3 {
+                font-size: 20px;
+                margin-bottom: 10px;
+            }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
 
-        table th, table td {
-            padding: 8px;
-            text-align: left;
-        }
+            table th, table td {
+                padding: 8px;
+                text-align: left;
+            }
 
-        /* Estilos específicos para Projects */
-        .project {
-            background-color: #fff;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-        }
+            /* Estilos específicos para Projects */
+            .project {
+                background-color: #fff;
+                padding: 20px;
+                margin-bottom: 20px;
+                border-radius: 5px;
+            }
 
-        .project h3 {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
+            .project h3 {
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
 
-        .details-link {
-            display: inline-block;
-            background-color: #333;
-            color: #fff;
-            padding: 5px 10px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
+            .details-link {
+                display: inline-block;
+                background-color: #333;
+                color: #fff;
+                padding: 5px 10px;
+                text-decoration: none;
+                border-radius: 5px;
+                margin-top: 10px;
+            }
 
-        /* Estilos específicos para Donations */
-        #top-donations {
-            background-color: #fff;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-        }
+            /* Estilos específicos para Donations */
+            #top-donations {
+                background-color: #fff;
+                padding: 20px;
+                margin-bottom: 20px;
+                border-radius: 5px;
+            }
 
-        /* Estilos específicos para View project */
-        #view-project {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-        }
+            /* Estilos específicos para View project */
+            #view-project {
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 5px;
+            }
 
-        #view-project .project {
-            margin-bottom: 20px;
-        }
+            #view-project .project {
+                margin-bottom: 20px;
+            }
 
-        #view-project h3 {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
+            #view-project h3 {
+                font-size: 24px;
+                margin-bottom: 10px;
+            }
 
-        .donate-link, .comment-link {
-            display: inline-block;
-            background-color: #333;
-            color: #fff;
-            padding: 5px 10px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
+            .donate-link, .comment-link {
+                display: inline-block;
+                background-color: #333;
+                color: #fff;
+                padding: 5px 10px;
+                text-decoration: none;
+                border-radius: 5px;
+                margin-top: 10px;
+            }
 
-        /* Estilos específicos para User profile */
-        #user-profile {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-        }
+            /* Estilos específicos para User profile */
+            #user-profile {
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 5px;
+            }
 
-        .user p {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
+            .user p {
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
 
-        .edit-link {
-            display: inline-block;
-            background-color: #333;
-            color: #fff;
-            padding: 5px 10px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
+            .edit-link {
+                display: inline-block;
+                background-color: #333;
+                color: #fff;
+                padding: 5px 10px;
+                text-decoration: none;
+                border-radius: 5px;
+                margin-top: 10px;
+            }
 
-    </style>
+        </style>
 
-</head>
+    </head>
 
-<body>
-<div class="container">
-    <div class="sidebar">
-        <h1>FUNDMEPLS</h1>
-        <ul>
-            <li><a th:href="@{/fundme/controller/web/dashboard}">#</a></li>
-            <li><a th:href="@{/fundme/controller/web/allProjects}">Projects</a></li>
-            <li><a th:href="@{/fundme/controller/web/donations}">Donations</a></li>
-            <li><a th:href="@{/fundme/controller/web/userProfile}">User profile</a></li>
-            <li><a th:href="@{/fundme/controller/web/notifications}">Notifications</a></li>
-            <li><a th:href="@{/fundme/controller/web/logout}">Logout</a></li>
-        </ul>
-    </div>
-    <div class="content">
-        <div class="section" id="notifications">
-            <h3>Notifications</h3>
+    <body>
+
+        <div class="container">
+
+            <div class="sidebar">
+
+                <h1>FUNDMEPLS</h1>
+
+                <ul>
+
+                    <li><a th:href="@{/fundme/controller/web/dashboard}">#</a></li>
+                    <li><a th:href="@{/fundme/controller/web/projects}">Projects</a></li>
+                    <li><a th:href="@{/fundme/controller/web/donations}">Donations</a></li>
+                    <li><a th:href="@{/fundme/controller/web/userProfile}">User profile</a></li>
+                    <li><a th:href="@{/fundme/controller/web/notifications}">Notifications</a></li>
+                    <li><a th:href="@{/fundme/controller/web/logout}">Logout</a></li>
+
+                </ul>
+
+            </div>
+
+            <div class="content">
+
+                <div class="section" id="notifications">
+
+                    <h3>Notifications</h3>
+
+                </div>
+
+            </div>
+
         </div>
-    </div>
-</div>
-</body>
+
+    </body>
+
 </html>

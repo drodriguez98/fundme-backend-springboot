@@ -164,7 +164,7 @@
 
                         <tr th:each="donation : ${topDonationsList}">
 
-                            <td th:text="${donation.user_id.name}"></td>
+                            <td th:text="${donation.userId.name}"></td>
                             <td th:text="${#dates.format(donation.dateAdded, 'yyyy/MM/dd')}"></td>
                             <td th:text="${donation.project_id.title}"></td>
                             <td th:text="${donation.amount}"></td>
