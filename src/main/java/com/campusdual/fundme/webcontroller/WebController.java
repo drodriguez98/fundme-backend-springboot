@@ -132,7 +132,7 @@ public class WebController {
 
         projectService.insertProject(ProjectMapper.INSTANCE.toDTO(project));
 
-        return "redirect:/fundme/controller/web/allProjects";
+        return "redirect:/fundme/controller/web/projects";
 
     }
 
@@ -210,11 +210,11 @@ public class WebController {
 
         commentService.insertComment(CommentMapper.INSTANCE.toDTO(comment));
 
-        return "redirect:/fundme/controller/web/allProjects";
+        return "redirect:/fundme/controller/web/viewProject/{project_id}";
 
     }
 
-    @GetMapping(value = "/allProjects")
+    @GetMapping(value = "/projects")
     public String allProjects(Model model) {
 
         List<ProjectDTO> projectList = projectService.getAllProjects();
@@ -255,6 +255,10 @@ public class WebController {
 
     }
 
+    @GetMapping("/deleteAccount")
+    public String deleteAccount() {
+        return "delete-account";
+    }
     @GetMapping("/notifications")
     public String notifications() {
         return "notifications";
@@ -277,8 +281,7 @@ public class WebController {
     public String settings() { return "Wellcome to settings"; }
 
     @GetMapping(value = "/editProfile")
-    @ResponseBody
-    public String editProfile() { return "Edit profile"; }
+    public String editProfile() { return "edit-profile"; }
 
 
 
