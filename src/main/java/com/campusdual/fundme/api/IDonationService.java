@@ -6,16 +6,19 @@ import java.util.List;
 
 public interface IDonationService {
 
+    DonationDTO getDonation(DonationDTO donationDTO);
     DonationDTO getDonationById(int donation_id);
 
-    DonationDTO getDonation(DonationDTO donationDTO);
     List<DonationDTO> getAllDonations();
 
     int insertDonation (DonationDTO donationDTO);
     int updateDonation (DonationDTO donationDTO);
     int deleteDonation (DonationDTO donationDTO);
 
+    List<Donation> getAllDonationsOrderByDateAddedDesc();
+    List<Donation> getDonationsByAuthenticatedUser();
+
     List<Donation> getTopDonations();
     List<Donation> getLastDonations();
-    List<Donation> getAllDonationsOrderByDateAddedDesc();
+
 }
