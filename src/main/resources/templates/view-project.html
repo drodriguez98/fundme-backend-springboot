@@ -11,7 +11,6 @@
 
         <style>
 
-            /* Estilos generales */
             body {
                 font-family: Arial, sans-serif;
                 background-color: #f0f0f0;
@@ -19,16 +18,14 @@
                 padding: 0;
             }
 
-            .container {
-                display: flex;
-            }
+            .container { display: flex; }
 
             .sidebar {
                 background-color: #333;
                 color: #fff;
                 width: 250px;
                 padding: 20px;
-                min-height: 100vh; /* Asegura que la barra lateral ocupe toda la altura de la ventana */
+                min-height: 100vh;
             }
 
             .sidebar h1 {
@@ -41,9 +38,7 @@
                 padding: 0;
             }
 
-            .sidebar li {
-                margin-bottom: 10px;
-            }
+            .sidebar li { margin-bottom: 10%; }
 
             .sidebar a {
                 text-decoration: none;
@@ -54,106 +49,56 @@
             .content {
                 flex: 1;
                 padding: 20px;
+                margin: 1.5% 22%;
             }
 
-            /* Estilos específicos para Dashboard */
-            #top-donations, #top-projects {
-                background-color: #fff;
-                padding: 20px;
-                margin-bottom: 20px;
-                border-radius: 5px;
-            }
-
-            #top-donations h3, #top-projects h3 {
-                font-size: 20px;
-                margin-bottom: 10px;
-            }
-
-            table {
-                width: 100%;
-                border-collapse: collapse;
-            }
-
-            table th, table td {
-                padding: 8px;
-                text-align: left;
-            }
-
-            /* Estilos específicos para Projects */
-            .project {
-                background-color: #fff;
-                margin-bottom: 20px;
-                border-radius: 5px;
-            }
-
-            .project h3 {
-                font-size: 18px;
-            }
-
-            .details-link {
-                display: inline-block;
-                background-color: #333;
-                color: #fff;
-                padding: 5px 10px;
-                text-decoration: none;
-                border-radius: 5px;
-                margin-top: 10px;
-            }
-
-            /* Estilos específicos para Donations */
-            #top-donations {
-                background-color: #fff;
-                padding: 20px;
-                margin-bottom: 20px;
-                border-radius: 5px;
-            }
-
-            /* Estilos específicos para View project */
             #view-project {
                 background-color: #fff;
-                padding: 20px;
+                padding: 1.5%;
                 border-radius: 5px;
+                text-align: center;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0,0,0,0.2);
+
             }
 
-            #view-project .project {
-                margin-bottom: 20px;
-            }
-
-            #view-project h3 {
+            h3 {
                 font-size: 24px;
-                margin-bottom: 3%;
+                margin: 10% auto;
             }
 
-            .donate-link, .comment-link {
-                display: inline-block;
-                background-color: #333;
-                color: #fff;
-                padding: 5px 10px;
-                text-decoration: none;
-                border-radius: 5px;
-                margin-top: 3%;
-                margin-right: 15px;
+            .project {
+                padding-bottom: 4%;
+                text-align: center;
+                margin: 7%;
             }
 
-            /* Estilos específicos para User profile */
-            #user-profile {
-                background-color: #fff;
-                padding: 20px;
-                border-radius: 5px;
-            }
-
-            .user p {
+            .title {
                 font-size: 18px;
-                margin-bottom: 10px;
+                padding-bottom: 3%;
             }
 
-            .edit-link {
+            .project p {
+                font-size: 17.5px;
+                padding-bottom: 3%;
+            }
+
+            .nav-link {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                margin-top: 7%;
+            }
+
+            .nav-link .comment-link, .nav-link .donate-link {
                 display: inline-block;
-                background-color: #333;
                 color: #fff;
-                padding: 5px 10px;
+                padding: 12px 50px;
                 text-decoration: none;
                 border-radius: 5px;
+                margin-bottom: 8%;
+                background-color: #333;
+                margin: 0 5%;
             }
 
         </style>
@@ -200,8 +145,12 @@
                         <p><strong>Description</strong><p th:text="${project.description}">Description</p>
                         <p><strong>Amount</strong><p th:text="${project.totalAmount}">Total Amount</p>
 
-                        <a class="comment-link" th:href="@{'/fundme/controller/web/comment/' + ${project.project_id}}">Comment</a>
-                        <a class="donate-link" th:href="@{'/fundme/controller/web/donate/' + ${project.project_id}}">Donate</a>
+                        <div class="nav-link">
+
+                            <a class="comment-link" th:href="@{'/fundme/controller/web/comment/' + ${project.project_id}}">Comment</a>
+                            <a class="donate-link" th:href="@{'/fundme/controller/web/donate/' + ${project.project_id}}">Donate</a>
+
+                        </div>
 
                     </div>
 
