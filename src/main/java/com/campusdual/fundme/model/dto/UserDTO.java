@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class UserDTO {
 
-    private int user_id;
+    private int userId;
     private String name;
     private String password;
     private Date date_added;
@@ -17,8 +17,8 @@ public class UserDTO {
     private boolean admin;
     private String username;
 
-    public int getUser_id() { return user_id; }
-    public void setUser_id(int user_id) { this.user_id = user_id; }
+    public int getUserId() { return userId; }
+    public void setUserId(int userId) { this.userId = userId; }
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
     public String getPassword() { return password; }

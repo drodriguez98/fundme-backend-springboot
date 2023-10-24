@@ -18,7 +18,7 @@ public class ProjectDTO {
     public int getProject_id() { return project_id; }
     public void setProject_id(int project_id) { this.project_id = project_id; }
     public User getUserId() { return userId; }
-    public void setUserId(User user_id) { this.userId = user_id; }
+    public void setUserId(User userId) { this.userId = userId; }
     public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }
     public Date getDateAdded() { return dateAdded; }

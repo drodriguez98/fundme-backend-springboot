@@ -12,7 +12,7 @@ public class Donation {
     private int donation_id;
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user_id;
+    private User userId;
     @ManyToOne
     @JoinColumn(name = "project_id")
     private Project project_id;
@@ -23,8 +23,8 @@ public class Donation {
 
     public int getDonation_id() { return donation_id; }
     public void setDonation_id(int donation_id) { this.donation_id = donation_id; }
-    public User getUser_id() { return user_id; }
-    public void setUser_id(User user_id) { this.user_id = user_id; }
+    public User getUserId() { return userId; }
+    public void setUserId(User userId) { this.userId = userId; }
     public Project getProject_id() { return project_id; }
     public void setProject_id(Project project_id) { this.project_id = project_id; }
     public Date getDateAdded() { return dateAdded; }
