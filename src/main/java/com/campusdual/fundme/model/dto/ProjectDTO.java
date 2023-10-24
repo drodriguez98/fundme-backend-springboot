@@ -8,7 +8,7 @@ import java.util.Date;
 public class ProjectDTO {
 
     private int project_id;
-    private User user_id;
+    private User userId;
     private String title;
     private Date dateAdded;
     private Area area_id;
@@ -17,8 +17,8 @@ public class ProjectDTO {
 
     public int getProject_id() { return project_id; }
     public void setProject_id(int project_id) { this.project_id = project_id; }
-    public User getUser_id() { return user_id; }
-    public void setUser_id(User user_id) { this.user_id = user_id; }
+    public User getUserId() { return userId; }
+    public void setUserId(User user_id) { this.userId = user_id; }
     public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }
     public Date getDateAdded() { return dateAdded; }
