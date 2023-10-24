@@ -32,6 +32,7 @@ public class UserService implements IUserService {
         User user = userRepository.findByUsername(authenticatedUsername);
 
         return UserMapper.INSTANCE.toDTO(user);
+
     }
 
     @Override
@@ -52,7 +53,7 @@ public class UserService implements IUserService {
 
         this.userRepository.saveAndFlush(user);
 
-        return user.getUser_id();
+        return user.getUserId();
 
     }
 
@@ -62,7 +63,7 @@ public class UserService implements IUserService {
     @Override
     public int deleteUser (UserDTO userDTO) {
 
-        int id = userDTO.getUser_id();
+        int id = userDTO.getUserId();
         User user = UserMapper.INSTANCE.toEntity(userDTO);
         this.userRepository.delete(user);
         return id;
