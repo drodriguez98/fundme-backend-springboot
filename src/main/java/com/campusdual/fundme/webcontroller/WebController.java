@@ -16,12 +16,14 @@ import com.campusdual.fundme.api.IDonationService;
 import com.campusdual.fundme.api.IProjectService;
 import com.campusdual.fundme.api.IUserService;
 
+import com.campusdual.fundme.model.repository.UserRepository;
 import com.campusdual.fundme.service.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
+
 import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -52,6 +54,9 @@ public class WebController {
 
     @Autowired
     private IDonationService donationService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping("/login")
     public String showLoginForm() { return "login";  }
@@ -118,14 +123,14 @@ public class WebController {
     }
 
     @PostMapping("/createProject")
-    public String processRegistration(@ModelAttribute("project") ProjectDTO projectDTO) {
+    public String createProject (@ModelAttribute("project") ProjectDTO projectDTO) {
 
         Project project = ProjectMapper.INSTANCE.toEntity(projectDTO);
 
         UserDTO authenticatedUser = userService.getUser(new UserDTO());
         User user = UserMapper.INSTANCE.toEntity(authenticatedUser);
 
-        project.setUser_id(user);
+        project.setUserId(user);
         project.setDateAdded(new Date());
         int totalAmount = 0;
         project.setTotalAmount(totalAmount);
@@ -167,7 +172,7 @@ public class WebController {
 
         Donation donation = new Donation();
 
-        donation.setUser_id(user);
+        donation.setUserId(user);
         donation.setProject_id(project);
         donation.setAmount(amount);
         donation.setDateAdded(new Date());
@@ -223,6 +228,16 @@ public class WebController {
         return "projects";
     }
 
+    @GetMapping(value = "/myProjects")
+    public String myProjects(Model model) {
+
+        List<Project> myProjects = projectService.getProjectsByAuthenticatedUser();
+        model.addAttribute("myProjects", myProjects);
+
+        return "my-projects";
+
+    }
+
     @GetMapping(value = "/donations")
     public String donations(Model model) {
 
@@ -230,6 +245,16 @@ public class WebController {
         model.addAttribute("donationList", donationList);
 
         return "donations";
+
+    }
+
+    @GetMapping(value = "/myDonations")
+    public String myDonations(Model model) {
+
+        List<Donation> myDonations = donationService.getDonationsByAuthenticatedUser();
+        model.addAttribute("myDonations", myDonations);
+
+        return "my-donations";
 
     }
 
@@ -269,12 +294,6 @@ public class WebController {
     public String dashboardAdmin() {
         return "Welcome to the administration area";
     }
-
-    @GetMapping(value = "/myProjects")
-    public String myProjects() { return "my-projects"; }
-
-    @GetMapping(value = "/myDonations")
-    public String myDonations() { return "my-donations"; }
 
     @GetMapping(value = "/settings")
     @ResponseBody
