@@ -136,14 +136,11 @@
                 <ul>
 
                     <li><a th:href="@{/fundme/controller/web/dashboard}">#</a></li>
-                    <li><a th:href="@{/fundme/controller/web/rojects}">Projects</a></li>
+                    <li><a th:href="@{/fundme/controller/web/projects}">Projects</a></li>
                     <li><a th:href="@{/fundme/controller/web/donations}">Donations</a></li>
                     <li><a th:href="@{/fundme/controller/web/userProfile}">User profile</a></li>
                     <li><a th:href="@{/fundme/controller/web/notifications}">Notifications</a></li>
                     <li><a th:href="@{/fundme/controller/web/logout}">Logout</a></li>
-
-                    <!-- <li><a th:href="@{/fundme/controller/web/createProject}">Create project</a></li> -->
-                    <!-- <li><a th:href="@{/fundme/controller/web/settings}">Settings</a></li> -->
 
                 </ul>
 
@@ -155,7 +152,7 @@
 
                     <div class="form-header"> <h2>New comment</h2> </div>
 
-                    <form th:action="@{'/fundme/controller/web/comment/' + ${project.project_id}}" th:object="${comment}" method="post" class="comment-project-form">
+                    <form th:action="@{'/fundme/controller/web/comment/' + ${project.projectId}}" th:object="${comment}" method="post" class="comment-project-form">
 
                         <label class="form-label" for="content">Add your comment</label>
                         <input class="form-input" type="text" id="content" name="content" required>
