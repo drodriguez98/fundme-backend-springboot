@@ -144,8 +144,11 @@ public class WebController {
     @GetMapping(value = "/viewProject/{projectId}")
     public String viewProject(@PathVariable int projectId, Model model) {
 
-        ProjectDTO projectDetails = projectService.getProjectById(projectId);
-        model.addAttribute("projectDetails", projectDetails);
+        ProjectDTO projectDTO = projectService.getProjectById(projectId);
+        model.addAttribute("projectDetails", projectDTO);
+
+        List<Comment> commentList = commentService.getCommentsByProjectId(projectDTO);
+        model.addAttribute("commentList", commentList);
 
         return "view-project";
 
@@ -211,7 +214,7 @@ public class WebController {
 
         comment.setUserId(user);
         comment.setProjectId(project);
-        comment.setDate_added(new Date());
+        comment.setDateAdded(new Date());
 
         commentService.insertComment(CommentMapper.INSTANCE.toDTO(comment));
 

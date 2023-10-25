@@ -2,10 +2,14 @@ package com.campusdual.fundme.service;
 
 import com.campusdual.fundme.api.ICommentService;
 import com.campusdual.fundme.model.Comment;
+import com.campusdual.fundme.model.Project;
+import com.campusdual.fundme.model.dto.ProjectDTO;
+import com.campusdual.fundme.model.dto.dtopmapper.ProjectMapper;
 import com.campusdual.fundme.model.repository.CommentRepository;
 import com.campusdual.fundme.model.dto.CommentDTO;
 import com.campusdual.fundme.model.dto.dtopmapper.CommentMapper;
 
+import com.campusdual.fundme.model.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -18,6 +22,8 @@ public class CommentService implements ICommentService {
 
     @Autowired
     private CommentRepository commentRepository;
+    @Autowired
+    private ProjectRepository projectRepository;
 
     @Override
     public CommentDTO getComment(CommentDTO commentDTO) {
@@ -48,6 +54,17 @@ public class CommentService implements ICommentService {
         Comment comment = CommentMapper.INSTANCE.toEntity(commentDTO);
         this.commentRepository.delete(comment);
         return id;
+
+    }
+
+    @Override
+    public List<Comment> getCommentsByProjectId(ProjectDTO projectDTO) {
+
+        Project project = ProjectMapper.INSTANCE.toEntity(projectDTO);
+
+        return commentRepository.findByProjectId(project);
+
+        //return null;
 
     }
 
