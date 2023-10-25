@@ -10,7 +10,7 @@ public class CommentDTO {
     private int commentId;
     private User userId;
     private Project projectId;
-    private Date date_added;
+    private Date dateAdded;
     private String content;
 
     public int getCommentId() { return commentId; }
@@ -19,8 +19,8 @@ public class CommentDTO {
     public void setUserId(User userId) { this.userId = userId; }
     public Project getProjectId() { return projectId; }
     public void setProjectId(Project projectId) { this.projectId = projectId; }
-    public Date getDate_added() { return date_added; }
-    public void setDate_added(Date date_added) { this.date_added = date_added; }
+    public Date getDateAdded() { return dateAdded; }
+    public void setDateAdded(Date dateAdded) { this.dateAdded = dateAdded; }
     public String getContent() { return content; }
     public void setContent(String content) { this.content = content; }
 

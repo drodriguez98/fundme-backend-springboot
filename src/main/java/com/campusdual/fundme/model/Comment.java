@@ -17,7 +17,7 @@ public class Comment {
     @JoinColumn(name = "project_id")
     private Project projectId;
     @Column
-    private Date date_added;
+    private Date dateAdded;
     @Column
     private String content;
 
@@ -27,8 +27,8 @@ public class Comment {
     public void setUserId(User userId) { this.userId = userId; }
     public Project getProjectId() { return projectId; }
     public void setProjectId(Project projectId) { this.projectId = projectId; }
-    public Date getDate_added() { return date_added; }
-    public void setDate_added(Date date_added) { this.date_added = date_added; }
+    public Date getDateAdded() { return dateAdded; }
+    public void setDateAdded(Date dateAdded) { this.dateAdded = dateAdded; }
     public String getContent() { return content; }
     public void setContent(String content) { this.content = content; }
 

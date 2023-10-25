@@ -161,13 +161,13 @@
 
                     <h3>Comments</h3>
 
-                    <div th:each="comment : ${commentDetails}">
+                    <div th:each="comment : ${commentList}">
 
                         <div class="comment">
 
-                            <p><strong>Title</strong><p th:text="${comment.userId.name}">User</p>
+                            <p><strong>User</strong><p th:text="${comment.userId.name}">User</p>
                             <p><strong>Date</strong><p th:text="${#dates.format(comment.dateAdded, 'yyyy/MM/dd')}">Date Added</p>
-                            <p><strong>Description</strong><p th:text="${comment.content}">Content</p>
+                            <p><strong>Comment</strong><p th:text="${comment.content}">Content</p>
 
                         </div>
 
