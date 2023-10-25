@@ -50,32 +50,30 @@
 
             .content {
                 flex: 1;
-                padding: 20px;
-                margin: 1.5% 22%;
                 display: flex; /* Agregar display flex para la alineación horizontal */
                 justify-content: space-between; /* Espacio entre los detalles del proyecto y los comentarios */
+                flex-direction: column;
             }
 
-            #view-project {
+            #view-project, #view-comments {
                 background-color: #fff;
-                padding: 1.5%;
-                border-radius: 5px;
                 text-align: center;
                 border-radius: 5px;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
                 flex: 1; /* Hace que los detalles del proyecto ocupen todo el espacio disponible en el contenedor */
-                margin-right: 2%; /* Espacio entre los detalles del proyecto y los comentarios */
+                margin: 1% 22%; /* Espacio entre los detalles del proyecto y los comentarios */
+                padding: 40px;
             }
 
             h3 {
-                font-size: 24px;
-                margin: 10% auto;
+                font-size: 20px;
+                margin: 1% auto;
             }
 
-            .project {
-                padding-bottom: 4%;
+            .project, .comment {
+                padding-bottom: 2.5%;
                 text-align: center;
-                margin: 7%;
+                margin-top: 5%;
             }
 
             .title {
@@ -83,16 +81,16 @@
                 padding-bottom: 3%;
             }
 
-            .project p {
-                font-size: 17.5px;
-                padding-bottom: 3%;
+            .project p, .comment p {
+                font-size: 16px;
+                padding: 1.5%;
             }
 
             .nav-link {
                 display: flex;
                 flex-direction: row;
                 justify-content: center;
-                margin-top: 7%;
+                margin-top: 6%;
             }
 
             .nav-link .comment-link,
@@ -102,9 +100,8 @@
                 padding: 12px 50px;
                 text-decoration: none;
                 border-radius: 5px;
-                margin-bottom: 8%;
                 background-color: #333;
-                margin: 0 5%;
+                margin: 0 8%;
             }
 
         </style>
@@ -133,14 +130,14 @@
             </div>
 
             <div class="content">
+
                 <div class="section" id="view-project">
 
                     <div th:each="project : ${projectDetails}">
 
                         <div class="project">
 
-                            <h3 th:text="${project.title}">Project Title</h3>
-
+                            <p><strong>Title</strong></p><p th:text="${project.title}"></p>
                             <p><strong>Area</strong></p><p th:text="${project.area_id.name}"></p>
                             <p><strong>User</strong><p th:text="${project.userId.name}">User</p>
                             <p><strong>Date</strong><p th:text="${#dates.format(project.dateAdded, 'yyyy/MM/dd')}">Date Added</p>
@@ -153,6 +150,24 @@
                                 <a class="donate-link" th:href="@{'/fundme/controller/web/donate/' + ${project.project_id}}">Donate</a>
 
                             </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="section" id="view-comments">
+
+                    <h3>Comments</h3>
+
+                    <div th:each="comment : ${commentDetails}">
+
+                        <div class="comment">
+
+                            <p><strong>Title</strong><p th:text="${comment.userId.name}">User</p>
+                            <p><strong>Date</strong><p th:text="${#dates.format(comment.dateAdded, 'yyyy/MM/dd')}">Date Added</p>
+                            <p><strong>Description</strong><p th:text="${comment.content}">Content</p>
 
                         </div>
 
