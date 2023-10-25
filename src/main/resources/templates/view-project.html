@@ -16,9 +16,7 @@
                 padding: 0;
             }
 
-            .container {
-                display: flex;
-            }
+            .container { display: flex; }
 
             .sidebar {
                 background-color: #333;
@@ -38,9 +36,7 @@
                 padding: 0;
             }
 
-            .sidebar li {
-                margin-bottom: 10%;
-            }
+            .sidebar li { margin-bottom: 10%; }
 
             .sidebar a {
                 text-decoration: none;
@@ -57,7 +53,6 @@
 
             #view-project, #view-comments {
                 background-color: #fff;
-                text-align: center;
                 border-radius: 5px;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
                 flex: 1; /* Hace que los detalles del proyecto ocupen todo el espacio disponible en el contenedor */
@@ -68,41 +63,13 @@
             h3 {
                 font-size: 20px;
                 margin: 4% auto;
+                text-align: center;
+                padding: 2.5%;
             }
 
             .project {
                 text-align: center;
                 margin-top: 5%;
-            }
-
-            .comment {
-                text-align: start;
-                padding: 2px;
-                margin-left: 7.5%;
-            }
-
-            .title {
-                font-size: 18px;
-                padding-bottom: 3%;
-            }
-
-            .project p {
-                font-size: 16px;
-                padding: 1.5%;
-            }
-
-            .comment .head {
-                font-size: 16px;
-                padding-bottom: 1%;
-                font-weight: bold;
-
-            }
-
-            .comment .content {
-
-                font-size: 16px;
-                padding: 1%;
-
             }
 
             .nav-link {
@@ -112,8 +79,7 @@
                 margin-top: 6%;
             }
 
-            .nav-link .comment-link,
-            .nav-link .donate-link {
+            .nav-link .comment-link, .nav-link .donate-link {
                 display: inline-block;
                 color: #fff;
                 padding: 12px 50px;
@@ -122,6 +88,39 @@
                 background-color: #333;
                 margin: 0 8%;
             }
+
+            .comments-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                align-items: flex-start;
+            }
+
+            .comment {
+                flex: 1;
+                background-color: #f9f9f9;
+                border: 1px solid #ddd;
+                box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+                padding-left: 3%;
+                margin: 4% auto;
+                width: 80%;
+            }
+
+            .comment p {
+                font-family: Arial, sans-serif;
+                font-size: 14px;
+                line-height: 1.4;
+                letter-spacing: 0.5px;
+            }
+
+            .comment .user {
+                color: #007bff; /* Color para el nombre del usuario */
+                font-weight: bold;
+            }
+
+            .comment .date { color: #888; }
+
+            .comment .content { margin-top: 30px; }
 
         </style>
 
@@ -184,9 +183,11 @@
 
                         <div class="comment">
 
-                            <p class="head" th:text="${comment.userId.name}"></p>
-                            <p class="content" th:text="${#dates.format(comment.dateAdded, 'yyyy/MM/dd')}"></p>
-                            <p class="content" th:text="${comment.content}">Content</p>
+                            <p class="user" th:text="${comment.userId.name}"></p>
+                            <p class="date" th:text="${#dates.format(comment.dateAdded, 'yyyy/MM/dd')}"></p>
+                            <p class="content" th:text="${comment.content}"></p>
+
+                            <!-- <p class="content" th:text="${comment.userId.name + ' (' + #dates.format(comment.dateAdded, 'yyyy/MM/dd') + ') : ' + comment.content}"></p> -->
 
                         </div>
 
