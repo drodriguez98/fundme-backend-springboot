@@ -2,163 +2,150 @@
 
 <html xmlns:th="http://www.w3.org/1999/xhtml" lang="es">
 
-    <head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My donations</title>
 
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
 
-        <title>My donations</title>
+        .container {
+            display: flex;
+        }
 
-        <style>
+        .sidebar {
+            background-color: #333;
+            color: #fff;
+            width: 250px;
+            padding: 20px;
+            min-height: 100vh;
+        }
 
-            body {
-                font-family: Arial, sans-serif;
-                background-color: #f0f0f0;
-                margin: 0;
-                padding: 0;
-            }
+        .sidebar h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
 
-            .container { display: flex; }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
 
-            .sidebar {
-                background-color: #333;
-                color: #fff;
-                width: 250px;
-                padding: 20px;
-                min-height: 100vh;
-            }
+        .sidebar li {
+            margin-bottom: 10%;
+        }
 
-            .sidebar h1 {
-                font-size: 24px;
-                margin-bottom: 20px;
-            }
+        .sidebar a {
+            text-decoration: none;
+            color: #fff;
+            display: block;
+        }
 
-            .sidebar ul {
-                list-style: none;
-                padding: 0;
-            }
+        .content {
+            flex: 1;
+            padding: 20px;
+        }
 
-            .sidebar li { margin-bottom: 10%; }
+        .my-donations-link {
+            display: inline-block;
+            background-color: #333;
+            color: #fff;
+            padding: 5px 10px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            margin-bottom: 3%;
+        }
 
-            .sidebar a {
-                text-decoration: none;
-                color: #fff;
-                display: block;
-            }
+        .content h3 {
+            font-size: 24px;
+            text-align: center;
+            margin: 3% auto;
+        }
 
-            .content {
-                flex: 1;
-                padding: 20px;
-            }
+        .section {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
 
-            .my-donations-link {
-                display: inline-block;
-                background-color: #333;
-                color: #fff;
-                padding: 5px 10px;
-                text-decoration: none;
-                border-radius: 5px;
-                margin-top: 10px;
-                margin-bottom: 3%;
-            }
+        table {
+            width: 100%;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            margin: 0 auto;
+            margin-bottom: 3%;
+        }
 
-            .content h3 {
-                font-size: 24px;
-                text-align: center;
-                margin: 3% auto;
-            }
+        table th {
+            font-size: 18px;
+            background-color: #333;
+            color: #fff;
+            padding: 12px;
+        }
 
-            #donations {
-                background-color: #fff;
-                padding: 20px;
-                margin-bottom: 20px;
-                border-radius: 5px;
-                box-shadow: 0 0 10px rgba(0,0,0,0.2);
-            }
+        table th,
+        table td {
+            padding: 10px;
+            text-align: center;
+        }
 
-            table {
-                width: 90%;
-                padding: 20px;
-                box-shadow: 0 0 10px rgba(0,0,0,0.2);
-                border-radius: 5px;
-                margin: 0 auto;
-                margin-bottom: 3%;
-            }
+        tbody tr:nth-child(even) {
+            background-color: #f5f5f5;
+        }
 
-            table th { font-size: 17px; }
+        tbody tr:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
 
-            table th, table td {
-                padding: 8px;
-                text-align: center;
-            }
-
-        </style>
-
-    </head>
-
-    <body>
-
-        <div class="container">
-
-            <div class="sidebar">
-
-                <h1>FUNDMEPLS</h1>
-
-                <ul>
-
-                    <li><a th:href="@{/fundme/controller/web/dashboard}">#</a></li>
-                    <li><a th:href="@{/fundme/controller/web/projects}">Projects</a></li>
-                    <li><a th:href="@{/fundme/controller/web/donations}">Donations</a></li>
-                    <li><a th:href="@{/fundme/controller/web/userProfile}">User profile</a></li>
-                    <li><a th:href="@{/fundme/controller/web/notifications}">Notifications</a></li>
-                    <li><a th:href="@{/fundme/controller/web/logout}">Logout</a></li>
-
-                </ul>
-
-            </div>
-
-            <div class="content">
-
-                <div class="section" id="my-donations">
-
-                    <h3>My donations</h3>
-
-                    <table>
-
-                        <thead>
-
-                        <tr>
-
-                            <th>User</th>
-                            <th>Date</th>
-                            <th>Project</th>
-                            <th>Amount</th>
-
-                        </tr>
-
-                        </thead>
-
-                        <tbody>
-
-                        <tr th:each="donation : ${myDonations}">
-
-                            <td th:text="${donation.userId.name}"></td>
-                            <td th:text="${#dates.format(donation.dateAdded, 'yyyy/MM/dd')}"></td>
-                            <td th:text="${donation.projectId.title}"></td>
-                            <td th:text="${donation.amount}"></td>
-
-                        </tr>
-
-                        </tbody>
-
-                    </table>
-
-                </div>
-
-            </div>
-
+<body>
+<div class="container">
+    <div class="sidebar">
+        <h1>FUNDMEPLS</h1>
+        <ul>
+            <li><a th:href="@{/fundme/controller/web/dashboard}">#</a></li>
+            <li><a th:href="@{/fundme/controller/web/projects}">Projects</a></li>
+            <li><a th:href="@{/fundme/controller/web/donations}">Donations</a></li>
+            <li><a th:href="@{/fundme/controller/web/userProfile}">User profile</a></li>
+            <li><a th:href="@{/fundme/controller/web/notifications}">Notifications</a></li>
+            <li><a th:href="@{/fundme/controller/web/logout}">Logout</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="section" id="my-donations">
+            <h3>My donations</h3>
+            <table>
+                <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Date</th>
+                    <th>Project</th>
+                    <th>Amount</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="donation : ${myDonations}">
+                    <td th:text="${donation.userId.name}"></td>
+                    <td th:text="${#dates.format(donation.dateAdded, 'yyyy/MM/dd')}"></td>
+                    <td th:text="${donation.projectId.title}"></td>
+                    <td th:text="${donation.amount}"></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
-
-    </body>
+    </div>
+</div>
+</body>
 
 </html>
