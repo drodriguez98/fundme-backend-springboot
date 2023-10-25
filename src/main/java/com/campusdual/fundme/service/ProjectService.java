@@ -35,14 +35,14 @@ public class ProjectService implements IProjectService {
 
         Project project = ProjectMapper.INSTANCE.toEntity(projectDTO);
 
-        return ProjectMapper.INSTANCE.toDTO(this.projectRepository.getReferenceById(project.getProject_id()));
+        return ProjectMapper.INSTANCE.toDTO(this.projectRepository.getReferenceById(project.getProjectId()));
 
     }
 
     @Override
-    public ProjectDTO getProjectById(int project_id) {
+    public ProjectDTO getProjectById(int projectId) {
 
-        Project project = projectRepository.getReferenceById(project_id);
+        Project project = projectRepository.getReferenceById(projectId);
 
         return ProjectMapper.INSTANCE.toDTO(project);
 
@@ -57,7 +57,7 @@ public class ProjectService implements IProjectService {
         Project project = ProjectMapper.INSTANCE.toEntity(projectDTO);
         this.projectRepository.saveAndFlush(project);
 
-        return project.getProject_id();
+        return project.getProjectId();
 
     }
 
@@ -67,7 +67,7 @@ public class ProjectService implements IProjectService {
     @Override
     public int deleteProject (ProjectDTO projectDTO) {
 
-        int id = projectDTO.getProject_id();
+        int id = projectDTO.getProjectId();
         Project project = ProjectMapper.INSTANCE.toEntity(projectDTO);
         this.projectRepository.delete(project);
 

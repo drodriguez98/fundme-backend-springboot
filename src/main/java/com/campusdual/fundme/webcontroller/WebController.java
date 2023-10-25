@@ -141,30 +141,30 @@ public class WebController {
 
     }
 
-    @GetMapping(value = "/viewProject/{project_id}")
-    public String viewProject(@PathVariable int project_id, Model model) {
+    @GetMapping(value = "/viewProject/{projectId}")
+    public String viewProject(@PathVariable int projectId, Model model) {
 
-        ProjectDTO projectDetails = projectService.getProjectById(project_id);
+        ProjectDTO projectDetails = projectService.getProjectById(projectId);
         model.addAttribute("projectDetails", projectDetails);
 
         return "view-project";
 
     }
 
-    @GetMapping("/donate/{project_id}")
-    public String donateToProject (@PathVariable("project_id") int project_id, Model model) {
+    @GetMapping("/donate/{projectId}")
+    public String donateToProject (@PathVariable("projectId") int projectId, Model model) {
 
-        ProjectDTO projectDTO = projectService.getProjectById(project_id);
+        ProjectDTO projectDTO = projectService.getProjectById(projectId);
         model.addAttribute("project", projectDTO);
 
         return "donate-project";
 
     }
 
-    @PostMapping("/donate/{project_id}")
-    public String donateToProject(@PathVariable("project_id") int project_id, @RequestParam("amount") int amount) {
+    @PostMapping("/donate/{projectId}")
+    public String donateToProject(@PathVariable("projectId") int projectId, @RequestParam("amount") int amount) {
 
-        ProjectDTO projectDTO = projectService.getProjectById(project_id);
+        ProjectDTO projectDTO = projectService.getProjectById(projectId);
         UserDTO authenticatedUser = userService.getUser(new UserDTO());
 
         Project project = ProjectMapper.INSTANCE.toEntity(projectDTO);
@@ -173,7 +173,7 @@ public class WebController {
         Donation donation = new Donation();
 
         donation.setUserId(user);
-        donation.setProject_id(project);
+        donation.setProjectId(project);
         donation.setAmount(amount);
         donation.setDateAdded(new Date());
 
@@ -186,10 +186,10 @@ public class WebController {
 
     }
 
-    @GetMapping(value = "/comment/{project_id}")
-    public String commentProject (@PathVariable("project_id") int project_id, Model model) {
+    @GetMapping(value = "/comment/{projectId}")
+    public String commentProject (@PathVariable("projectId") int projectId, Model model) {
 
-        ProjectDTO projectDTO = projectService.getProjectById(project_id);
+        ProjectDTO projectDTO = projectService.getProjectById(projectId);
         model.addAttribute("project", projectDTO);
 
         model.addAttribute("comment", new CommentDTO());
@@ -198,24 +198,24 @@ public class WebController {
 
     }
 
-    @PostMapping("/comment/{project_id}")
-    public String commentProject(@PathVariable("project_id") int project_id, @ModelAttribute("comment") CommentDTO commentDTO) {
+    @PostMapping("/comment/{projectId}")
+    public String commentProject(@PathVariable("projectId") int projectId, @ModelAttribute("comment") CommentDTO commentDTO) {
 
         Comment comment = CommentMapper.INSTANCE.toEntity(commentDTO);
 
-        ProjectDTO projectDTO = projectService.getProjectById(project_id);
+        ProjectDTO projectDTO = projectService.getProjectById(projectId);
         Project project = ProjectMapper.INSTANCE.toEntity(projectDTO);
 
         UserDTO authenticatedUser = userService.getUser(new UserDTO());
         User user = UserMapper.INSTANCE.toEntity(authenticatedUser);
 
-        comment.setUser_id(user);
-        comment.setProject_id(project);
+        comment.setUserId(user);
+        comment.setProjectId(project);
         comment.setDate_added(new Date());
 
         commentService.insertComment(CommentMapper.INSTANCE.toDTO(comment));
 
-        return "redirect:/fundme/controller/web/viewProject/{project_id}";
+        return "redirect:/fundme/controller/web/viewProject/{projectId}";
 
     }
 

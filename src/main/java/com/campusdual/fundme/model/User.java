@@ -15,12 +15,12 @@ public class User {
     @Column
     private String password;
     @Column
-    private Date date_added;
+    private Date dateAdded;
     @ManyToOne
     @JoinColumn(name = "country_id")
-    private Country country_id;
+    private Country countryId;
     @Column
-    private String postal_code;
+    private String postalCode;
     @Column
     private String email;
     @Column
@@ -38,12 +38,12 @@ public class User {
     public void setName(String name) { this.name = name; }
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
-    public Date getDate_added() { return date_added; }
-    public void setDate_added(Date date_added) { this.date_added = date_added; }
-    public Country getCountry_id() { return country_id; }
-    public void setCountry_id(Country country_id) { this.country_id = country_id; }
-    public String getPostal_code() { return postal_code; }
-    public void setPostal_code(String postal_code) { this.postal_code = postal_code; }
+    public Date getDateAdded() { return dateAdded; }
+    public void setDateAdded(Date dateAdded) { this.dateAdded = dateAdded; }
+    public Country getCountryId() { return countryId; }
+    public void setCountryId(Country countryId) { this.countryId = countryId; }
+    public String getPostalCode() { return postalCode; }
+    public void setPostalCode(String postalCode) { this.postalCode = postalCode; }
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
     public String getPhone() { return phone; }

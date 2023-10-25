@@ -2,11 +2,11 @@ package com.campusdual.fundme.model.dto;
 
 public class CountryDTO {
 
-    private int country_id;
+    private int countryId;
     private String name;
 
-    public int getCountry_id() { return country_id; }
-    public void setCountry_id(int country_id) { this.country_id = country_id; }
+    public int getCountryId() { return countryId; }
+    public void setCountryId(int countryId) { this.countryId = countryId; }
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 

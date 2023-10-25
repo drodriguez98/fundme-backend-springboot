@@ -7,7 +7,7 @@ import java.util.List;
 public interface IDonationService {
 
     DonationDTO getDonation(DonationDTO donationDTO);
-    DonationDTO getDonationById(int donation_id);
+    DonationDTO getDonationById(int donationId);
 
     List<DonationDTO> getAllDonations();
 

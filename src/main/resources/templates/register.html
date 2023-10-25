@@ -102,11 +102,11 @@
         <label class="form-label" for="password">Password</label>
         <input class="form-input" type="password" id="password" th:field="*{password}" placeholder="Password" required>
         <label class="form-label" for="country">Country</label>
-        <select id="country" name="country" th:field="*{country_id}" required="required">
-            <option th:each="country : ${countries}" th:value="${country.country_id}" th:text="${country.name}"></option>
+        <select id="country" name="country" th:field="*{countryId}" required="required">
+            <option th:each="country : ${countries}" th:value="${country.countryId}" th:text="${country.name}"></option>
         </select>
-        <label class="form-label" for="postal_code">Postal Code</label>
-        <input class="form-input" type="text" id="postal_code" th:field="*{postal_code}" placeholder="Postal code" required>
+        <label class="form-label" for="postalCode">Postal Code</label>
+        <input class="form-input" type="text" id="postalCode" th:field="*{postalCode}" placeholder="Postal code" required>
         <label class="form-label" for="email">Email</label>
         <input class="form-input" type="text" id="email" th:field="*{email}" placeholder="Email" required>
         <label class="form-label" for="phone">Phone</label>

@@ -30,14 +30,14 @@ public class DonationService implements IDonationService {
     public DonationDTO getDonation(DonationDTO donationDTO) {
 
         Donation donation = DonationMapper.INSTANCE.toEntity(donationDTO);
-        return DonationMapper.INSTANCE.toDTO(this.donationRepository.getReferenceById(donation.getDonation_id()));
+        return DonationMapper.INSTANCE.toDTO(this.donationRepository.getReferenceById(donation.getDonationId()));
 
     }
 
     @Override
-    public DonationDTO getDonationById(int donation_id) {
+    public DonationDTO getDonationById(int donationId) {
 
-        Donation donation = donationRepository.getReferenceById(donation_id);
+        Donation donation = donationRepository.getReferenceById(donationId);
         return DonationMapper.INSTANCE.toDTO(donation);
 
     }
@@ -50,7 +50,7 @@ public class DonationService implements IDonationService {
 
         Donation donation = DonationMapper.INSTANCE.toEntity(donationDTO);
         this.donationRepository.saveAndFlush(donation);
-        return donation.getDonation_id();
+        return donation.getDonationId();
 
 
     }
@@ -60,7 +60,7 @@ public class DonationService implements IDonationService {
     @Override
     public int deleteDonation (DonationDTO donationDTO) {
 
-        int id = donationDTO.getDonation_id();
+        int id = donationDTO.getDonationId();
         Donation donation = DonationMapper.INSTANCE.toEntity(donationDTO);
         this.donationRepository.delete(donation);
         return id;

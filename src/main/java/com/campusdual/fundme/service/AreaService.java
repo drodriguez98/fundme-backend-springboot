@@ -23,7 +23,7 @@ public class AreaService implements IAreaService {
     public AreaDTO getArea(AreaDTO areaDTO) {
 
         Area area = AreaMapper.INSTANCE.toEntity(areaDTO);
-        return AreaMapper.INSTANCE.toDTO(this.areaRepository.getReferenceById(area.getArea_id()));
+        return AreaMapper.INSTANCE.toDTO(this.areaRepository.getReferenceById(area.getAreaId()));
 
     }
 
@@ -35,7 +35,7 @@ public class AreaService implements IAreaService {
 
         Area area = AreaMapper.INSTANCE.toEntity(areaDTO);
         this.areaRepository.saveAndFlush(area);
-        return area.getArea_id();
+        return area.getAreaId();
 
     }
 
@@ -45,7 +45,7 @@ public class AreaService implements IAreaService {
     @Override
     public int deleteArea (AreaDTO areaDTO) {
 
-        int id = areaDTO.getArea_id();
+        int id = areaDTO.getAreaId();
         Area area = AreaMapper.INSTANCE.toEntity(areaDTO);
         this.areaRepository.delete(area);
         return id;

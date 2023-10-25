@@ -43,7 +43,7 @@ public class UserService implements IUserService {
 
         User user = UserMapper.INSTANCE.toEntity(userDTO);
 
-        user.setDate_added(new Date());
+        user.setDateAdded(new Date());
 
         user.setActive(true);
         user.setAdmin(false);

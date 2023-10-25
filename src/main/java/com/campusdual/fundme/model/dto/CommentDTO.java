@@ -7,18 +7,18 @@ import java.util.Date;
 
 public class CommentDTO {
 
-    private int comment_id;
-    private User user_id;
-    private Project project_id;
+    private int commentId;
+    private User userId;
+    private Project projectId;
     private Date date_added;
     private String content;
 
-    public int getComment_id() { return comment_id; }
-    public void setComment_id(int comment_id) { this.comment_id = comment_id; }
-    public User getUser_id() { return user_id; }
-    public void setUser_id(User user_id) { this.user_id = user_id; }
-    public Project getProject_id() { return project_id; }
-    public void setProject_id(Project project_id) { this.project_id = project_id; }
+    public int getCommentId() { return commentId; }
+    public void setCommentId(int commentId) { this.commentId = commentId; }
+    public User getUserId() { return userId; }
+    public void setUserId(User userId) { this.userId = userId; }
+    public Project getProjectId() { return projectId; }
+    public void setProjectId(Project projectId) { this.projectId = projectId; }
     public Date getDate_added() { return date_added; }
     public void setDate_added(Date date_added) { this.date_added = date_added; }
     public String getContent() { return content; }

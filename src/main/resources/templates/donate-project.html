@@ -141,8 +141,6 @@
                 <li><a th:href="@{/fundme/controller/web/notifications}">Notifications</a></li>
                 <li><a th:href="@{/fundme/controller/web/logout}">Logout</a></li>
 
-                <!-- <li><a th:href="@{/fundme/controller/web/createProject}">Create project</a></li> -->
-                <!-- <li><a th:href="@{/fundme/controller/web/settings}">Settings</a></li> -->
             </ul>
 
         </div>
@@ -153,7 +151,7 @@
 
                 <div class="form-header"> <h2>New donation</h2> </div>
 
-                <form th:action="@{'/fundme/controller/web/donate/' + ${project.project_id}}" method="post" class="donate-project-form">
+                <form th:action="@{'/fundme/controller/web/donate/' + ${project.projectId}}" method="post" class="donate-project-form">
 
                 <label class="form-label" for="amount">Insert amount to donate</label>
                     <input class="form-input" type="number" id="amount" name="amount" required>

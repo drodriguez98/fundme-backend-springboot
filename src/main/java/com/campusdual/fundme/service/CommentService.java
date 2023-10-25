@@ -23,7 +23,7 @@ public class CommentService implements ICommentService {
     public CommentDTO getComment(CommentDTO commentDTO) {
 
         Comment comment = CommentMapper.INSTANCE.toEntity(commentDTO);
-        return CommentMapper.INSTANCE.toDTO(this.commentRepository.getReferenceById(comment.getComment_id()));
+        return CommentMapper.INSTANCE.toDTO(this.commentRepository.getReferenceById(comment.getCommentId()));
 
     }
 
@@ -35,7 +35,7 @@ public class CommentService implements ICommentService {
 
         Comment comment = CommentMapper.INSTANCE.toEntity(commentDTO);
         this.commentRepository.saveAndFlush(comment);
-        return comment.getComment_id();
+        return comment.getCommentId();
 
     }
     @Override
@@ -44,7 +44,7 @@ public class CommentService implements ICommentService {
     @Override
     public int deleteComment (CommentDTO commentDTO) {
 
-        int id = commentDTO.getComment_id();
+        int id = commentDTO.getCommentId();
         Comment comment = CommentMapper.INSTANCE.toEntity(commentDTO);
         this.commentRepository.delete(comment);
         return id;

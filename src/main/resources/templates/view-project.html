@@ -138,7 +138,7 @@
                         <div class="project">
 
                             <p><strong>Title</strong></p><p th:text="${project.title}"></p>
-                            <p><strong>Area</strong></p><p th:text="${project.area_id.name}"></p>
+                            <p><strong>Area</strong></p><p th:text="${project.areaId.name}"></p>
                             <p><strong>User</strong><p th:text="${project.userId.name}">User</p>
                             <p><strong>Date</strong><p th:text="${#dates.format(project.dateAdded, 'yyyy/MM/dd')}">Date Added</p>
                             <p><strong>Description</strong><p th:text="${project.description}">Description</p>
@@ -146,8 +146,8 @@
 
                             <div class="nav-link">
 
-                                <a class="comment-link" th:href="@{'/fundme/controller/web/comment/' + ${project.project_id}}">Comment</a>
-                                <a class="donate-link" th:href="@{'/fundme/controller/web/donate/' + ${project.project_id}}">Donate</a>
+                                <a class="comment-link" th:href="@{'/fundme/controller/web/comment/' + ${project.projectId}}">Comment</a>
+                                <a class="donate-link" th:href="@{'/fundme/controller/web/donate/' + ${project.projectId}}">Donate</a>
 
                             </div>
 

@@ -9,24 +9,24 @@ public class Donation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int donation_id;
+    private int donationId;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User userId;
     @ManyToOne
     @JoinColumn(name = "project_id")
-    private Project project_id;
+    private Project projectId;
     @Column(name = "date_added")
     private Date dateAdded;
     @Column
     private int amount;
 
-    public int getDonation_id() { return donation_id; }
-    public void setDonation_id(int donation_id) { this.donation_id = donation_id; }
+    public int getDonationId() { return donationId; }
+    public void setDonationId(int donationId) { this.donationId = donationId; }
     public User getUserId() { return userId; }
     public void setUserId(User userId) { this.userId = userId; }
-    public Project getProject_id() { return project_id; }
-    public void setProject_id(Project project_id) { this.project_id = project_id; }
+    public Project getProjectId() { return projectId; }
+    public void setProjectId(Project projectId) { this.projectId = projectId; }
     public Date getDateAdded() { return dateAdded; }
     public void setDateAdded(Date dateAdded) { this.dateAdded = dateAdded; }
     public int getAmount() { return amount; }

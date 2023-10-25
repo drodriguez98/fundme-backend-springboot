@@ -23,7 +23,7 @@ public class CountryService implements ICountryService {
     public CountryDTO getCountry(CountryDTO countryDTO) {
 
         Country country = CountryMapper.INSTANCE.toEntity(countryDTO);
-        return CountryMapper.INSTANCE.toDTO(this.countryRepository.getReferenceById(country.getCountry_id()));
+        return CountryMapper.INSTANCE.toDTO(this.countryRepository.getReferenceById(country.getCountryId()));
 
     }
 
@@ -35,7 +35,7 @@ public class CountryService implements ICountryService {
 
         Country country = CountryMapper.INSTANCE.toEntity(countryDTO);
         this.countryRepository.saveAndFlush(country);
-        return country.getCountry_id();
+        return country.getCountryId();
 
     }
     @Override
@@ -44,7 +44,7 @@ public class CountryService implements ICountryService {
     @Override
     public int deleteCountry (CountryDTO countryDTO) {
 
-        int id = countryDTO.getCountry_id();
+        int id = countryDTO.getCountryId();
         Country country = CountryMapper.INSTANCE.toEntity(countryDTO);
         this.countryRepository.delete(country);
         return id;

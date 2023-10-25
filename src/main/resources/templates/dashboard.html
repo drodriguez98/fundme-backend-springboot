@@ -166,7 +166,7 @@
 
                             <td th:text="${donation.userId.name}"></td>
                             <td th:text="${#dates.format(donation.dateAdded, 'yyyy/MM/dd')}"></td>
-                            <td th:text="${donation.project_id.title}"></td>
+                            <td th:text="${donation.projectId.title}"></td>
                             <td th:text="${donation.amount}"></td>
 
                         </tr>
@@ -187,7 +187,7 @@
 
                             <h3 th:text="${project.title}">Title</h3>
                             <p th:text="${project.description}">Description</p>
-                            <a class="details-link" th:href="@{'/fundme/controller/web/viewProject/' + ${project.project_id}}">View details</a>
+                            <a class="details-link" th:href="@{'/fundme/controller/web/viewProject/' + ${project.projectId}}">View details</a>
 
                         </div>
 
