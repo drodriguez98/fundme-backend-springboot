@@ -2,173 +2,159 @@
 
 <html xmlns:th="http://www.w3.org/1999/xhtml" lang="es">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View project</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>View project</title>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 0;
-        }
+        <style>
 
-        .container {
-            display: flex;
-        }
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f0f0f0;
+                margin: 0;
+                padding: 0;
+            }
 
-        .sidebar {
-            background-color: #333;
-            color: #fff;
-            width: 250px;
-            padding: 20px;
-            min-height: 100vh;
-        }
+            .container {
+                display: flex;
+            }
 
-        .sidebar h1 {
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
+            .sidebar {
+                background-color: #333;
+                color: #fff;
+                width: 250px;
+                padding: 20px;
+                min-height: 100vh;
+            }
 
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-        }
+            .sidebar h1 {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
 
-        .sidebar li {
-            margin-bottom: 10%;
-        }
+            .sidebar ul {
+                list-style: none;
+                padding: 0;
+            }
 
-        .sidebar a {
-            text-decoration: none;
-            color: #fff;
-            display: block;
-        }
+            .sidebar li {
+                margin-bottom: 10%;
+            }
 
-        .content {
-            flex: 1;
-            padding: 20px;
-            margin: 1.5% 22%;
-            display: flex; /* Agregar display flex para la alineación horizontal */
-            justify-content: space-between; /* Espacio entre los detalles del proyecto y los comentarios */
-        }
+            .sidebar a {
+                text-decoration: none;
+                color: #fff;
+                display: block;
+            }
 
-        #view-project {
-            background-color: #fff;
-            padding: 1.5%;
-            border-radius: 5px;
-            text-align: center;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            flex: 1; /* Hace que los detalles del proyecto ocupen todo el espacio disponible en el contenedor */
-            margin-right: 2%; /* Espacio entre los detalles del proyecto y los comentarios */
-        }
+            .content {
+                flex: 1;
+                padding: 20px;
+                margin: 1.5% 22%;
+                display: flex; /* Agregar display flex para la alineación horizontal */
+                justify-content: space-between; /* Espacio entre los detalles del proyecto y los comentarios */
+            }
 
-        h3 {
-            font-size: 24px;
-            margin: 10% auto;
-        }
+            #view-project {
+                background-color: #fff;
+                padding: 1.5%;
+                border-radius: 5px;
+                text-align: center;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+                flex: 1; /* Hace que los detalles del proyecto ocupen todo el espacio disponible en el contenedor */
+                margin-right: 2%; /* Espacio entre los detalles del proyecto y los comentarios */
+            }
 
-        .project {
-            padding-bottom: 4%;
-            text-align: center;
-            margin: 7%;
-        }
+            h3 {
+                font-size: 24px;
+                margin: 10% auto;
+            }
 
-        .title {
-            font-size: 18px;
-            padding-bottom: 3%;
-        }
+            .project {
+                padding-bottom: 4%;
+                text-align: center;
+                margin: 7%;
+            }
 
-        .project p {
-            font-size: 17.5px;
-            padding-bottom: 3%;
-        }
+            .title {
+                font-size: 18px;
+                padding-bottom: 3%;
+            }
 
-        .nav-link {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            margin-top: 7%;
-        }
+            .project p {
+                font-size: 17.5px;
+                padding-bottom: 3%;
+            }
 
-        .nav-link .comment-link,
-        .nav-link .donate-link {
-            display: inline-block;
-            color: #fff;
-            padding: 12px 50px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-bottom: 8%;
-            background-color: #333;
-            margin: 0 5%;
-        }
+            .nav-link {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                margin-top: 7%;
+            }
 
-        .comments {
-            background-color: #fff;
-            padding: 1.5%;
-            border-radius: 5px;
-            text-align: center;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            flex: 1; /* Hace que la sección de comentarios ocupe todo el espacio disponible en el contenedor */
-        }
+            .nav-link .comment-link,
+            .nav-link .donate-link {
+                display: inline-block;
+                color: #fff;
+                padding: 12px 50px;
+                text-decoration: none;
+                border-radius: 5px;
+                margin-bottom: 8%;
+                background-color: #333;
+                margin: 0 5%;
+            }
 
-        .comments h3 {
-            font-size: 20px;
-            margin: 10% auto;
-        }
+        </style>
 
-        .comment-box {
-            text-align: left;
-            margin-top: 5%;
-        }
+    </head>
 
-        .comment-box p {
-            font-size: 16px;
-            padding-bottom: 3%;
-        }
-    </style>
-</head>
+    <body>
 
-<body>
-<div class="container">
-    <div class="sidebar">
-        <h1>FUNDMEPLS</h1>
+        <div class="container">
 
-        <ul>
+            <div class="sidebar">
 
-            <li><a th:href="@{/fundme/controller/web/dashboard}">#</a></li>
-            <li><a th:href="@{/fundme/controller/web/projects}">Projects</a></li>
-            <li><a th:href="@{/fundme/controller/web/donations}">Donations</a></li>
-            <li><a th:href="@{/fundme/controller/web/userProfile}">User profile</a></li>
-            <li><a th:href="@{/fundme/controller/web/notifications}">Notifications</a></li>
-            <li><a th:href="@{/fundme/controller/web/logout}">Logout</a></li>
+                <h1>FUNDMEPLS</h1>
 
-        </ul>
+                <ul>
 
-    </div>
+                    <li><a th:href="@{/fundme/controller/web/dashboard}">#</a></li>
+                    <li><a th:href="@{/fundme/controller/web/projects}">Projects</a></li>
+                    <li><a th:href="@{/fundme/controller/web/donations}">Donations</a></li>
+                    <li><a th:href="@{/fundme/controller/web/userProfile}">User profile</a></li>
+                    <li><a th:href="@{/fundme/controller/web/notifications}">Notifications</a></li>
+                    <li><a th:href="@{/fundme/controller/web/logout}">Logout</a></li>
 
-    <div class="content">
-        <div class="section" id="view-project">
+                </ul>
 
-            <div th:each="project : ${projectDetails}">
+            </div>
 
-                <div class="project">
+            <div class="content">
+                <div class="section" id="view-project">
 
-                    <h3 th:text="${project.title}">Project Title</h3>
+                    <div th:each="project : ${projectDetails}">
 
-                    <p><strong>Area</strong></p><p th:text="${project.area_id.name}"></p>
-                    <p><strong>User</strong><p th:text="${project.userId.name}">User</p>
-                    <p><strong>Date</strong><p th:text="${#dates.format(project.dateAdded, 'yyyy/MM/dd')}">Date Added</p>
-                    <p><strong>Description</strong><p th:text="${project.description}">Description</p>
-                    <p><strong>Amount</strong><p th:text="${project.totalAmount}">Total Amount</p>
+                        <div class="project">
 
-                    <div class="nav-link">
+                            <h3 th:text="${project.title}">Project Title</h3>
 
-                        <a class="comment-link" th:href="@{'/fundme/controller/web/comment/' + ${project.project_id}}">Comment</a>
-                        <a class="donate-link" th:href="@{'/fundme/controller/web/donate/' + ${project.project_id}}">Donate</a>
+                            <p><strong>Area</strong></p><p th:text="${project.area_id.name}"></p>
+                            <p><strong>User</strong><p th:text="${project.userId.name}">User</p>
+                            <p><strong>Date</strong><p th:text="${#dates.format(project.dateAdded, 'yyyy/MM/dd')}">Date Added</p>
+                            <p><strong>Description</strong><p th:text="${project.description}">Description</p>
+                            <p><strong>Amount</strong><p th:text="${project.totalAmount}">Total Amount</p>
+
+                            <div class="nav-link">
+
+                                <a class="comment-link" th:href="@{'/fundme/controller/web/comment/' + ${project.project_id}}">Comment</a>
+                                <a class="donate-link" th:href="@{'/fundme/controller/web/donate/' + ${project.project_id}}">Donate</a>
+
+                            </div>
+
+                        </div>
 
                     </div>
 
@@ -178,15 +164,6 @@
 
         </div>
 
-        <div class="comments">
-            <h3>Comments</h3>
-            <div class="comment-box">
-                <p><strong>User 1:</strong> This is a great project!</p>
-                <p><strong>User 2:</strong> I'd love to support this.</p>
-                <!-- Agrega más comentarios según sea necesario -->
-            </div>
-        </div>
-    </div>
-</div>
-</body>
+    </body>
+
 </html>
