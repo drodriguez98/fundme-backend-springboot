@@ -67,13 +67,18 @@
 
             h3 {
                 font-size: 20px;
-                margin: 1% auto;
+                margin: 4% auto;
             }
 
-            .project, .comment {
-                padding-bottom: 2.5%;
+            .project {
                 text-align: center;
                 margin-top: 5%;
+            }
+
+            .comment {
+                text-align: start;
+                padding: 2px;
+                margin-left: 7.5%;
             }
 
             .title {
@@ -81,9 +86,23 @@
                 padding-bottom: 3%;
             }
 
-            .project p, .comment p {
+            .project p {
                 font-size: 16px;
                 padding: 1.5%;
+            }
+
+            .comment .head {
+                font-size: 16px;
+                padding-bottom: 1%;
+                font-weight: bold;
+
+            }
+
+            .comment .content {
+
+                font-size: 16px;
+                padding: 1%;
+
             }
 
             .nav-link {
@@ -165,9 +184,9 @@
 
                         <div class="comment">
 
-                            <p><strong>User</strong><p th:text="${comment.userId.name}">User</p>
-                            <p><strong>Date</strong><p th:text="${#dates.format(comment.dateAdded, 'yyyy/MM/dd')}">Date Added</p>
-                            <p><strong>Comment</strong><p th:text="${comment.content}">Content</p>
+                            <p class="head" th:text="${comment.userId.name}"></p>
+                            <p class="content" th:text="${#dates.format(comment.dateAdded, 'yyyy/MM/dd')}"></p>
+                            <p class="content" th:text="${comment.content}">Content</p>
 
                         </div>
 
