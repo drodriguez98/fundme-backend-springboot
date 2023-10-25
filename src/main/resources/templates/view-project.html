@@ -2,203 +2,183 @@
 
 <html xmlns:th="http://www.w3.org/1999/xhtml" lang="es">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>View project</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View project</title>
 
-        <style>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
 
-            body {
-                font-family: Arial, sans-serif;
-                background-color: #f0f0f0;
-                margin: 0;
-                padding: 0;
-            }
+        .container {
+            display: flex;
+        }
 
-            .container { display: flex; }
+        .sidebar {
+            background-color: #333;
+            color: #fff;
+            width: 250px;
+            padding: 20px;
+            min-height: 100vh;
+        }
 
-            .sidebar {
-                background-color: #333;
-                color: #fff;
-                width: 250px;
-                padding: 20px;
-                min-height: 100vh;
-            }
+        .sidebar h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
 
-            .sidebar h1 {
-                font-size: 24px;
-                margin-bottom: 20px;
-            }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
 
-            .sidebar ul {
-                list-style: none;
-                padding: 0;
-            }
+        .sidebar li {
+            margin-bottom: 10%;
+        }
 
-            .sidebar li { margin-bottom: 10%; }
+        .sidebar a {
+            text-decoration: none;
+            color: #fff;
+            display: block;
+        }
 
-            .sidebar a {
-                text-decoration: none;
-                color: #fff;
-                display: block;
-            }
+        .content {
+            flex: 1;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+        }
 
-            .content {
-                flex: 1;
-                display: flex; /* Agregar display flex para la alineación horizontal */
-                justify-content: space-between; /* Espacio entre los detalles del proyecto y los comentarios */
-                flex-direction: column;
-            }
+        .section {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            flex: 1;
+            margin: 1% 22%;
+            padding: 40px;
+        }
 
-            #view-project, #view-comments {
-                background-color: #fff;
-                border-radius: 5px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-                flex: 1; /* Hace que los detalles del proyecto ocupen todo el espacio disponible en el contenedor */
-                margin: 1% 22%; /* Espacio entre los detalles del proyecto y los comentarios */
-                padding: 40px;
-            }
+        h3 {
+            font-size: 20px;
+            margin: 4% auto;
+            text-align: center;
+            padding: 2.5%;
+        }
 
-            h3 {
-                font-size: 20px;
-                margin: 4% auto;
-                text-align: center;
-                padding: 2.5%;
-            }
+        .project {
+            text-align: center;
+            margin-top: 5%;
+        }
 
-            .project {
-                text-align: center;
-                margin-top: 5%;
-            }
+        .nav-link {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin-top: 6%;
+        }
 
-            .nav-link {
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                margin-top: 6%;
-            }
+        .nav-link .comment-link,
+        .nav-link .donate-link {
+            display: inline-block;
+            color: #fff;
+            padding: 12px 50px;
+            text-decoration: none;
+            border-radius: 5px;
+            background-color: #333;
+            margin: 0 8%;
+        }
 
-            .nav-link .comment-link, .nav-link .donate-link {
-                display: inline-block;
-                color: #fff;
-                padding: 12px 50px;
-                text-decoration: none;
-                border-radius: 5px;
-                background-color: #333;
-                margin: 0 8%;
-            }
+        .comments-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
 
-            .comments-container {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: flex-start;
-                align-items: flex-start;
-            }
+        .comment {
+            flex: 1;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            padding-left: 3%;
+            margin: 4% auto;
+            width: 80%;
+        }
 
-            .comment {
-                flex: 1;
-                background-color: #f9f9f9;
-                border: 1px solid #ddd;
-                box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-                padding-left: 3%;
-                margin: 4% auto;
-                width: 80%;
-            }
+        .comment p {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.4;
+            letter-spacing: 0.5px;
+        }
 
-            .comment p {
-                font-family: Arial, sans-serif;
-                font-size: 14px;
-                line-height: 1.4;
-                letter-spacing: 0.5px;
-            }
+        .comment .user {
+            color: #007bff;
+            font-weight: bold;
+        }
 
-            .comment .user {
-                color: #007bff; /* Color para el nombre del usuario */
-                font-weight: bold;
-            }
+        .comment .date {
+            color: #888;
+        }
 
-            .comment .date { color: #888; }
+        .comment .content {
+            margin-top: 30px;
+        }
+    </style>
+</head>
 
-            .comment .content { margin-top: 30px; }
-
-        </style>
-
-    </head>
-
-    <body>
-
-        <div class="container">
-
-            <div class="sidebar">
-
-                <h1>FUNDMEPLS</h1>
-
-                <ul>
-
-                    <li><a th:href="@{/fundme/controller/web/dashboard}">#</a></li>
-                    <li><a th:href="@{/fundme/controller/web/projects}">Projects</a></li>
-                    <li><a th:href="@{/fundme/controller/web/donations}">Donations</a></li>
-                    <li><a th:href="@{/fundme/controller/web/userProfile}">User profile</a></li>
-                    <li><a th:href="@{/fundme/controller/web/notifications}">Notifications</a></li>
-                    <li><a th:href="@{/fundme/controller/web/logout}">Logout</a></li>
-
-                </ul>
-
-            </div>
-
-            <div class="content">
-
-                <div class="section" id="view-project">
-
-                    <div th:each="project : ${projectDetails}">
-
-                        <div class="project">
-
-                            <p><strong>Title</strong></p><p th:text="${project.title}"></p>
-                            <p><strong>Area</strong></p><p th:text="${project.areaId.name}"></p>
-                            <p><strong>User</strong><p th:text="${project.userId.name}">User</p>
-                            <p><strong>Date</strong><p th:text="${#dates.format(project.dateAdded, 'yyyy/MM/dd')}">Date Added</p>
-                            <p><strong>Description</strong><p th:text="${project.description}">Description</p>
-                            <p><strong>Amount</strong><p th:text="${project.totalAmount}">Total Amount</p>
-
-                            <div class="nav-link">
-
-                                <a class="comment-link" th:href="@{'/fundme/controller/web/comment/' + ${project.projectId}}">Comment</a>
-                                <a class="donate-link" th:href="@{'/fundme/controller/web/donate/' + ${project.projectId}}">Donate</a>
-
-                            </div>
-
-                        </div>
-
+<body>
+<div class="container">
+    <div class="sidebar">
+        <h1>FUNDMEPLS</h1>
+        <ul>
+            <li><a th:href="@{/fundme/controller/web/dashboard}">#</a></li>
+            <li><a th:href="@{/fundme/controller/web/projects}">Projects</a></li>
+            <li><a th:href="@{/fundme/controller/web/donations}">Donations</a></li>
+            <li><a th:href="@{/fundme/controller/web/userProfile}">User profile</a></li>
+            <li><a th:href="@{/fundme/controller/web/notifications}">Notifications</a></li>
+            <li><a th:href="@{/fundme/controller/web/logout}">Logout</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="section" id="view-project">
+            <div th:each="project : ${projectDetails}">
+                <div class="project">
+                    <p><strong>Title</strong></p>
+                    <p th:text="${project.title}"></p>
+                    <p><strong>Area</strong></p>
+                    <p th:text="${project.areaId.name}"></p>
+                    <p><strong>User</strong></p>
+                    <p th:text="${project.userId.name}"></p>
+                    <p><strong>Date</strong></p>
+                    <p th:text="${#dates.format(project.dateAdded, 'yyyy/MM/dd')}"></p>
+                    <p><strong>Description</strong></p>
+                    <p th:text="${project.description}"></p>
+                    <p><strong>Amount</strong></p>
+                    <p th:text="${project.totalAmount}"></p>
+                    <div class="nav-link">
+                        <a class="comment-link" th:href="@{'/fundme/controller/web/comment/' + ${project.projectId}}">Comment</a>
+                        <a class="donate-link" th:href="@{'/fundme/controller/web/donate/' + ${project.projectId}}">Donate</a>
                     </div>
-
                 </div>
-
-                <div class="section" id="view-comments">
-
-                    <h3>Comments</h3>
-
-                    <div th:each="comment : ${commentList}">
-
-                        <div class="comment">
-
-                            <p class="user" th:text="${comment.userId.name}"></p>
-                            <p class="date" th:text="${#dates.format(comment.dateAdded, 'yyyy/MM/dd')}"></p>
-                            <p class="content" th:text="${comment.content}"></p>
-
-                            <!-- <p class="content" th:text="${comment.userId.name + ' (' + #dates.format(comment.dateAdded, 'yyyy/MM/dd') + ') : ' + comment.content}"></p> -->
-
-                        </div>
-
-                    </div>
-
-                </div>
-
             </div>
-
         </div>
-
-    </body>
-
+        <div class="section" id="view-comments">
+            <h3>Comments</h3>
+            <div th:each="comment : ${commentList}">
+                <div class="comment">
+                    <p class="user" th:text="${comment.userId.name}"></p>
+                    <p class="date" th:text="${#dates.format(comment.dateAdded, 'yyyy/MM/dd')}"></p>
+                    <p class="content" th:text="${comment.content}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
 </html>
