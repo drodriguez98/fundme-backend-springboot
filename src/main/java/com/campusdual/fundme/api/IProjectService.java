@@ -2,7 +2,6 @@ package com.campusdual.fundme.api;
 
 import com.campusdual.fundme.model.Project;
 import com.campusdual.fundme.model.dto.ProjectDTO;
-import com.campusdual.fundme.model.dto.UserDTO;
 
 import java.util.List;
 
@@ -18,6 +17,6 @@ public interface IProjectService {
     int deleteProject (ProjectDTO projectDTO);
 
     List<Project> getTopProjects();
-    List<Project> getProjectsByAuthenticatedUser();
+    List<Project> getProjectsByAuthenticatedUserOrderByDateAddedDesc();
 
 }

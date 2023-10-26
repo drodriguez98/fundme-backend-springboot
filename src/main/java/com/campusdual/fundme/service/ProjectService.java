@@ -78,7 +78,7 @@ public class ProjectService implements IProjectService {
     public List<Project> getTopProjects() { return projectRepository.findTop5ByOrderByTotalAmountDesc(); }
 
     @Override
-    public List<Project> getProjectsByAuthenticatedUser() {
+    public List<Project> getProjectsByAuthenticatedUserOrderByDateAddedDesc() {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
@@ -90,7 +90,7 @@ public class ProjectService implements IProjectService {
 
         if (authenticatedUser == null) { throw new RuntimeException("Usuario autenticado no encontrado."); }
 
-        return projectRepository.findByUserId(authenticatedUser);
+        return projectRepository.findByUserIdOrderByDateAddedDesc(authenticatedUser);
 
     }
 

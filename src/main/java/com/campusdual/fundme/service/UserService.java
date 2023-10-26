@@ -9,6 +9,7 @@ import com.campusdual.fundme.model.dto.dtopmapper.UserMapper;
 import com.campusdual.fundme.util.PasswordEncoderUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import java.util.Date;
@@ -33,6 +34,21 @@ public class UserService implements IUserService {
 
         return UserMapper.INSTANCE.toDTO(user);
 
+    }
+
+    @Override
+    public UserDTO getAuthenticatedUser() {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication == null) { throw new RuntimeException("Ningún usuario autenticado."); }
+
+        String username = authentication.getName();
+        User authenticatedUser = userRepository.findByUsername(username);
+
+        if (authenticatedUser == null) { throw new RuntimeException("Usuario autenticado no encontrado."); }
+
+        return UserMapper.INSTANCE.toDTO(authenticatedUser);
     }
 
     @Override
@@ -66,7 +82,16 @@ public class UserService implements IUserService {
         int id = userDTO.getUserId();
         User user = UserMapper.INSTANCE.toEntity(userDTO);
         this.userRepository.delete(user);
+
         return id;
+
+    }
+
+    @Override
+    public void deleteAuthenticatedUser() {
+
+        UserDTO authenticatedUser = getAuthenticatedUser();
+        userRepository.delete(UserMapper.INSTANCE.toEntity(authenticatedUser));
 
     }
 

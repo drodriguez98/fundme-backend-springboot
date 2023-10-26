@@ -10,6 +10,6 @@ public interface ProjectRepository extends JpaRepository<Project, Integer> {
 
     List<Project> findTop5ByOrderByTotalAmountDesc();
     List<Project> findTop5ByOrderByDateAddedDesc();
-    List<Project> findByUserId(User user);
+    List<Project> findByUserIdOrderByDateAddedDesc(User user);
 
 }
