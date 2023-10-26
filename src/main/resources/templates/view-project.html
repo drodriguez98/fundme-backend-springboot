@@ -11,9 +11,11 @@
             margin: 0;
             padding: 0;
         }
+
         .container {
             display: flex;
         }
+
         .sidebar {
             background-color: #333;
             color: #fff;
@@ -21,28 +23,34 @@
             padding: 20px;
             min-height: 100vh;
         }
+
         .sidebar h1 {
             font-size: 24px;
             margin-bottom: 20px;
         }
+
         .sidebar ul {
             list-style: none;
             padding: 0;
         }
+
         .sidebar li {
             margin-bottom: 10%;
         }
+
         .sidebar a {
             text-decoration: none;
             color: #fff;
             display: block;
         }
+
         .content {
             flex: 1;
             display: flex;
             flex-direction: column;
             padding-top: 15px;
         }
+
         .project-details {
             background-color: #fff;
             border-radius: 5px;
@@ -50,19 +58,23 @@
             padding: 35px;
             margin: 1% 22%;
         }
+
         h3 {
             font-size: 20px;
             text-align: center;
             margin: 20px 0;
         }
+
         .project-section {
             text-align: center;
             margin: 40px 10%;
         }
+
         .project-section p {
             font-size: 16px;
             margin: 25px 0;
         }
+
         .nav-link {
             display: flex;
             flex-direction: row;
@@ -79,6 +91,7 @@
             background-color: #333;
             margin: 0 8%;
         }
+
         .comment-section {
             background-color: #fff;
             border-radius: 5px;
@@ -86,11 +99,13 @@
             margin: 1% 22%;
             padding: 35px;
         }
+
         .comment-list {
             display: flex;
             flex-wrap: wrap;
             justify-content: flex-start;
         }
+
         .comment {
             flex: 1;
             background-color: #f9f9f9;
@@ -100,14 +115,17 @@
             margin: 7%;
             width: 80%;
         }
+
         .comment p {
             font-size: 14px;
             margin: 4px 0;
         }
+
         .comment .user {
             color: #0a498d;
             font-weight: bold;
         }
+
         .comment .date {
             color: #888;
         }
@@ -142,7 +160,6 @@
                     <a class="comment-link" th:href="@{'/fundme/controller/web/comment/' + ${project.projectId}}">Comment</a>
                     <a class="donate-link" th:href="@{'/fundme/controller/web/donate/' + ${project.projectId}}">Donate</a>
                 </div>
-
             </div>
         </div>
         <div class="comment-section" id="view-comments">

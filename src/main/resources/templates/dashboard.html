@@ -66,10 +66,10 @@
             padding: 12px;
         }
 
-        table th,
-        table td {
+        table th, table td {
             padding: 10px;
             text-align: center;
+            font-size: 15px;
         }
 
         tbody tr:nth-child(even) {
@@ -118,7 +118,7 @@
             text-decoration: none;
             border-radius: 5px;
             margin: 1% auto;
-            font-size: 12px;
+            font-size: 14px;
         }
     </style>
 </head>
@@ -137,7 +137,7 @@
     </div>
     <div class="content">
         <div class="section" id="top-donations">
-            <h3>Top donations</h3>
+            <h3>Top Donations</h3>
             <table>
                 <thead>
                 <tr>
@@ -158,7 +158,7 @@
             </table>
         </div>
         <div class="section" id="top-projects">
-            <h3>Top projects</h3>
+            <h3>Top Projects</h3>
             <table>
                 <thead>
                 <tr>
@@ -172,7 +172,7 @@
                     <td th:text="${project.title}"></td>
                     <td th:text="${project.description}"></td>
                     <td>
-                        <a class="details-link" th:href="@{'/fundme/controller/web/viewProject/' + ${project.projectId}}">View details</a>
+                        <a class="details-link" th:href="@{'/fundme/controller/web/viewProject/' + ${project.projectId}}">Details</a>
                     </td>
                 </tr>
                 </tbody>
