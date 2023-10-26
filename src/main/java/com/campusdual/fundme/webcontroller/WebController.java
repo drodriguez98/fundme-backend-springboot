@@ -234,7 +234,7 @@ public class WebController {
     @GetMapping(value = "/myProjects")
     public String myProjects(Model model) {
 
-        List<Project> myProjects = projectService.getProjectsByAuthenticatedUser();
+        List<Project> myProjects = projectService.getProjectsByAuthenticatedUserOrderByDateAddedDesc();
         model.addAttribute("myProjects", myProjects);
 
         return "my-projects";
@@ -244,7 +244,7 @@ public class WebController {
     @GetMapping(value = "/donations")
     public String donations(Model model) {
 
-        List<Donation> donationList = donationService.getAllDonationsOrderByDateAddedDesc();
+        List<Donation> donationList = donationService.getAllDonationsByOrderByDateAddedDesc();
         model.addAttribute("donationList", donationList);
 
         return "donations";
@@ -271,8 +271,43 @@ public class WebController {
 
     }
 
-    @GetMapping("/accessDenied")
-    public String customErrorPage() { return "error"; }
+    @GetMapping("/confirmDeleteProject/{projectId}")
+    public String confirmDeleteProject(@PathVariable("projectId") int projectId, Model model) {
+
+        ProjectDTO projectDTO = projectService.getProjectById(projectId);
+        model.addAttribute("project", projectDTO);
+
+        return "confirm-delete-project";
+    }
+
+    @PostMapping("/deleteProject/{projectId}")
+    public String deleteProject(@PathVariable("projectId") int projectId) {
+
+        ProjectDTO projectDTO = projectService.getProjectById(projectId);
+
+        projectService.deleteProject(projectDTO);
+
+        return "redirect:/fundme/controller/web/myProjects";
+
+    }
+
+    @GetMapping("/confirmDeleteAccount")
+    public String confirmDeleteAccount(Model model) {
+
+        UserDTO authenticatedUser = userService.getAuthenticatedUser();
+        model.addAttribute("authenticatedUser", authenticatedUser);
+
+        return "confirm-delete-account";
+    }
+
+    @PostMapping("/deleteAccount")
+    public String deleteAccount() {
+
+        userService.deleteAuthenticatedUser();
+
+        return "redirect:/fundme/controller/web/login";
+
+    }
 
     @GetMapping(value = "/logout")
     public String logout (HttpServletRequest request) {
@@ -283,15 +318,6 @@ public class WebController {
 
     }
 
-    @GetMapping("/deleteProject")
-    public String deleteProject() {
-        return "delete-project";
-    }
-
-    @GetMapping("/deleteAccount")
-    public String deleteAccount() {
-        return "delete-account";
-    }
     @GetMapping("/notifications")
     public String notifications() {
         return "notifications";
@@ -309,5 +335,8 @@ public class WebController {
 
     @GetMapping(value = "/editProfile")
     public String editProfile() { return "edit-profile"; }
+
+    @GetMapping("/accessDenied")
+    public String customErrorPage() { return "error"; }
 
 }
