@@ -10,7 +10,6 @@ import com.campusdual.fundme.model.dto.dtopmapper.DonationMapper;
 import com.campusdual.fundme.model.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -67,13 +66,7 @@ public class DonationService implements IDonationService {
 
     }
 
-    public List<Donation> getAllDonationsOrderByDateAddedDesc() {
-
-        Sort sort = Sort.by(Sort.Direction.DESC, "dateAdded");
-
-        return donationRepository.findAll(sort);
-
-    }
+    public List<Donation> getAllDonationsByOrderByDateAddedDesc() { return donationRepository.getAllDonationsByOrderByDateAddedDesc(); }
 
     @Override
     public List<Donation> getDonationsByAuthenticatedUserOrderByDateAddedDesc() {

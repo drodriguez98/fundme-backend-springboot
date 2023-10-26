@@ -11,5 +11,6 @@ public interface DonationRepository extends JpaRepository<Donation, Integer> {
     List<Donation> findTop5ByOrderByAmountDesc();
     List<Donation> findTop5ByOrderByDateAddedDesc();
     List<Donation> findByUserIdOrderByDateAddedDesc(User user);
+    public List<Donation> getAllDonationsByOrderByDateAddedDesc();
 
 }

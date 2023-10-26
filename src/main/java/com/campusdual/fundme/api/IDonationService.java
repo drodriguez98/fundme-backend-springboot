@@ -15,7 +15,7 @@ public interface IDonationService {
     int updateDonation (DonationDTO donationDTO);
     int deleteDonation (DonationDTO donationDTO);
 
-    List<Donation> getAllDonationsOrderByDateAddedDesc();
+    List<Donation> getAllDonationsByOrderByDateAddedDesc();
     List<Donation> getDonationsByAuthenticatedUserOrderByDateAddedDesc();
 
     List<Donation> getTopDonations();
