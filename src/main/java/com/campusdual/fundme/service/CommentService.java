@@ -62,7 +62,7 @@ public class CommentService implements ICommentService {
 
         Project project = ProjectMapper.INSTANCE.toEntity(projectDTO);
 
-        return commentRepository.findByProjectId(project);
+        return commentRepository.findByProjectIdOrderByDateAddedDesc(project);
 
         //return null;
 
