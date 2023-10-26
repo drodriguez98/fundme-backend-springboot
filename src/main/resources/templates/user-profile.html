@@ -1,170 +1,201 @@
 <!DOCTYPE html>
-
 <html xmlns:th="http://www.w3.org/1999/xhtml" lang="es">
 
-    <head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
 
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        .container {
+            display: flex;
+        }
 
-        <title>User profile</title>
+        .sidebar {
+            background-color: #333;
+            color: #fff;
+            width: 250px;
+            padding: 20px;
+            min-height: 100vh;
+        }
 
-        <style>
+        .sidebar h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
 
-            body {
-                font-family: Arial, sans-serif;
-                background-color: #f0f0f0;
-                margin: 0;
-                padding: 0;
-            }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
 
-            .container { display: flex; }
+        .sidebar li {
+            margin-bottom: 10%;
+        }
 
-            .sidebar {
-                background-color: #333;
-                color: #fff;
-                width: 250px;
-                padding: 20px;
-                min-height: 100vh;
-            }
+        .sidebar a {
+            text-decoration: none;
+            color: #fff;
+            display: block;
+        }
 
-            .sidebar h1 {
-                font-size: 24px;
-                margin-bottom: 20px;
-            }
+        .content {
+            flex: 1;
+            padding: 20px;
+            margin: 3% 27%;
+        }
 
-            .sidebar ul {
-                list-style: none;
-                padding: 0;
-            }
+        #user-profile {
+            background-color: #fff;
+            padding: 1.5%;
+            border-radius: 5px;
+            text-align: center;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
 
-            .sidebar li { margin-bottom: 10%; }
+        h3 {
+            font-size: 24px;
+            margin: 10% auto;
+        }
 
-            .sidebar a {
-                text-decoration: none;
-                color: #fff;
-                display: block;
-            }
+        .user {
+            padding-bottom: 4%;
+            text-align: center;
+        }
 
-            .content {
-                flex: 1;
-                padding: 20px;
-                margin: 3% 27%;
-            }
+        .title {
+            font-size: 18px;
+            padding-bottom: 3%;
+        }
 
-            #user-profile {
-                background-color: #fff;
-                padding: 1.5%;
-                border-radius: 5px;
-                text-align: center;
-                border-radius: 5px;
-                box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        .user p {
+            font-size: 17.5px;
+            padding-bottom: 3%;
+        }
 
-            }
+        .nav-link {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
 
-            h3 {
-                font-size: 24px;
-                margin: 10% auto;
-            }
+        .nav-link .edit-link,
+        .nav-link .delete-link {
+            display: inline-block;
+            color: #fff;
+            padding: 12px 50px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 8%;
+        }
 
-            .user {
-                padding-bottom: 4%;
-                text-align: center;
-            }
+        .nav-link .edit-link {
+            background-color: #333;
+            margin-right: 2.5%;
+        }
 
-            .title {
-                font-size: 18px;
-                padding-bottom: 3%;
-            }
+        .nav-link .delete-link {
+            background-color: red;
+            margin-left: 2.5%;
+        }
 
-            .user p {
-                font-size: 17.5px;
-                padding-bottom: 3%;
-            }
+        .user-profile .profile-title {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
 
-            .nav-link {
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-            }
+        .user-details {
+            background-color: #f9f9f9;
+            padding: 5%;
+            margin: 10%;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            margin-right: 10%;
+            margin-left: 10%;
+        }
 
-            .nav-link .edit-link, .nav-link .delete-link {
-                display: inline-block;
-                color: #fff;
-                padding: 12px 50px;
-                text-decoration: none;
-                border-radius: 5px;
-                margin-bottom: 8%;
-            }
+        .user-info {
+            padding: 3%;
+            margin: 5%;
+        }
 
-            .nav-link .edit-link {
-                background-color: #333;
-                margin-right: 2.5%;
-            }
-            .nav-link .delete-link {
-                background-color: red;
-                margin-left: 2.5%;
-            }
+        .info-label {
+            font-weight: bold;
+            font-size: 18px;
+        }
 
-        </style>
+        .info-value {
+            font-size: 16px;
+            margin-top: 5%;
+        }
 
-    </head>
+        .user-actions {
+            display: flex;
+            justify-content: center;
+        }
 
-    <body>
+        .edit-link, .delete-link {
+            background-color: #333;
+            color: white;
+            padding: 3.5%;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 7.5%;
+        }
 
-        <div class="container">
+    </style>
+</head>
 
-            <div class="sidebar">
-
-                <h1>FUNDMEPLS</h1>
-
-                <ul>
-
-                    <li><a th:href="@{/fundme/controller/web/dashboard}">#</a></li>
-                    <li><a th:href="@{/fundme/controller/web/projects}">Projects</a></li>
-                    <li><a th:href="@{/fundme/controller/web/donations}">Donations</a></li>
-                    <li><a th:href="@{/fundme/controller/web/userProfile}">User profile</a></li>
-                    <li><a th:href="@{/fundme/controller/web/notifications}">Notifications</a></li>
-                    <li><a th:href="@{/fundme/controller/web/logout}">Logout</a></li>
-
-                </ul>
-
-            </div>
-
-            <div class="content">
-
-                <div class="section" id="user-profile">
-
-                    <h3>User profile</h3>
-
-                    <div th:if="${authenticatedUser != null}">
-
-                        <div class="user">
-
-                            <p><strong>Name</strong></p><p th:text="${authenticatedUser.name}"></p>
-                            <p><strong>Country</strong><p th:text="${authenticatedUser.countryId.name}"></p>
-                            <p><strong>Email</strong><p th:text="${authenticatedUser.email}"></p>
-                            <p><strong>Phone</strong><p th:text="${authenticatedUser.phone}">Description</p>
-
-                        </div>
-
+<body>
+<div class="container">
+    <div class="sidebar">
+        <h1>FUNDMEPLS</h1>
+        <ul>
+            <li><a th:href="@{/fundme/controller/web/dashboard}">#</a></li>
+            <li><a th:href="@{/fundme/controller/web/projects}">Projects</a></li>
+            <li><a th:href="@{/fundme/controller/web/donations}">Donations</a></li>
+            <li><a th:href="@{/fundme/controller/web/userProfile}">User profile</a></li>
+            <li><a th:href="@{/fundme/controller/web/notifications}">Notifications</a></li>
+            <li><a th:href="@{/fundme/controller/web/logout}">Logout</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="section" id="user-profile">
+            <h3 class="profile-title">User Profile</h3>
+            <div th:if="${authenticatedUser != null}">
+                <div class="user-details">
+                    <div class="user-info">
+                        <div class="info-label">Name:</div>
+                        <div class="info-value" th:text="${authenticatedUser.name}"></div>
                     </div>
-
-                    <div class="nav-link">
-
-                        <a class="edit-link" th:href="@{'/fundme/controller/web/editProfile/'}">Edit profile</a>
-                        <a class="delete-link" th:href="@{'/fundme/controller/web/deleteAccount/'}">Delete account</a>
-
+                    <div class="user-info">
+                        <div class="info-label">Country:</div>
+                        <div class="info-value" th:text="${authenticatedUser.countryId.name}"></div>
                     </div>
-
-
-
+                    <div class="user-info">
+                        <div class="info-label">Email:</div>
+                        <div class="info-value" th:text="${authenticatedUser.email}"></div>
+                    </div>
+                    <div class="user-info">
+                        <div class="info-label">Phone:</div>
+                        <div class="info-value" th:text="${authenticatedUser.phone}"></div>
+                    </div>
                 </div>
-
             </div>
-
+            <div class="user-actions">
+                <a class="edit-link" th:href="@{'/fundme/controller/web/editProfile/'}">Edit Profile</a>
+                <a class="delete-link" th:href="@{'/fundme/controller/web/deleteAccount/'}">Delete Account</a>
+            </div>
         </div>
-
-    </body>
-
+    </div>
+</div>
+</body>
 </html>

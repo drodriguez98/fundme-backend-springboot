@@ -9,8 +9,6 @@
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
             margin: 0;
-            padding: 0;
-            margin-top: 5%;
         }
 
         .container {
@@ -21,9 +19,9 @@
             background-color: #fff;
             padding: 20px;
             border-radius: 5px;
-            max-width: 400px;
-            margin: 0 auto;
-            margin-top: 20px;
+            max-width: 450px;
+            margin: 2.5% auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
 
         .login-header {
@@ -43,29 +41,39 @@
             display: flex;
             flex-direction: column;
             text-align: center;
+            padding: 20px;
         }
 
         .form-label {
             font-weight: bold;
-            margin-top: 10px;
+            margin-top: 5%;
         }
 
         .form-input {
-            padding: 10px;
-            margin: 5px 0;
+            padding: 14px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            text-align: center;
+            margin-top: 4%;
+        }
+
+        select {
+            width: 100%;
+            padding: 14px;
+            margin: 3% 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
             text-align: center;
         }
 
-        select  {
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 14px;
-            text-align: center;
+        option {
+            font-weight: normal;
+            display: block;
+            white-space-collapse: collapse;
+            text-wrap: nowrap;
+            min-height: 1.2em;
+            padding: 0px 2px 1px;
         }
 
         button[type="submit"] {
@@ -99,7 +107,7 @@
         <input class="form-input" type="text" id="name" th:field="*{name}" placeholder="Name" required>
         <label class="form-label" for="username">Username</label>
         <input class="form-input" type="text" id="username" th:field="*{username}" placeholder="Username" required>
-        <label class="form-label" for="password">Password</label>
+        <label class="form-label" for="""password">Password</label>
         <input class="form-input" type="password" id="password" th:field="*{password}" placeholder="Password" required>
         <label class="form-label" for="country">Country</label>
         <select id="country" name="country" th:field="*{countryId}" required="required">
