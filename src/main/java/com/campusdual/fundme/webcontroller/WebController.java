@@ -283,6 +283,11 @@ public class WebController {
 
     }
 
+    @GetMapping("/deleteProject")
+    public String deleteProject() {
+        return "delete-project";
+    }
+
     @GetMapping("/deleteAccount")
     public String deleteAccount() {
         return "delete-account";
@@ -304,9 +309,5 @@ public class WebController {
 
     @GetMapping(value = "/editProfile")
     public String editProfile() { return "edit-profile"; }
-
-
-
-
 
 }
