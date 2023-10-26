@@ -283,7 +283,10 @@ public class WebController {
 
     }
 
-
+    @GetMapping("/deleteProject")
+    public String deleteProject() {
+        return "delete-project";
+    }
 
     @GetMapping("/deleteAccount")
     public String deleteAccount() {
