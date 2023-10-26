@@ -118,6 +118,7 @@
             text-decoration: none;
             border-radius: 5px;
             margin: 1% auto;
+            font-size: 12px;
         }
     </style>
 </head>
@@ -163,7 +164,6 @@
                 <tr>
                     <th>Title</th>
                     <th>Description</th>
-                    <th>Amount</th>
                     <th>Details</th>
                 </tr>
                 </thead>
@@ -171,7 +171,6 @@
                 <tr th:each="project : ${topProjectsList}">
                     <td th:text="${project.title}"></td>
                     <td th:text="${project.description}"></td>
-                    <td th:text="${project.totalAmount}"></td>
                     <td>
                         <a class="details-link" th:href="@{'/fundme/controller/web/viewProject/' + ${project.projectId}}">View details</a>
                     </td>
