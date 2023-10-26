@@ -254,7 +254,7 @@ public class WebController {
     @GetMapping(value = "/myDonations")
     public String myDonations(Model model) {
 
-        List<Donation> myDonations = donationService.getDonationsByAuthenticatedUser();
+        List<Donation> myDonations = donationService.getDonationsByAuthenticatedUserOrderByDateAddedDesc();
         model.addAttribute("myDonations", myDonations);
 
         return "my-donations";

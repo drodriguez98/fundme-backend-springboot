@@ -75,7 +75,7 @@ public class ProjectService implements IProjectService {
 
     }
 
-    public List<Project> getTopProjects() { return projectRepository.findTop3ByOrderByTotalAmountDesc(); }
+    public List<Project> getTopProjects() { return projectRepository.findTop5ByOrderByTotalAmountDesc(); }
 
     @Override
     public List<Project> getProjectsByAuthenticatedUser() {
@@ -94,6 +94,6 @@ public class ProjectService implements IProjectService {
 
     }
 
-    public List<Project> getLastProjects() { return projectRepository.findTop3ByOrderByDateAddedDesc(); }
+    public List<Project> getLastProjects() { return projectRepository.findTop5ByOrderByDateAddedDesc(); }
 
 }

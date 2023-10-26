@@ -76,7 +76,7 @@ public class DonationService implements IDonationService {
     }
 
     @Override
-    public List<Donation> getDonationsByAuthenticatedUser() {
+    public List<Donation> getDonationsByAuthenticatedUserOrderByDateAddedDesc() {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
@@ -88,7 +88,7 @@ public class DonationService implements IDonationService {
 
         if (authenticatedUser == null) { throw new RuntimeException("Usuario autenticado no encontrado."); }
 
-        return donationRepository.findByUserId(authenticatedUser);
+        return donationRepository.findByUserIdOrderByDateAddedDesc(authenticatedUser);
     }
 
     public List<Donation> getTopDonations() { return donationRepository.findTop5ByOrderByAmountDesc(); }
