@@ -2,7 +2,10 @@ package com.campusdual.fundme.service;
 
 import com.campusdual.fundme.api.IDonationService;
 import com.campusdual.fundme.model.Donation;
+import com.campusdual.fundme.model.Project;
 import com.campusdual.fundme.model.User;
+import com.campusdual.fundme.model.dto.ProjectDTO;
+import com.campusdual.fundme.model.dto.dtopmapper.ProjectMapper;
 import com.campusdual.fundme.model.repository.DonationRepository;
 import com.campusdual.fundme.model.dto.DonationDTO;
 import com.campusdual.fundme.model.dto.dtopmapper.DonationMapper;
@@ -88,4 +91,12 @@ public class DonationService implements IDonationService {
 
     public List<Donation> getLastDonations() { return donationRepository.findTop5ByOrderByDateAddedDesc(); }
 
+    @Override
+    public List<Donation> getDonationsByProjectId(ProjectDTO projectDTO) {
+
+        Project project = ProjectMapper.INSTANCE.toEntity(projectDTO);
+
+        return donationRepository.findByProjectIdOrderByDateAddedDesc(project);
+
+    }
 }

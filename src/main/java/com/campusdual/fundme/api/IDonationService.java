@@ -2,6 +2,8 @@ package com.campusdual.fundme.api;
 
 import com.campusdual.fundme.model.Donation;
 import com.campusdual.fundme.model.dto.DonationDTO;
+import com.campusdual.fundme.model.dto.ProjectDTO;
+
 import java.util.List;
 
 public interface IDonationService {
@@ -19,4 +21,5 @@ public interface IDonationService {
     List<Donation> getTopDonations();
     List<Donation> getLastDonations();
 
+    List<Donation> getDonationsByProjectId(ProjectDTO projectDTO);
 }

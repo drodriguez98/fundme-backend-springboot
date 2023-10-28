@@ -65,7 +65,7 @@
             margin: 20px 0;
         }
 
-        .project-section {
+        .project-section, .donation-section {
             text-align: center;
             margin: 40px 10%;
         }
@@ -92,7 +92,7 @@
             margin: 0 8%;
         }
 
-        .comment-section {
+        .comment-section, .donation-section {
             background-color: #fff;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -129,6 +129,38 @@
         .comment .date {
             color: #888;
         }
+
+                table {
+            width: 100%;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            margin: 0 auto;
+            margin-bottom: 3%;
+            background-color: #fff;
+        }
+
+        table th {
+            font-size: 18px;
+            background-color: #333;
+            color: #fff;
+            padding: 12px;
+        }
+
+        table th, table td {
+            padding: 10px;
+            text-align: center;
+            font-size: 15px;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f5f5f5;
+        }
+
+        tbody tr:hover {
+            background-color: #ddd;
+        }
+
     </style>
 </head>
 <body>
@@ -161,6 +193,25 @@
                     <a class="donate-link" th:href="@{'/fundme/controller/web/donate/' + ${project.projectId}}">Donate</a>
                 </div>
             </div>
+        </div>
+        <div class="donation-section" id="view-donations">
+            <h3>Donations</h3>
+            <table>
+                <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Date</th>
+                    <th>Amount</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="donation : ${donationList}">
+                    <td th:text="${donation.userId.name}"></td>
+                    <td th:text="${#dates.format(donation.dateAdded, 'yyyy/MM/dd')}"></td>
+                    <td th:text="${donation.amount}"></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
         <div class="comment-section" id="view-comments">
             <h3>Comments</h3>

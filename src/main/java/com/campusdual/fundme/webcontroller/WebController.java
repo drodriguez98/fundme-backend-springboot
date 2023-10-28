@@ -254,6 +254,9 @@ public class WebController {
         List<Comment> commentList = commentService.getCommentsByProjectId(projectDTO);
         model.addAttribute("commentList", commentList);
 
+        List<Donation> donationList = donationService.getDonationsByProjectId(projectDTO);
+        model.addAttribute("donationList", donationList);
+
         return "view-project";
 
     }
