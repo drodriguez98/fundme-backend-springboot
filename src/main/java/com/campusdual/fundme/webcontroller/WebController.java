@@ -241,6 +241,67 @@ public class WebController {
 
     }
 
+    @GetMapping("/editProject/{projectId}")
+    public String showEditProjectForm(@PathVariable("projectId") int projectId, Model model) {
+
+        ProjectDTO projectDTO = projectService.getProjectById(projectId);
+        model.addAttribute("projectDetails", projectDTO);
+
+        return "edit-project";
+
+    }
+
+    @PostMapping("/editProject/{projectId}")
+    public String editProject(@PathVariable("projectId") int projectId, @ModelAttribute("projectDetails") ProjectDTO editedProjectDTO) {
+
+        ProjectDTO existingProjectDTO = projectService.getProjectById(projectId);
+
+        existingProjectDTO.setTitle(editedProjectDTO.getTitle());
+        existingProjectDTO.setDescription(editedProjectDTO.getDescription());
+
+        projectService.updateProject(existingProjectDTO);
+        return "redirect:/fundme/controller/web/myProjects";
+
+    }
+
+    /*
+
+    @GetMapping("/editProfile")
+    public String showEditProfileForm(Model model) {
+
+        List<CountryDTO> countries = countryService.getAllCountries();
+        model.addAttribute("countries", countries);
+
+        UserDTO userDTO = userService.getAuthenticatedUser();
+        model.addAttribute("userDetails", userDTO);
+
+        return "edit-profile";
+
+    }
+
+    @PostMapping("/editProfile")
+    public String editProfile(@ModelAttribute("userDetails") UserDTO editedUserDTO) {
+
+        UserDTO existingUserDTO = userService.getAuthenticatedUser();
+
+        existingUserDTO.setName(editedUserDTO.getName());
+        existingUserDTO.setUsername(editedUserDTO.getUsername());
+        existingUserDTO.setCountryId(editedUserDTO.getCountryId());
+        existingUserDTO.setEmail(editedUserDTO.getEmail());
+        existingUserDTO.setPhone(editedUserDTO.getPhone());
+
+        if (editedUserDTO.getPassword() != null) {
+            existingUserDTO.setPassword(editedUserDTO.getPassword());
+        }
+
+        userService.updateUser(existingUserDTO);
+
+        return "redirect:/fundme/controller/web/userProfile";
+
+    }
+
+     */
+
     @GetMapping(value = "/donations")
     public String donations(Model model) {
 
@@ -332,9 +393,6 @@ public class WebController {
     @GetMapping(value = "/settings")
     @ResponseBody
     public String settings() { return "Wellcome to settings"; }
-
-    @GetMapping(value = "/editProfile")
-    public String editProfile() { return "edit-profile"; }
 
     @GetMapping("/accessDenied")
     public String customErrorPage() { return "error"; }

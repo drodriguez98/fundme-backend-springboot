@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundmepls / Edit Project</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+        }
+        .sidebar {
+            background-color: #333;
+            color: #fff;
+            width: 250px;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .sidebar h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar li {
+            margin-bottom: 10%;
+        }
+        .sidebar a {
+            text-decoration: none;
+            color: #fff;
+            display: block;
+        }
+        .content {
+            flex: 1;
+            padding: 20px;
+        }
+        .form-container {
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #fff;
+            max-width: 400px;
+            margin: 0 auto;
+            margin-top: 8%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border: 1px solid black;
+        }
+        .form-header {
+            text-align: center;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px 5px 0 0;
+        }
+        .form-header h2 {
+            font-size: 24px;
+            margin: 0;
+        }
+        .edit-project-form {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-label {
+            font-weight: bold;
+            margin: 3% 0;
+            text-align: center;
+        }
+        .form-input {
+            padding: 10px;
+            margin: 3% 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+        }
+        button[type="submit"] {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 6%;
+            font-size: 16px;
+            text-align: center;
+        }
+        button[type="submit"]:hover {
+            background-color: #555;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 3% 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="sidebar">
+        <h1>FUNDMEPLS</h1>
+        <ul>
+            <li><a th:href="@{/fundme/controller/web/dashboard}">#</a></li>
+            <li><a th:href="@{/fundme/controller/web/projects}">Projects</a></li>
+            <li><a th:href="@{/fundme/controller/web/donations}">Donations</a></li>
+            <li><a th:href="@{/fundme/controller/web/userProfile}">User profile</a></li>
+            <li><a th:href="@{/fundme/controller/web/notifications}">Notifications</a></li>
+            <li><a th:href="@{/fundme/controller/web/logout}">Logout</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="form-container">
+            <div class="form-header">
+                <h2>Edit Project</h2>
+            </div>
+            <form th:action="@{'/fundme/controller/web/editProject/' + ${projectDetails.projectId}}" method="post" class="edit-project-form">
+                <label class="form-label" for="title">Project Title</label>
+                <input class="form-input" type="text" id="title" name="title" th:field="*{projectDetails.title}" required>
+                <label class="form-label" for="description">Project Description</label>
+                <input class="form-input" type="text" id="description" name="description" th:field="*{projectDetails.description}" required>
+                <button type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

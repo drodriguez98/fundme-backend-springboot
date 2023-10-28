@@ -93,7 +93,7 @@
             font-size: 17.5px;
             margin-bottom: 2%;
         }
-        .details-link, .delete-link {
+        .details-link, .delete-link, .edit-link {
             display: inline-block;
             background-color: #333;
             color: #fff;
@@ -130,6 +130,7 @@
                 <th>Amount</th>
                 <th></th>
                 <th></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -138,6 +139,7 @@
                 <td th:text="${project.description}"></td>
                 <td th:text="${project.totalAmount}"></td>
                 <td> <a class="details-link" th:href="@{'/fundme/controller/web/viewProject/' + ${project.projectId}}">Details</a> </td>
+                <td> <a class="edit-link" th:href="@{'/fundme/controller/web/editProject/' + ${project.projectId}}">Edit</a> </td>
                 <td> <a class="delete-link" th:href="@{'/fundme/controller/web/confirmDeleteProject/' + ${project.projectId}}">Delete</a> </td>
             </tr>
             </tbody>
