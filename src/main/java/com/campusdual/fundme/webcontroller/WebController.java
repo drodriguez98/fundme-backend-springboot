@@ -70,11 +70,7 @@ public class WebController {
 
             return "redirect:/fundme/controller/web/dashboard";
 
-        } else {
-
-            return "redirect:/fundme/controller/web/login"; // return "redirect:/api/public/showLoginForm?error=true";
-
-        }
+        } else { return "redirect:/fundme/controller/web/login"; } // return "redirect:/api/public/showLoginForm?error=true";
 
     }
 
@@ -83,6 +79,7 @@ public class WebController {
 
         List<CountryDTO> countries = countryService.getAllCountries();
         model.addAttribute("countries", countries);
+
         model.addAttribute("user", new UserDTO());
 
         return "register";
@@ -95,19 +92,6 @@ public class WebController {
         userService.insertUser(userDTO);
 
         return "redirect:/fundme/controller/web/login";
-
-    }
-
-    @GetMapping(value = "/dashboard")
-    public String dashboard(Model model) {
-
-        List<Project> topProjectsList = projectService.getTopProjects();
-        model.addAttribute("topProjectsList", topProjectsList);
-
-        List<Donation> topDonationsList = donationService.getTopDonations();
-        model.addAttribute("topDonationsList", topDonationsList);
-
-        return "dashboard";
 
     }
 
@@ -138,19 +122,6 @@ public class WebController {
         projectService.insertProject(ProjectMapper.INSTANCE.toDTO(project));
 
         return "redirect:/fundme/controller/web/projects";
-
-    }
-
-    @GetMapping(value = "/viewProject/{projectId}")
-    public String viewProject(@PathVariable int projectId, Model model) {
-
-        ProjectDTO projectDTO = projectService.getProjectById(projectId);
-        model.addAttribute("projectDetails", projectDTO);
-
-        List<Comment> commentList = commentService.getCommentsByProjectId(projectDTO);
-        model.addAttribute("commentList", commentList);
-
-        return "view-project";
 
     }
 
@@ -222,6 +193,19 @@ public class WebController {
 
     }
 
+    @GetMapping(value = "/dashboard")
+    public String dashboard(Model model) {
+
+        List<Project> topProjectsList = projectService.getTopProjects();
+        model.addAttribute("topProjectsList", topProjectsList);
+
+        List<Donation> topDonationsList = donationService.getTopDonations();
+        model.addAttribute("topDonationsList", topDonationsList);
+
+        return "dashboard";
+
+    }
+
     @GetMapping(value = "/projects")
     public String allProjects(Model model) {
 
@@ -238,6 +222,39 @@ public class WebController {
         model.addAttribute("myProjects", myProjects);
 
         return "my-projects";
+
+    }
+
+    @GetMapping(value = "/donations")
+    public String donations(Model model) {
+
+        List<Donation> donationList = donationService.getAllDonationsByOrderByDateAddedDesc();
+        model.addAttribute("donationList", donationList);
+
+        return "donations";
+
+    }
+
+    @GetMapping(value = "/myDonations")
+    public String myDonations(Model model) {
+
+        List<Donation> myDonations = donationService.getDonationsByAuthenticatedUserOrderByDateAddedDesc();
+        model.addAttribute("myDonations", myDonations);
+
+        return "my-donations";
+
+    }
+
+    @GetMapping(value = "/viewProject/{projectId}")
+    public String viewProject(@PathVariable int projectId, Model model) {
+
+        ProjectDTO projectDTO = projectService.getProjectById(projectId);
+        model.addAttribute("projectDetails", projectDTO);
+
+        List<Comment> commentList = commentService.getCommentsByProjectId(projectDTO);
+        model.addAttribute("commentList", commentList);
+
+        return "view-project";
 
     }
 
@@ -265,6 +282,15 @@ public class WebController {
 
     }
 
+    @GetMapping(value = "/userProfile")
+    public String userProfile(Model model) {
+
+        UserDTO authenticatedUser = userService.getUser(new UserDTO());
+        model.addAttribute("authenticatedUser", authenticatedUser);
+
+        return "user-profile";
+
+    }
 
     @GetMapping("/editProfile/{userId}")
     public String showEditProfileForm(@PathVariable("userId") int userId, Model model) {
@@ -291,36 +317,6 @@ public class WebController {
         userService.updateUser(existingUserDTO);
 
         return "redirect:/fundme/controller/web/userProfile";
-
-    }
-
-    @GetMapping(value = "/donations")
-    public String donations(Model model) {
-
-        List<Donation> donationList = donationService.getAllDonationsByOrderByDateAddedDesc();
-        model.addAttribute("donationList", donationList);
-
-        return "donations";
-
-    }
-
-    @GetMapping(value = "/myDonations")
-    public String myDonations(Model model) {
-
-        List<Donation> myDonations = donationService.getDonationsByAuthenticatedUserOrderByDateAddedDesc();
-        model.addAttribute("myDonations", myDonations);
-
-        return "my-donations";
-
-    }
-
-    @GetMapping(value = "/userProfile")
-    public String userProfile(Model model) {
-
-        UserDTO authenticatedUser = userService.getUser(new UserDTO());
-        model.addAttribute("authenticatedUser", authenticatedUser);
-
-        return "user-profile";
 
     }
 
@@ -381,10 +377,6 @@ public class WebController {
     public String dashboardAdmin() {
         return "Welcome to the administration area";
     }
-
-    @GetMapping(value = "/settings")
-    @ResponseBody
-    public String settings() { return "Wellcome to settings"; }
 
     @GetMapping("/accessDenied")
     public String customErrorPage() { return "error"; }
