@@ -64,8 +64,6 @@ public class CommentService implements ICommentService {
 
         return commentRepository.findByProjectIdOrderByDateAddedDesc(project);
 
-        //return null;
-
     }
 
 }
