@@ -13,8 +13,7 @@ public interface IUserService {
     int deleteUser (UserDTO userDTO);
 
     UserDTO getUserById(int userId);
-
     UserDTO getAuthenticatedUser();
-
     void deleteAuthenticatedUser();
+
 }

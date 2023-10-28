@@ -9,7 +9,6 @@ public interface IProjectService {
 
     ProjectDTO getProject(ProjectDTO projectDTO);
     ProjectDTO getProjectById(int projectId);
-
     List<ProjectDTO> getAllProjects();
 
     int insertProject (ProjectDTO projectDTO);

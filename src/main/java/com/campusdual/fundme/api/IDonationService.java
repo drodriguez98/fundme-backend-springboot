@@ -8,7 +8,6 @@ public interface IDonationService {
 
     DonationDTO getDonation(DonationDTO donationDTO);
     DonationDTO getDonationById(int donationId);
-
     List<DonationDTO> getAllDonations();
 
     int insertDonation (DonationDTO donationDTO);
@@ -17,7 +16,6 @@ public interface IDonationService {
 
     List<Donation> getAllDonationsByOrderByDateAddedDesc();
     List<Donation> getDonationsByAuthenticatedUserOrderByDateAddedDesc();
-
     List<Donation> getTopDonations();
     List<Donation> getLastDonations();
 
