@@ -10,11 +10,8 @@ import java.util.List;
 public interface AreaMapper {
 
     AreaMapper INSTANCE = Mappers.getMapper(AreaMapper.class);
-
     AreaDTO toDTO(Area area);
-
     List<AreaDTO> toDTOList(List<Area> areas);
-
     Area toEntity(AreaDTO areaDTO);
 
 }

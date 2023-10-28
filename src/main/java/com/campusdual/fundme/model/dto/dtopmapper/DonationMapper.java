@@ -10,11 +10,8 @@ import java.util.List;
 public interface DonationMapper {
 
     DonationMapper INSTANCE = Mappers.getMapper(DonationMapper.class);
-
     DonationDTO toDTO(Donation donation);
-
     List<DonationDTO> toDTOList(List<Donation> donations);
-
     Donation toEntity(DonationDTO donationDTO);
 
 }

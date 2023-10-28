@@ -10,11 +10,8 @@ import java.util.List;
 public interface CommentMapper {
 
     CommentMapper INSTANCE = Mappers.getMapper(CommentMapper.class);
-
     CommentDTO toDTO(Comment comment);
-
     List<CommentDTO> toDTOList(List<Comment> comments);
-
     Comment toEntity(CommentDTO commentDTO);
 
 }

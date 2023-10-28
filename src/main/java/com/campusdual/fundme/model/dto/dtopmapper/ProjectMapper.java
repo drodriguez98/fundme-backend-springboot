@@ -10,11 +10,8 @@ import java.util.List;
 public interface ProjectMapper {
 
     ProjectMapper INSTANCE = Mappers.getMapper(ProjectMapper.class);
-
     ProjectDTO toDTO(Project project);
-
     List<ProjectDTO> toDTOList(List<Project> projects);
-
     Project toEntity(ProjectDTO projectDTO);
 
 }

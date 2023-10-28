@@ -10,11 +10,8 @@ import java.util.List;
 public interface CountryMapper {
 
     CountryMapper INSTANCE = Mappers.getMapper(CountryMapper.class);
-
     CountryDTO toDTO(Country country);
-
     List<CountryDTO> toDTOList(List<Country> countries);
-
     Country toEntity(CountryDTO countryDTO);
 
 }
