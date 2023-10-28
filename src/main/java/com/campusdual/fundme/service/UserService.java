@@ -49,6 +49,7 @@ public class UserService implements IUserService {
         if (authenticatedUser == null) { throw new RuntimeException("Usuario autenticado no encontrado."); }
 
         return UserMapper.INSTANCE.toDTO(authenticatedUser);
+
     }
 
     @Override
