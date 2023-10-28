@@ -12,6 +12,8 @@ public interface IUserService {
     int updateUser (UserDTO userDTO);
     int deleteUser (UserDTO userDTO);
 
+    UserDTO getUserById(int userId);
+
     UserDTO getAuthenticatedUser();
 
     void deleteAuthenticatedUser();

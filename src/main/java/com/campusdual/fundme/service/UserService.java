@@ -37,6 +37,15 @@ public class UserService implements IUserService {
     }
 
     @Override
+    public UserDTO getUserById(int userId) {
+
+        User user = userRepository.getReferenceById(userId);
+
+        return UserMapper.INSTANCE.toDTO(user);
+
+    }
+
+    @Override
     public UserDTO getAuthenticatedUser() {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -49,7 +58,6 @@ public class UserService implements IUserService {
         if (authenticatedUser == null) { throw new RuntimeException("Usuario autenticado no encontrado."); }
 
         return UserMapper.INSTANCE.toDTO(authenticatedUser);
-
     }
 
     @Override
@@ -75,16 +83,25 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public int updateUser (UserDTO userDTO) { return this.insertUser(userDTO); }
+    public int updateUser (UserDTO userDTO) {
+
+        User user = UserMapper.INSTANCE.toEntity(userDTO);
+
+        this.userRepository.saveAndFlush(user);
+
+        return user.getUserId();
+
+    }
 
     @Override
     public int deleteUser (UserDTO userDTO) {
 
-        int id = userDTO.getUserId();
+        int userId = userDTO.getUserId();
         User user = UserMapper.INSTANCE.toEntity(userDTO);
+
         this.userRepository.delete(user);
 
-        return id;
+        return userId;
 
     }
 
