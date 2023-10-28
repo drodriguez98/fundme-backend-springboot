@@ -47,7 +47,7 @@
         .content {
             flex: 1;
             padding: 20px;
-            margin: 3% 27%;
+            margin: 1.5% 27%;
         }
 
         #user-profile {
@@ -170,25 +170,29 @@
             <div th:if="${authenticatedUser != null}">
                 <div class="user-details">
                     <div class="user-info">
-                        <div class="info-label">Name:</div>
+                        <div class="info-label">Name</div>
                         <div class="info-value" th:text="${authenticatedUser.name}"></div>
                     </div>
                     <div class="user-info">
-                        <div class="info-label">Country:</div>
+                        <div class="info-label">Username</div>
+                        <div class="info-value" th:text="${authenticatedUser.username}"></div>
+                    </div>
+                    <div class="user-info">
+                        <div class="info-label">Country</div>
                         <div class="info-value" th:text="${authenticatedUser.countryId.name}"></div>
                     </div>
                     <div class="user-info">
-                        <div class="info-label">Email:</div>
+                        <div class="info-label">Email</div>
                         <div class="info-value" th:text="${authenticatedUser.email}"></div>
                     </div>
                     <div class="user-info">
-                        <div class="info-label">Phone:</div>
+                        <div class="info-label">Phone</div>
                         <div class="info-value" th:text="${authenticatedUser.phone}"></div>
                     </div>
                 </div>
             </div>
             <div class="user-actions">
-                <a class="edit-link" th:href="@{'/fundme/controller/web/editProfile/'}">Edit Profile</a>
+                <a class="edit-link" th:href="@{'/fundme/controller/web/editProfile/' + ${authenticatedUser.userId}}">Edit Profile</a>
                 <a class="delete-link" th:href="@{'/fundme/controller/web/confirmDeleteAccount/'}">Delete Account</a>
             </div>
         </div>

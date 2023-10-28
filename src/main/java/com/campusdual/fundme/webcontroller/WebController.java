@@ -260,14 +260,14 @@ public class WebController {
         existingProjectDTO.setDescription(editedProjectDTO.getDescription());
 
         projectService.updateProject(existingProjectDTO);
+
         return "redirect:/fundme/controller/web/myProjects";
 
     }
 
-    /*
 
-    @GetMapping("/editProfile")
-    public String showEditProfileForm(Model model) {
+    @GetMapping("/editProfile/{userId}")
+    public String showEditProfileForm(@PathVariable("userId") int userId, Model model) {
 
         List<CountryDTO> countries = countryService.getAllCountries();
         model.addAttribute("countries", countries);
@@ -276,31 +276,23 @@ public class WebController {
         model.addAttribute("userDetails", userDTO);
 
         return "edit-profile";
-
     }
 
-    @PostMapping("/editProfile")
-    public String editProfile(@ModelAttribute("userDetails") UserDTO editedUserDTO) {
+    @PostMapping("/editProfile/{userId}")
+    public String editProfile(@PathVariable("userId") int userId, @ModelAttribute("userDetails") UserDTO editedUserDTO) {
 
-        UserDTO existingUserDTO = userService.getAuthenticatedUser();
+        UserDTO existingUserDTO = userService.getUserById(userId);
 
         existingUserDTO.setName(editedUserDTO.getName());
-        existingUserDTO.setUsername(editedUserDTO.getUsername());
         existingUserDTO.setCountryId(editedUserDTO.getCountryId());
         existingUserDTO.setEmail(editedUserDTO.getEmail());
         existingUserDTO.setPhone(editedUserDTO.getPhone());
-
-        if (editedUserDTO.getPassword() != null) {
-            existingUserDTO.setPassword(editedUserDTO.getPassword());
-        }
 
         userService.updateUser(existingUserDTO);
 
         return "redirect:/fundme/controller/web/userProfile";
 
     }
-
-     */
 
     @GetMapping(value = "/donations")
     public String donations(Model model) {
