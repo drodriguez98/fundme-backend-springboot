@@ -1,5 +1,6 @@
 package com.campusdual.fundme.webcontroller;
 
+import com.campusdual.fundme.api.INotificationService;
 import com.campusdual.fundme.model.Comment;
 import com.campusdual.fundme.model.Donation;
 import com.campusdual.fundme.model.Project;
@@ -54,6 +55,9 @@ public class WebController {
 
     @Autowired
     private IDonationService donationService;
+
+    @Autowired
+    private INotificationService notificationService;
 
     @Autowired
     private UserRepository userRepository;
@@ -142,19 +146,26 @@ public class WebController {
         UserDTO authenticatedUser = userService.getUser(new UserDTO());
 
         Project project = ProjectMapper.INSTANCE.toEntity(projectDTO);
-        User user = UserMapper.INSTANCE.toEntity(authenticatedUser);
+        User donor = UserMapper.INSTANCE.toEntity(authenticatedUser);
+
+        int recipientId = project.getUserId().getUserId();
+        User recipient = userRepository.getReferenceById(recipientId);
 
         Donation donation = new Donation();
 
-        donation.setUserId(user);
+        donation.setUserId(donor);
         donation.setProjectId(project);
         donation.setAmount(amount);
         donation.setDateAdded(new Date());
 
         donationService.insertDonation(DonationMapper.INSTANCE.toDTO(donation));
 
+        notificationService.createDonationNotification(recipient, donor, project);
+
         project.setTotalAmount(project.getTotalAmount() + amount);
+
         projectService.updateProject(ProjectMapper.INSTANCE.toDTO(project));
+
 
         return "redirect:/fundme/controller/web/donations";
 
@@ -181,13 +192,18 @@ public class WebController {
         Project project = ProjectMapper.INSTANCE.toEntity(projectDTO);
 
         UserDTO authenticatedUser = userService.getUser(new UserDTO());
-        User user = UserMapper.INSTANCE.toEntity(authenticatedUser);
+        User commenter = UserMapper.INSTANCE.toEntity(authenticatedUser);
 
-        comment.setUserId(user);
+        int recipientId = project.getUserId().getUserId();
+        User recipient = userRepository.getReferenceById(recipientId);
+
+        comment.setUserId(commenter);
         comment.setProjectId(project);
         comment.setDateAdded(new Date());
 
         commentService.insertComment(CommentMapper.INSTANCE.toDTO(comment));
+
+        notificationService.createCommentNotification(recipient, commenter, project);
 
         return "redirect:/fundme/controller/web/viewProject/{projectId}";
 
@@ -287,20 +303,28 @@ public class WebController {
 
     @GetMapping(value = "/userProfile")
     public String userProfile(Model model) {
+        UserDTO authenticatedUser = userService.getAuthenticatedUser();
 
-        UserDTO authenticatedUser = userService.getUser(new UserDTO());
+        int donationsCount = donationService.getDonationCountByUser(authenticatedUser.getUserId());
 
-        int totalDonations = donationService.getTotalDonationsByUser(authenticatedUser.getUserId());
+        if (donationsCount > 0) {
+
+            int totalDonations = donationService.getTotalDonationsByUser(authenticatedUser.getUserId());
+            authenticatedUser.setTotalDonations(totalDonations);
+
+        } else { authenticatedUser.setTotalDonations(0); }
+
         int projectCount = projectService.getProjectCountByUser(authenticatedUser.getUserId());
 
-        authenticatedUser.setTotalDonations(totalDonations);
         authenticatedUser.setProjectCount(projectCount);
+        authenticatedUser.setDonationCount(donationsCount);
 
         model.addAttribute("authenticatedUser", authenticatedUser);
 
         return "user-profile";
 
     }
+
 
     @GetMapping("/editProfile/{userId}")
     public String showEditProfileForm(@PathVariable("userId") int userId, Model model) {
@@ -378,9 +402,25 @@ public class WebController {
     }
 
     @GetMapping("/notifications")
-    public String notifications() {
+    public String notifications(Model model) {
+
+        UserDTO authenticatedUser = userService.getUser(new UserDTO());
+        model.addAttribute("authenticatedUser", authenticatedUser);
+
+        List<NotificationDTO> unreadNotifications = notificationService.getUnreadNotificationsByUser(authenticatedUser);
+        model.addAttribute("unreadNotifications", unreadNotifications);
+
         return "notifications";
     }
+
+    @PostMapping("/markNotificationAsRead/{notificationId}")
+    public String markNotificationAsRead(@RequestParam("notificationId") int notificationId) {
+
+        notificationService.markNotificationAsRead(notificationId);
+
+        return "redirect:/fundme/controller/web/notifications";
+    }
+
 
     @GetMapping("/admin")
     @ResponseBody
