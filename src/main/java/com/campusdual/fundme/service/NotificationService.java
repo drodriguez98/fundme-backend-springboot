@@ -106,6 +106,17 @@ public class NotificationService implements INotificationService {
 
     }
 
+    @Override
+    public List<NotificationDTO> getReadNotificationsByUser(UserDTO userDTO) {
+
+        User user = UserMapper.INSTANCE.toEntity(userDTO);
+
+        List<Notification> readNotifications = notificationRepository.findByRecipientAndRead(user, true);
+
+        return NotificationMapper.INSTANCE.toDTOList(readNotifications);
+
+    }
+
     public void markNotificationAsRead(int notificationId) {
 
         NotificationDTO notificationDTO = getNotificationById(notificationId);

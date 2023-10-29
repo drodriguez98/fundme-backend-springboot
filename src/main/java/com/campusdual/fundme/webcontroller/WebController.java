@@ -410,7 +410,11 @@ public class WebController {
         List<NotificationDTO> unreadNotifications = notificationService.getUnreadNotificationsByUser(authenticatedUser);
         model.addAttribute("unreadNotifications", unreadNotifications);
 
+        List<NotificationDTO> readNotifications = notificationService.getReadNotificationsByUser(authenticatedUser);
+        model.addAttribute("readNotifications", readNotifications);
+
         return "notifications";
+
     }
 
     @PostMapping("/markNotificationAsRead/{notificationId}")
@@ -419,8 +423,8 @@ public class WebController {
         notificationService.markNotificationAsRead(notificationId);
 
         return "redirect:/fundme/controller/web/notifications";
-    }
 
+    }
 
     @GetMapping("/admin")
     @ResponseBody

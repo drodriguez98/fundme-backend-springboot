@@ -24,6 +24,8 @@ public interface INotificationService {
     void createDonationNotification(User recipient, User donor, Project project);
 
     List<NotificationDTO> getUnreadNotificationsByUser(UserDTO user);
+    List<NotificationDTO> getReadNotificationsByUser(UserDTO authenticatedUser);
 
     void markNotificationAsRead(int notificationId);
+
 }

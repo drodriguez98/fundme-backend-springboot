@@ -2,145 +2,174 @@
 
 <html xmlns:th="http://www.w3.org/1999/xhtml" lang="es">
 
-    <head>
+<head>
 
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>Notifications</title>
+    <title>Notifications</title>
 
-        <style>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
 
-            body {
-                font-family: Arial, sans-serif;
-                background-color: #f0f0f0;
-                margin: 0;
-                padding: 0;
-            }
+        .container { display: flex; }
 
-            .container { display: flex; }
+        .sidebar {
+            background-color: #333;
+            color: #fff;
+            width: 250px;
+            padding: 20px;
+            min-height: 100vh;
+        }
 
-            .sidebar {
-                background-color: #333;
-                color: #fff;
-                width: 250px;
-                padding: 20px;
-                min-height: 100vh;
-            }
+        .sidebar h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
 
-            .sidebar h1 {
-                font-size: 24px;
-                margin-bottom: 20px;
-            }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
 
-            .sidebar ul {
-                list-style: none;
-                padding: 0;
-            }
+        .sidebar li { margin-bottom: 10%; }
 
-            .sidebar li { margin-bottom: 10%; }
+        .sidebar a {
+            text-decoration: none;
+            color: #fff;
+            display: block;
+        }
 
-            .sidebar a {
-                text-decoration: none;
-                color: #fff;
-                display: block;
-            }
+        .content {
+            flex: 1;
+            padding: 20px;
+        }
 
-            .content {
-                flex: 1;
-                padding: 20px;
-            }
 
-            .section#notifications {
-                background-color: #fff; /* Fondo blanco */
-                border: 1px solid #ccc; /* Borde gris claro */
-                border-radius: 5px; /* Esquinas redondeadas */
-                padding: 20px; /* Espaciado interno */
-            }
+        .section#unreadNotifications h3, .section#readNotifications h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            text-align: center;
+            margin-bottom: 2.5%;
+        }
 
-            .section#notifications h3 {
-                font-size: 24px; /* Tamaño de fuente más grande para el título */
-                margin-bottom: 10px; /* Espacio entre el título y la tabla */
-            }
+         .section#unreadNotifications {
+            background-color: #f8f8f8;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            border-left: 6px solid #b32203;
+            margin-bottom: 2%;
+        }
 
-            table {
-                width: 100%;
-                border-collapse: collapse;
-            }
+        .section#readNotifications {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 2%;
+        }
 
-            table th, table td {
-                padding: 8px;
-                text-align: left;
-            }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-left: 2%;
+        }
 
-            button {
-                background-color: #333;
-                color: #fff;
-                border: none;
-                padding: 5px 10px;
-                border-radius: 5px;
-                cursor: pointer;
-            }
+        table th, table td {
+            padding: 8px;
+            text-align: left;
+        }
 
-            button:hover { background-color: #555; }
+        button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
 
-        </style>
+        button:hover { background-color: #555; }
 
-    </head>
+    </style>
 
-    <body>
+</head>
 
-        <div class="container">
+<body>
 
-            <div class="sidebar">
+<div class="container">
 
-                <h1>FUNDMEPLS</h1>
+    <div class="sidebar">
 
-                <ul>
+        <h1>FUNDMEPLS</h1>
 
-                    <li><a th:href="@{/fundme/controller/web/dashboard}">#</a></li>
-                    <li><a th:href="@{/fundme/controller/web/projects}">Projects</a></li>
-                    <li><a th:href="@{/fundme/controller/web/donations}">Donations</a></li>
-                    <li><a th:href="@{/fundme/controller/web/userProfile}">User profile</a></li>
-                    <li><a th:href="@{/fundme/controller/web/notifications}">Notifications</a></li>
-                    <li><a th:href="@{/fundme/controller/web/logout}">Logout</a></li>
+        <ul>
 
-                </ul>
+            <li><a th:href="@{/fundme/controller/web/dashboard}">#</a></li>
+            <li><a th:href="@{/fundme/controller/web/projects}">Projects</a></li>
+            <li><a th:href="@{/fundme/controller/web/donations}">Donations</a></li>
+            <li><a th:href="@{/fundme/controller/web/userProfile}">User profile</a></li>
+            <li><a th:href="@{/fundme/controller/web/notifications}">Notifications</a></li>
+            <li><a th:href="@{/fundme/controller/web/logout}">Logout</a></li>
 
-            </div>
+        </ul>
 
-            <div class="content">
+    </div>
 
-                <div class="section" id="notifications">
+    <div class="content">
 
-                    <h3>Notifications</h3>
+        <div class="section" id="unreadNotifications">
 
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>Notification</th>
-                            <th>Mark as read</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="notification : ${unreadNotifications}">
-                            <td th:text="${notification.message}"></td>
-                            <td>
-                                <form th:action="@{'/fundme/controller/web/markNotificationAsRead/' + ${notification.notificationId}}" method="post">
-                                    <input type="hidden" th:name="notificationId" th:value="${notification.notificationId}">
-                                    <button type="submit">Mark as read</button>
-                                </form>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+            <h3>Unread notifications</h3>
 
-                </div>
-
-            </div>
+            <table>
+                <thead>
+                <tr>
+                    <th>Notification</th>
+                    <th>Mark as read</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="notification : ${unreadNotifications}">
+                    <td th:text="${notification.message}"></td>
+                    <td>
+                        <form th:action="@{'/fundme/controller/web/markNotificationAsRead/' + ${notification.notificationId}}" method="post">
+                            <input type="hidden" th:name="notificationId" th:value="${notification.notificationId}">
+                            <button type="submit">Mark as read</button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
 
         </div>
 
-    </body>
+        <div class="section" id="readNotifications">
+            <h3>Read Notifications</h3>
+            <table>
+                <thead>
+                <tr>
+                    <th>Notification</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="notification : ${readNotifications}">
+                    <td th:text="${notification.message}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
 
 </html>
