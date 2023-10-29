@@ -189,6 +189,14 @@
                         <div class="info-label">Phone</div>
                         <div class="info-value" th:text="${authenticatedUser.phone}"></div>
                     </div>
+                    <div class="user-info">
+                        <div class="info-label">Total donated</div>
+                        <div class="info-value" th:text="${authenticatedUser.totalDonations}"></div>
+                    </div>
+                    <div class="user-info">
+                        <div class="info-label">Projects published</div>
+                        <div class="info-value" th:text="${authenticatedUser.projectCount}"></div>
+                    </div>
                 </div>
             </div>
             <div class="user-actions">

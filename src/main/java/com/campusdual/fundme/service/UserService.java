@@ -1,6 +1,7 @@
 package com.campusdual.fundme.service;
 
 import com.campusdual.fundme.api.IUserService;
+import com.campusdual.fundme.model.repository.ProjectRepository;
 import com.campusdual.fundme.model.repository.UserRepository;
 import com.campusdual.fundme.model.dto.UserDTO;
 import com.campusdual.fundme.model.User;
@@ -21,6 +22,9 @@ public class UserService implements IUserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private ProjectRepository projectRepository;
 
     @Autowired
     private PasswordEncoderUtil passwordEncoderUtil;
@@ -112,5 +116,10 @@ public class UserService implements IUserService {
         userRepository.delete(UserMapper.INSTANCE.toEntity(authenticatedUser));
 
     }
+
+    public Integer getTotalDonationsByUser(User user) { return userRepository.getTotalDonationsByUser(user); }
+
+    public Integer getProjectCountByUser(User user) { return projectRepository.getProjectCountByUser(user); }
+
 
 }

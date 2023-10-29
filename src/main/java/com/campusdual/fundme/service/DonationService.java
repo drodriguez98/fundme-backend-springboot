@@ -99,4 +99,14 @@ public class DonationService implements IDonationService {
         return donationRepository.findByProjectIdOrderByDateAddedDesc(project);
 
     }
+
+    @Override
+    public int getTotalDonationsByUser(int userId) {
+
+        User user = userRepository.getReferenceById(userId);
+
+        return userRepository.getTotalDonationsByUser(user);
+
+    }
+
 }

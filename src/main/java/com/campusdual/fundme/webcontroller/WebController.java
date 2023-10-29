@@ -289,6 +289,13 @@ public class WebController {
     public String userProfile(Model model) {
 
         UserDTO authenticatedUser = userService.getUser(new UserDTO());
+
+        int totalDonations = donationService.getTotalDonationsByUser(authenticatedUser.getUserId());
+        int projectCount = projectService.getProjectCountByUser(authenticatedUser.getUserId());
+
+        authenticatedUser.setTotalDonations(totalDonations);
+        authenticatedUser.setProjectCount(projectCount);
+
         model.addAttribute("authenticatedUser", authenticatedUser);
 
         return "user-profile";

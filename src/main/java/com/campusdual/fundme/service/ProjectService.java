@@ -94,6 +94,13 @@ public class ProjectService implements IProjectService {
 
     }
 
+    @Override
+    public int getProjectCountByUser(int userId) {
+
+        User user = userRepository.getReferenceById(userId);
+
+        return projectRepository.getProjectCountByUser(user); }
+
     public List<Project> getLastProjects() { return projectRepository.findTop5ByOrderByDateAddedDesc(); }
 
 }

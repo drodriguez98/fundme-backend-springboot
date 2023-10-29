@@ -22,4 +22,7 @@ public interface IDonationService {
     List<Donation> getLastDonations();
 
     List<Donation> getDonationsByProjectId(ProjectDTO projectDTO);
+
+    int getTotalDonationsByUser(int userId);
+
 }

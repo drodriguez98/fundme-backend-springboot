@@ -16,6 +16,8 @@ public class UserDTO {
     private boolean active;
     private boolean admin;
     private String username;
+    private int totalDonations;
+    private int projectCount;
 
     public int getUserId() { return userId; }
     public void setUserId(int userId) { this.userId = userId; }
@@ -39,5 +41,10 @@ public class UserDTO {
     public void setAdmin(boolean admin) { this.admin = admin; }
     public String getUsername() { return username; }
     public void setUsername(String username) { this.username = username; }
+
+    public int getTotalDonations() { return totalDonations; }
+    public void setTotalDonations(int totalDonations) { this.totalDonations = totalDonations; }
+    public int getProjectCount() { return projectCount; }
+    public void setProjectCount(int projectCount) { this.projectCount = projectCount; }
 
 }
