@@ -96,22 +96,22 @@ public class NotificationService implements INotificationService {
     }
 
     @Override
-    public List<NotificationDTO> getUnreadNotificationsByUser(UserDTO userDTO) {
+    public List<NotificationDTO> getUnreadNotificationsByUserOrderByCreatedDateDesc(UserDTO userDTO) {
 
         User user = UserMapper.INSTANCE.toEntity(userDTO);
 
-        List<Notification> unreadNotifications = notificationRepository.findByRecipientAndRead(user, false);
+        List<Notification> unreadNotifications = notificationRepository.findByRecipientAndReadOrderByCreatedDateDesc(user, false);
 
         return NotificationMapper.INSTANCE.toDTOList(unreadNotifications);
 
     }
 
     @Override
-    public List<NotificationDTO> getReadNotificationsByUser(UserDTO userDTO) {
+    public List<NotificationDTO> getReadNotificationsByUserOrderByCreatedDateDesc(UserDTO userDTO) {
 
         User user = UserMapper.INSTANCE.toEntity(userDTO);
 
-        List<Notification> readNotifications = notificationRepository.findByRecipientAndRead(user, true);
+        List<Notification> readNotifications = notificationRepository.findByRecipientAndReadOrderByCreatedDateDesc(user, true);
 
         return NotificationMapper.INSTANCE.toDTOList(readNotifications);
 

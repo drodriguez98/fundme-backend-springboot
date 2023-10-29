@@ -407,10 +407,10 @@ public class WebController {
         UserDTO authenticatedUser = userService.getUser(new UserDTO());
         model.addAttribute("authenticatedUser", authenticatedUser);
 
-        List<NotificationDTO> unreadNotifications = notificationService.getUnreadNotificationsByUser(authenticatedUser);
+        List<NotificationDTO> unreadNotifications = notificationService.getUnreadNotificationsByUserOrderByCreatedDateDesc(authenticatedUser);
         model.addAttribute("unreadNotifications", unreadNotifications);
 
-        List<NotificationDTO> readNotifications = notificationService.getReadNotificationsByUser(authenticatedUser);
+        List<NotificationDTO> readNotifications = notificationService.getReadNotificationsByUserOrderByCreatedDateDesc(authenticatedUser);
         model.addAttribute("readNotifications", readNotifications);
 
         return "notifications";

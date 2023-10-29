@@ -50,21 +50,26 @@
             padding: 20px;
         }
 
-
         .section#unreadNotifications h3, .section#readNotifications h3 {
             font-size: 24px;
             margin-bottom: 10px;
             text-align: center;
-            margin-bottom: 2.5%;
+            margin-bottom: 3%;
         }
 
-         .section#unreadNotifications {
+        .section#unreadNotifications {
             background-color: #f8f8f8;
             border: 1px solid #ccc;
             border-radius: 5px;
             padding: 20px;
             border-left: 6px solid #b32203;
-            margin-bottom: 2%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 2% auto;
+            max-width: 80%;
         }
 
         .section#readNotifications {
@@ -72,13 +77,18 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             padding: 20px;
-            margin-bottom: 2%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 2% auto;
+            max-width: 80%;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-left: 2%;
         }
 
         table th, table td {
@@ -96,7 +106,6 @@
         }
 
         button:hover { background-color: #555; }
-
     </style>
 
 </head>
@@ -131,8 +140,8 @@
             <table>
                 <thead>
                 <tr>
-                    <th>Notification</th>
-                    <th>Mark as read</th>
+                    <th></th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -151,11 +160,11 @@
         </div>
 
         <div class="section" id="readNotifications">
-            <h3>Read Notifications</h3>
+            <h3>Read notifications</h3>
             <table>
                 <thead>
                 <tr>
-                    <th>Notification</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
