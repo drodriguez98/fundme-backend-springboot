@@ -11,7 +11,6 @@
 
         <style>
 
-            /* Estilos generales */
             body {
                 font-family: Arial, sans-serif;
                 background-color: #f0f0f0;
@@ -19,16 +18,14 @@
                 padding: 0;
             }
 
-            .container {
-                display: flex;
-            }
+            .container { display: flex; }
 
             .sidebar {
                 background-color: #333;
                 color: #fff;
                 width: 250px;
                 padding: 20px;
-                min-height: 100vh; /* Asegura que la barra lateral ocupe toda la altura de la ventana */
+                min-height: 100vh;
             }
 
             .sidebar h1 {
@@ -41,9 +38,7 @@
                 padding: 0;
             }
 
-            .sidebar li {
-                margin-bottom: 10%;
-            }
+            .sidebar li { margin-bottom: 10%; }
 
             .sidebar a {
                 text-decoration: none;
@@ -56,17 +51,16 @@
                 padding: 20px;
             }
 
-            /* Estilos específicos para Dashboard */
-            #top-donations, #top-projects {
-                background-color: #fff;
-                padding: 20px;
-                margin-bottom: 20px;
-                border-radius: 5px;
+            .section#notifications {
+                background-color: #fff; /* Fondo blanco */
+                border: 1px solid #ccc; /* Borde gris claro */
+                border-radius: 5px; /* Esquinas redondeadas */
+                padding: 20px; /* Espaciado interno */
             }
 
-            #top-donations h3, #top-projects h3 {
-                font-size: 20px;
-                margin-bottom: 10px;
+            .section#notifications h3 {
+                font-size: 24px; /* Tamaño de fuente más grande para el título */
+                margin-bottom: 10px; /* Espacio entre el título y la tabla */
             }
 
             table {
@@ -79,84 +73,16 @@
                 text-align: left;
             }
 
-            /* Estilos específicos para Projects */
-            .project {
-                background-color: #fff;
-                padding: 20px;
-                margin-bottom: 20px;
-                border-radius: 5px;
-            }
-
-            .project h3 {
-                font-size: 18px;
-                margin-bottom: 10px;
-            }
-
-            .details-link {
-                display: inline-block;
+            button {
                 background-color: #333;
                 color: #fff;
+                border: none;
                 padding: 5px 10px;
-                text-decoration: none;
                 border-radius: 5px;
-                margin-top: 10px;
+                cursor: pointer;
             }
 
-            /* Estilos específicos para Donations */
-            #top-donations {
-                background-color: #fff;
-                padding: 20px;
-                margin-bottom: 20px;
-                border-radius: 5px;
-            }
-
-            /* Estilos específicos para View project */
-            #view-project {
-                background-color: #fff;
-                padding: 20px;
-                border-radius: 5px;
-            }
-
-            #view-project .project {
-                margin-bottom: 20px;
-            }
-
-            #view-project h3 {
-                font-size: 24px;
-                margin-bottom: 10px;
-            }
-
-            .donate-link, .comment-link {
-                display: inline-block;
-                background-color: #333;
-                color: #fff;
-                padding: 5px 10px;
-                text-decoration: none;
-                border-radius: 5px;
-                margin-top: 10px;
-            }
-
-            /* Estilos específicos para User profile */
-            #user-profile {
-                background-color: #fff;
-                padding: 20px;
-                border-radius: 5px;
-            }
-
-            .user p {
-                font-size: 18px;
-                margin-bottom: 10px;
-            }
-
-            .edit-link {
-                display: inline-block;
-                background-color: #333;
-                color: #fff;
-                padding: 5px 10px;
-                text-decoration: none;
-                border-radius: 5px;
-                margin-top: 10px;
-            }
+            button:hover { background-color: #555; }
 
         </style>
 
@@ -188,6 +114,26 @@
                 <div class="section" id="notifications">
 
                     <h3>Notifications</h3>
+
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Notification</th>
+                            <th>Mark as read</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="notification : ${unreadNotifications}">
+                            <td th:text="${notification.message}"></td>
+                            <td>
+                                <form th:action="@{'/fundme/controller/web/markNotificationAsRead/' + ${notification.notificationId}}" method="post">
+                                    <input type="hidden" th:name="notificationId" th:value="${notification.notificationId}">
+                                    <button type="submit">Mark as read</button>
+                                </form>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
 
                 </div>
 
