@@ -18,6 +18,7 @@ public class UserDTO {
     private String username;
     private int totalDonations;
     private int projectCount;
+    private int donationCount;
 
     public int getUserId() { return userId; }
     public void setUserId(int userId) { this.userId = userId; }
@@ -46,5 +47,7 @@ public class UserDTO {
     public void setTotalDonations(int totalDonations) { this.totalDonations = totalDonations; }
     public int getProjectCount() { return projectCount; }
     public void setProjectCount(int projectCount) { this.projectCount = projectCount; }
+    public int getDonationCount() { return donationCount; }
+    public void setDonationCount(int donationCount) { this.donationCount = donationCount; }
 
 }

@@ -101,6 +101,4 @@ public class ProjectService implements IProjectService {
 
         return projectRepository.getProjectCountByUser(user); }
 
-    public List<Project> getLastProjects() { return projectRepository.findTop5ByOrderByDateAddedDesc(); }
-
 }

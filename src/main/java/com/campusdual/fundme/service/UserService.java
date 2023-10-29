@@ -117,9 +117,4 @@ public class UserService implements IUserService {
 
     }
 
-    public Integer getTotalDonationsByUser(User user) { return userRepository.getTotalDonationsByUser(user); }
-
-    public Integer getProjectCountByUser(User user) { return projectRepository.getProjectCountByUser(user); }
-
-
 }

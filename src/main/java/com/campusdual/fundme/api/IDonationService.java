@@ -25,4 +25,6 @@ public interface IDonationService {
 
     int getTotalDonationsByUser(int userId);
 
+    int getDonationCountByUser(int userId);
+
 }

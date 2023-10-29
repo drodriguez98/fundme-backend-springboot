@@ -19,4 +19,5 @@ public interface IProjectService {
     List<Project> getProjectsByAuthenticatedUserOrderByDateAddedDesc();
 
     int getProjectCountByUser(int userId);
+
 }

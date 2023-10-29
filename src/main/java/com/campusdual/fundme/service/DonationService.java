@@ -105,8 +105,16 @@ public class DonationService implements IDonationService {
 
         User user = userRepository.getReferenceById(userId);
 
-        return userRepository.getTotalDonationsByUser(user);
+        return donationRepository.getTotalDonationsByUser(user);
 
+    }
+
+    @Override
+    public int getDonationCountByUser(int userId) {
+
+        User user = userRepository.getReferenceById(userId);
+
+        return donationRepository.getDonationCountByUser(user);
     }
 
 }

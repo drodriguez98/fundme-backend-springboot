@@ -9,7 +9,4 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     User findByUsername(String username);
 
-    @Query("SELECT SUM(d.amount) FROM Donation d WHERE d.userId = :userId")
-    Integer getTotalDonationsByUser(@Param("userId") User user);
-
 }
