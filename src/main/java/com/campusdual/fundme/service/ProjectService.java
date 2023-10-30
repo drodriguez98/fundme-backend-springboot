@@ -99,6 +99,8 @@ public class ProjectService implements IProjectService {
 
         User user = userRepository.getReferenceById(userId);
 
-        return projectRepository.getProjectCountByUser(user); }
+        return projectRepository.getProjectCountByUser(user);
+
+    }
 
 }
