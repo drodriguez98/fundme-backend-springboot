@@ -229,12 +229,14 @@ public class WebController {
     @GetMapping("/search")
     @ResponseBody
     public ResponseEntity<List<SearchResultDTO>> search(@RequestParam String query) {
+
         List<Project> projectResults = projectRepository.findProjectsByTitleContaining(query);
         List<User> userResults = userRepository.findUsersByUsernameContaining(query);
 
         List<SearchResultDTO> searchResults = new ArrayList<>();
 
         for (Project project : projectResults) {
+
             SearchResultDTO result = new SearchResultDTO();
             result.setType("Project");
             result.setEntity(project);
@@ -242,6 +244,7 @@ public class WebController {
         }
 
         for (User user : userResults) {
+
             SearchResultDTO result = new SearchResultDTO();
             result.setType("User");
             result.setEntity(user);
