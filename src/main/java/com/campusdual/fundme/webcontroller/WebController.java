@@ -332,7 +332,7 @@ public class WebController {
     }
 
     @GetMapping(value = "/userProfile")
-    public String userProfile(Model model) {
+    public String myProfile(Model model) {
         UserDTO authenticatedUser = userService.getAuthenticatedUser();
 
         int donationsCount = donationService.getDonationCountByUser(authenticatedUser.getUserId());
@@ -350,6 +350,33 @@ public class WebController {
         authenticatedUser.setDonationCount(donationsCount);
 
         model.addAttribute("authenticatedUser", authenticatedUser);
+
+        return "my-profile";
+
+    }
+
+    @GetMapping(value = "/userProfile/{userId}")
+    public String userProfile(@PathVariable int userId, Model model) {
+
+        User user = userRepository.getReferenceById(userId);
+
+        UserDTO userDTO = UserMapper.INSTANCE.toDTO(user);
+
+        int donationsCount = donationService.getDonationCountByUser(userDTO.getUserId());
+
+        if (donationsCount > 0) {
+
+            int totalDonations = donationService.getTotalDonationsByUser(userDTO.getUserId());
+            userDTO.setTotalDonations(totalDonations);
+
+        } else { userDTO.setTotalDonations(0); }
+
+        int projectCount = projectService.getProjectCountByUser(userDTO.getUserId());
+
+        userDTO.setProjectCount(projectCount);
+        userDTO.setDonationCount(donationsCount);
+
+        model.addAttribute("user", userDTO);
 
         return "user-profile";
 

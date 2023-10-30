@@ -167,36 +167,48 @@
     <div class="content">
         <div class="section" id="user-profile">
             <h3 class="profile-title">User Profile</h3>
-            <div th:if="${user != null}">
+            <div th:if="${authenticatedUser != null}">
                 <div class="user-details">
                     <div class="user-info">
                         <div class="info-label">Name</div>
-                        <div class="info-value" th:text="${user.name}"></div>
+                        <div class="info-value" th:text="${authenticatedUser.name}"></div>
                     </div>
                     <div class="user-info">
                         <div class="info-label">Username</div>
-                        <div class="info-value" th:text="${user.username}"></div>
+                        <div class="info-value" th:text="${authenticatedUser.username}"></div>
                     </div>
                     <div class="user-info">
                         <div class="info-label">Country</div>
-                        <div class="info-value" th:text="${user.countryId.name}"></div>
+                        <div class="info-value" th:text="${authenticatedUser.countryId.name}"></div>
+                    </div>
+                    <div class="user-info">
+                        <div class="info-label">Email</div>
+                        <div class="info-value" th:text="${authenticatedUser.email}"></div>
+                    </div>
+                    <div class="user-info">
+                        <div class="info-label">Phone</div>
+                        <div class="info-value" th:text="${authenticatedUser.phone}"></div>
                     </div>
                     <div class="user-info">
                         <div class="info-label">Total donated</div>
                         <div class="info-value">
-                            <span th:if="${user.totalDonations != null}" th:text="${user.totalDonations}"></span>
-                            <span th:if="${user.totalDonations == null}">0</span>
+                            <span th:if="${authenticatedUser.totalDonations != null}" th:text="${authenticatedUser.totalDonations}"></span>
+                            <span th:if="${authenticatedUser.totalDonations == null}">0</span>
                         </div>
                     </div>
                     <div class="user-info">
                         <div class="info-label">Projects published</div>
                         <div class="info-value">
-                            <span th:if="${user.projectCount != null}" th:text="${user.projectCount}"></span>
-                            <span th:if="${user.projectCount == null}">0</span>
+                            <span th:if="${authenticatedUser.projectCount != null}" th:text="${authenticatedUser.projectCount}"></span>
+                            <span th:if="${authenticatedUser.projectCount == null}">0</span>
                         </div>
                     </div>
 
                 </div>
+            </div>
+            <div class="user-actions">
+                <a class="edit-link" th:href="@{'/fundme/controller/web/editProfile/' + ${authenticatedUser.userId}}">Edit Profile</a>
+                <a class="delete-link" th:href="@{'/fundme/controller/web/confirmDeleteAccount/'}">Delete Account</a>
             </div>
         </div>
     </div>
