@@ -119,6 +119,54 @@
             margin: 1% auto;
             font-size: 14px;
         }
+
+        .search-section {
+            background-color: #f5f5f5;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .search-input {
+            width: 85%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-right: 7.5%;
+        }
+
+        .search-button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .search-button:hover {
+            background-color: #555;
+        }
+
+        /* Estilos para las sugerencias de autocompletado */
+        .autocomplete-item {
+            padding: 10px;
+            cursor: pointer;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .autocomplete-item:last-child {
+            border-bottom: none;
+        }
+
+        .autocomplete-item:hover {
+            background-color: #e5e5e5;
+        }
+
+
     </style>
 </head>
 <body>
@@ -135,24 +183,13 @@
         </ul>
     </div>
     <div class="content">
-        <!-- Formulario de búsqueda -->
-        <form action="/fundme/controller/web/search" method="get">
-            <input type="text" id="search-input" name="query" placeholder="Buscar..." />
-            <button type="submit">Buscar</button>
-        </form>
-        <!-- Mostrar los resultados de búsqueda en tiempo real -->
-        <div th:if="${searchResults}">
-            <h2>Resultados de búsqueda para: <span th:text="${query}"></span></h2>
-            <ul id="search-results-list">
-                <li th:each="result : ${searchResults}">
-                    <div th:if="${result.type == 'Project'}">
-                        <p th:text="${result.entity.title}"></p>
-                    </div>
-                    <div th:if="${result.type == 'User'}">
-                        <p th:text="${result.entity.username}"></p>
-                    </div>
-                </li>
-            </ul>
+        <div class="search-section">
+            <!-- Formulario de búsqueda -->
+            <form action="/fundme/controller/web/search" method="get">
+                <input class="search-input" type="text" id="search-input" name="query" placeholder="Buscar..." />
+                <button class="search-button" type="submit">Buscar</button>
+                <div id="autocomplete-results"></div> <!-- Div para mostrar las sugerencias -->
+            </form>
         </div>
         <div class="section" id="top-donations">
             <h3>Top Donations</h3>
@@ -205,29 +242,36 @@
             // Obtén el valor actual del campo de búsqueda
             var query = $(this).val();
 
-            // Realiza una solicitud AJAX al controlador de búsqueda
-            $.get("/fundme/controller/web/search", { query: query }, function(data) {
-                displayResults(data);
-            });
+            // Comprueba si la longitud de la cadena de búsqueda es suficiente para realizar una solicitud
+            if (query.length >= 3) {
+                // Realiza una solicitud AJAX al controlador de búsqueda
+                $.get("/fundme/controller/web/search", { query: query }, function(data) {
+                    displayResults(data);
+                });
+            } else {
+                // Si la cadena de búsqueda es demasiado corta, borra las sugerencias
+                $("#autocomplete-results").empty();
+            }
         });
 
         // Función para mostrar los resultados
         function displayResults(results) {
-            var resultsList = $("#search-results-list");
+            var resultsList = $("#autocomplete-results");
             resultsList.empty();
 
             results.forEach(function(result) {
-                var listItem = "<li>";
+                var listItem = "<div class='autocomplete-item'>";
                 if (result.type === "Project") {
                     listItem += "Project: " + result.entity.title;
                 } else if (result.type === "User") {
                     listItem += "User: " + result.entity.username;
                 }
-                listItem += "</li>";
+                listItem += "</div>";
                 resultsList.append(listItem);
             });
         }
     });
+
 </script>
 </body>
 </html>
