@@ -1,10 +1,7 @@
 package com.campusdual.fundme.webcontroller;
 
 import com.campusdual.fundme.api.INotificationService;
-import com.campusdual.fundme.model.Comment;
-import com.campusdual.fundme.model.Donation;
-import com.campusdual.fundme.model.Project;
-import com.campusdual.fundme.model.User;
+import com.campusdual.fundme.model.*;
 
 import com.campusdual.fundme.model.dto.*;
 
@@ -17,14 +14,18 @@ import com.campusdual.fundme.api.IDonationService;
 import com.campusdual.fundme.api.IProjectService;
 import com.campusdual.fundme.api.IUserService;
 
+import com.campusdual.fundme.model.repository.ProjectRepository;
 import com.campusdual.fundme.model.repository.UserRepository;
 import com.campusdual.fundme.service.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -61,6 +62,9 @@ public class WebController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private ProjectRepository projectRepository;
 
     @GetMapping("/login")
     public String showLoginForm() { return "login";  }
@@ -219,6 +223,32 @@ public class WebController {
         model.addAttribute("topDonationsList", topDonationsList);
 
         return "dashboard";
+
+    }
+
+    @GetMapping("/search")
+    @ResponseBody
+    public ResponseEntity<List<SearchResultDTO>> search(@RequestParam String query) {
+        List<Project> projectResults = projectRepository.findProjectsByTitleContaining(query);
+        List<User> userResults = userRepository.findUsersByUsernameContaining(query);
+
+        List<SearchResultDTO> searchResults = new ArrayList<>();
+
+        for (Project project : projectResults) {
+            SearchResultDTO result = new SearchResultDTO();
+            result.setType("Project");
+            result.setEntity(project);
+            searchResults.add(result);
+        }
+
+        for (User user : userResults) {
+            SearchResultDTO result = new SearchResultDTO();
+            result.setType("User");
+            result.setEntity(user);
+            searchResults.add(result);
+        }
+
+        return new ResponseEntity<>(searchResults, HttpStatus.OK);
 
     }
 

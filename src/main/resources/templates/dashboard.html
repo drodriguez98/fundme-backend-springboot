@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml" lang="es">
 <head>
     <meta charset="UTF-8">
@@ -136,6 +135,25 @@
         </ul>
     </div>
     <div class="content">
+        <!-- Formulario de búsqueda -->
+        <form action="/fundme/controller/web/search" method="get">
+            <input type="text" id="search-input" name="query" placeholder="Buscar..." />
+            <button type="submit">Buscar</button>
+        </form>
+        <!-- Mostrar los resultados de búsqueda en tiempo real -->
+        <div th:if="${searchResults}">
+            <h2>Resultados de búsqueda para: <span th:text="${query}"></span></h2>
+            <ul id="search-results-list">
+                <li th:each="result : ${searchResults}">
+                    <div th:if="${result.type == 'Project'}">
+                        <p th:text="${result.entity.title}"></p>
+                    </div>
+                    <div th:if="${result.type == 'User'}">
+                        <p th:text="${result.entity.username}"></p>
+                    </div>
+                </li>
+            </ul>
+        </div>
         <div class="section" id="top-donations">
             <h3>Top Donations</h3>
             <table>
@@ -179,5 +197,37 @@
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Escucha el evento "input" en el campo de búsqueda
+        $("#search-input").on("input", function() {
+            // Obtén el valor actual del campo de búsqueda
+            var query = $(this).val();
+
+            // Realiza una solicitud AJAX al controlador de búsqueda
+            $.get("/fundme/controller/web/search", { query: query }, function(data) {
+                displayResults(data);
+            });
+        });
+
+        // Función para mostrar los resultados
+        function displayResults(results) {
+            var resultsList = $("#search-results-list");
+            resultsList.empty();
+
+            results.forEach(function(result) {
+                var listItem = "<li>";
+                if (result.type === "Project") {
+                    listItem += "Project: " + result.entity.title;
+                } else if (result.type === "User") {
+                    listItem += "User: " + result.entity.username;
+                }
+                listItem += "</li>";
+                resultsList.append(listItem);
+            });
+        }
+    });
+</script>
 </body>
 </html>
