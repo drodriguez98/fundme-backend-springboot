@@ -156,7 +156,6 @@
                     <th>Title</th>
                     <th>Description</th>
                     <th>Amount</th>
-                    <!-- <th>Details</th> -->
                 </tr>
                 </thead>
                 <tbody>
@@ -166,7 +165,6 @@
                     <td><a class="details-link" th:href="@{'/fundme/controller/web/viewProject/' + ${project.projectId}}" th:text="${project.title}">Title</a></td>
                     <td th:text="${project.description}"></td>
                     <td th:text="${project.totalAmount}"></td>
-                    <!-- <td> <a class="details-link" th:href="@{'/fundme/controller/web/viewProject/' + ${project.projectId}}">Details</a> </td> -->
                 </tr>
                 </tbody>
             </table>
