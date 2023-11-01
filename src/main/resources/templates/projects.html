@@ -109,6 +109,13 @@
             margin-bottom: 2%;
         }
 
+        .details-link {
+            color: #0074d9;
+            text-decoration: none;
+        }
+
+        .details-link:visited { color: #7a7a7a; }
+
         .create-project-link, .my-projects-link {
             display: inline-block;
             background-color: #333;
@@ -119,17 +126,6 @@
             margin-top: 10px;
             margin-bottom: 3%;
             margin-right: 2%;
-        }
-
-        .details-link {
-            display: inline-block;
-            background-color: #333;
-            color: #fff;
-            padding: 5px 10px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin: 1% auto;
-            font-size: 14px;
         }
 
     </style>
@@ -155,20 +151,22 @@
             <table>
                 <thead>
                 <tr>
+                    <th>Date</th>
+                    <th>User</th>
                     <th>Title</th>
                     <th>Description</th>
                     <th>Amount</th>
-                    <th>Details</th>
+                    <!-- <th>Details</th> -->
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="project : ${projectList}">
-                    <td th:text="${project.title}"></td>
+                    <td th:text="${#dates.format(project.dateAdded, 'yyyy/MM/dd')}"></td>
+                    <td><a class="details-link" th:href="@{'/fundme/controller/web/userProfile/' + ${project.userId.userId}}" th:text="${project.userId.name}"></a></td>
+                    <td><a class="details-link" th:href="@{'/fundme/controller/web/viewProject/' + ${project.projectId}}" th:text="${project.title}">Title</a></td>
                     <td th:text="${project.description}"></td>
                     <td th:text="${project.totalAmount}"></td>
-                    <td>
-                        <a class="details-link" th:href="@{'/fundme/controller/web/viewProject/' + ${project.projectId}}">Details</a>
-                    </td>
+                    <!-- <td> <a class="details-link" th:href="@{'/fundme/controller/web/viewProject/' + ${project.projectId}}">Details</a> </td> -->
                 </tr>
                 </tbody>
             </table>
