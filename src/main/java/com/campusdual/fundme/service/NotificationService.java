@@ -127,6 +127,4 @@ public class NotificationService implements INotificationService {
 
     }
 
-    // Resto del servicio (marcar como leído, obtener notificaciones, etc.)
-
 }
