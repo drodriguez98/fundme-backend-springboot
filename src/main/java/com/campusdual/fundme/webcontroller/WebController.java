@@ -1,8 +1,8 @@
 package com.campusdual.fundme.webcontroller;
 
 import com.campusdual.fundme.api.INotificationService;
-import com.campusdual.fundme.model.*;
 
+import com.campusdual.fundme.model.*;
 import com.campusdual.fundme.model.dto.*;
 
 import com.campusdual.fundme.model.dto.dtopmapper.CommentMapper;
@@ -78,7 +78,11 @@ public class WebController {
 
             return "redirect:/fundme/controller/web/dashboard";
 
-        } else { return "redirect:/fundme/controller/web/login"; } // return "redirect:/api/public/showLoginForm?error=true";
+        } else {
+
+            return "redirect:/fundme/controller/web/login";
+
+        }
 
     }
 
@@ -86,8 +90,8 @@ public class WebController {
     public String showRegisterForm (Model model) {
 
         List<CountryDTO> countries = countryService.getAllCountries();
-        model.addAttribute("countries", countries);
 
+        model.addAttribute("countries", countries);
         model.addAttribute("user", new UserDTO());
 
         return "register";
@@ -107,6 +111,7 @@ public class WebController {
     public String createProject (Model model) {
 
         List<AreaDTO> areas = areaService.getAllAreas();
+
         model.addAttribute("areas", areas);
         model.addAttribute("project", new ProjectDTO());
 
@@ -122,9 +127,9 @@ public class WebController {
         UserDTO authenticatedUser = userService.getUser(new UserDTO());
         User user = UserMapper.INSTANCE.toEntity(authenticatedUser);
 
+        int totalAmount = 0;
         project.setUserId(user);
         project.setDateAdded(new Date());
-        int totalAmount = 0;
         project.setTotalAmount(totalAmount);
 
         projectService.insertProject(ProjectMapper.INSTANCE.toDTO(project));
@@ -137,6 +142,7 @@ public class WebController {
     public String donateToProject (@PathVariable("projectId") int projectId, Model model) {
 
         ProjectDTO projectDTO = projectService.getProjectById(projectId);
+
         model.addAttribute("project", projectDTO);
 
         return "donate-project";
@@ -179,8 +185,8 @@ public class WebController {
     public String commentProject (@PathVariable("projectId") int projectId, Model model) {
 
         ProjectDTO projectDTO = projectService.getProjectById(projectId);
-        model.addAttribute("project", projectDTO);
 
+        model.addAttribute("project", projectDTO);
         model.addAttribute("comment", new CommentDTO());
 
         return "comment-project";
@@ -217,9 +223,9 @@ public class WebController {
     public String dashboard(Model model) {
 
         List<Project> topProjectsList = projectService.getTopProjects();
-        model.addAttribute("topProjectsList", topProjectsList);
-
         List<Donation> topDonationsList = donationService.getTopDonations();
+
+        model.addAttribute("topProjectsList", topProjectsList);
         model.addAttribute("topDonationsList", topDonationsList);
 
         return "dashboard";
@@ -259,6 +265,7 @@ public class WebController {
     public String allProjects(Model model) {
 
         List<ProjectDTO> projectList = projectService.getAllProjects();
+
         model.addAttribute("projectList", projectList);
 
         return "projects";
@@ -268,6 +275,7 @@ public class WebController {
     public String myProjects(Model model) {
 
         List<Project> myProjects = projectService.getProjectsByAuthenticatedUserOrderByDateAddedDesc();
+
         model.addAttribute("myProjects", myProjects);
 
         return "my-projects";
@@ -278,6 +286,7 @@ public class WebController {
     public String donations(Model model) {
 
         List<Donation> donationList = donationService.getAllDonationsByOrderByDateAddedDesc();
+
         model.addAttribute("donationList", donationList);
 
         return "donations";
@@ -288,6 +297,7 @@ public class WebController {
     public String myDonations(Model model) {
 
         List<Donation> myDonations = donationService.getDonationsByAuthenticatedUserOrderByDateAddedDesc();
+
         model.addAttribute("myDonations", myDonations);
 
         return "my-donations";
@@ -298,12 +308,11 @@ public class WebController {
     public String viewProject(@PathVariable int projectId, Model model) {
 
         ProjectDTO projectDTO = projectService.getProjectById(projectId);
-        model.addAttribute("projectDetails", projectDTO);
-
         List<Comment> commentList = commentService.getCommentsByProjectId(projectDTO);
-        model.addAttribute("commentList", commentList);
-
         List<Donation> donationList = donationService.getDonationsByProjectId(projectDTO);
+
+        model.addAttribute("projectDetails", projectDTO);
+        model.addAttribute("commentList", commentList);
         model.addAttribute("donationList", donationList);
 
         return "view-project";
@@ -314,6 +323,8 @@ public class WebController {
     public String showEditProjectForm(@PathVariable("projectId") int projectId, Model model) {
 
         ProjectDTO projectDTO = projectService.getProjectById(projectId);
+
+
         model.addAttribute("projectDetails", projectDTO);
 
         return "edit-project";
@@ -390,9 +401,9 @@ public class WebController {
     public String showEditProfileForm(@PathVariable("userId") int userId, Model model) {
 
         List<CountryDTO> countries = countryService.getAllCountries();
-        model.addAttribute("countries", countries);
-
         UserDTO userDTO = userService.getAuthenticatedUser();
+
+        model.addAttribute("countries", countries);
         model.addAttribute("userDetails", userDTO);
 
         return "edit-profile";
@@ -418,6 +429,7 @@ public class WebController {
     public String confirmDeleteProject(@PathVariable("projectId") int projectId, Model model) {
 
         ProjectDTO projectDTO = projectService.getProjectById(projectId);
+
         model.addAttribute("project", projectDTO);
 
         return "confirm-delete-project";
@@ -438,6 +450,7 @@ public class WebController {
     public String confirmDeleteAccount(Model model) {
 
         UserDTO authenticatedUser = userService.getAuthenticatedUser();
+
         model.addAttribute("authenticatedUser", authenticatedUser);
 
         return "confirm-delete-account";
@@ -465,13 +478,14 @@ public class WebController {
     public String notifications(Model model) {
 
         UserDTO authenticatedUser = userService.getUser(new UserDTO());
-        model.addAttribute("authenticatedUser", authenticatedUser);
 
         List<NotificationDTO> unreadNotifications = notificationService.getUnreadNotificationsByUserOrderByCreatedDateDesc(authenticatedUser);
-        model.addAttribute("unreadNotifications", unreadNotifications);
-
         List<NotificationDTO> readNotifications = notificationService.getReadNotificationsByUserOrderByCreatedDateDesc(authenticatedUser);
+
+        model.addAttribute("authenticatedUser", authenticatedUser);
+        model.addAttribute("unreadNotifications", unreadNotifications);
         model.addAttribute("readNotifications", readNotifications);
+
 
         return "notifications";
 
@@ -488,9 +502,7 @@ public class WebController {
 
     @GetMapping("/admin")
     @ResponseBody
-    public String dashboardAdmin() {
-        return "Welcome to the administration area";
-    }
+    public String dashboardAdmin() { return "Welcome to the administration area"; }
 
     @GetMapping("/accessDenied")
     public String customErrorPage() { return "error"; }
