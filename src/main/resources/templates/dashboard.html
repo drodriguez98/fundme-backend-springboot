@@ -280,46 +280,61 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
         <script>
+
             $(document).ready(function() {
+
                 $("#search-input").on("input", function() {
+
                     var query = $(this).val();
 
                     if (query.length >= 3) {
+
                         $.ajax({
+
                             url: "/fundme/controller/web/search",
                             method: "GET",
                             headers: {
+
                                 "X-Requested-With": "XMLHttpRequest", // Indica que es una solicitud AJAX
                                 "X-User-Role": "AJAX_ROLE" // Define el rol del usuario como "AJAX_ROLE"
+
                             },
+
                             data: { query: query },
-                            success: function(data) {
-                                displayResults(data);
-                            }
+                            success: function(data) { displayResults(data); }
                         });
-                    } else {
-                        $("#autocomplete-results").empty();
-                    }
+
+                    } else { $("#autocomplete-results").empty(); }
                 });
 
                 function displayResults(results) {
+
                     var resultsList = $("#autocomplete-results");
                     resultsList.empty();
 
                     results.forEach(function(result) {
+
                         var listItem = "<div class='autocomplete-item'>";
 
                         if (result.type === "Project") {
+
                             listItem += "<a href='/fundme/controller/web/viewProject/" + result.entity.projectId + "'>Project: " + result.entity.title + "</a>";
+
                         } else if (result.type === "User") {
+
                             listItem += "<a href='/fundme/controller/web/userProfile/" + result.entity.userId + "'>User: " + result.entity.username + "</a>";
+
                         }
 
                         listItem += "</div>";
                         resultsList.append(listItem);
+
                     });
+
                 }
+
             });
+
         </script>
 
     </body>

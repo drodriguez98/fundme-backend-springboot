@@ -6,8 +6,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.security.web.util.matcher.RequestMatcher;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -19,24 +17,22 @@ import java.util.List;
 
 public class AjaxRoleFilter extends OncePerRequestFilter {
 
-    private static final RequestMatcher DEFAULT_REQUEST_MATCHER = new AntPathRequestMatcher("/fundme/controller/web/search", "GET");
-    private RequestMatcher requiresAjaxRoleRequestMatcher = DEFAULT_REQUEST_MATCHER;
+    private static final String XML_HTTP_REQUEST = "XMLHttpRequest";
+    private static final String AJAX_ROLE_HEADER = "X-User-Role";
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws IOException, ServletException {
         Authentication originalAuthentication = SecurityContextHolder.getContext().getAuthentication();
 
-        if (requiresAjaxRoleRequestMatcher.matches(request)) {
+        if (isAjaxRequest(request)) {
 
             List<GrantedAuthority> authorities = new ArrayList<>();
             authorities.add(new SimpleGrantedAuthority("AJAX_ROLE"));
 
             UsernamePasswordAuthenticationToken ajaxRoleAuthentication = new UsernamePasswordAuthenticationToken(
-
                     originalAuthentication.getPrincipal(),
                     originalAuthentication.getCredentials(),
                     authorities
-
             );
 
             SecurityContextHolder.getContext().setAuthentication(ajaxRoleAuthentication);
@@ -44,15 +40,18 @@ public class AjaxRoleFilter extends OncePerRequestFilter {
         }
 
         try {
-
             filterChain.doFilter(request, response);
-
         } finally {
 
-            if (requiresAjaxRoleRequestMatcher.matches(request)) { SecurityContextHolder.getContext().setAuthentication(originalAuthentication); }
+            if (isAjaxRequest(request)) {
+                SecurityContextHolder.getContext().setAuthentication(originalAuthentication);
+            }
 
         }
-
     }
 
+    private boolean isAjaxRequest(HttpServletRequest request) {
+        return XML_HTTP_REQUEST.equals(request.getHeader("X-Requested-With"))
+                && "AJAX_ROLE".equals(request.getHeader(AJAX_ROLE_HEADER));
+    }
 }

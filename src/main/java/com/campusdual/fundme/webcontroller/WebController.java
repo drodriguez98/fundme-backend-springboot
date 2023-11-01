@@ -234,30 +234,49 @@ public class WebController {
 
     @GetMapping("/search")
     @ResponseBody
-    public ResponseEntity<List<SearchResultDTO>> search(@RequestParam String query) {
+    public ResponseEntity<List<SearchResultDTO>> search(@RequestParam String query, HttpServletRequest request) {
 
-        List<Project> projectResults = projectRepository.findProjectsByTitleContaining(query);
-        List<User> userResults = userRepository.findUsersByUsernameContaining(query);
+        if (isAjaxRequest(request)) {
 
-        List<SearchResultDTO> searchResults = new ArrayList<>();
+            List<Project> projectResults = projectRepository.findProjectsByTitleContaining(query);
+            List<User> userResults = userRepository.findUsersByUsernameContaining(query);
 
-        for (Project project : projectResults) {
+            List<SearchResultDTO> searchResults = new ArrayList<>();
 
-            SearchResultDTO result = new SearchResultDTO();
-            result.setType("Project");
-            result.setEntity(project);
-            searchResults.add(result);
+            for (Project project : projectResults) {
+
+                SearchResultDTO result = new SearchResultDTO();
+                result.setType("Project");
+                result.setEntity(project);
+                searchResults.add(result);
+
+            }
+
+            for (User user : userResults) {
+
+                SearchResultDTO result = new SearchResultDTO();
+                result.setType("User");
+                result.setEntity(user);
+                searchResults.add(result);
+
+            }
+
+            return new ResponseEntity<>(searchResults, HttpStatus.OK);
+
+        } else {
+
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+
         }
 
-        for (User user : userResults) {
+    }
 
-            SearchResultDTO result = new SearchResultDTO();
-            result.setType("User");
-            result.setEntity(user);
-            searchResults.add(result);
-        }
+    private boolean isAjaxRequest(HttpServletRequest request) {
 
-        return new ResponseEntity<>(searchResults, HttpStatus.OK);
+        String requestedWithHeader = request.getHeader("X-Requested-With");
+        String userRoleHeader = request.getHeader("X-User-Role");
+
+        return "XMLHttpRequest".equals(requestedWithHeader) && "AJAX_ROLE".equals(userRoleHeader);
 
     }
 
