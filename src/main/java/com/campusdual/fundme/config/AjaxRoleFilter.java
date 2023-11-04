@@ -51,7 +51,8 @@ public class AjaxRoleFilter extends OncePerRequestFilter {
     }
 
     private boolean isAjaxRequest(HttpServletRequest request) {
-        return XML_HTTP_REQUEST.equals(request.getHeader("X-Requested-With"))
-                && "AJAX_ROLE".equals(request.getHeader(AJAX_ROLE_HEADER));
+
+        return XML_HTTP_REQUEST.equals(request.getHeader("X-Requested-With"))  && "AJAX_ROLE".equals(request.getHeader(AJAX_ROLE_HEADER));
+        
     }
 }
