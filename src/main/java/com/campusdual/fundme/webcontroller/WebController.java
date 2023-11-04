@@ -74,11 +74,7 @@ public class WebController {
 
         boolean isAuthenticated = loginService.authenticate(username, password);
 
-        if (isAuthenticated) {
-
-            return "redirect:/fundme/controller/web/dashboard";
-
-        } else { return "redirect:/fundme/controller/web/login"; }
+        if (isAuthenticated) { return "dashboard"; } else { return "login"; }
 
     }
 
@@ -374,26 +370,8 @@ public class WebController {
     @GetMapping(value = "/userProfile/{userId}")
     public String userProfile(@PathVariable int userId, Model model) {
 
-        User user = userRepository.getReferenceById(userId);
-
-        UserDTO userDTO = UserMapper.INSTANCE.toDTO(user);
-
-        int donationsCount = donationService.getDonationCountByUser(userDTO.getUserId());
-
-        if (donationsCount > 0) {
-
-            int totalDonations = donationService.getTotalDonationsByUser(userDTO.getUserId());
-            userDTO.setTotalDonations(totalDonations);
-
-        } else { userDTO.setTotalDonations(0); }
-
-        int projectCount = projectService.getProjectCountByUser(userDTO.getUserId());
-
-        userDTO.setProjectCount(projectCount);
-        userDTO.setDonationCount(donationsCount);
-
+        UserDTO userDTO = userService.getUserWithStats(userId);
         model.addAttribute("user", userDTO);
-
         return "user-profile";
 
     }
@@ -404,10 +382,8 @@ public class WebController {
 
         List<CountryDTO> countries = countryService.getAllCountries();
         UserDTO userDTO = userService.getAuthenticatedUser();
-
         model.addAttribute("countries", countries);
         model.addAttribute("userDetails", userDTO);
-
         return "edit-profile";
     }
 
@@ -415,14 +391,11 @@ public class WebController {
     public String editProfile(@PathVariable("userId") int userId, @ModelAttribute("userDetails") UserDTO editedUserDTO) {
 
         UserDTO existingUserDTO = userService.getUserById(userId);
-
         existingUserDTO.setName(editedUserDTO.getName());
         existingUserDTO.setCountryId(editedUserDTO.getCountryId());
         existingUserDTO.setEmail(editedUserDTO.getEmail());
         existingUserDTO.setPhone(editedUserDTO.getPhone());
-
         userService.updateUser(existingUserDTO);
-
         return "redirect:/fundme/controller/web/userProfile";
 
     }
@@ -431,10 +404,9 @@ public class WebController {
     public String confirmDeleteProject(@PathVariable("projectId") int projectId, Model model) {
 
         ProjectDTO projectDTO = projectService.getProjectById(projectId);
-
         model.addAttribute("project", projectDTO);
-
         return "confirm-delete-project";
+
     }
 
     @PostMapping("/deleteProject/{projectId}")

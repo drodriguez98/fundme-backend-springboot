@@ -27,6 +27,12 @@ public class UserService implements IUserService {
     @Autowired
     private ProjectRepository projectRepository;
 
+    @Autowired
+    private ProjectService projectService;
+
+    @Autowired
+    private DonationService donationService;
+
     @Override
     public UserDTO getUser(UserDTO userDTO) {
 
@@ -60,6 +66,46 @@ public class UserService implements IUserService {
         if (authenticatedUser == null) { throw new RuntimeException("Usuario autenticado no encontrado."); }
 
         return UserMapper.INSTANCE.toDTO(authenticatedUser);
+    }
+
+    @Override
+    public UserDTO getAuthenticatedUserWithStats(UserDTO authenticatedUser) {
+
+
+
+        int donationsCount = donationService.getDonationCountByUser(authenticatedUser.getUserId());
+
+        int totalDonations = 0;
+
+        if (donationsCount > 0) { totalDonations = donationService.getTotalDonationsByUser(authenticatedUser.getUserId()); }
+
+        authenticatedUser.setTotalDonations(totalDonations);
+        authenticatedUser.setProjectCount(projectService.getProjectCountByUser(authenticatedUser.getUserId()));
+        authenticatedUser.setDonationCount(donationsCount);
+
+        return authenticatedUser;
+
+    }
+
+
+    @Override
+    public UserDTO getUserWithStats(int userId) {
+
+        User user = userRepository.getReferenceById(userId);
+        UserDTO userDTO = UserMapper.INSTANCE.toDTO(user);
+
+        int donationsCount = donationService.getDonationCountByUser(userId);
+
+        int totalDonations = 0;
+
+        if (donationsCount > 0) { totalDonations = donationService.getTotalDonationsByUser(userId); }
+
+        userDTO.setTotalDonations(totalDonations);
+        userDTO.setProjectCount(projectService.getProjectCountByUser(userId));
+        userDTO.setDonationCount(donationsCount);
+
+        return userDTO;
+
     }
 
     @Override

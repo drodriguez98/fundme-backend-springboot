@@ -9,6 +9,10 @@ public interface IUserService {
     UserDTO getUserById(int userId);
     UserDTO getAuthenticatedUser();
 
+    UserDTO getAuthenticatedUserWithStats(UserDTO authenticatedUser);
+
+    UserDTO getUserWithStats(int userId);
+
     List<UserDTO> getAllUsers();
 
     int insertUser (UserDTO userDTO);
