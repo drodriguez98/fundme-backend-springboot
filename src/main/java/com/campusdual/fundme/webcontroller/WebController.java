@@ -164,14 +164,11 @@ public class WebController {
         donation.setAmount(amount);
         donation.setDateAdded(new Date());
 
-        donationService.insertDonation(DonationMapper.INSTANCE.toDTO(donation));
-
-        notificationService.createDonationNotification(recipient, donor, project);
-
         project.setTotalAmount(project.getTotalAmount() + amount);
 
+        donationService.insertDonation(DonationMapper.INSTANCE.toDTO(donation));
+        notificationService.createDonationNotification(recipient, donor, project);
         projectService.updateProject(ProjectMapper.INSTANCE.toDTO(project));
-
 
         return "redirect:/fundme/controller/web/donations";
 
