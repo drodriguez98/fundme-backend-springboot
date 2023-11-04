@@ -78,11 +78,7 @@ public class WebController {
 
             return "redirect:/fundme/controller/web/dashboard";
 
-        } else {
-
-            return "redirect:/fundme/controller/web/login";
-
-        }
+        } else { return "redirect:/fundme/controller/web/login"; }
 
     }
 
@@ -331,7 +327,6 @@ public class WebController {
 
         ProjectDTO projectDTO = projectService.getProjectById(projectId);
 
-
         model.addAttribute("projectDetails", projectDTO);
 
         return "edit-project";
@@ -339,14 +334,14 @@ public class WebController {
     }
 
     @PostMapping("/editProject/{projectId}")
-    public String editProject(@PathVariable("projectId") int projectId, @ModelAttribute("projectDetails") ProjectDTO editedProjectDTO) {
+    public String editProject(@PathVariable("projectId") int projectId, @ModelAttribute("projectDetails") ProjectDTO newProjectDTO) {
 
-        ProjectDTO existingProjectDTO = projectService.getProjectById(projectId);
+        ProjectDTO oldProjectDTO = projectService.getProjectById(projectId);
 
-        existingProjectDTO.setTitle(editedProjectDTO.getTitle());
-        existingProjectDTO.setDescription(editedProjectDTO.getDescription());
+        oldProjectDTO.setTitle(newProjectDTO.getTitle());
+        oldProjectDTO.setDescription(newProjectDTO.getDescription());
 
-        projectService.updateProject(existingProjectDTO);
+        projectService.updateProject(oldProjectDTO);
 
         return "redirect:/fundme/controller/web/myProjects";
 
