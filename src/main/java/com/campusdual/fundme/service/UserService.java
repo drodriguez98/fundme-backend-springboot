@@ -7,11 +7,12 @@ import com.campusdual.fundme.model.dto.UserDTO;
 import com.campusdual.fundme.model.User;
 import com.campusdual.fundme.model.dto.dtopmapper.UserMapper;
 
-import com.campusdual.fundme.util.PasswordEncoderUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
@@ -25,9 +26,6 @@ public class UserService implements IUserService {
 
     @Autowired
     private ProjectRepository projectRepository;
-
-    @Autowired
-    private PasswordEncoderUtil passwordEncoderUtil;
 
     @Override
     public UserDTO getUser(UserDTO userDTO) {
@@ -72,13 +70,13 @@ public class UserService implements IUserService {
 
         User user = UserMapper.INSTANCE.toEntity(userDTO);
 
-        user.setDateAdded(new Date());
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String hashedPassword = passwordEncoder.encode(user.getPassword());
 
+        user.setPassword(hashedPassword);
+        user.setDateAdded(new Date());
         user.setActive(true);
         user.setAdmin(false);
-
-        String hashedPassword = passwordEncoderUtil.encodePassword(user.getPassword());
-        user.setPassword(hashedPassword);
 
         this.userRepository.saveAndFlush(user);
 
