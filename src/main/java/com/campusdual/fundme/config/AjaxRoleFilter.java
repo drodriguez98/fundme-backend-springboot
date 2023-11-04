@@ -40,12 +40,12 @@ public class AjaxRoleFilter extends OncePerRequestFilter {
         }
 
         try {
+
             filterChain.doFilter(request, response);
+
         } finally {
 
-            if (isAjaxRequest(request)) {
-                SecurityContextHolder.getContext().setAuthentication(originalAuthentication);
-            }
+            if (isAjaxRequest(request)) { SecurityContextHolder.getContext().setAuthentication(originalAuthentication); }
 
         }
     }
