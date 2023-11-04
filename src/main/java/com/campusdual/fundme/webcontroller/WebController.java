@@ -189,16 +189,15 @@ public class WebController {
     @PostMapping("/comment/{projectId}")
     public String commentProject(@PathVariable("projectId") int projectId, @ModelAttribute("comment") CommentDTO commentDTO) {
 
+        ProjectDTO projectDTO = projectService.getProjectById(projectId);
+        UserDTO authenticatedUser = userService.getUser(new UserDTO());
+
+        Project project = ProjectMapper.INSTANCE.toEntity(projectDTO);
         Comment comment = CommentMapper.INSTANCE.toEntity(commentDTO);
 
-        ProjectDTO projectDTO = projectService.getProjectById(projectId);
-        Project project = ProjectMapper.INSTANCE.toEntity(projectDTO);
-
-        UserDTO authenticatedUser = userService.getUser(new UserDTO());
         User commenter = UserMapper.INSTANCE.toEntity(authenticatedUser);
 
-        int recipientId = project.getUserId().getUserId();
-        User recipient = userRepository.getReferenceById(recipientId);
+        User recipient = project.getUserId();
 
         comment.setUserId(commenter);
         comment.setProjectId(project);
@@ -256,11 +255,7 @@ public class WebController {
 
             return new ResponseEntity<>(searchResults, HttpStatus.OK);
 
-        } else {
-
-            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-
-        }
+        } else { return new ResponseEntity<>(HttpStatus.FORBIDDEN); }
 
     }
 
