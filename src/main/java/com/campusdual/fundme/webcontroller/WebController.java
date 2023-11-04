@@ -345,23 +345,12 @@ public class WebController {
 
     @GetMapping(value = "/userProfile")
     public String myProfile(Model model) {
+
         UserDTO authenticatedUser = userService.getAuthenticatedUser();
 
-        int donationsCount = donationService.getDonationCountByUser(authenticatedUser.getUserId());
+        UserDTO authenticatedUserWithStats = userService.getAuthenticatedUserWithStats(authenticatedUser);
 
-        if (donationsCount > 0) {
-
-            int totalDonations = donationService.getTotalDonationsByUser(authenticatedUser.getUserId());
-            authenticatedUser.setTotalDonations(totalDonations);
-
-        } else { authenticatedUser.setTotalDonations(0); }
-
-        int projectCount = projectService.getProjectCountByUser(authenticatedUser.getUserId());
-
-        authenticatedUser.setProjectCount(projectCount);
-        authenticatedUser.setDonationCount(donationsCount);
-
-        model.addAttribute("authenticatedUser", authenticatedUser);
+        model.addAttribute("authenticatedUserWithStats", authenticatedUserWithStats);
 
         return "my-profile";
 
