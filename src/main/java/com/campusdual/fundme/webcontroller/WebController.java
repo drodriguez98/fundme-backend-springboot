@@ -127,10 +127,9 @@ public class WebController {
         UserDTO authenticatedUser = userService.getUser(new UserDTO());
         User user = UserMapper.INSTANCE.toEntity(authenticatedUser);
 
-        int totalAmount = 0;
         project.setUserId(user);
         project.setDateAdded(new Date());
-        project.setTotalAmount(totalAmount);
+        project.setTotalAmount(0);
 
         projectService.insertProject(ProjectMapper.INSTANCE.toDTO(project));
 
@@ -157,12 +156,9 @@ public class WebController {
 
         Project project = ProjectMapper.INSTANCE.toEntity(projectDTO);
         User donor = UserMapper.INSTANCE.toEntity(authenticatedUser);
-
-        int recipientId = project.getUserId().getUserId();
-        User recipient = userRepository.getReferenceById(recipientId);
+        User recipient = project.getUserId();
 
         Donation donation = new Donation();
-
         donation.setUserId(donor);
         donation.setProjectId(project);
         donation.setAmount(amount);
