@@ -175,12 +175,12 @@
 
                 <ul>
 
-                    <li><a th:href="@{/fundme/controller/web/dashboard}">#</a></li>
-                    <li><a th:href="@{/fundme/controller/web/projects}">Projects</a></li>
-                    <li><a th:href="@{/fundme/controller/web/donations}">Donations</a></li>
-                    <li><a th:href="@{/fundme/controller/web/userProfile}">User profile</a></li>
-                    <li><a th:href="@{/fundme/controller/web/notifications}">Notifications</a></li>
-                    <li><a th:href="@{/fundme/controller/web/logout}">Logout</a></li>
+                    <li><a th:href="@{/dashboard}">#</a></li>
+                    <li><a th:href="@{/projects}">Projects</a></li>
+                    <li><a th:href="@{/donations}">Donations</a></li>
+                    <li><a th:href="@{/userProfile}">User profile</a></li>
+                    <li><a th:href="@{/notifications}">Notifications</a></li>
+                    <li><a th:href="@{/logout}">Logout</a></li>
 
                 </ul>
 
@@ -190,7 +190,7 @@
 
                 <div class="search-section">
 
-                    <form action="/fundme/controller/web/search" method="get">
+                    <form action="/search" method="get">
 
                         <input class="search-input" type="text" id="search-input" name="query" placeholder="Buscar..." />
 
@@ -224,8 +224,8 @@
                             <tr th:each="donation : ${topDonationsList}">
 
                                 <td th:text="${#dates.format(donation.dateAdded, 'yyyy/MM/dd')}"></td>
-                                <td><a class="details-link" th:href="@{'/fundme/controller/web/userProfile/' + ${donation.userId.userId}}" th:text="${donation.userId.name}"></a></td>
-                                <td><a class="details-link" th:href="@{'/fundme/controller/web/viewProject/' + ${donation.projectId.projectId}}" th:text="${donation.projectId.title}"></a></td>
+                                <td><a class="details-link" th:href="@{'/userProfile/' + ${donation.userId.userId}}" th:text="${donation.userId.name}"></a></td>
+                                <td><a class="details-link" th:href="@{'/viewProject/' + ${donation.projectId.projectId}}" th:text="${donation.projectId.title}"></a></td>
                                 <td th:text="${donation.amount}"></td>
 
                             </tr>
@@ -260,8 +260,8 @@
                             <tr th:each="project : ${topProjectsList}">
 
                                 <td th:text="${#dates.format(project.dateAdded, 'yyyy/MM/dd')}"></td>
-                                <td><a class="details-link" th:href="@{'/fundme/controller/web/userProfile/' + ${project.userId.userId}}" th:text="${project.userId.name}"></a></td>
-                                <td><a class="details-link" th:href="@{'/fundme/controller/web/viewProject/' + ${project.projectId}}" th:text="${project.title}">Title</a></td>
+                                <td><a class="details-link" th:href="@{'/userProfile/' + ${project.userId.userId}}" th:text="${project.userId.name}"></a></td>
+                                <td><a class="details-link" th:href="@{'/viewProject/' + ${project.projectId}}" th:text="${project.title}">Title</a></td>
                                 <td th:text="${project.description}"></td>
                                 <td th:text="${project.totalAmount}"></td>
 
@@ -291,7 +291,7 @@
 
                         $.ajax({
 
-                            url: "/fundme/controller/web/search",
+                            url: "/search",
                             method: "GET",
                             headers: {
 
@@ -318,11 +318,11 @@
 
                         if (result.type === "Project") {
 
-                            listItem += "<a href='/fundme/controller/web/viewProject/" + result.entity.projectId + "'>Project: " + result.entity.title + "</a>";
+                            listItem += "<a href='/viewProject/" + result.entity.projectId + "'>Project: " + result.entity.title + "</a>";
 
                         } else if (result.type === "User") {
 
-                            listItem += "<a href='/fundme/controller/web/userProfile/" + result.entity.userId + "'>User: " + result.entity.username + "</a>";
+                            listItem += "<a href='/userProfile/" + result.entity.userId + "'>User: " + result.entity.username + "</a>";
 
                         }
 

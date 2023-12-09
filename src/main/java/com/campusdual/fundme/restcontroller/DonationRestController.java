@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/fundme/controller/rest/donations")
+@RequestMapping("/api/donations")
 public class DonationRestController {
 
     @Autowired

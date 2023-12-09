@@ -25,28 +25,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http
-                //.addFilterBefore(ajaxRoleFilter, UsernamePasswordAuthenticationFilter.class) // Agrega el filtro antes de la autorización
+                .addFilterBefore(ajaxRoleFilter, UsernamePasswordAuthenticationFilter.class) // Agrega el filtro antes de la autorización
 
                 .csrf().disable()
 
                 .authorizeRequests()
-                .antMatchers("/fundme/controller/web/login", "/fundme/controller/web/register").permitAll()
-                // .antMatchers("/fundme/controller/rest/**").hasRole("ADMIN")
-                .antMatchers("/fundme/controller/web/admin/**").hasRole("ADMIN")
-                .antMatchers("/fundme/controller/web/search").authenticated() // Requiere autenticación, pero no necesita el rol AJAX_ROLE
+                .antMatchers("/login", "/register").permitAll()
+                .antMatchers("/**").authenticated()
+                //.antMatchers("/**").hasRole("ADMIN")
+                //.antMatchers("/search").authenticated() // Requiere autenticación, pero no necesita el rol AJAX_ROLE
 
-                //.anyRequest().authenticated()
+                .anyRequest().authenticated()
                 .and()
 
                 .formLogin()
-                .loginPage("/fundme/controller/web/login")
-                .loginProcessingUrl("/fundme/controller/web/authentication")
-                .defaultSuccessUrl("/fundme/controller/web/dashboard", true)
+                .loginPage("/login")
+                .loginProcessingUrl("/authentication")
+                .defaultSuccessUrl("/dashboard", true)
                 .and()
 
                 .logout()
-                .logoutUrl("/fundme/controller/web/logout")
-                .logoutSuccessUrl("/fundme/controller/web/login")
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/login")
                 .permitAll()
                 .and()
 

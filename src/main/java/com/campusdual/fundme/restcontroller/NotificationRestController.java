@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/fundme/controller/rest/notifications")
+@RequestMapping("/api/notifications")
 public class NotificationRestController {
 
     @Autowired

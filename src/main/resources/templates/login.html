@@ -100,7 +100,7 @@
 
             <div class="login-header"> <h2>Login</h2> </div>
 
-            <form th:action="@{/fundme/controller/web/authentication}" method="post" class="login-form">
+            <form th:action="@{/authentication}" method="post" class="login-form">
 
                 <label class="form-label" for="username">Username</label>
                 <input class="form-input" type="text" id="username" name="username" placeholder="Username" required><br>
@@ -110,7 +110,7 @@
 
             </form>
 
-            <a th:href="@{/fundme/controller/web/register}" class="register-link">Create an account</a>
+            <a th:href="@{/register}" class="register-link">Create an account</a>
 
         </div>
 

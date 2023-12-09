@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/fundme/controller/rest/comments")
+@RequestMapping("/api/comments")
 public class CommentRestController {
 
     @Autowired

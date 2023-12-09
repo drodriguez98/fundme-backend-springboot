@@ -99,12 +99,12 @@
     <div class="sidebar">
         <h1>FUNDMEPLS</h1>
         <ul>
-            <li><a th:href="@{/fundme/controller/web/dashboard}">#</a></li>
-            <li><a th:href="@{/fundme/controller/web/projects}">Projects</a></li>
-            <li><a th:href="@{/fundme/controller/web/donations}">Donations</a></li>
-            <li><a th:href="@{/fundme/controller/web/userProfile}">User profile</a></li>
-            <li><a th:href="@{/fundme/controller/web/notifications}">Notifications</a></li>
-            <li><a th:href="@{/fundme/controller/web/logout}">Logout</a></li>
+            <li><a th:href="@{/dashboard}">#</a></li>
+            <li><a th:href="@{/projects}">Projects</a></li>
+            <li><a th:href="@{/donations}">Donations</a></li>
+            <li><a th:href="@{/userProfile}">User profile</a></li>
+            <li><a th:href="@{/notifications}">Notifications</a></li>
+            <li><a th:href="@{/logout}">Logout</a></li>
         </ul>
     </div>
     <div class="content">
@@ -112,7 +112,7 @@
             <div class="form-header">
                 <h2>New comment</h2>
             </div>
-            <form th:action="@{'/fundme/controller/web/comment/' + ${project.projectId}}" th:object="${comment}" method="post" class="comment-project-form">
+            <form th:action="@{'/comment/' + ${project.projectId}}" th:object="${comment}" method="post" class="comment-project-form">
                 <label class="form-label" for="content">Add your comment</label>
                 <input class="form-input" type="text" id="content" name="content" required>
                 <button type="submit">Comment</button>

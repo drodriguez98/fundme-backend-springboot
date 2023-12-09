@@ -120,12 +120,12 @@
 
         <ul>
 
-            <li><a th:href="@{/fundme/controller/web/dashboard}">#</a></li>
-            <li><a th:href="@{/fundme/controller/web/projects}">Projects</a></li>
-            <li><a th:href="@{/fundme/controller/web/donations}">Donations</a></li>
-            <li><a th:href="@{/fundme/controller/web/userProfile}">User profile</a></li>
-            <li><a th:href="@{/fundme/controller/web/notifications}">Notifications</a></li>
-            <li><a th:href="@{/fundme/controller/web/logout}">Logout</a></li>
+            <li><a th:href="@{/dashboard}">#</a></li>
+            <li><a th:href="@{/projects}">Projects</a></li>
+            <li><a th:href="@{/donations}">Donations</a></li>
+            <li><a th:href="@{/userProfile}">User profile</a></li>
+            <li><a th:href="@{/notifications}">Notifications</a></li>
+            <li><a th:href="@{/logout}">Logout</a></li>
 
         </ul>
 
@@ -148,7 +148,7 @@
                 <tr th:each="notification : ${unreadNotifications}">
                     <td th:text="${notification.message}"></td>
                     <td>
-                        <form th:action="@{'/fundme/controller/web/markNotificationAsRead/' + ${notification.notificationId}}" method="post">
+                        <form th:action="@{'/markNotificationAsRead/' + ${notification.notificationId}}" method="post">
                             <input type="hidden" th:name="notificationId" th:value="${notification.notificationId}">
                             <button type="submit">Mark as read</button>
                         </form>

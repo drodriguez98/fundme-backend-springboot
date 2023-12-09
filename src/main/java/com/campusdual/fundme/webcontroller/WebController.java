@@ -31,7 +31,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-@RequestMapping("/fundme/controller/web")
+@RequestMapping("")
 public class WebController {
 
     @Autowired
@@ -95,7 +95,7 @@ public class WebController {
 
         userService.insertUser(userDTO);
 
-        return "redirect:/fundme/controller/web/login";
+        return "redirect:/login";
 
     }
 
@@ -125,7 +125,7 @@ public class WebController {
 
         projectService.insertProject(ProjectMapper.INSTANCE.toDTO(project));
 
-        return "redirect:/fundme/controller/web/projects";
+        return "redirect:/projects";
 
     }
 
@@ -150,7 +150,7 @@ public class WebController {
 
         projectService.updateProject(oldProjectDTO);
 
-        return "redirect:/fundme/controller/web/myProjects";
+        return "redirect:/myProjects";
 
     }
 
@@ -187,7 +187,7 @@ public class WebController {
         notificationService.createDonationNotification(recipient, donor, project);
         projectService.updateProject(ProjectMapper.INSTANCE.toDTO(project));
 
-        return "redirect:/fundme/controller/web/donations";
+        return "redirect:/donations";
 
     }
 
@@ -224,7 +224,7 @@ public class WebController {
 
         notificationService.createCommentNotification(recipient, commenter, project);
 
-        return "redirect:/fundme/controller/web/viewProject/{projectId}";
+        return "redirect:/viewProject/{projectId}";
 
     }
 
@@ -341,7 +341,7 @@ public class WebController {
         existingUserDTO.setEmail(editedUserDTO.getEmail());
         existingUserDTO.setPhone(editedUserDTO.getPhone());
         userService.updateUser(existingUserDTO);
-        return "redirect:/fundme/controller/web/userProfile";
+        return "redirect:/userProfile";
 
     }
 
@@ -361,7 +361,7 @@ public class WebController {
 
         projectService.deleteProject(projectDTO);
 
-        return "redirect:/fundme/controller/web/myProjects";
+        return "redirect:/myProjects";
 
     }
 
@@ -380,7 +380,7 @@ public class WebController {
 
         userService.deleteAuthenticatedUser();
 
-        return "redirect:/fundme/controller/web/login";
+        return "redirect:/login";
 
     }
 
@@ -389,7 +389,7 @@ public class WebController {
 
         request.getSession().invalidate();
 
-        return "redirect:/fundme/controller/web/login";
+        return "redirect:/login";
 
     }
 
@@ -415,7 +415,7 @@ public class WebController {
 
         notificationService.markNotificationAsRead(notificationId);
 
-        return "redirect:/fundme/controller/web/notifications";
+        return "redirect:/notifications";
 
     }
 

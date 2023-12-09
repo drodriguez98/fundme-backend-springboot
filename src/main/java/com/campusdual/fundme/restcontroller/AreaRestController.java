@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/fundme/controller/rest/areas")
+@RequestMapping("/api/areas")
 public class AreaRestController {
 
     @Autowired

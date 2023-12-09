@@ -135,12 +135,12 @@
     <div class="sidebar">
         <h1>FUNDMEPLS</h1>
         <ul>
-            <li><a th:href="@{/fundme/controller/web/dashboard}">#</a></li>
-            <li><a th:href="@{/fundme/controller/web/projects}">Projects</a></li>
-            <li><a th:href="@{/fundme/controller/web/donations}">Donations</a></li>
-            <li><a th:href="@{/fundme/controller/web/userProfile}">User profile</a></li>
-            <li><a th:href="@{/fundme/controller/web/notifications}">Notifications</a></li>
-            <li><a th:href="@{/fundme/controller/web/logout}">Logout</a></li>
+            <li><a th:href="@{/dashboard}">#</a></li>
+            <li><a th:href="@{/projects}">Projects</a></li>
+            <li><a th:href="@{/donations}">Donations</a></li>
+            <li><a th:href="@{/userProfile}">User profile</a></li>
+            <li><a th:href="@{/notifications}">Notifications</a></li>
+            <li><a th:href="@{/logout}">Logout</a></li>
         </ul>
     </div>
     <div class="content">
@@ -160,11 +160,11 @@
                 <tbody>
                 <tr th:each="project : ${myProjects}">
                     <td th:text="${#dates.format(project.dateAdded, 'yyyy/MM/dd')}"></td>
-                    <td><a class="details-link" th:href="@{'/fundme/controller/web/viewProject/' + ${project.projectId}}" th:text="${project.title}">Title</a></td>
+                    <td><a class="details-link" th:href="@{'/viewProject/' + ${project.projectId}}" th:text="${project.title}">Title</a></td>
                     <td th:text="${project.description}"></td>
                     <td th:text="${project.totalAmount}"></td>
-                    <td> <a class="edit-link" th:href="@{'/fundme/controller/web/editProject/' + ${project.projectId}}">Edit</a> </td>
-                    <td> <a class="delete-link" th:href="@{'/fundme/controller/web/confirmDeleteProject/' + ${project.projectId}}">Delete</a> </td>
+                    <td> <a class="edit-link" th:href="@{'/editProject/' + ${project.projectId}}">Edit</a> </td>
+                    <td> <a class="delete-link" th:href="@{'/confirmDeleteProject/' + ${project.projectId}}">Delete</a> </td>
                 </tr>
                 </tbody>
             </table>
