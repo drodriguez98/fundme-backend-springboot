@@ -18,7 +18,7 @@ public interface IDonationService {
 
     List<Donation> getAllDonationsByOrderByDateAddedDesc();
     List<Donation> getDonationsByAuthenticatedUserOrderByDateAddedDesc();
-    List<Donation> getTopDonations();
+    List<DonationDTO> getTopDonations();
     List<Donation> getLastDonations();
 
     List<Donation> getDonationsByProjectId(ProjectDTO projectDTO);

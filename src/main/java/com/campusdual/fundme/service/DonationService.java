@@ -87,7 +87,7 @@ public class DonationService implements IDonationService {
         return donationRepository.findByUserIdOrderByDateAddedDesc(authenticatedUser);
     }
 
-    public List<Donation> getTopDonations() { return donationRepository.findTop5ByOrderByAmountDesc(); }
+    public List<DonationDTO> getTopDonations()  { return DonationMapper.INSTANCE.toDTOList(donationRepository.findTop5ByOrderByAmountDesc()); }
 
     public List<Donation> getLastDonations() { return donationRepository.findTop5ByOrderByDateAddedDesc(); }
 

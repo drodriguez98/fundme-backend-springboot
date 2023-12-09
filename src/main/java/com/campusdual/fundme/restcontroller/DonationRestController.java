@@ -2,6 +2,7 @@ package com.campusdual.fundme.restcontroller;
 
 import com.campusdual.fundme.api.IDonationService;
 import com.campusdual.fundme.model.dto.DonationDTO;
+import com.campusdual.fundme.model.dto.ProjectDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -18,6 +19,10 @@ public class DonationRestController {
 
     @GetMapping(value = "/all")
     public List<DonationDTO> queryAllDonations() { return this.donationService.getAllDonations(); }
+
+    @GetMapping(value="/top")
+    public List<DonationDTO> queryTopDonations() { return this.donationService.getTopDonations(); }
+
 
     @PostMapping(value = "/add")
     public int insertDonation (@RequestBody DonationDTO donation) { return this.donationService.insertDonation(donation); }

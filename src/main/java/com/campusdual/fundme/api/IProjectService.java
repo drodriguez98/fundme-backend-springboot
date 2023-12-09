@@ -15,7 +15,8 @@ public interface IProjectService {
     int updateProject (ProjectDTO projectDTO);
     int deleteProject (ProjectDTO projectDTO);
 
-    List<Project> getTopProjects();
+    List<ProjectDTO> getTopProjects();
+
     List<Project> getProjectsByAuthenticatedUserOrderByDateAddedDesc();
 
     int getProjectCountByUser(int userId);

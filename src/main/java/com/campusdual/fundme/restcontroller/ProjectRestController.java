@@ -19,6 +19,9 @@ public class ProjectRestController {
     @GetMapping(value = "/all")
     public List<ProjectDTO> queryAllProjects() { return this.projectService.getAllProjects(); }
 
+    @GetMapping(value="/top")
+    public List<ProjectDTO> queryTopProjects() { return this.projectService.getTopProjects(); }
+
     @PostMapping(value = "/add")
     public int insertProject (@RequestBody ProjectDTO project) { return this.projectService.insertProject(project); }
 

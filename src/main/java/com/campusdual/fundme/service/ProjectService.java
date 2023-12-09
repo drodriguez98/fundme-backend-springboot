@@ -51,10 +51,13 @@ public class ProjectService implements IProjectService {
     @Override
     public List<ProjectDTO> getAllProjects() { return ProjectMapper.INSTANCE.toDTOList(projectRepository.findAll()); }
 
+    public List<ProjectDTO> getTopProjects() { return ProjectMapper.INSTANCE.toDTOList(projectRepository.findTop5ByOrderByTotalAmountDesc()); }
+
     @Override
     public int insertProject (ProjectDTO projectDTO) {
 
         Project project = ProjectMapper.INSTANCE.toEntity(projectDTO);
+
         this.projectRepository.saveAndFlush(project);
 
         return project.getProjectId();
@@ -68,14 +71,14 @@ public class ProjectService implements IProjectService {
     public int deleteProject (ProjectDTO projectDTO) {
 
         int id = projectDTO.getProjectId();
+
         Project project = ProjectMapper.INSTANCE.toEntity(projectDTO);
+
         this.projectRepository.delete(project);
 
         return id;
 
     }
-
-    public List<Project> getTopProjects() { return projectRepository.findTop5ByOrderByTotalAmountDesc(); }
 
     @Override
     public List<Project> getProjectsByAuthenticatedUserOrderByDateAddedDesc() {
