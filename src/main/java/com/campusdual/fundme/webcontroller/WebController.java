@@ -116,16 +116,41 @@ public class WebController {
 
         Project project = ProjectMapper.INSTANCE.toEntity(projectDTO);
 
-        UserDTO authenticatedUser = userService.getUser(new UserDTO());
-        User user = UserMapper.INSTANCE.toEntity(authenticatedUser);
+        UserDTO authenticatedUserDTO = userService.getUser(new UserDTO());
+        User autenthicatedUser = UserMapper.INSTANCE.toEntity(authenticatedUserDTO);
 
-        project.setUserId(user);
+        project.setUserId(autenthicatedUser);
         project.setDateAdded(new Date());
         project.setTotalAmount(0);
 
         projectService.insertProject(ProjectMapper.INSTANCE.toDTO(project));
 
         return "redirect:/fundme/controller/web/projects";
+
+    }
+
+    @GetMapping("/editProject/{projectId}")
+    public String showEditProjectForm(@PathVariable("projectId") int projectId, Model model) {
+
+        ProjectDTO projectDTO = projectService.getProjectById(projectId);
+
+        model.addAttribute("projectDetails", projectDTO);
+
+        return "edit-project";
+
+    }
+
+    @PostMapping("/editProject/{projectId}")
+    public String editProject(@PathVariable("projectId") int projectId, @ModelAttribute("projectDetails") ProjectDTO newProjectDTO) {
+
+        ProjectDTO oldProjectDTO = projectService.getProjectById(projectId);
+
+        oldProjectDTO.setTitle(newProjectDTO.getTitle());
+        oldProjectDTO.setDescription(newProjectDTO.getDescription());
+
+        projectService.updateProject(oldProjectDTO);
+
+        return "redirect:/fundme/controller/web/myProjects";
 
     }
 
@@ -206,57 +231,13 @@ public class WebController {
     @GetMapping(value = "/dashboard")
     public String dashboard(Model model) {
 
-        List<Project> topProjectsList = projectService.getTopProjects();
-        List<Donation> topDonationsList = donationService.getTopDonations();
+        List<ProjectDTO> topProjectsList = projectService.getTopProjects();
+        List<DonationDTO> topDonationsList = donationService.getTopDonations();
 
         model.addAttribute("topProjectsList", topProjectsList);
         model.addAttribute("topDonationsList", topDonationsList);
 
         return "dashboard";
-
-    }
-
-    @GetMapping("/search")
-    @ResponseBody
-    public ResponseEntity<List<SearchResultDTO>> search(@RequestParam String query, HttpServletRequest request) {
-
-        if (isAjaxRequest(request)) {
-
-            List<Project> projectResults = projectRepository.findProjectsByTitleContaining(query);
-            List<User> userResults = userRepository.findUsersByUsernameContaining(query);
-
-            List<SearchResultDTO> searchResults = new ArrayList<>();
-
-            for (Project project : projectResults) {
-
-                SearchResultDTO result = new SearchResultDTO();
-                result.setType("Project");
-                result.setEntity(project);
-                searchResults.add(result);
-
-            }
-
-            for (User user : userResults) {
-
-                SearchResultDTO result = new SearchResultDTO();
-                result.setType("User");
-                result.setEntity(user);
-                searchResults.add(result);
-
-            }
-
-            return new ResponseEntity<>(searchResults, HttpStatus.OK);
-
-        } else { return new ResponseEntity<>(HttpStatus.FORBIDDEN); }
-
-    }
-
-    private boolean isAjaxRequest(HttpServletRequest request) {
-
-        String requestedWithHeader = request.getHeader("X-Requested-With");
-        String userRoleHeader = request.getHeader("X-User-Role");
-
-        return "XMLHttpRequest".equals(requestedWithHeader) && "AJAX_ROLE".equals(userRoleHeader);
 
     }
 
@@ -315,31 +296,6 @@ public class WebController {
         model.addAttribute("donationList", donationList);
 
         return "view-project";
-
-    }
-
-    @GetMapping("/editProject/{projectId}")
-    public String showEditProjectForm(@PathVariable("projectId") int projectId, Model model) {
-
-        ProjectDTO projectDTO = projectService.getProjectById(projectId);
-
-        model.addAttribute("projectDetails", projectDTO);
-
-        return "edit-project";
-
-    }
-
-    @PostMapping("/editProject/{projectId}")
-    public String editProject(@PathVariable("projectId") int projectId, @ModelAttribute("projectDetails") ProjectDTO newProjectDTO) {
-
-        ProjectDTO oldProjectDTO = projectService.getProjectById(projectId);
-
-        oldProjectDTO.setTitle(newProjectDTO.getTitle());
-        oldProjectDTO.setDescription(newProjectDTO.getDescription());
-
-        projectService.updateProject(oldProjectDTO);
-
-        return "redirect:/fundme/controller/web/myProjects";
 
     }
 
@@ -460,6 +416,50 @@ public class WebController {
         notificationService.markNotificationAsRead(notificationId);
 
         return "redirect:/fundme/controller/web/notifications";
+
+    }
+
+    @GetMapping("/search")
+    @ResponseBody
+    public ResponseEntity<List<SearchResultDTO>> search(@RequestParam String query, HttpServletRequest request) {
+
+        if (isAjaxRequest(request)) {
+
+            List<Project> projectResults = projectRepository.findProjectsByTitleContaining(query);
+            List<User> userResults = userRepository.findUsersByUsernameContaining(query);
+
+            List<SearchResultDTO> searchResults = new ArrayList<>();
+
+            for (Project project : projectResults) {
+
+                SearchResultDTO result = new SearchResultDTO();
+                result.setType("Project");
+                result.setEntity(project);
+                searchResults.add(result);
+
+            }
+
+            for (User user : userResults) {
+
+                SearchResultDTO result = new SearchResultDTO();
+                result.setType("User");
+                result.setEntity(user);
+                searchResults.add(result);
+
+            }
+
+            return new ResponseEntity<>(searchResults, HttpStatus.OK);
+
+        } else { return new ResponseEntity<>(HttpStatus.FORBIDDEN); }
+
+    }
+
+    private boolean isAjaxRequest(HttpServletRequest request) {
+
+        String requestedWithHeader = request.getHeader("X-Requested-With");
+        String userRoleHeader = request.getHeader("X-User-Role");
+
+        return "XMLHttpRequest".equals(requestedWithHeader) && "AJAX_ROLE".equals(userRoleHeader);
 
     }
 
