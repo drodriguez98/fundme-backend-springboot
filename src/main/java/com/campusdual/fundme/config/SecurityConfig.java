@@ -31,11 +31,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .authorizeRequests()
                 .antMatchers("/fundme/controller/web/login", "/fundme/controller/web/register").permitAll()
-                .antMatchers("/fundme/controller/rest/**").hasRole("ADMIN")
+                // .antMatchers("/fundme/controller/rest/**").hasRole("ADMIN")
                 .antMatchers("/fundme/controller/web/admin/**").hasRole("ADMIN")
                 .antMatchers("/fundme/controller/web/search").authenticated() // Requiere autenticación, pero no necesita el rol AJAX_ROLE
 
-                .anyRequest().authenticated()
+                //.anyRequest().authenticated()
                 .and()
 
                 .formLogin()
