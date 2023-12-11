@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/areas")
+@RequestMapping("/areas")
 public class AreaRestController {
 
     @Autowired
     private IAreaService areaService;
 
-    @PostMapping(value = "get")
+    @PostMapping(value = "/get")
     public AreaDTO queryArea (@RequestBody AreaDTO area) { return this.areaService.getArea(area); }
 
     @GetMapping(value = "/all")
