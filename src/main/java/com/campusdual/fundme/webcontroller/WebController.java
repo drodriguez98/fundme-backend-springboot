@@ -66,6 +66,7 @@ public class WebController {
     @Autowired
     private ProjectRepository projectRepository;
 
+    /*
     @GetMapping("/login")
     public String showLoginForm() { return "login";  }
 
@@ -77,6 +78,7 @@ public class WebController {
         if (isAuthenticated) { return "dashboard"; } else { return "login"; }
 
     }
+    */
 
     @GetMapping("/register")
     public String showRegisterForm (Model model) {
