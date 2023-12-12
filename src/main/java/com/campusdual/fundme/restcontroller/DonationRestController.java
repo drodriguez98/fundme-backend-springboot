@@ -1,6 +1,7 @@
 package com.campusdual.fundme.restcontroller;
 
 import com.campusdual.fundme.api.IDonationService;
+import com.campusdual.fundme.model.Donation;
 import com.campusdual.fundme.model.dto.DonationDTO;
 import com.campusdual.fundme.model.dto.ProjectDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,9 @@ public class DonationRestController {
 
     @PostMapping(value = "/get")
     public DonationDTO queryDonation (@RequestBody DonationDTO donation) { return this.donationService.getDonation(donation); }
+
+    @PostMapping(value="getByProject")
+    public List<Donation> queryDonationsByProject (@RequestBody ProjectDTO project) { return this.donationService.getDonationsByProjectId(project); }
 
     @GetMapping(value = "/all")
     public List<DonationDTO> queryAllDonations() { return this.donationService.getAllDonations(); }

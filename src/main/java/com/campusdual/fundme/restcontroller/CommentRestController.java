@@ -1,7 +1,10 @@
 package com.campusdual.fundme.restcontroller;
 
 import com.campusdual.fundme.api.ICommentService;
+import com.campusdual.fundme.model.Comment;
+import com.campusdual.fundme.model.Donation;
 import com.campusdual.fundme.model.dto.CommentDTO;
+import com.campusdual.fundme.model.dto.ProjectDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -15,6 +18,9 @@ public class CommentRestController {
 
     @PostMapping(value = "/get")
     public CommentDTO queryComment (@RequestBody CommentDTO comment) { return this.commentService.getComment(comment); }
+
+    @PostMapping(value="getByProject")
+    public List<Comment> queryDonationsByProject (@RequestBody ProjectDTO project) { return this.commentService.getCommentsByProjectId(project); }
 
     @GetMapping(value = "/all")
     public List<CommentDTO> queryAllComments() { return this.commentService.getAllComments(); }
