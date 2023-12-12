@@ -286,12 +286,13 @@ public class WebController {
 
     }
 
+    /*
     @GetMapping(value = "/viewProject/{projectId}")
     public String viewProject(@PathVariable int projectId, Model model) {
 
         ProjectDTO projectDTO = projectService.getProjectById(projectId);
-        List<Comment> commentList = commentService.getCommentsByProjectId(projectDTO);
         List<Donation> donationList = donationService.getDonationsByProjectId(projectDTO);
+        List<Comment> commentList = commentService.getCommentsByProjectId(projectDTO);
 
         model.addAttribute("projectDetails", projectDTO);
         model.addAttribute("commentList", commentList);
@@ -300,6 +301,7 @@ public class WebController {
         return "view-project";
 
     }
+    */
 
     @GetMapping(value = "/userProfile")
     public String myProfile(Model model) {
