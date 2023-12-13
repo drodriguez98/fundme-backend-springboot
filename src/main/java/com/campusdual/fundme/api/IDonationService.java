@@ -3,6 +3,7 @@ package com.campusdual.fundme.api;
 import com.campusdual.fundme.model.Donation;
 import com.campusdual.fundme.model.dto.DonationDTO;
 import com.campusdual.fundme.model.dto.ProjectDTO;
+import com.campusdual.fundme.model.dto.UserDTO;
 
 import java.util.List;
 
@@ -17,11 +18,13 @@ public interface IDonationService {
     int deleteDonation (DonationDTO donationDTO);
 
     List<Donation> getAllDonationsByOrderByDateAddedDesc();
-    List<Donation> getDonationsByAuthenticatedUserOrderByDateAddedDesc();
+    // List<Donation> getDonationsByAuthenticatedUserOrderByDateAddedDesc();
     List<DonationDTO> getTopDonations();
     List<Donation> getLastDonations();
 
     List<Donation> getDonationsByProjectId(ProjectDTO projectDTO);
+
+    List<Donation> getDonationsByUserId(UserDTO userDTO);
 
     int getTotalDonationsByUser(int userId);
 
