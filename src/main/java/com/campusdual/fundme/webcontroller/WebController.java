@@ -66,20 +66,6 @@ public class WebController {
     @Autowired
     private ProjectRepository projectRepository;
 
-    /*
-    @GetMapping("/login")
-    public String showLoginForm() { return "login";  }
-
-    @PostMapping("/authentication")
-    public String authenticate(@RequestParam String username, @RequestParam String password) {
-
-        boolean isAuthenticated = loginService.authenticate(username, password);
-
-        if (isAuthenticated) { return "dashboard"; } else { return "login"; }
-
-    }
-    */
-
     @GetMapping("/register")
     public String showRegisterForm (Model model) {
 
