@@ -2,8 +2,12 @@ package com.campusdual.fundme.service;
 
 import com.campusdual.fundme.api.ICommentService;
 import com.campusdual.fundme.model.Comment;
+import com.campusdual.fundme.model.Donation;
 import com.campusdual.fundme.model.Project;
+import com.campusdual.fundme.model.User;
+import com.campusdual.fundme.model.dto.DonationDTO;
 import com.campusdual.fundme.model.dto.ProjectDTO;
+import com.campusdual.fundme.model.dto.dtopmapper.DonationMapper;
 import com.campusdual.fundme.model.dto.dtopmapper.ProjectMapper;
 import com.campusdual.fundme.model.repository.CommentRepository;
 import com.campusdual.fundme.model.dto.CommentDTO;
@@ -34,6 +38,14 @@ public class CommentService implements ICommentService {
     }
 
     @Override
+    public List<Comment> getCommentsByProjectId(ProjectDTO projectDTO) {
+
+        Project project = ProjectMapper.INSTANCE.toEntity(projectDTO);
+        return commentRepository.findByProjectIdOrderByDateAddedDesc(project);
+
+    }
+
+    @Override
     public List<CommentDTO> getAllComments() { return CommentMapper.INSTANCE.toDTOList(commentRepository.findAll()); }
 
     @Override
@@ -44,6 +56,7 @@ public class CommentService implements ICommentService {
         return comment.getCommentId();
 
     }
+
     @Override
     public int updateComment (CommentDTO commentDTO) { return this.insertComment(commentDTO); }
 
@@ -54,15 +67,6 @@ public class CommentService implements ICommentService {
         Comment comment = CommentMapper.INSTANCE.toEntity(commentDTO);
         this.commentRepository.delete(comment);
         return id;
-
-    }
-
-    @Override
-    public List<Comment> getCommentsByProjectId(ProjectDTO projectDTO) {
-
-        Project project = ProjectMapper.INSTANCE.toEntity(projectDTO);
-
-        return commentRepository.findByProjectIdOrderByDateAddedDesc(project);
 
     }
 
