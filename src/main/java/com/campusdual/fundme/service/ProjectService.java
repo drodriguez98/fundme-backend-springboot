@@ -89,27 +89,6 @@ public class ProjectService implements IProjectService {
 
     }
 
-    /*
-
-    @Override
-    public List<Project> getProjectsByAuthenticatedUserOrderByDateAddedDesc() {
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
-        if (authentication == null) { throw new RuntimeException("Ningún usuario autenticado."); }
-
-        String username = authentication.getName();
-
-        User authenticatedUser = userRepository.findByUsername(username);
-
-        if (authenticatedUser == null) { throw new RuntimeException("Usuario autenticado no encontrado."); }
-
-        return projectRepository.findByUserIdOrderByDateAddedDesc(authenticatedUser);
-
-    }
-
-     */
-
     @Override
     public int getProjectCountByUser(int userId) {
 
