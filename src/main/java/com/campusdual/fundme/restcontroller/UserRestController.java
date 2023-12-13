@@ -46,7 +46,7 @@ public class UserRestController {
     @PutMapping(value = "/update")
     public int updateUser (@RequestBody UserDTO user) { return this.userService.updateUser(user); }
 
-    @PostMapping(value = "/delete")
+    @DeleteMapping(value = "/delete")
     public int deleteUser (@RequestBody UserDTO user) { return this.userService.deleteUser(user); }
 
     @PostMapping("/authentication")

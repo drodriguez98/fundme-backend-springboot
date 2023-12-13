@@ -38,7 +38,7 @@ public class ProjectRestController {
     @PutMapping(value = "/update")
     public int updateProject (@RequestBody ProjectDTO project) { return this.projectService.updateProject(project); }
 
-    @PostMapping(value = "/delete")
+    @DeleteMapping(value = "/delete")
     public int deleteProject (@RequestBody ProjectDTO project) { return this.projectService.deleteProject(project); }
 
 }
