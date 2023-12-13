@@ -205,6 +205,8 @@ public class WebController {
 
     }
 
+    /*
+
     @PostMapping("/comment/{projectId}")
     public String commentProject(@PathVariable("projectId") int projectId, @ModelAttribute("comment") CommentDTO commentDTO) {
 
@@ -230,6 +232,8 @@ public class WebController {
 
     }
 
+     */
+
     @GetMapping(value = "/dashboard")
     public String dashboard(Model model) {
 
@@ -253,6 +257,7 @@ public class WebController {
         return "projects";
     }
 
+    /*
     @GetMapping(value = "/myProjects")
     public String myProjects(Model model) {
 
@@ -263,6 +268,7 @@ public class WebController {
         return "my-projects";
 
     }
+     */
 
     @GetMapping(value = "/donations")
     public String donations(Model model) {
@@ -275,6 +281,8 @@ public class WebController {
 
     }
 
+    /*
+
     @GetMapping(value = "/myDonations")
     public String myDonations(Model model) {
 
@@ -286,7 +294,8 @@ public class WebController {
 
     }
 
-    /*
+    */
+
     @GetMapping(value = "/viewProject/{projectId}")
     public String viewProject(@PathVariable int projectId, Model model) {
 
