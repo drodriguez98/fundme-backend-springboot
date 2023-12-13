@@ -51,6 +51,7 @@ public class ProjectService implements IProjectService {
     @Override
     public List<ProjectDTO> getAllProjects() { return ProjectMapper.INSTANCE.toDTOList(projectRepository.findAll()); }
 
+    @Override
     public List<ProjectDTO> getTopProjects() { return ProjectMapper.INSTANCE.toDTOList(projectRepository.findTop5ByOrderByTotalAmountDesc()); }
 
     @Override

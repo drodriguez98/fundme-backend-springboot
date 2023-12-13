@@ -11,12 +11,12 @@ public interface IProjectService {
     ProjectDTO getProject(ProjectDTO projectDTO);
     ProjectDTO getProjectById(int projectId);
     List<ProjectDTO> getAllProjects();
+    List<ProjectDTO> getTopProjects();
 
     int insertProject (ProjectDTO projectDTO);
     int updateProject (ProjectDTO projectDTO);
     int deleteProject (ProjectDTO projectDTO);
 
-    List<ProjectDTO> getTopProjects();
 
     // List<Project> getProjectsByAuthenticatedUserOrderByDateAddedDesc();
 
