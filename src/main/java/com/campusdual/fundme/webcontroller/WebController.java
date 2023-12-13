@@ -156,6 +156,8 @@ public class WebController {
 
     }
 
+    /*
+
     @GetMapping("/donate/{projectId}")
     public String donateToProject (@PathVariable("projectId") int projectId, Model model) {
 
@@ -205,8 +207,6 @@ public class WebController {
 
     }
 
-    /*
-
     @PostMapping("/comment/{projectId}")
     public String commentProject(@PathVariable("projectId") int projectId, @ModelAttribute("comment") CommentDTO commentDTO) {
 
@@ -233,97 +233,6 @@ public class WebController {
     }
 
      */
-
-    @GetMapping(value = "/dashboard")
-    public String dashboard(Model model) {
-
-        List<ProjectDTO> topProjectsList = projectService.getTopProjects();
-        List<DonationDTO> topDonationsList = donationService.getTopDonations();
-
-        model.addAttribute("topProjectsList", topProjectsList);
-        model.addAttribute("topDonationsList", topDonationsList);
-
-        return "dashboard";
-
-    }
-
-    @GetMapping(value = "/projects")
-    public String allProjects(Model model) {
-
-        List<ProjectDTO> projectList = projectService.getAllProjects();
-
-        model.addAttribute("projectList", projectList);
-
-        return "projects";
-    }
-
-    /*
-    @GetMapping(value = "/myProjects")
-    public String myProjects(Model model) {
-
-        List<Project> myProjects = projectService.getProjectsByAuthenticatedUserOrderByDateAddedDesc();
-
-        model.addAttribute("myProjects", myProjects);
-
-        return "my-projects";
-
-    }
-     */
-
-    @GetMapping(value = "/donations")
-    public String donations(Model model) {
-
-        List<Donation> donationList = donationService.getAllDonationsByOrderByDateAddedDesc();
-
-        model.addAttribute("donationList", donationList);
-
-        return "donations";
-
-    }
-
-    /*
-
-    @GetMapping(value = "/myDonations")
-    public String myDonations(Model model) {
-
-        List<Donation> myDonations = donationService.getDonationsByAuthenticatedUserOrderByDateAddedDesc();
-
-        model.addAttribute("myDonations", myDonations);
-
-        return "my-donations";
-
-    }
-
-    */
-
-    @GetMapping(value = "/viewProject/{projectId}")
-    public String viewProject(@PathVariable int projectId, Model model) {
-
-        ProjectDTO projectDTO = projectService.getProjectById(projectId);
-        List<Donation> donationList = donationService.getDonationsByProjectId(projectDTO);
-        List<Comment> commentList = commentService.getCommentsByProjectId(projectDTO);
-
-        model.addAttribute("projectDetails", projectDTO);
-        model.addAttribute("commentList", commentList);
-        model.addAttribute("donationList", donationList);
-
-        return "view-project";
-
-    }
-    */
-
-    @GetMapping(value = "/userProfile")
-    public String myProfile(Model model) {
-
-        UserDTO authenticatedUser = userService.getAuthenticatedUser();
-
-        UserDTO authenticatedUserWithStats = userService.getAuthenticatedUserWithStats(authenticatedUser);
-
-        model.addAttribute("authenticatedUserWithStats", authenticatedUserWithStats);
-
-        return "my-profile";
-
-    }
 
     @GetMapping(value = "/userProfile/{userId}")
     public String userProfile(@PathVariable int userId, Model model) {
