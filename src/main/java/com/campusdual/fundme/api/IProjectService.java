@@ -2,6 +2,7 @@ package com.campusdual.fundme.api;
 
 import com.campusdual.fundme.model.Project;
 import com.campusdual.fundme.model.dto.ProjectDTO;
+import com.campusdual.fundme.model.dto.UserDTO;
 
 import java.util.List;
 
@@ -17,7 +18,9 @@ public interface IProjectService {
 
     List<ProjectDTO> getTopProjects();
 
-    List<Project> getProjectsByAuthenticatedUserOrderByDateAddedDesc();
+    // List<Project> getProjectsByAuthenticatedUserOrderByDateAddedDesc();
+
+    List<Project> getProjectsByUserId(UserDTO userDTO);
 
     int getProjectCountByUser(int userId);
 

@@ -4,6 +4,8 @@ import com.campusdual.fundme.api.IProjectService;
 import com.campusdual.fundme.api.IUserService;
 import com.campusdual.fundme.model.Project;
 import com.campusdual.fundme.model.User;
+import com.campusdual.fundme.model.dto.UserDTO;
+import com.campusdual.fundme.model.dto.dtopmapper.UserMapper;
 import com.campusdual.fundme.model.repository.ProjectRepository;
 import com.campusdual.fundme.model.dto.ProjectDTO;
 import com.campusdual.fundme.model.repository.UserRepository;
@@ -12,8 +14,6 @@ import com.campusdual.fundme.model.dto.dtopmapper.ProjectMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -81,6 +81,17 @@ public class ProjectService implements IProjectService {
     }
 
     @Override
+    public List<Project> getProjectsByUserId(UserDTO userDTO) {
+
+        User user = UserMapper.INSTANCE.toEntity(userDTO);
+
+        return projectRepository.findByUserIdOrderByDateAddedDesc(user);
+
+    }
+
+    /*
+
+    @Override
     public List<Project> getProjectsByAuthenticatedUserOrderByDateAddedDesc() {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -96,6 +107,8 @@ public class ProjectService implements IProjectService {
         return projectRepository.findByUserIdOrderByDateAddedDesc(authenticatedUser);
 
     }
+
+     */
 
     @Override
     public int getProjectCountByUser(int userId) {

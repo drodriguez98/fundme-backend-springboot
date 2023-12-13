@@ -12,7 +12,9 @@ import java.util.List;
 public interface ProjectRepository extends JpaRepository<Project, Integer> {
 
     List<Project> findTop5ByOrderByTotalAmountDesc();
-    List<ProjectDTO> findTop5ByOrderByDateAddedDesc();
+
+    // List<ProjectDTO> findTop5ByOrderByDateAddedDesc();
+
     List<Project> findByUserIdOrderByDateAddedDesc(User user);
 
     @Query("SELECT COUNT(p) FROM Project p WHERE p.userId = :userId")
