@@ -35,27 +35,13 @@ import javax.servlet.http.HttpServletRequest;
 public class WebController {
 
     @Autowired
-    private CustomUserDetailsService customUserDetailsService;
-
-    @Autowired
-    private AreaService areaService;
-    @Autowired
     private IUserService userService;
-
-    @Autowired
-    private LoginService loginService;
-
-    @Autowired
-    private CommentService commentService;
 
     @Autowired
     private CountryService countryService;
 
     @Autowired
     private IProjectService projectService;
-
-    @Autowired
-    private IDonationService donationService;
 
     @Autowired
     private INotificationService notificationService;
@@ -66,229 +52,12 @@ public class WebController {
     @Autowired
     private ProjectRepository projectRepository;
 
-    @GetMapping("/register")
-    public String showRegisterForm (Model model) {
-
-        List<CountryDTO> countries = countryService.getAllCountries();
-
-        model.addAttribute("countries", countries);
-        model.addAttribute("user", new UserDTO());
-
-        return "register";
-
-    }
-
-    @PostMapping("/register")
-    public String processRegistration(@ModelAttribute("user") UserDTO userDTO) {
-
-        userService.insertUser(userDTO);
-
-        return "redirect:/login";
-
-    }
-
-    @GetMapping(value = "/createProject")
-    public String createProject (Model model) {
-
-        List<AreaDTO> areas = areaService.getAllAreas();
-
-        model.addAttribute("areas", areas);
-        model.addAttribute("project", new ProjectDTO());
-
-        return "create-project";
-
-    }
-
-    @PostMapping("/createProject")
-    public String createProject (@ModelAttribute("project") ProjectDTO projectDTO) {
-
-        Project project = ProjectMapper.INSTANCE.toEntity(projectDTO);
-
-        UserDTO authenticatedUserDTO = userService.getUser(new UserDTO());
-        User autenthicatedUser = UserMapper.INSTANCE.toEntity(authenticatedUserDTO);
-
-        project.setUserId(autenthicatedUser);
-        project.setDateAdded(new Date());
-        project.setTotalAmount(0);
-
-        projectService.insertProject(ProjectMapper.INSTANCE.toDTO(project));
-
-        return "redirect:/projects";
-
-    }
-
-    @GetMapping("/editProject/{projectId}")
-    public String showEditProjectForm(@PathVariable("projectId") int projectId, Model model) {
-
-        ProjectDTO projectDTO = projectService.getProjectById(projectId);
-
-        model.addAttribute("projectDetails", projectDTO);
-
-        return "edit-project";
-
-    }
-
-    @PostMapping("/editProject/{projectId}")
-    public String editProject(@PathVariable("projectId") int projectId, @ModelAttribute("projectDetails") ProjectDTO newProjectDTO) {
-
-        ProjectDTO oldProjectDTO = projectService.getProjectById(projectId);
-
-        oldProjectDTO.setTitle(newProjectDTO.getTitle());
-        oldProjectDTO.setDescription(newProjectDTO.getDescription());
-
-        projectService.updateProject(oldProjectDTO);
-
-        return "redirect:/myProjects";
-
-    }
-
-    /*
-
-    @GetMapping("/donate/{projectId}")
-    public String donateToProject (@PathVariable("projectId") int projectId, Model model) {
-
-        ProjectDTO projectDTO = projectService.getProjectById(projectId);
-
-        model.addAttribute("project", projectDTO);
-
-        return "donate-project";
-
-    }
-
-    @PostMapping("/donate/{projectId}")
-    public String donateToProject(@PathVariable("projectId") int projectId, @RequestParam("amount") int amount) {
-
-        ProjectDTO projectDTO = projectService.getProjectById(projectId);
-        UserDTO authenticatedUser = userService.getUser(new UserDTO());
-
-        Project project = ProjectMapper.INSTANCE.toEntity(projectDTO);
-        User donor = UserMapper.INSTANCE.toEntity(authenticatedUser);
-        User recipient = project.getUserId();
-
-        Donation donation = new Donation();
-        donation.setUserId(donor);
-        donation.setProjectId(project);
-        donation.setAmount(amount);
-        donation.setDateAdded(new Date());
-
-        project.setTotalAmount(project.getTotalAmount() + amount);
-
-        donationService.insertDonation(DonationMapper.INSTANCE.toDTO(donation));
-        notificationService.createDonationNotification(recipient, donor, project);
-        projectService.updateProject(ProjectMapper.INSTANCE.toDTO(project));
-
-        return "redirect:/donations";
-
-    }
-
-    @GetMapping(value = "/comment/{projectId}")
-    public String commentProject (@PathVariable("projectId") int projectId, Model model) {
-
-        ProjectDTO projectDTO = projectService.getProjectById(projectId);
-
-        model.addAttribute("project", projectDTO);
-        model.addAttribute("comment", new CommentDTO());
-
-        return "comment-project";
-
-    }
-
-    @PostMapping("/comment/{projectId}")
-    public String commentProject(@PathVariable("projectId") int projectId, @ModelAttribute("comment") CommentDTO commentDTO) {
-
-        ProjectDTO projectDTO = projectService.getProjectById(projectId);
-        UserDTO authenticatedUser = userService.getUser(new UserDTO());
-
-        Project project = ProjectMapper.INSTANCE.toEntity(projectDTO);
-        Comment comment = CommentMapper.INSTANCE.toEntity(commentDTO);
-
-        User commenter = UserMapper.INSTANCE.toEntity(authenticatedUser);
-
-        User recipient = project.getUserId();
-
-        comment.setUserId(commenter);
-        comment.setProjectId(project);
-        comment.setDateAdded(new Date());
-
-        commentService.insertComment(CommentMapper.INSTANCE.toDTO(comment));
-
-        notificationService.createCommentNotification(recipient, commenter, project);
-
-        return "redirect:/viewProject/{projectId}";
-
-    }
-
-     */
-
     @GetMapping(value = "/userProfile/{userId}")
     public String userProfile(@PathVariable int userId, Model model) {
 
         UserDTO userDTO = userService.getUserWithStats(userId);
         model.addAttribute("user", userDTO);
         return "user-profile";
-
-    }
-
-
-    @GetMapping("/editProfile/{userId}")
-    public String showEditProfileForm(@PathVariable("userId") int userId, Model model) {
-
-        List<CountryDTO> countries = countryService.getAllCountries();
-        UserDTO userDTO = userService.getAuthenticatedUser();
-        model.addAttribute("countries", countries);
-        model.addAttribute("userDetails", userDTO);
-        return "edit-profile";
-    }
-
-    @PostMapping("/editProfile/{userId}")
-    public String editProfile(@PathVariable("userId") int userId, @ModelAttribute("userDetails") UserDTO editedUserDTO) {
-
-        UserDTO existingUserDTO = userService.getUserById(userId);
-        existingUserDTO.setName(editedUserDTO.getName());
-        existingUserDTO.setCountryId(editedUserDTO.getCountryId());
-        existingUserDTO.setEmail(editedUserDTO.getEmail());
-        existingUserDTO.setPhone(editedUserDTO.getPhone());
-        userService.updateUser(existingUserDTO);
-        return "redirect:/userProfile";
-
-    }
-
-    @GetMapping("/confirmDeleteProject/{projectId}")
-    public String confirmDeleteProject(@PathVariable("projectId") int projectId, Model model) {
-
-        ProjectDTO projectDTO = projectService.getProjectById(projectId);
-        model.addAttribute("project", projectDTO);
-        return "confirm-delete-project";
-
-    }
-
-    @PostMapping("/deleteProject/{projectId}")
-    public String deleteProject(@PathVariable("projectId") int projectId) {
-
-        ProjectDTO projectDTO = projectService.getProjectById(projectId);
-
-        projectService.deleteProject(projectDTO);
-
-        return "redirect:/myProjects";
-
-    }
-
-    @GetMapping("/confirmDeleteAccount")
-    public String confirmDeleteAccount(Model model) {
-
-        UserDTO authenticatedUser = userService.getAuthenticatedUser();
-
-        model.addAttribute("authenticatedUser", authenticatedUser);
-
-        return "confirm-delete-account";
-    }
-
-    @PostMapping("/deleteAccount")
-    public String deleteAccount() {
-
-        userService.deleteAuthenticatedUser();
-
-        return "redirect:/login";
 
     }
 
