@@ -37,6 +37,9 @@ public class UserRestController {
     @PostMapping(value = "/get")
     public UserDTO queryUser (@RequestBody UserDTO user) { return this.userService.getUser(user); }
 
+    @PostMapping(value = "/getAuthenticated")
+    public UserDTO queryAuthenticatedUser (@RequestBody UserDTO user) { return this.userService.getAuthenticatedUser(user); }
+
     @GetMapping(value = "/all")
     public List<UserDTO> queryAllUsers() { return this.userService.getAllUsers(); }
 

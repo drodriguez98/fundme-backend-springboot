@@ -6,6 +6,8 @@ import java.util.List;
 public interface IUserService {
 
     UserDTO getUser(UserDTO userDTO);
+
+    UserDTO getAuthenticatedUser(UserDTO userDTO);
     UserDTO getUserById(int userId);
     UserDTO getAuthenticatedUser();
 

@@ -36,6 +36,15 @@ public class UserService implements IUserService {
     @Override
     public UserDTO getUser(UserDTO userDTO) {
 
+        User user = UserMapper.INSTANCE.toEntity(userDTO);
+
+        return UserMapper.INSTANCE.toDTO(this.userRepository.getReferenceById(user.getUserId()));
+
+    }
+
+    @Override
+    public UserDTO getAuthenticatedUser(UserDTO userDTO) {
+
         String authenticatedUsername = SecurityContextHolder.getContext().getAuthentication().getName();
 
         User user = userRepository.findByUsername(authenticatedUsername);
