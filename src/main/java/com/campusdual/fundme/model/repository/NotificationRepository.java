@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface NotificationRepository extends JpaRepository<Notification, Integer> {
 
-    List<Notification> findByRecipientAndReadOrderByCreatedDateDesc(User user, boolean read);
+    List<Notification> findByRelatedUserAndReadOrderByCreatedDateDesc(User user, boolean read);
 
 }

@@ -11,6 +11,10 @@ public interface INotificationService {
 
     NotificationDTO getNotification(NotificationDTO notificationDTO);
     NotificationDTO getNotificationById(int notificationId);
+    List<NotificationDTO> getUnreadNotificationsByUser(UserDTO user);
+    List<NotificationDTO> getReadNotificationsByUser(UserDTO authenticatedUser);
+
+    void markNotificationAsRead(int notificationId);
 
     List<NotificationDTO> getAllNotifications();
 
@@ -18,12 +22,5 @@ public interface INotificationService {
     int updateNotification (NotificationDTO notificationDTO);
     int deleteNotification (NotificationDTO notificationDTO);
 
-    void createCommentNotification(User recipient, User commenter, Project project);
-    void createDonationNotification(User recipient, User donor, Project project);
-
-    List<NotificationDTO> getUnreadNotificationsByUserOrderByCreatedDateDesc(UserDTO user);
-    List<NotificationDTO> getReadNotificationsByUserOrderByCreatedDateDesc(UserDTO authenticatedUser);
-
-    void markNotificationAsRead(int notificationId);
 
 }

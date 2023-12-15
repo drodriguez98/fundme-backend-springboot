@@ -2,7 +2,6 @@ package com.campusdual.fundme.service;
 
 import com.campusdual.fundme.api.INotificationService;
 import com.campusdual.fundme.model.Notification;
-import com.campusdual.fundme.model.Project;
 import com.campusdual.fundme.model.User;
 import com.campusdual.fundme.model.dto.NotificationDTO;
 import com.campusdual.fundme.model.dto.UserDTO;
@@ -11,7 +10,7 @@ import com.campusdual.fundme.model.dto.dtopmapper.UserMapper;
 import com.campusdual.fundme.model.repository.NotificationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.Date;
+
 import java.util.List;
 
 @Service
@@ -65,53 +64,23 @@ public class NotificationService implements INotificationService {
 
     }
 
-    public void createCommentNotification(User recipient, User commenter, Project project) {
-
-        Notification notification = new Notification();
-        notification.setRecipient(recipient);
-        notification.setType("comment");
-        notification.setMessage(commenter.getName() + " ha comentado en tu proyecto " + project.getTitle());
-        notification.setCreatedDate(new Date());
-        notification.setRead(false);
-        notification.setRelatedUser(commenter);
-        notification.setRelatedProject(project);
-
-        notificationRepository.save(notification);
-
-    }
-
-    public void createDonationNotification(User recipient, User donor, Project project) {
-
-        Notification notification = new Notification();
-        notification.setRecipient(recipient);
-        notification.setType("donation");
-        notification.setMessage(donor.getName() + " ha donado a tu proyecto " + project.getTitle());
-        notification.setCreatedDate(new Date());
-        notification.setRead(false);
-        notification.setRelatedUser(donor);
-        notification.setRelatedProject(project);
-
-        notificationRepository.save(notification);
-
-    }
-
     @Override
-    public List<NotificationDTO> getUnreadNotificationsByUserOrderByCreatedDateDesc(UserDTO userDTO) {
+    public List<NotificationDTO> getUnreadNotificationsByUser(UserDTO userDTO) {
 
         User user = UserMapper.INSTANCE.toEntity(userDTO);
 
-        List<Notification> unreadNotifications = notificationRepository.findByRecipientAndReadOrderByCreatedDateDesc(user, false);
+        List<Notification> unreadNotifications = notificationRepository.findByRelatedUserAndReadOrderByCreatedDateDesc(user, false);
 
         return NotificationMapper.INSTANCE.toDTOList(unreadNotifications);
 
     }
 
     @Override
-    public List<NotificationDTO> getReadNotificationsByUserOrderByCreatedDateDesc(UserDTO userDTO) {
+    public List<NotificationDTO> getReadNotificationsByUser(UserDTO userDTO) {
 
         User user = UserMapper.INSTANCE.toEntity(userDTO);
 
-        List<Notification> readNotifications = notificationRepository.findByRecipientAndReadOrderByCreatedDateDesc(user, true);
+        List<Notification> readNotifications = notificationRepository.findByRelatedUserAndReadOrderByCreatedDateDesc(user, true);
 
         return NotificationMapper.INSTANCE.toDTOList(readNotifications);
 
